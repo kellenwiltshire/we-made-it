@@ -31,6 +31,7 @@ function AboutStore() {
 						euismod est arcu, sed lacinia libero varius vitae.
 					</p>
 				</div>
+				<div>BECOME A VENDOR</div>
 			</div>
 		</div>
 	);
