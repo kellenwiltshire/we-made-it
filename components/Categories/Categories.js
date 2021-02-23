@@ -12,20 +12,17 @@ function Categories() {
 				}}
 			>
 				<a>
-					<div className='bg-white w-28 sm:w-40 md:w-80 shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out'>
-						<div
-							style={{
-								clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)',
-							}}
-						>
+					<div className='flex bg-white w-28 sm:w-40 md:w-80 shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out'>
+						<div>
 							<Image
-								src='/Plain-Logo-White.png'
+								src='/small-purple-splash.png'
 								alt=''
 								height={800}
 								width={600}
+								className='bg-gradient-to-b from-dark-purple'
 							/>
 						</div>
-						<div className='p-4'>
+						<div className='absolute z-10 bottom-4 left-2'>
 							<h2 className='text-xs sm:text-base md:text-2xl uppercase text-center'>
 								Test Categories
 							</h2>
