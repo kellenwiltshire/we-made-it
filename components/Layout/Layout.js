@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Navigation from './Navigation';
+import Footer from './Footer';
 
 function Layout({ title, children }) {
 	return (
@@ -12,9 +13,10 @@ function Layout({ title, children }) {
 				<meta lang='en' />
 			</Head>
 			<Navigation />
-			<main className='mx-auto pt-16 min-h-screen flex justify-center flex-row flex-wrap'>
+			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				{children}
 			</main>
+			<Footer />
 		</div>
 	);
 }

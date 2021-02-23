@@ -4,8 +4,6 @@ function AboutStore() {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container flex flex-row flex-wrap justify-center'>
-				<div className='w-full text-center'>We Made It</div>
-				<div className='w-full text-center'>Our Story</div>
 				<div className='w-full'>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in

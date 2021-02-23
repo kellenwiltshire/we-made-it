@@ -5,7 +5,6 @@ import Image from 'next/image';
 function Categories() {
 	return (
 		<div className='m-1 sm:m-5 flex flex-row flex-wrap justify-around w-full font-body'>
-			<div className='w-full text-center'>SHOP</div>
 			<Link
 				href={{
 					pathname: '/',
