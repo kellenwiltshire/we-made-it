@@ -51,16 +51,16 @@ function Navigation() {
 				>
 					<ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
 						<li>
-							<Link href='/'>
+							<Link href='/Vendors/vendors'>
 								<a className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75'>
-									<span className='ml-2'>Page 1</span>
+									<span className='ml-2'>Our Vendors</span>
 								</a>
 							</Link>
 						</li>
 						<li>
-							<Link href='/'>
+							<Link href='/Shop/shop'>
 								<a className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75'>
-									<span className='ml-2'>Page 2</span>
+									<span className='ml-2'>Shop</span>
 								</a>
 							</Link>
 						</li>
