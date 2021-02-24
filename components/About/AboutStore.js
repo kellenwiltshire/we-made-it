@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function AboutStore() {
 	return (
@@ -29,7 +30,13 @@ function AboutStore() {
 						euismod est arcu, sed lacinia libero varius vitae.
 					</p>
 				</div>
-				<div>BECOME A VENDOR</div>
+				<Link href='/Vendors/vendors'>
+					<a>
+						<p className='transition duration-300 ease-in-out border-b border-white hover:border-b-2 hover:border-dark-purple p-1'>
+							BECOME A VENDOR
+						</p>
+					</a>
+				</Link>
 			</div>
 		</div>
 	);

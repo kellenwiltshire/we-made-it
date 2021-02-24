@@ -1,19 +1,13 @@
 import React from 'react';
-import Image from 'next/image';
 
-function Headers({ title }) {
+function Headers({ title, subtitle }) {
 	return (
-		<div className='w-full text-center header-background'>
-			{/* <div>
-				<Image
-					src='/big-purple-splash.png'
-					alt='purple splash'
-					height={200}
-					width={400}
-				/>
-			</div> */}
-			<div className='absolute z-10 text-center w-full header-background'>
+		<div className='w-full text-center h-12 m-5'>
+			<div className='text-center w-full text-dark-purple text-6xl'>
 				{title}
+			</div>
+			<div className='text-center w-full text-dark-purple text-3xl'>
+				{subtitle}
 			</div>
 		</div>
 	);
