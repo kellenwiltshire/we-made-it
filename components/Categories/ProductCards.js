@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-function Cards({ title, image, category, page, id }) {
+function ProductCards({ itemID, image, title }) {
 	return (
 		<Link
 			href={{
-				pathname: '/Shop/[cat]',
-				query: { cat: category },
+				pathname: '/[product]',
+				query: { product: itemID },
 			}}
 		>
 			<a>
@@ -26,4 +26,4 @@ function Cards({ title, image, category, page, id }) {
 	);
 }
 
-export default Cards;
+export default ProductCards;

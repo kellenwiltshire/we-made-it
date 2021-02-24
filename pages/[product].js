@@ -1,0 +1,94 @@
+import React from 'react';
+import Layout from '../components/Layout/Layout';
+import Link from 'next/link';
+
+export default function ShopProduct({ data }) {
+	return (
+		<Layout>
+			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 font-body'>
+				<div className='mb-10'>
+					<Link
+						href={{
+							pathname: '/',
+						}}
+					>
+						<a>Home</a>
+					</Link>
+				</div>
+				<div className='flex flex-col md:flex-row -mx-4'>
+					<div className='md:flex-1 px-4 order-2 sm:order-1'>
+						<img src={data[0].url} alt='' height='500px' width='500px' />
+					</div>
+					<div className='md:flex-1 px-4 order-1 sm:order-2'>
+						<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl'>
+							Test Product
+						</h2>
+
+						<div className='flex items-center space-x-4 my-4'>
+							<div>
+								<div className='rounded-lg bg-gray-100 flex py-2 px-3'>
+									<span className='text-indigo-400 mr-1 mt-1'>$</span>
+									<span className='font-bold text-indigo-600 text-3xl'>
+										100
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div className='text-gray-500'>
+							<span className='text-xl font-bold'>Description: </span>
+							<p className='leading-relaxed'>TEST Description</p>
+						</div>
+						<div class='flex py-4 space-x-4'>
+							<div class='relative'>
+								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
+									Qty
+								</div>
+								<select class='cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1'>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+						</div>
+
+						<div class='flex py-4 space-x-4'>
+							<div class='relative'>
+								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
+									Colour
+								</div>
+								<select class='cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1'>
+									<option>Blue</option>
+									<option>Purple</option>
+									<option>White</option>
+									<option>Green</option>
+									<option>Red</option>
+								</select>
+							</div>
+						</div>
+
+						<div className='flex py-4 space-x-4'>
+							<a
+								href='#'
+								target='_blank'
+								className='block bg-gray-300 py-3 px-4 text-gray-600 text-center rounded shadow-lg uppercase font-light hover:bg-gray-400 hover:text-white duration-300 ease-in-out'
+							>
+								Add to Cart
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Layout>
+	);
+}
+
+export async function getServerSideProps({ query }) {
+	const res = await fetch('https://jsonplaceholder.typicode.com/photos');
+	const data = await res.json();
+	return {
+		props: { data },
+	};
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import Search from '../../components/Forms/Search';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
-import Cards from '../../components/Categories/Cards';
+import ProductCards from '../../components/Categories/ProductCards';
 
 export default function ShopCategories({ data, cat }) {
 	const products = [
@@ -53,7 +53,14 @@ export default function ShopCategories({ data, cat }) {
 			<Search />
 			<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 				{products.map((list, i) => {
-					return <Cards title='Product' image={products[i].url} key={i} />;
+					return (
+						<ProductCards
+							title='Product'
+							image={products[i].url}
+							key={i}
+							itemID={123456}
+						/>
+					);
 				})}
 			</div>
 		</Layout>
