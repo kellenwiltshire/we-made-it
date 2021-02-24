@@ -22,7 +22,7 @@ function Categories() {
 								className='bg-gradient-to-b from-dark-purple'
 							/>
 						</div>
-						<div className='absolute z-10 bottom-4 left-2'>
+						<div className='absolute z-10 bottom-4 w-full'>
 							<h2 className='text-xs sm:text-base md:text-2xl uppercase text-center'>
 								Test Categories
 							</h2>
