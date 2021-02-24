@@ -1,12 +1,61 @@
 import React from 'react';
-import Categories from '../../components/Categories/Categories';
+import Search from '../../components/Forms/Search';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
+import Cards from '../../components/Categories/Cards';
 
 export default function ShopCategories({ data, cat }) {
+	const products = [
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+		data[10],
+		data[11],
+		data[12],
+		data[13],
+		data[14],
+	];
 	return (
 		<Layout>
-			<Headers title='cat' />
+			<Headers title={cat} />
+			<Search />
+			<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
+				{products.map((list, i) => {
+					return <Cards title='Product' image={products[i].url} key={i} />;
+				})}
+			</div>
 		</Layout>
 	);
 }

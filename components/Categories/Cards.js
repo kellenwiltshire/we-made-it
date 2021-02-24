@@ -6,7 +6,7 @@ function Cards({ title, image, category }) {
 	return (
 		<Link
 			href={{
-				pathname: '/shop/[cat]',
+				pathname: '/Shop/[cat]',
 				query: { cat: category },
 			}}
 		>
