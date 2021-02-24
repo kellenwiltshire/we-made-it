@@ -52,7 +52,7 @@ function BecomeVendor() {
 
 						<form className='p-6 flex flex-col justify-center'>
 							<div className='flex flex-col'>
-								<label for='name' className='hidden'>
+								<label htmlFor='name' className='hidden'>
 									Full Name
 								</label>
 								<input
@@ -65,7 +65,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='email' className='hidden'>
+								<label htmlFor='email' className='hidden'>
 									Email
 								</label>
 								<input
@@ -78,7 +78,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='tel' className='hidden'>
+								<label htmlFor='tel' className='hidden'>
 									Number
 								</label>
 								<input
@@ -91,7 +91,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='businessName' className='hidden'>
+								<label htmlFor='businessName' className='hidden'>
 									Business Name
 								</label>
 								<input
@@ -104,7 +104,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='address' className='hidden'>
+								<label htmlFor='address' className='hidden'>
 									Address
 								</label>
 								<input
@@ -117,7 +117,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='instagram' className='hidden'>
+								<label htmlFor='instagram' className='hidden'>
 									Instagram Tag
 								</label>
 								<input
@@ -130,7 +130,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='facebook' className='hidden'>
+								<label htmlFor='facebook' className='hidden'>
 									Facebook Page
 								</label>
 								<input
@@ -143,7 +143,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='plan'>Size and Plan Preference</label>
+								<label htmlFor='plan'>Size and Plan Preference</label>
 								<select
 									type='name'
 									name='planPreference'
@@ -179,7 +179,7 @@ function BecomeVendor() {
 							</div>
 
 							<div className='flex flex-col mt-2'>
-								<label for='description' className='hidden'>
+								<label htmlFor='description' className='hidden'>
 									Description
 								</label>
 								<textarea
