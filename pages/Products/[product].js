@@ -97,9 +97,16 @@ export default function ShopProduct({ data }) {
 }
 
 export async function getServerSideProps({ query }) {
-	const res = await fetch('https://jsonplaceholder.typicode.com/photos');
-	const data = await res.json();
-	return {
-		props: { data },
-	};
+	try {
+		const res = await fetch('https://jsonplaceholder.typicode.com/photos');
+		const data = await res.json();
+		return {
+			props: { data },
+		};
+	} catch (error) {
+		const data = error;
+		return {
+			props: { data },
+		};
+	}
 }
