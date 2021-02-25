@@ -12,7 +12,7 @@ function Location() {
 				<div class='border-t border-purple-200'>
 					<dl>
 						<div class='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-lg font-medium text-gray-500'>Location</dt>
+							<dt class='text-lg font-medium text-black'>Location</dt>
 							<dd class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<p>101 King Ave E</p>
 								<p>Newcastle, On</p>
@@ -20,7 +20,7 @@ function Location() {
 							</dd>
 						</div>
 						<div class='bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-lg font-medium text-gray-500'>Hours</dt>
+							<dt class='text-lg font-medium text-black'>Hours</dt>
 							<ul class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<li>Monday Closed</li>
 								<li>Tuesday 10:00 a.m. - 5:00 p.m.</li>
@@ -32,7 +32,7 @@ function Location() {
 							</ul>
 						</div>
 						<div class='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-lg font-medium text-gray-500'>Contact</dt>
+							<dt class='text-lg font-medium text-black'>Contact</dt>
 							<dd class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<div>
 									<a href='tel: 1 905 987 7266'>1 (905) 987 7266</a>

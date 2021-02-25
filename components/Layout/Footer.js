@@ -23,7 +23,7 @@ function Footer() {
 					</form>
 				</div>
 			</div>
-			<div className='flex items-center justify-between my-4'>
+			<div className='w-full flex items-center justify-between my-4'>
 				<p className='text-white'>All rights reserved</p>
 
 				<div className='flex items-center'>
