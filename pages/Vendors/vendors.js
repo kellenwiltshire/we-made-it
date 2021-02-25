@@ -1,6 +1,6 @@
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
-import VendorList from '../../components/Categories/VendorList';
+import VendorList from '../../components/Vendor/VendorList';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
 import React from 'react';
 

@@ -2,26 +2,26 @@ import React from 'react';
 
 function Location() {
 	return (
-		<div className='w-full flex justify-center'>
+		<div className='w-full flex justify-center my-5'>
 			<div class='bg-white shadow overflow-hidden sm:rounded-lg container'>
 				<div class='px-4 py-5 sm:px-6'>
-					<h3 class='text-lg leading-6 font-medium text-gray-900'>
+					<h3 class='text-2xl leading-6 font-medium text-dark-purple text-center'>
 						Store Information
 					</h3>
 				</div>
-				<div class='border-t border-gray-200'>
+				<div class='border-t border-purple-200'>
 					<dl>
-						<div class='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-sm font-medium text-gray-500'>Location</dt>
-							<dd class='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
+						<div class='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+							<dt class='text-lg font-medium text-gray-500'>Location</dt>
+							<dd class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<p>101 King Ave E</p>
 								<p>Newcastle, On</p>
 								<p>L1B 1E3</p>
 							</dd>
 						</div>
 						<div class='bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-sm font-medium text-gray-500'>Hours</dt>
-							<ul class='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
+							<dt class='text-lg font-medium text-gray-500'>Hours</dt>
+							<ul class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<li>Monday Closed</li>
 								<li>Tuesday 10:00 a.m. - 5:00 p.m.</li>
 								<li>Wednesday 10:00 a.m. - 5:00 p.m.</li>
@@ -31,9 +31,9 @@ function Location() {
 								<li>Sunday 10:00 a.m. - 5:00 p.m.</li>
 							</ul>
 						</div>
-						<div class='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt class='text-sm font-medium text-gray-500'>Contact</dt>
-							<dd class='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
+						<div class='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+							<dt class='text-lg font-medium text-gray-500'>Contact</dt>
+							<dd class='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<div>
 									<a href='tel: 1 905 987 7266'>1 (905) 987 7266</a>
 								</div>

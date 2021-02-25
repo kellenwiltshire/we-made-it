@@ -8,9 +8,7 @@ function Footer() {
 					<h2 className='text-xl text-left inline-block font-semibold text-white'>
 						Join Our Newsletter
 					</h2>
-					<p className='text-white text-xs pl-px'>
-						Latest news, articles and updates montly delevered to your inbox.
-					</p>
+
 					<form action='#' className='mt-2'>
 						<div className='flex items-center'>
 							<input
@@ -18,7 +16,7 @@ function Footer() {
 								className='w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none'
 								required
 							/>
-							<button className='bg-dark-purple text-gray-200 px-5 py-2 rounded shadow -ml-28'>
+							<button className='bg-dark-purple text-white px-5 py-2 rounded shadow -ml-28 hover:bg-purple-500 transition ease-in-out duration-300'>
 								Sign Up
 							</button>
 						</div>
@@ -27,9 +25,7 @@ function Footer() {
 			</div>
 			<div className='flex items-center justify-between my-4'>
 				<p className='text-white'>All rights reserved</p>
-				<p className='inline-flex text-gray-400 px-2 pt-6'>
-					Web Development by Kellen Wiltshire
-				</p>
+
 				<div className='flex items-center'>
 					<a href='#'>
 						<svg
@@ -63,6 +59,9 @@ function Footer() {
 						</svg>
 					</a>
 				</div>
+				<p className='inline-flex text-gray-400 px-2 pt-6'>
+					Web Development by Kellen Wiltshire
+				</p>
 			</div>
 		</footer>
 	);

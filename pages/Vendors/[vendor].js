@@ -4,7 +4,7 @@ import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 
-export default function ShopCategories({ data, cat }) {
+export default function ShopVendor({ data, vendor }) {
 	const products = [
 		data[10],
 		data[11],
@@ -49,7 +49,7 @@ export default function ShopCategories({ data, cat }) {
 	];
 	return (
 		<Layout>
-			<Headers title={cat} />
+			<Headers title='Test Vendor Page' />
 			<Search />
 			<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 				{products.map((list, i) => {
@@ -68,10 +68,10 @@ export default function ShopCategories({ data, cat }) {
 }
 
 export async function getServerSideProps({ query }) {
-	const cat = query.cat;
+	const vendor = query.vendor;
 	const res = await fetch('https://jsonplaceholder.typicode.com/photos');
 	const data = await res.json();
 	return {
-		props: { data, cat },
+		props: { data, vendor },
 	};
 }

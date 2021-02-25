@@ -6,20 +6,20 @@ function BecomeVendor() {
 			<div className='max-w-6xl mx-auto sm:px-6 lg:px-8'>
 				<div className='mt-8 overflow-hidden'>
 					<div className='grid grid-cols-1 md:grid-cols-2'>
-						<div className='p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg'>
-							<h1 className='text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight'>
+						<div className='p-6 mr-2 bg-purple-200 dark:bg-gray-800 sm:rounded-lg'>
+							<h1 className='text-4xl sm:text-5xl text-black dark:text-white font-extrabold tracking-tight'>
 								Become a Vendor!
 							</h1>
 
-							<div className='flex items-center mt-8 text-gray-600 dark:text-gray-400'>
-								<div className='ml-4 text-md tracking-wide font-semibold w-full'>
+							<div className='flex items-center mt-8 text-black dark:text-gray-400'>
+								<div className='text-md tracking-wide font-semibold w-full'>
 									Please fill out the form for Vendor Application. Please allow
 									1 week for response. Only accepted vendors will be contacted
 									at this time. Thank you!
 								</div>
 							</div>
 
-							<div className='flex items-center mt-2 text-gray-600 dark:text-gray-400'>
+							<div className='flex items-center mt-2 text-black dark:text-gray-400'>
 								<div className='ml-4 text-md tracking-wide w-full'>
 									<ul className='list-disc'>
 										<li>As a vendor, you keep 100% of your sales</li>
@@ -60,7 +60,7 @@ function BecomeVendor() {
 									name='name'
 									id='name'
 									placeholder='Full Name'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -73,7 +73,7 @@ function BecomeVendor() {
 									name='email'
 									id='email'
 									placeholder='Email'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -86,7 +86,7 @@ function BecomeVendor() {
 									name='tel'
 									id='tel'
 									placeholder='Telephone Number'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -99,7 +99,7 @@ function BecomeVendor() {
 									name='businessName'
 									id='businessName'
 									placeholder='Business Name'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -112,7 +112,7 @@ function BecomeVendor() {
 									name='address'
 									id='address'
 									placeholder='Address'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -125,7 +125,7 @@ function BecomeVendor() {
 									name='instagram'
 									id='instagram'
 									placeholder='Instagram Tag'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -138,7 +138,7 @@ function BecomeVendor() {
 									name='facebook'
 									id='facebook'
 									placeholder='Facebook Page'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
@@ -148,7 +148,7 @@ function BecomeVendor() {
 									type='name'
 									name='planPreference'
 									id='planPreference'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								>
 									<option>
 										3ft wide x 2ft deep $200 +tax monthly (2 month commitment
@@ -187,13 +187,13 @@ function BecomeVendor() {
 									name='description'
 									rows='3'
 									placeholder='Description and Comments'
-									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+									className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 								/>
 							</div>
 
 							<button
 								type='submit'
-								className='md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300'
+								className='md:w-32 bg-dark-purple hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-purple-500 transition ease-in-out duration-300'
 							>
 								Submit
 							</button>

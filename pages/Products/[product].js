@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
+import Layout from '../../components/Layout/Layout';
 import Link from 'next/link';
 
 export default function ShopProduct({ data }) {
@@ -37,14 +37,25 @@ export default function ShopProduct({ data }) {
 
 						<div className='text-gray-500'>
 							<span className='text-xl font-bold'>Description: </span>
-							<p className='leading-relaxed'>TEST Description</p>
+							<p className='leading-relaxed'>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+								fermentum lacus nec dolor elementum cursus. Nam mattis tempus
+								lorem, et finibus quam mattis et. Nulla id varius urna, sit amet
+								varius sapien. Phasellus id posuere purus. Nam mollis, tortor
+								vitae pharetra faucibus, arcu elit porta tortor, et elementum
+								neque nisi ut sem. Fusce rutrum auctor augue, vel aliquam
+								ligula. Nam volutpat ultricies nisi eget ornare. Aliquam erat
+								volutpat. Donec volutpat velit a diam venenatis, quis euismod
+								lacus pellentesque. Sed quis tellus quis magna viverra cursus
+								sit amet in erat.{' '}
+							</p>
 						</div>
 						<div class='flex py-4 space-x-4'>
 							<div class='relative'>
 								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
 									Qty
 								</div>
-								<select class='cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1'>
+								<select class='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -59,7 +70,7 @@ export default function ShopProduct({ data }) {
 								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
 									Colour
 								</div>
-								<select class='cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1'>
+								<select class='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'>
 									<option>Blue</option>
 									<option>Purple</option>
 									<option>White</option>
@@ -73,7 +84,7 @@ export default function ShopProduct({ data }) {
 							<a
 								href='#'
 								target='_blank'
-								className='block bg-gray-300 py-3 px-4 text-gray-600 text-center rounded shadow-lg uppercase font-light hover:bg-gray-400 hover:text-white duration-300 ease-in-out'
+								className=' bg-dark-purple hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-purple-500 transition ease-in-out duration-300'
 							>
 								Add to Cart
 							</a>

@@ -5,7 +5,7 @@ function AboutStore() {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container flex flex-row flex-wrap justify-center'>
-				<div className='w-full'>
+				<div className='w-full text-center leading-loose space-y-2'>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in
 						ligula faucibus, gravida libero quis, commodo turpis. In pharetra
@@ -32,7 +32,7 @@ function AboutStore() {
 				</div>
 				<Link href='/Vendors/vendors'>
 					<a>
-						<p className='transition duration-300 ease-in-out border-b border-white hover:border-b-2 hover:border-dark-purple p-1'>
+						<p className='mt-5 text-xl transition duration-300 ease-in-out border-b border-white hover:border-b-2 hover:border-dark-purple p-1'>
 							BECOME A VENDOR
 						</p>
 					</a>

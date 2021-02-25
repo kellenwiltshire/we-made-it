@@ -6,7 +6,7 @@ function ProductCards({ itemID, image, title }) {
 	return (
 		<Link
 			href={{
-				pathname: '/[product]',
+				pathname: '/Products/[product]',
 				query: { product: itemID },
 			}}
 		>
