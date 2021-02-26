@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Search from '../Forms/Search';
 
 function Navigation() {
 	const [navbarOpen, setNavbarOpen] = useState(false);
@@ -50,6 +51,9 @@ function Navigation() {
 					id='example-navbar-danger'
 				>
 					<ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
+						<li>
+							<Search />
+						</li>
 						<li>
 							<Link href='/Vendors/vendors'>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>

@@ -51,7 +51,6 @@ export default function ShopCategories({ data, cat }) {
 		return (
 			<Layout>
 				<Headers title={cat} />
-				<Search />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{products.map((list, i) => {
 						return (
@@ -70,7 +69,6 @@ export default function ShopCategories({ data, cat }) {
 		return (
 			<Layout>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<Search />
 				{/* <div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{products.map((list, i) => {
 						return (
