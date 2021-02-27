@@ -19,6 +19,7 @@ function Navigation() {
 							/>
 						</a>
 					</Link>
+
 					<button
 						className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
 						type='button'
@@ -43,6 +44,7 @@ function Navigation() {
 						</svg>
 					</button>
 				</div>
+
 				<div
 					className={
 						'lg:flex flex-grow items-center' +
@@ -51,9 +53,6 @@ function Navigation() {
 					id='example-navbar-danger'
 				>
 					<ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
-						<li>
-							<Search />
-						</li>
 						<li>
 							<Link href='/Vendors/vendors'>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
@@ -69,6 +68,11 @@ function Navigation() {
 							</Link>
 						</li>
 					</ul>
+				</div>
+				<div className='w-full'>
+					<div className='flex right-0'>
+						<Search />
+					</div>
 				</div>
 			</div>
 		</nav>
