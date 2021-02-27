@@ -7,7 +7,13 @@ import React from 'react';
 
 export default function Home({ data }) {
 	if (data.length) {
-		const catData = [data[0], data[1], data[2], data[3], data[4], data[0]];
+		const catData = [
+			{ image: data[0].url, name: 'Shop All' },
+			{ image: data[1].url, name: 'Gift Cards' },
+			{ image: data[2].url, name: 'Category 1' },
+			{ image: data[3].url, name: 'Category 2' },
+			{ image: data[4].url, name: 'Category 3' },
+		];
 		return (
 			<Layout>
 				<Headers title='Shop Now' />
@@ -20,8 +26,6 @@ export default function Home({ data }) {
 	} else {
 		return (
 			<Layout>
-				{/* <Headers title='Shop Now' /> */}
-				{/* <Categories catData={catData} /> */}
 				<Headers title='Our Story' />
 				<AboutStore />
 				<Location />

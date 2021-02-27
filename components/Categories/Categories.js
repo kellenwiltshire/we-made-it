@@ -8,8 +8,8 @@ function Categories({ catData }) {
 				{catData.map((list, i) => {
 					return (
 						<Cards
-							title='Shop Category'
-							image={catData[i].url}
+							title={catData[i].name}
+							image={catData[i].image}
 							key={i}
 							category='testCategory'
 						/>
