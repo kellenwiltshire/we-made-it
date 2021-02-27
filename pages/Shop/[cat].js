@@ -1,8 +1,8 @@
 import React from 'react';
-import Search from '../../components/Forms/Search';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
+import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function ShopCategories({ data, cat }) {
 	if (data.length) {
@@ -51,6 +51,7 @@ export default function ShopCategories({ data, cat }) {
 		return (
 			<Layout>
 				<Headers title={cat} />
+				<CategorySelect />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{products.map((list, i) => {
 						return (
@@ -69,18 +70,6 @@ export default function ShopCategories({ data, cat }) {
 		return (
 			<Layout>
 				<Headers title='OOPS! Something Went Wrong!' />
-				{/* <div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-					{products.map((list, i) => {
-						return (
-							<ProductCards
-								title='Product'
-								image={products[i].url}
-								key={i}
-								itemID={123456}
-							/>
-						);
-					})}
-				</div> */}
 			</Layout>
 		);
 	}

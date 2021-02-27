@@ -5,6 +5,7 @@ import Search from '../Forms/Search';
 
 function Navigation() {
 	const [navbarOpen, setNavbarOpen] = useState(false);
+	const category = 'Shop All';
 	return (
 		<nav className='relative flex flex-wrap items-center justify-between px-2 py-3 bg-dark-purple mb-3 min-w-screen font-body'>
 			<div className='container px-4 mx-auto flex flex-wrap items-center justify-between w-full'>
@@ -19,6 +20,7 @@ function Navigation() {
 							/>
 						</a>
 					</Link>
+
 					<button
 						className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
 						type='button'
@@ -43,6 +45,7 @@ function Navigation() {
 						</svg>
 					</button>
 				</div>
+
 				<div
 					className={
 						'lg:flex flex-grow items-center' +
@@ -52,9 +55,6 @@ function Navigation() {
 				>
 					<ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
 						<li>
-							<Search />
-						</li>
-						<li>
 							<Link href='/Vendors/vendors'>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
 									<span className='ml-2'>Our Vendors</span>
@@ -62,13 +62,30 @@ function Navigation() {
 							</Link>
 						</li>
 						<li>
-							<Link href='/Shop/shop'>
+							<Link href='/Vendors/becomevendor'>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
-									<span className='ml-2'>Shop</span>
+									<span className='ml-2'>Become a Vendor</span>
+								</a>
+							</Link>
+						</li>
+						<li>
+							<Link
+								href={{
+									pathname: '/Shop/[cat]',
+									query: { cat: category },
+								}}
+							>
+								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
+									<span className='ml-2'>Shop Now</span>
 								</a>
 							</Link>
 						</li>
 					</ul>
+				</div>
+				<div className='w-full flex justify-center md:justify-end'>
+					<div>
+						<Search />
+					</div>
 				</div>
 			</div>
 		</nav>

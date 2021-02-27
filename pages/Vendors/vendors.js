@@ -32,15 +32,12 @@ export default function Vendors({ data }) {
 			<Layout>
 				<Headers title='Our Vendors' />
 				<VendorList venData={venData} />
-				<BecomeVendor />
 			</Layout>
 		);
 	} else {
 		return (
 			<Layout>
-				{/* <Headers title='Our Vendors' /> */}
-				{/* <VendorList venData={venData} /> */}
-				<BecomeVendor />
+				<Headers title='OOPS! Something Went Wrong!' />
 			</Layout>
 		);
 	}
