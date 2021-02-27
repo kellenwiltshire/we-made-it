@@ -69,8 +69,8 @@ function Navigation() {
 						</li>
 					</ul>
 				</div>
-				<div className='w-full'>
-					<div className='flex right-0'>
+				<div className='w-full flex justify-center md:justify-end'>
+					<div>
 						<Search />
 					</div>
 				</div>
