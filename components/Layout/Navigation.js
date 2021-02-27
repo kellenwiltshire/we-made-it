@@ -5,6 +5,7 @@ import Search from '../Forms/Search';
 
 function Navigation() {
 	const [navbarOpen, setNavbarOpen] = useState(false);
+	const category = 'Shop All';
 	return (
 		<nav className='relative flex flex-wrap items-center justify-between px-2 py-3 bg-dark-purple mb-3 min-w-screen font-body'>
 			<div className='container px-4 mx-auto flex flex-wrap items-center justify-between w-full'>
@@ -68,7 +69,12 @@ function Navigation() {
 							</Link>
 						</li>
 						<li>
-							<Link href='/Shop/shop'>
+							<Link
+								href={{
+									pathname: '/Shop/[cat]',
+									query: { cat: category },
+								}}
+							>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
 									<span className='ml-2'>Shop Now</span>
 								</a>
