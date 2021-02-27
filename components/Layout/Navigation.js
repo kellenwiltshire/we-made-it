@@ -61,9 +61,16 @@ function Navigation() {
 							</Link>
 						</li>
 						<li>
+							<Link href='/Vendors/becomevendor'>
+								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
+									<span className='ml-2'>Become a Vendor</span>
+								</a>
+							</Link>
+						</li>
+						<li>
 							<Link href='/Shop/shop'>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
-									<span className='ml-2'>Shop</span>
+									<span className='ml-2'>Shop Now</span>
 								</a>
 							</Link>
 						</li>
