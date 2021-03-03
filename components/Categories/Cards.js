@@ -3,11 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 function Cards({ title, image, category, page, id }) {
+	let cat = category.replace(' ', '');
+	let name = category;
 	return (
 		<Link
 			href={{
 				pathname: '/Shop/[cat]',
-				query: { cat: category },
+				query: { cat: cat, name: name, cursor: null },
 			}}
 		>
 			<a>
