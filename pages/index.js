@@ -9,10 +9,10 @@ export default function Home({ data }) {
 	if (data.length) {
 		const catData = [
 			{ image: data[0].url, name: 'Shop All' },
-			{ image: data[1].url, name: 'Gift Cards' },
-			{ image: data[2].url, name: 'Category 1' },
-			{ image: data[3].url, name: 'Category 2' },
-			{ image: data[4].url, name: 'Category 3' },
+			// { image: data[1].url, name: 'Gift Cards' },
+			// { image: data[2].url, name: 'Category 1' },
+			// { image: data[3].url, name: 'Category 2' },
+			// { image: data[4].url, name: 'Category 3' },
 		];
 		return (
 			<Layout>

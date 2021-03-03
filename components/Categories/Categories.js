@@ -11,7 +11,7 @@ function Categories({ catData }) {
 							title={catData[i].name}
 							image={catData[i].image}
 							key={i}
-							category='testCategory'
+							category={catData[i].name}
 						/>
 					);
 				})}

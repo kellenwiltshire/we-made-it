@@ -17,7 +17,7 @@ function ProductCards({ itemID, image, title }) {
 					</div>
 					<div className='absolute z-10 bottom-4 w-full'>
 						<h2 className='text-xs sm:text-base md:text-2xl uppercase text-center text-white bg-dark-purple bg-opacity-50'>
-							Test {title}
+							{title}
 						</h2>
 					</div>
 				</div>
