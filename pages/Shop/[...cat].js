@@ -5,16 +5,16 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import Pagination from '../../components/Layout/Pagination';
 
-export default function ShopCategories({ data, cat, name, cursor }) {
+export default function ShopCategories({ data, cat, name }) {
 	let items = data.items.objects.filter((item) => item.type === 'ITEM');
-	let currentCursor = data.cursor;
-	let previousCursor = cursor;
-	console.log(previousCursor);
+	let currentCursor = data.items.cursor;
+	console.log(data);
 	if (data) {
 		return (
 			<Layout>
 				<Headers title={name} />
 				<CategorySelect />
+				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{items.map((list, i) => {
 						return (
@@ -27,7 +27,7 @@ export default function ShopCategories({ data, cat, name, cursor }) {
 						);
 					})}
 				</div>
-				<Pagination />
+				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
 			</Layout>
 		);
 	} else {
@@ -40,34 +40,50 @@ export default function ShopCategories({ data, cat, name, cursor }) {
 }
 
 export async function getServerSideProps({ query }) {
-	try {
-		const cat = query.cat;
-		const name = query.name;
+	const cat = query.cat;
+	const name = query.name;
+	const cursor = query.cursor;
 
-		if (query.cursor) {
-			const cursor = query.cursor;
+	if (cursor) {
+		try {
+			console.log('cursor HERE', cursor);
 			const res = await fetch('http://localhost:4000/catalog', {
-				method: 'get',
+				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					input: cursor,
+					cursor: cursor,
 				}),
 			});
 			const data = await res.json();
 			return {
-				props: { data, cat, name, cursor },
+				props: { data, cat, name },
 			};
-		} else {
-			const res = await fetch('http://localhost:4000/catalog');
+		} catch (error) {
+			const data = error;
+			console.log('ERROR: ', data);
+			return {
+				props: { data },
+			};
+		}
+	} else {
+		try {
+			const res = await fetch('http://localhost:4000/catalog', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					cursor: null,
+				}),
+			});
 			const data = await res.json();
 			return {
 				props: { data, cat, name },
 			};
+		} catch (error) {
+			const data = error;
+			console.log('ERROR: ', data);
+			return {
+				props: { data },
+			};
 		}
-	} catch (error) {
-		const data = error;
-		return {
-			props: { data },
-		};
 	}
 }
