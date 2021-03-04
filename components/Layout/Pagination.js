@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 function Pagination({ currentCursor, name, cat }) {
+	console.log(cat[0]);
 	const router = useRouter();
 	return (
 		<div className='w-full flex justify-center m-10'>
@@ -19,8 +20,8 @@ function Pagination({ currentCursor, name, cat }) {
 				<li className='mx-1 px-3 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 					<Link
 						href={{
-							pathname: `Shop/${cat}`,
-							query: { cat: cat, name: name, cursor: currentCursor },
+							pathname: `Shop/${cat[0]}`,
+							query: { cat: cat[0], name: name, cursor: currentCursor },
 						}}
 					>
 						<div className='flex items-center font-bold'>

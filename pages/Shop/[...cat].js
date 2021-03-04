@@ -8,7 +8,6 @@ import Pagination from '../../components/Layout/Pagination';
 export default function ShopCategories({ data, cat, name }) {
 	let items = data.items.objects.filter((item) => item.type === 'ITEM');
 	let currentCursor = data.items.cursor;
-	console.log(data);
 	if (data) {
 		return (
 			<Layout>
@@ -46,7 +45,6 @@ export async function getServerSideProps({ query }) {
 
 	if (cursor) {
 		try {
-			console.log('cursor HERE', cursor);
 			const res = await fetch('http://localhost:4000/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
@@ -60,7 +58,6 @@ export async function getServerSideProps({ query }) {
 			};
 		} catch (error) {
 			const data = error;
-			console.log('ERROR: ', data);
 			return {
 				props: { data },
 			};
@@ -80,7 +77,6 @@ export async function getServerSideProps({ query }) {
 			};
 		} catch (error) {
 			const data = error;
-			console.log('ERROR: ', data);
 			return {
 				props: { data },
 			};
