@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 function Cards({ title, image, category, id }) {
 	let cat = category.replace(' ', '');
@@ -8,7 +7,7 @@ function Cards({ title, image, category, id }) {
 	return (
 		<Link
 			href={{
-				pathname: `Shop/[...cat]`,
+				pathname: `/Shop/[...cat]`,
 				query: { cat: cat, name: name, cursor: null },
 			}}
 		>
