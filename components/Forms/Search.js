@@ -13,7 +13,7 @@ function Search() {
 		console.log(input);
 
 		router.push({
-			pathname: '/Shop/[searchitems]',
+			pathname: `/search/[...searchitems]`,
 			query: { searchitems: input },
 		});
 	};

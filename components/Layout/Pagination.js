@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 function Pagination({ currentCursor, name, cat }) {
-	console.log(cat[0]);
 	const router = useRouter();
 	return (
 		<div className='w-full flex justify-center m-10'>
