@@ -6,7 +6,7 @@ import CategorySelect from '../../components/Categories/CategorySelect';
 import Pagination from '../../components/Layout/Pagination';
 
 export default function ShopCategories({ data, cat, name }) {
-	let items = data.items.objects.filter((item) => item.type === 'ITEM');
+	let items = data.items.objects;
 	let currentCursor = data.items.cursor;
 	if (data) {
 		return (
@@ -18,6 +18,7 @@ export default function ShopCategories({ data, cat, name }) {
 					{items.map((list, i) => {
 						return (
 							<ProductCards
+								item={items[i]}
 								title={items[i].itemData.name}
 								image='/small-purple-splash.png'
 								key={i}

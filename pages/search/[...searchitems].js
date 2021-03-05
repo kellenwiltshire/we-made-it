@@ -16,6 +16,7 @@ export default function SearchItems({ data }) {
 					{items.map((list, i) => {
 						return (
 							<ProductCards
+								item={items[i]}
 								title={items[i].itemData.name}
 								image='/small-purple-splash.png'
 								key={i}

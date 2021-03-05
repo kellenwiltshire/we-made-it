@@ -71,8 +71,8 @@ function Navigation() {
 						<li>
 							<Link
 								href={{
-									pathname: '/Shop/[cat]',
-									query: { cat: category },
+									pathname: `Shop/[...cat]`,
+									query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
 								}}
 							>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
