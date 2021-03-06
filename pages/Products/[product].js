@@ -20,7 +20,7 @@ export default function ShopProduct({ data }) {
 						onClick={() => router.back()}
 						className='flex items-center font-bold'
 					>
-						<span className='mx-1 px-3 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+						<span className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 							Back
 						</span>
 					</div>
@@ -88,7 +88,7 @@ export default function ShopProduct({ data }) {
 							<a
 								href='#'
 								target='_blank'
-								className=' bg-dark-purple hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-purple-500 transition ease-in-out duration-300'
+								className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
 							>
 								Add to Cart
 							</a>

@@ -7,7 +7,7 @@ function Pagination({ currentCursor, name, cat }) {
 	return (
 		<div className='w-full flex justify-center m-10'>
 			<ul className='flex'>
-				<li className='mx-1 px-3 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+				<li className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 					<div
 						onClick={() => router.back()}
 						className='flex items-center font-bold'
@@ -16,7 +16,7 @@ function Pagination({ currentCursor, name, cat }) {
 					</div>
 				</li>
 
-				<li className='mx-1 px-3 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+				<li className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 					<Link
 						href={{
 							pathname: `Shop/${cat[0]}`,
