@@ -38,7 +38,6 @@ export default function SearchItems({ data }) {
 
 export async function getServerSideProps({ query }) {
 	const search = query.searchitems;
-	console.log(search[0]);
 	try {
 		const res = await fetch('http://localhost:4000/searchitems', {
 			method: 'post',

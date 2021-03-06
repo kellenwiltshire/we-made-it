@@ -1,13 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 function ProductCards({ itemID, image, title, item }) {
-	console.log(item);
 	const price = item.itemData.variations[0].itemVariationData.priceMoney.amount;
-	console.log(price / 100);
 	let roundedPrice = (price / 100).toFixed(2);
-	console.log(roundedPrice);
 	return (
 		<Link
 			href={{
