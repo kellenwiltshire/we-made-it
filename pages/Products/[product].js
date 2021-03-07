@@ -93,6 +93,13 @@ export default function ShopProduct({ data }) {
 								Add to Cart
 							</a>
 						</div>
+						<div>
+							<p className='text-xs leading-none text-gray-500'>
+								Due to the nature of our store, all items are final sale. We are
+								unable to provide exchanges or refunds as vendors are paid out
+								with their sales.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>

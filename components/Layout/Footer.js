@@ -16,7 +16,7 @@ function Footer() {
 								className='w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none'
 								required
 							/>
-							<button className='bg-dark-purple text-white px-5 py-2 rounded shadow -ml-28 hover:bg-purple-500 transition ease-in-out duration-300'>
+							<button className='bg-purple-200 text-gray-700 px-5 py-2 rounded shadow -ml-28 hover:bg-purple-700 hover:text-gray-200 transition ease-in-out duration-300'>
 								Sign Up
 							</button>
 						</div>
