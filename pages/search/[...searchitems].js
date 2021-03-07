@@ -5,7 +5,8 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function SearchItems({ data }) {
-	let items = data.items.items;
+	console.log(data);
+	let items = data.items.objects;
 	if (data) {
 		return (
 			<Layout>

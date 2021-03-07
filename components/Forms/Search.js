@@ -10,8 +10,6 @@ function Search() {
 	};
 
 	const handleSearch = () => {
-		console.log(input);
-
 		router.push({
 			pathname: `/search/[...searchitems]`,
 			query: { searchitems: input },
