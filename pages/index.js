@@ -5,7 +5,7 @@ import Headers from '../components/Layout/Headers';
 import Layout from '../components/Layout/Layout';
 import React from 'react';
 
-export default function Home({ data }) {
+export default function Home({ data, cart }) {
 	if (data.length) {
 		const catData = [
 			{ image: data[0].url, name: 'Shop All' },
@@ -15,7 +15,7 @@ export default function Home({ data }) {
 			// { image: data[4].url, name: 'Category 3' },
 		];
 		return (
-			<Layout>
+			<Layout cart={cart}>
 				<Headers title='Shop Now' />
 				<Categories catData={catData} />
 				<Headers title='Our Story' />

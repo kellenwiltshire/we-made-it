@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
 
-function Layout({ title, children }) {
+function Layout({ title, children, cart }) {
 	return (
 		<div>
 			<Head>
@@ -12,7 +12,7 @@ function Layout({ title, children }) {
 				<meta name='We-Made-It We Made It Newcastle Ontario' />
 				<meta lang='en' />
 			</Head>
-			<Navigation />
+			<Navigation cart={cart} />
 			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				{children}
 			</main>

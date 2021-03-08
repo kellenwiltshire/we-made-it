@@ -5,13 +5,13 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import Pagination from '../../components/Layout/Pagination';
 
-export default function ShopCategories({ data, cat, name }) {
+export default function ShopCategories({ data, cat, name, cart }) {
 	console.log(data);
 	let items = data.items.objects;
 	let currentCursor = data.items.cursor;
 	if (data) {
 		return (
-			<Layout>
+			<Layout cart={cart}>
 				<Headers title={name} />
 				<CategorySelect />
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />

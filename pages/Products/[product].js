@@ -1,9 +1,8 @@
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function ShopProduct({ data }) {
+export default function ShopProduct({ data, setCart, cart }) {
 	const itemName = data.items.object.itemData.name;
 	const price =
 		data.items.object.itemData.variations[0].itemVariationData.priceMoney
@@ -12,8 +11,27 @@ export default function ShopProduct({ data }) {
 	const description = data.items.object.itemData.description;
 	const router = useRouter();
 
+	let quantity;
+	let cartInfo = [{ item: data.items, quantity: quantity }];
+
+	const onInputChange = (e) => {
+		e.preventDefault();
+		quantity = e.target.value;
+	};
+
+	const handleCart = (e) => {
+		e.preventDefault();
+		console.log('HERE');
+		setCart([...cart, { item: data.items, quantity: quantity }]);
+		showSubmitSuccess();
+	};
+
+	const showSubmitSuccess = () => {
+		document.getElementById('success').style.visibility = 'visible';
+	};
+
 	return (
-		<Layout>
+		<Layout cart={cart}>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 font-body'>
 				<div className='mb-10'>
 					<div
@@ -54,19 +72,34 @@ export default function ShopProduct({ data }) {
 							<span className='text-xl font-bold'>Description: </span>
 							<p className='leading-relaxed'>{description}</p>
 						</div>
-						<div class='flex py-4 space-x-4'>
-							<div class='relative'>
-								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
-									Qty
-								</div>
-								<select class='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
+
+						<div className='flex py-4'>
+							<form onSubmit={handleCart}>
+								<input
+									type='number'
+									id='quantity'
+									name='quantity'
+									min='1'
+									max='5'
+									placeholder='Quantity'
+									onChange={onInputChange}
+								/>
+
+								<button
+									type='submit'
+									className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
+								>
+									Add to Cart
+								</button>
+							</form>
+						</div>
+
+						<div
+							id='success'
+							style={{ visibility: 'hidden' }}
+							className='text-center justify-center align-middle'
+						>
+							<h1>Added to Cart!</h1>
 						</div>
 
 						{/* <div class='flex py-4 space-x-4'>
@@ -84,15 +117,6 @@ export default function ShopProduct({ data }) {
 							</div>
 						</div> */}
 
-						<div className='flex py-4 space-x-4'>
-							<a
-								href='#'
-								target='_blank'
-								className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
-							>
-								Add to Cart
-							</a>
-						</div>
 						<div>
 							<p className='text-xs leading-none text-gray-500'>
 								Due to the nature of our store, all items are final sale. We are

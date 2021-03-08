@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import { useEffect, useState } from 'react';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+	const [cart, setCart] = useState([]);
+
+	console.log('CART: ', cart);
+
+	return <Component {...pageProps} cart={cart} setCart={setCart} />;
 }
 
-export default MyApp
+export default MyApp;

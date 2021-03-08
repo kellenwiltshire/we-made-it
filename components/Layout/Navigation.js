@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Search from '../Forms/Search';
 
-function Navigation() {
+function Navigation({ cart }) {
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	let category = 'Shop All';
 	let cat = category.replace(' ', '');
@@ -79,6 +79,13 @@ function Navigation() {
 							>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
 									<span className='ml-2'>Shop Now</span>
+								</a>
+							</Link>
+						</li>
+						<li>
+							<Link href={'/'}>
+								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
+									<span className='ml-2'>Cart ({cart.length})</span>
 								</a>
 							</Link>
 						</li>
