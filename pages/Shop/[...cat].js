@@ -6,7 +6,6 @@ import CategorySelect from '../../components/Categories/CategorySelect';
 import Pagination from '../../components/Layout/Pagination';
 
 export default function ShopCategories({ data, cat, name, cart }) {
-	console.log(data);
 	let items = data.items.objects;
 	let currentCursor = data.items.cursor;
 	if (data) {

@@ -83,7 +83,7 @@ function Navigation({ cart }) {
 							</Link>
 						</li>
 						<li>
-							<Link href={'/'}>
+							<Link href={'/checkout/checkout'}>
 								<a className='px-3 py-2 flex items-center text-lg leading-snug text-white hover:opacity-75'>
 									<span className='ml-2'>Cart ({cart.length})</span>
 								</a>
