@@ -12,7 +12,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const router = useRouter();
 
 	let quantity;
-	let cartInfo = [{ item: data.items, quantity: quantity }];
 
 	const onInputChange = (e) => {
 		e.preventDefault();
@@ -21,7 +20,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 	const handleCart = (e) => {
 		e.preventDefault();
-		console.log('HERE');
 		setCart([...cart, { item: data.items, quantity: quantity }]);
 		showSubmitSuccess();
 	};
