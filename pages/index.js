@@ -4,19 +4,15 @@ import Categories from '../components/Categories/Categories';
 import Headers from '../components/Layout/Headers';
 import Layout from '../components/Layout/Layout';
 import React from 'react';
+import Image from 'next/image';
 
 export default function Home({ data, cart }) {
 	if (data.length) {
-		const catData = [
-			{ image: data[0].url, name: 'Shop All' },
-			// { image: data[1].url, name: 'Gift Cards' },
-			// { image: data[2].url, name: 'Category 1' },
-			// { image: data[3].url, name: 'Category 2' },
-			// { image: data[4].url, name: 'Category 3' },
-		];
+		const catData = [{ image: data[0].url, name: 'Shop All' }];
 		return (
 			<Layout cart={cart}>
 				<Headers title='Shop Now' />
+				<Image src='/homepagephoto.png' height={720} width={1280} />
 				<Categories catData={catData} />
 				<Headers title='Our Story' />
 				<AboutStore />

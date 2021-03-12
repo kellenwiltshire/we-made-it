@@ -5,7 +5,7 @@ function AboutStore() {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container flex flex-row flex-wrap justify-center'>
-				<div className='w-full text-center leading-loose space-y-2'>
+				<div className='w-1/2 text-center leading-loose space-y-2'>
 					<p>
 						Hello! My name is Amanda VanGoor and I am the owner behind We Made
 						It.
@@ -33,13 +33,15 @@ function AboutStore() {
 					</p>
 					<p>Thank you for shopping locally for handmade items</p>
 				</div>
-				<Link href='/Vendors/vendors'>
-					<a>
-						<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
-							BECOME A VENDOR
-						</p>
-					</a>
-				</Link>
+				<div className='w-full flex justify-center'>
+					<Link href='/Vendors/vendors'>
+						<a>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+								BECOME A VENDOR
+							</p>
+						</a>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

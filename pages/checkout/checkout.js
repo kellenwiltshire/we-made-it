@@ -19,14 +19,20 @@ export default function Checkout({ cart, setCart }) {
 	console.log(lineItems);
 
 	const handleCheckout = () => {
-		fetch('LOCALHOST:4000/checkout', {
+		fetch('http://LOCALHOST:4000/checkout', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				lineItems: lineItems,
 				orderID: orderID,
 			}),
-		}).catch((err) => console.log(err));
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				router.push(data.checkout.checkoutPageUrl);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	if (cart) {

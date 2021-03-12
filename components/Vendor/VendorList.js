@@ -1,17 +1,17 @@
 import React from 'react';
 import VendorCards from '../Vendor/VendorCards';
 
-function VendorList({ venData }) {
+function VendorList({ vendors }) {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-				{venData.map((list, i) => {
+				{vendors.map((list, i) => {
 					return (
 						<VendorCards
-							title='Vendor'
-							image={venData[i].url}
+							vendor={vendors[i].vendor}
+							image='/small-purple-splash.png'
+							owner={vendors[i].owner}
 							key={i}
-							vendorID='9876'
 						/>
 					);
 				})}
