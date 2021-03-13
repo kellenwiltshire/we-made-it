@@ -13,12 +13,12 @@ function Navigation({ cart }) {
 			<div className='container px-4 mx-auto flex flex-wrap items-center justify-between w-full'>
 				<div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
 					<Link href='/'>
-						<a className='text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white'>
+						<a className='text-sm font-bold leading-relaxed inline-block mr-4 pt-5 whitespace-no-wrap uppercase text-white'>
 							<Image
 								src='/Plain-Logo-White.png'
 								alt='Plain Logo'
-								height={200}
-								width={200}
+								height={106}
+								width={300}
 							/>
 						</a>
 					</Link>

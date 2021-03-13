@@ -5,7 +5,7 @@ function AboutStore() {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container flex flex-row flex-wrap justify-center'>
-				<div className='w-1/2 text-center leading-loose space-y-2'>
+				<div className='w-2/3 text-center leading-loose space-y-2'>
 					<p>
 						Hello! My name is Amanda VanGoor and I am the owner behind We Made
 						It.

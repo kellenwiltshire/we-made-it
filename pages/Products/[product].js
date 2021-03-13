@@ -1,21 +1,36 @@
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function ShopProduct({ data, setCart, cart }) {
-	const itemName = data.items.object.itemData.name;
-	const price =
-		data.items.object.itemData.variations[0].itemVariationData.priceMoney
-			.amount;
-	const roundedPrice = (price / 100).toFixed(2);
-	const description = data.items.object.itemData.description;
+	console.log('New Data Received: ', data);
+	const itemName = data.itemName;
+	const [price, setPrice] = useState(
+		(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(2),
+	);
+	const [itemID, setItemID] = useState(
+		data.itemVarData[0].itemVariationData.itemId,
+	);
+	const description = data.description;
 	const router = useRouter();
 
 	let quantity;
+	let selectedItem;
 
 	const onInputChange = (e) => {
 		e.preventDefault();
 		quantity = e.target.value;
+	};
+
+	const onSelectChange = (e) => {
+		selectedItem = e.target.value;
+		setPrice(
+			(
+				data.itemVarData[selectedItem].itemVariationData.priceMoney.amount / 100
+			).toFixed(2),
+		);
+		console.log(e.target.value);
 	};
 
 	const handleCart = (e) => {
@@ -26,6 +41,34 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 	const showSubmitSuccess = () => {
 		document.getElementById('success').style.visibility = 'visible';
+	};
+
+	const getItemVarData = () => {
+		if (data.itemVarData) {
+			return (
+				<div className='flex py-4 space-x-4'>
+					<div className='relative'>
+						<div className='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
+							Variation
+						</div>
+						<select
+							onChange={onSelectChange}
+							className='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'
+						>
+							{data.itemVarData.map((item, i) => {
+								return (
+									<option value={i}>
+										{data.itemVarData[i].itemVariationData.name}
+									</option>
+								);
+							})}
+						</select>
+					</div>
+				</div>
+			);
+		} else {
+			return <div></div>;
+		}
 	};
 
 	return (
@@ -44,7 +87,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 				<div className='flex flex-col md:flex-row -mx-4'>
 					<div className='md:flex-1 px-4 order-2 sm:order-1'>
 						<img
-							src='/big-purple-splash.png'
+							src='/pictureComingSoon.png'
 							alt=''
 							height='500px'
 							width='500px'
@@ -60,7 +103,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 								<div className='rounded-lg bg-gray-100 flex py-2 px-3'>
 									<span className='text-indigo-400 mr-1 mt-1'>$</span>
 									<span className='font-bold text-indigo-600 text-3xl'>
-										{roundedPrice}
+										{price}
 									</span>
 								</div>
 							</div>
@@ -82,6 +125,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 									placeholder='Quantity'
 									onChange={onInputChange}
 								/>
+								{getItemVarData()}
 
 								<button
 									type='submit'
@@ -99,21 +143,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 						>
 							<h1>Added to Cart!</h1>
 						</div>
-
-						{/* <div class='flex py-4 space-x-4'>
-							<div class='relative'>
-								<div class='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
-									Colour
-								</div>
-								<select class='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'>
-									<option>Blue</option>
-									<option>Purple</option>
-									<option>White</option>
-									<option>Green</option>
-									<option>Red</option>
-								</select>
-							</div>
-						</div> */}
 
 						<div>
 							<p className='text-xs leading-none text-gray-500'>

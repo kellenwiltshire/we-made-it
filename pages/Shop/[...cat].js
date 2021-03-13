@@ -20,7 +20,7 @@ export default function ShopCategories({ data, cat, name, cart }) {
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
-								image='/small-purple-splash.png'
+								image='/pictureComingSoon.png'
 								key={i}
 								itemID={items[i].id}
 							/>
