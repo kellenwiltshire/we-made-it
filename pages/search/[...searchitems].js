@@ -4,12 +4,12 @@ import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
-export default function SearchItems({ data }) {
+export default function SearchItems({ cart, data }) {
 	console.log(data);
 	let items = data.items.objects;
 	if (data) {
 		return (
-			<Layout>
+			<Layout cart={cart}>
 				<Headers title='Search Results' />
 				<CategorySelect />
 
@@ -19,7 +19,7 @@ export default function SearchItems({ data }) {
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
-								image='/small-purple-splash.png'
+								image='/pictureComingSoon.png'
 								key={i}
 								itemID={items[i].id}
 							/>

@@ -39,29 +39,31 @@ export default function Checkout({ cart, setCart }) {
 		return (
 			<Layout cart={cart}>
 				<Headers title='Checkout' />
-				<div className='container flex flex-wrap'>
-					<button
-						onClick={handleCheckout}
-						className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
-					>
-						Continue to Checkout
-					</button>
-					{cart.map((list, i) => {
-						lineItems.push({
-							quantity: cart[i].quantity,
-							catalogObjectId: cart[i].item,
-						});
-						return (
-							<CheckoutCard
-								quantity={cart[i].quantity}
-								index={i}
-								deleteItem={deleteItem}
-								name={cart[i].name}
-								price={cart[i].price}
-								description={cart[i].description}
-							/>
-						);
-					})}
+				<div className='container flex h-full'>
+					<div className='h-auto w-full'>
+						<button
+							onClick={handleCheckout}
+							className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto'
+						>
+							Continue to Checkout
+						</button>
+						{cart.map((list, i) => {
+							lineItems.push({
+								quantity: cart[i].quantity,
+								catalogObjectId: cart[i].item,
+							});
+							return (
+								<CheckoutCard
+									quantity={cart[i].quantity}
+									index={i}
+									deleteItem={deleteItem}
+									name={cart[i].name}
+									price={cart[i].price}
+									description={cart[i].description}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</Layout>
 		);

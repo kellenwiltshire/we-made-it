@@ -11,7 +11,7 @@ function Search() {
 
 	const handleSearch = () => {
 		router.push({
-			pathname: `/search/[...searchitems]`,
+			pathname: `search/[...searchitems]`,
 			query: { searchitems: input },
 		});
 	};

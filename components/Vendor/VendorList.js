@@ -9,7 +9,7 @@ function VendorList({ vendors }) {
 					return (
 						<VendorCards
 							vendor={vendors[i].vendor}
-							image='/small-purple-splash.png'
+							image='/pictureComingSoon.png'
 							owner={vendors[i].owner}
 							key={i}
 						/>

@@ -51,34 +51,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 		document.getElementById('success').style.visibility = 'visible';
 	};
 
-	const getItemVarData = () => {
-		if (data.itemVarData) {
-			return (
-				<div className='flex py-4 space-x-4'>
-					<div className='relative'>
-						<div className='text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
-							Variation
-						</div>
-						<select
-							onChange={onSelectChange}
-							className='cursor-pointer appearance-none rounded-xl border border-purple-200 pl-4 pr-8 h-14 flex items-end pb-1'
-						>
-							{data.itemVarData.map((item, i) => {
-								return (
-									<option value={i}>
-										{data.itemVarData[i].itemVariationData.name}
-									</option>
-								);
-							})}
-						</select>
-					</div>
-				</div>
-			);
-		} else {
-			return <div></div>;
-		}
-	};
-
 	return (
 		<Layout cart={cart}>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 font-body'>
@@ -132,8 +104,28 @@ export default function ShopProduct({ data, setCart, cart }) {
 									max='5'
 									placeholder='Quantity'
 									onChange={onInputChange}
+									className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 pb-1'
 								/>
-								{getItemVarData()}
+
+								<div className='flex py-4 space-x-4'>
+									<div className='relative'>
+										<div className='text-center block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
+											Variation
+										</div>
+										<select
+											onChange={onSelectChange}
+											className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 flex items-end pb-1'
+										>
+											{data.itemVarData.map((item, i) => {
+												return (
+													<option value={i}>
+														{data.itemVarData[i].itemVariationData.name}
+													</option>
+												);
+											})}
+										</select>
+									</div>
+								</div>
 
 								<button
 									type='submit'
