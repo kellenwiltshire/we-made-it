@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function ShopProduct({ data, setCart, cart }) {
-	console.log('New Data Received: ', data);
 	const itemName = data.itemName;
 	const [price, setPrice] = useState(
 		(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(2),
@@ -30,12 +29,12 @@ export default function ShopProduct({ data, setCart, cart }) {
 				data.itemVarData[selectedItem].itemVariationData.priceMoney.amount / 100
 			).toFixed(2),
 		);
-		console.log(e.target.value);
+		setItemID(data.itemVarData[selectedItem].itemVariationData.itemId);
 	};
 
 	const handleCart = (e) => {
 		e.preventDefault();
-		setCart([...cart, { item: data.items, quantity: quantity }]);
+		setCart([...cart, { item: itemID, quantity: quantity }]);
 		showSubmitSuccess();
 	};
 
@@ -160,16 +159,17 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 export async function getServerSideProps({ query }) {
 	const item = query.product;
-	console.log(item);
+	let inventoryCounts;
 	try {
-		const res = await fetch('http://localhost:4000/itemInfo', {
+		const productInfo = await fetch('http://localhost:4000/itemInfo', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				item: item,
 			}),
 		});
-		const data = await res.json();
+		const data = await productInfo.json();
+
 		return {
 			props: { data },
 		};

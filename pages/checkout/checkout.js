@@ -49,7 +49,7 @@ export default function Checkout({ cart, setCart }) {
 					{cart.map((list, i) => {
 						lineItems.push({
 							quantity: cart[i].quantity,
-							catalogObjectId: cart[i].item.object.itemData.variations[0].id,
+							catalogObjectId: cart[i].item,
 						});
 						return (
 							<CheckoutCard item={cart[i]} index={i} deleteItem={deleteItem} />
