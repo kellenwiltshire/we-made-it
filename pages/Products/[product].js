@@ -11,7 +11,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const [itemID, setItemID] = useState(
 		data.itemVarData[0].itemVariationData.itemId,
 	);
-	const description = data.description;
+	const description = data.itemDescription;
 	const router = useRouter();
 
 	let quantity;
@@ -34,7 +34,16 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 	const handleCart = (e) => {
 		e.preventDefault();
-		setCart([...cart, { item: itemID, quantity: quantity }]);
+		setCart([
+			...cart,
+			{
+				item: itemID,
+				quantity: quantity,
+				name: itemName,
+				price: price,
+				description: description,
+			},
+		]);
 		showSubmitSuccess();
 	};
 

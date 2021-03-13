@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function Checkout({ cart, setCart }) {
 	const orderID = uuidv4();
-	console.log(orderID);
+	console.log('Checkout Cart: ', cart);
 	const router = useRouter();
 	const deleteItem = (index) => {
 		cart.splice(index, 1);
@@ -52,7 +52,14 @@ export default function Checkout({ cart, setCart }) {
 							catalogObjectId: cart[i].item,
 						});
 						return (
-							<CheckoutCard item={cart[i]} index={i} deleteItem={deleteItem} />
+							<CheckoutCard
+								quantity={cart[i].quantity}
+								index={i}
+								deleteItem={deleteItem}
+								name={cart[i].name}
+								price={cart[i].price}
+								description={cart[i].description}
+							/>
 						);
 					})}
 				</div>

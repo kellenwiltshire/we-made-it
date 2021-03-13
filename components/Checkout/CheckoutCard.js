@@ -1,16 +1,18 @@
 import React from 'react';
 
-function CheckoutCard({ item, index, deleteItem }) {
-	const itemName = item.item.object.itemData.name;
-	const price =
-		item.item.object.itemData.variations[0].itemVariationData.priceMoney.amount;
-	const roundedPrice = (price / 100).toFixed(2);
-	const description = item.item.object.itemData.description;
-	const quantity = item.quantity;
-
+function CheckoutCard({
+	index,
+	deleteItem,
+	name,
+	price,
+	description,
+	quantity,
+}) {
 	const removeItem = () => {
 		deleteItem(index);
 	};
+
+	console.log('Checkout Name: ', name);
 
 	return (
 		<div className='md:flex shadow-lg md:mx-auto w-full h-64'>
@@ -21,12 +23,10 @@ function CheckoutCard({ item, index, deleteItem }) {
 			/>
 			<div className='w-2/3 px-4 py-4 bg-white rounded-lg'>
 				<div className='flex items-center'>
-					<h2 className='text-xl text-gray-800 font-medium mr-auto'>
-						{itemName}
-					</h2>
+					<h2 className='text-xl text-gray-800 font-medium mr-auto'>{name}</h2>
 					<div className='flex flex-wrap'>
 						<p className='text-gray-800 font-semibold tracking-tighter w-full'>
-							${roundedPrice}
+							${price}
 						</p>
 						<p className='text-gray-800 font-semibold tracking-tighter'>
 							quantity: {quantity}
