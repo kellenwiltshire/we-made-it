@@ -37,7 +37,7 @@ export default function Checkout({ cart, setCart }) {
 
 	if (cart) {
 		return (
-			<Layout cart={cart}>
+			<Layout cart={cart} title='Checkout || We Made It'>
 				<Headers title='Checkout' />
 				<div className='container flex h-full'>
 					<div className='h-auto w-full'>

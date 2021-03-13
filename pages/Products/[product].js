@@ -14,7 +14,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const description = data.itemDescription;
 	const router = useRouter();
 
-	let quantity;
+	let quantity = 1;
 	let selectedItem;
 
 	const onInputChange = (e) => {
@@ -52,7 +52,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 	};
 
 	return (
-		<Layout cart={cart}>
+		<Layout cart={cart} title={`${itemName} || We Made It`}>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 font-body'>
 				<div className='mb-10'>
 					<div

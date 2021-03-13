@@ -6,7 +6,7 @@ import { vendors } from '../../VendorList/VendorList';
 
 export default function Vendors({ cart }) {
 	return (
-		<Layout cart={cart}>
+		<Layout cart={cart} title='Our Vendors || We Made It'>
 			<Headers title='Our Vendors' />
 			<VendorList vendors={vendors} />
 		</Layout>

@@ -4,7 +4,7 @@ import Layout from '../../components/Layout/Layout';
 
 function becomevendor({ cart }) {
 	return (
-		<Layout cart={cart}>
+		<Layout cart={cart} title='Become A Vendor || We Made It'>
 			<BecomeVendor />
 		</Layout>
 	);

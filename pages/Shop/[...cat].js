@@ -10,7 +10,7 @@ export default function ShopCategories({ data, cat, name, cart }) {
 	let currentCursor = data.items.cursor;
 	if (data) {
 		return (
-			<Layout cart={cart}>
+			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title={name} />
 				<CategorySelect />
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />

@@ -15,10 +15,10 @@ function CheckoutCard({
 	console.log('Checkout Name: ', name);
 
 	return (
-		<div className='md:flex shadow-lg md:mx-auto w-full h-64'>
+		<div className='md:flex border rounded border-black md:mx-auto w-full h-64 m-5'>
 			<img
 				className='h-full w-1/3  object-cover rounded-lg rounded-r-none'
-				src='/big-purple-splash.png'
+				src='/pictureComingSoon.png'
 				alt='bag'
 			/>
 			<div className='w-2/3 px-4 py-4 bg-white rounded-lg'>

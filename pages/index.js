@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function Home({ cart }) {
 	return (
-		<Layout cart={cart}>
+		<Layout cart={cart} title='We Made It || Home'>
 			<Link
 				href={{
 					pathname: `/Shop/[...cat]`,

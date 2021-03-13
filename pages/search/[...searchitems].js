@@ -9,7 +9,7 @@ export default function SearchItems({ cart, data }) {
 	let items = data.items.objects;
 	if (data) {
 		return (
-			<Layout cart={cart}>
+			<Layout cart={cart} title='We Made It'>
 				<Headers title='Search Results' />
 				<CategorySelect />
 

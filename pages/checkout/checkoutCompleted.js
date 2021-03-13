@@ -12,7 +12,7 @@ export default function ShopCategories({ cart, setCart }) {
 		router.push('/checkout/checkout');
 	};
 	return (
-		<Layout cart={cart}>
+		<Layout cart={cart} title='Checkout Completed || We Made It'>
 			<Headers title='Checkout Completed!' />
 			<div>
 				<p>Thank You So Much for Your Purchase!</p>
