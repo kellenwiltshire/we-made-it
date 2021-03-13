@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 function Pagination({ currentCursor, name, cat }) {
 	const router = useRouter();
 	return (
-		<div className='w-full flex justify-center m-10'>
+		<div className='w-full flex justify-center md:m-10'>
 			<ul className='flex'>
 				<li className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 					<div

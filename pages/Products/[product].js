@@ -8,11 +8,11 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const [price, setPrice] = useState(
 		(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(2),
 	);
-	const [itemID, setItemID] = useState(
-		data.itemVarData[0].itemVariationData.itemId,
-	);
+	const [itemID, setItemID] = useState(data.itemVarData[0].id);
 	const description = data.itemDescription;
 	const router = useRouter();
+
+	const [inventory, setInventory] = useState(null);
 
 	let quantity = 1;
 	let selectedItem;
@@ -20,6 +20,9 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const onInputChange = (e) => {
 		e.preventDefault();
 		quantity = e.target.value;
+		if (quantity > inventory) {
+			quantity = inventory;
+		}
 	};
 
 	const onSelectChange = (e) => {
@@ -29,7 +32,24 @@ export default function ShopProduct({ data, setCart, cart }) {
 				data.itemVarData[selectedItem].itemVariationData.priceMoney.amount / 100
 			).toFixed(2),
 		);
-		setItemID(data.itemVarData[selectedItem].itemVariationData.itemId);
+		setItemID(data.itemVarData[selectedItem].id);
+	};
+
+	const updateInventory = () => {
+		fetch('http://localhost:4000/variations', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				item: itemID,
+			}),
+		})
+			.then((response) => response.json())
+			.then((response) => {
+				setInventory(response.counts[0].quantity);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	const handleCart = (e) => {
@@ -50,6 +70,8 @@ export default function ShopProduct({ data, setCart, cart }) {
 	const showSubmitSuccess = () => {
 		document.getElementById('success').style.visibility = 'visible';
 	};
+
+	updateInventory();
 
 	return (
 		<Layout cart={cart} title={`${itemName} || We Made It`}>
@@ -92,6 +114,8 @@ export default function ShopProduct({ data, setCart, cart }) {
 						<div className='text-gray-500'>
 							<span className='text-xl font-bold'>Description: </span>
 							<p className='leading-relaxed'>{description}</p>
+							<span className='text-xl font-bold'>Inventory: </span>
+							<p className='leading-relaxed'>{inventory}</p>
 						</div>
 
 						<div className='flex py-4'>
@@ -101,7 +125,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 									id='quantity'
 									name='quantity'
 									min='1'
-									max='5'
+									max={inventory}
 									placeholder='Quantity'
 									onChange={onInputChange}
 									className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 pb-1'
