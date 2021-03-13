@@ -11,7 +11,7 @@ function ProductCards({ itemID, image, title, item }) {
 				query: { product: itemID },
 			}}
 		>
-			<a className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out m-5'>
+			<a className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
 				<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
 					<div>
 						<img src={image} alt='' width='600px' height='auto' />
@@ -21,7 +21,9 @@ function ProductCards({ itemID, image, title, item }) {
 					<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full'>
 						{title}
 					</h2>
-					<h2 className='ml-5'>${roundedPrice}</h2>
+					<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base'>
+						${roundedPrice}
+					</p>
 				</div>
 			</a>
 		</Link>

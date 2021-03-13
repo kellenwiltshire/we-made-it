@@ -65,7 +65,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 					</div>
 				</div>
 				<div className='flex flex-col md:flex-row -mx-4'>
-					<div className='md:flex-1 px-4 order-2 sm:order-1'>
+					<div className='md:flex-1 px-4'>
 						<img
 							src='/pictureComingSoon.png'
 							alt=''
@@ -73,7 +73,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 							width='500px'
 						/>
 					</div>
-					<div className='md:flex-1 px-4 order-1 sm:order-2'>
+					<div className='md:flex-1 px-4'>
 						<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl'>
 							{itemName}
 						</h2>
@@ -145,7 +145,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 						</div>
 
 						<div>
-							<p className='text-xs leading-none text-gray-500'>
+							<p className='text-xs leading-none text-gray-500 mb-5'>
 								Due to the nature of our store, all items are final sale. We are
 								unable to provide exchanges or refunds as vendors are paid out
 								with their sales.

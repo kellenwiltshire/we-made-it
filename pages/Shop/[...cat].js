@@ -12,7 +12,7 @@ export default function ShopCategories({ data, cat, name, cart }) {
 		return (
 			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title={name} />
-				<CategorySelect />
+				{/* <CategorySelect /> */}
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{items.map((list, i) => {

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Location() {
 	return (
-		<div className='w-1/3 flex justify-center my-5'>
+		<div className='w-full lg:w-1/3 flex justify-center my-5'>
 			<div class='bg-white shadow overflow-hidden sm:rounded-lg container'>
 				<div class='px-4 py-5 sm:px-6'>
 					<h3 class='text-2xl leading-6 font-medium text-dark-purple text-center'>

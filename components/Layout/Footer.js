@@ -82,10 +82,12 @@ function Footer() {
 						</a>
 					</div>
 				</div>
-				<div className='w-full flex justify-between'>
-					<p className='text-white'>All rights reserved</p>
+				<div className='w-full flex justify-center flex-row flex-wrap lg:justify-between'>
+					<p className='text-white w-full lg:w-auto text-center'>
+						All rights reserved
+					</p>
 
-					<p className=' text-gray-400 px-2 pt-6'>
+					<p className=' text-gray-400 px-2 pt-6 w-full lg:w-auto text-center'>
 						Web Development by Kellen Wiltshire
 					</p>
 				</div>
