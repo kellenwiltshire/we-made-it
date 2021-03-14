@@ -6,9 +6,9 @@ import CategorySelect from '../../components/Categories/CategorySelect';
 import Pagination from '../../components/Layout/Pagination';
 
 export default function ShopCategories({ data, cat, name, cart }) {
-	let items = data.items.objects;
-	let currentCursor = data.items.cursor;
 	if (data) {
+		let items = data.items.objects;
+		let currentCursor = data.items.cursor;
 		return (
 			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title={name} />
@@ -32,8 +32,12 @@ export default function ShopCategories({ data, cat, name, cart }) {
 		);
 	} else {
 		return (
-			<Layout>
+			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
+				<p>
+					This is Embarassing! We might be having trouble connecting with
+					Square. Please try again later!
+				</p>
 			</Layout>
 		);
 	}
@@ -46,7 +50,7 @@ export async function getServerSideProps({ query }) {
 
 	if (cursor) {
 		try {
-			const res = await fetch('http://localhost:4000/catalog', {
+			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -60,12 +64,12 @@ export async function getServerSideProps({ query }) {
 		} catch (error) {
 			const data = error;
 			return {
-				props: { data },
+				props: { cat, name },
 			};
 		}
 	} else {
 		try {
-			const res = await fetch('http://localhost:4000/catalog', {
+			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -79,7 +83,7 @@ export async function getServerSideProps({ query }) {
 		} catch (error) {
 			const data = error;
 			return {
-				props: { data },
+				props: { cat, name },
 			};
 		}
 	}

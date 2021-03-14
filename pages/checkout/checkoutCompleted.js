@@ -5,12 +5,7 @@ import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 
 export default function ShopCategories({ cart, setCart }) {
-	const router = useRouter();
-	const deleteItem = (index) => {
-		cart.splice(index, 1);
-		setCart(cart);
-		router.push('/checkout/checkout');
-	};
+	setCart([]);
 	return (
 		<Layout cart={cart} title='Checkout Completed || We Made It'>
 			<Headers title='Checkout Completed!' />

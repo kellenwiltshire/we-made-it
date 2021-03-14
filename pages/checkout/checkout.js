@@ -19,7 +19,7 @@ export default function Checkout({ cart, setCart }) {
 	console.log(lineItems);
 
 	const handleCheckout = () => {
-		fetch('http://LOCALHOST:4000/checkout', {
+		fetch('https://we-made-it-api.herokuapp.com/checkout', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -49,7 +49,7 @@ export default function Checkout({ cart, setCart }) {
 						</button>
 						{cart.map((list, i) => {
 							lineItems.push({
-								quantity: cart[i].quantity,
+								quantity: cart[i].quantity.toString(),
 								catalogObjectId: cart[i].item,
 							});
 							return (
@@ -69,8 +69,12 @@ export default function Checkout({ cart, setCart }) {
 		);
 	} else {
 		return (
-			<Layout>
+			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
+				<p>
+					This is Embarassing! We might be having trouble connecting with
+					Square. Please try again later!
+				</p>
 			</Layout>
 		);
 	}

@@ -5,9 +5,8 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function SearchItems({ cart, data }) {
-	console.log(data);
-	let items = data.items.objects;
 	if (data) {
+		let items = data.items.objects;
 		return (
 			<Layout cart={cart} title='We Made It'>
 				<Headers title='Search Results' />
@@ -30,8 +29,12 @@ export default function SearchItems({ cart, data }) {
 		);
 	} else {
 		return (
-			<Layout>
+			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
+				<p>
+					This is Embarassing! We might be having trouble connecting with
+					Square. Please try again later!
+				</p>
 			</Layout>
 		);
 	}
@@ -40,13 +43,16 @@ export default function SearchItems({ cart, data }) {
 export async function getServerSideProps({ query }) {
 	const search = query.searchitems;
 	try {
-		const res = await fetch('http://localhost:4000/searchitems', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				search: search,
-			}),
-		});
+		const res = await fetch(
+			'https://we-made-it-api.herokuapp.com/searchitems',
+			{
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					search: search,
+				}),
+			},
+		);
 		const data = await res.json();
 		return {
 			props: { data },
@@ -54,7 +60,7 @@ export async function getServerSideProps({ query }) {
 	} catch (error) {
 		const data = error;
 		return {
-			props: { data },
+			props: {},
 		};
 	}
 }
