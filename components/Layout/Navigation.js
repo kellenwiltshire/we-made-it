@@ -82,7 +82,7 @@ function Navigation({ cart }) {
 								</a>
 							</Link>
 						</li>
-						{cart.length > 1 ? (
+						{cart.length > 0 ? (
 							<li>
 								<Link href={'/checkout/checkout'}>
 									<a className='px-3 py-2 flex flex-row items-center text-lg leading-snug text-white hover:opacity-75'>
