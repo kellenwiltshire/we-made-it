@@ -82,33 +82,63 @@ function Navigation({ cart }) {
 								</a>
 							</Link>
 						</li>
-						<li>
-							<Link href={'/checkout/checkout'}>
-								<a className='px-3 py-2 flex flex-row items-center text-lg leading-snug text-white hover:opacity-75'>
-									<span className='ml-2 flex flex-row'>
-										<svg
-											xmlns='http://www.w3.org/2000/svg'
-											className='icon icon-tabler icon-tabler-shopping-cart'
-											width='24'
-											height='24'
-											viewBox='0 0 24 24'
-											strokeWidth='1.5'
-											stroke='#ffffff'
-											fill='none'
-											strokeLinecap='round'
-											strokeLinejoin='round'
-										>
-											<path stroke='none' d='M0 0h24v24H0z' fill='none' />
-											<circle cx='6' cy='19' r='2' />
-											<circle cx='17' cy='19' r='2' />
-											<path d='M17 17h-11v-14h-2' />
-											<path d='M6 5l14 1l-1 7h-13' />
-										</svg>
-										({cart.length})
-									</span>
-								</a>
-							</Link>
-						</li>
+						{cart.length > 1 ? (
+							<li>
+								<Link href={'/checkout/checkout'}>
+									<a className='px-3 py-2 flex flex-row items-center text-lg leading-snug text-white hover:opacity-75'>
+										<span className='ml-2 flex flex-row'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='icon icon-tabler icon-tabler-shopping-cart'
+												width='24'
+												height='24'
+												viewBox='0 0 24 24'
+												strokeWidth='1.5'
+												stroke='#ffffff'
+												fill='none'
+												strokeLinecap='round'
+												strokeLinejoin='round'
+											>
+												<path stroke='none' d='M0 0h24v24H0z' fill='none' />
+												<circle cx='6' cy='19' r='2' />
+												<circle cx='17' cy='19' r='2' />
+												<path d='M17 17h-11v-14h-2' />
+												<path d='M6 5l14 1l-1 7h-13' />
+											</svg>
+											({cart.length})
+										</span>
+									</a>
+								</Link>
+							</li>
+						) : (
+							<li>
+								<Link href={'/'}>
+									<a className='px-3 py-2 flex flex-row items-center text-lg leading-snug text-white hover:opacity-75'>
+										<span className='ml-2 flex flex-row'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='icon icon-tabler icon-tabler-shopping-cart'
+												width='24'
+												height='24'
+												viewBox='0 0 24 24'
+												strokeWidth='1.5'
+												stroke='#ffffff'
+												fill='none'
+												strokeLinecap='round'
+												strokeLinejoin='round'
+											>
+												<path stroke='none' d='M0 0h24v24H0z' fill='none' />
+												<circle cx='6' cy='19' r='2' />
+												<circle cx='17' cy='19' r='2' />
+												<path d='M17 17h-11v-14h-2' />
+												<path d='M6 5l14 1l-1 7h-13' />
+											</svg>
+											({cart.length})
+										</span>
+									</a>
+								</Link>
+							</li>
+						)}
 					</ul>
 				</div>
 				<div className='w-full flex justify-center md:justify-end'>
