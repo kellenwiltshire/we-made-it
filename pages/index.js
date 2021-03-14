@@ -1,50 +1,27 @@
 import AboutStore from '../components/About/AboutStore';
 import Location from '../components/About/Location';
-import Categories from '../components/Categories/Categories';
 import Headers from '../components/Layout/Headers';
 import Layout from '../components/Layout/Layout';
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home({ data }) {
-	if (data.length) {
-		const catData = [
-			{ image: data[0].url, name: 'Shop All' },
-			{ image: data[1].url, name: 'Gift Cards' },
-			{ image: data[2].url, name: 'Category 1' },
-			{ image: data[3].url, name: 'Category 2' },
-			{ image: data[4].url, name: 'Category 3' },
-		];
-		return (
-			<Layout>
-				<Headers title='Shop Now' />
-				<Categories catData={catData} />
-				<Headers title='Our Story' />
-				<AboutStore />
-				<Location />
-			</Layout>
-		);
-	} else {
-		return (
-			<Layout>
-				<Headers title='Our Story' />
-				<AboutStore />
-				<Location />
-			</Layout>
-		);
-	}
-}
-
-export async function getServerSideProps(context) {
-	try {
-		const res = await fetch('https://jsonplaceholder.typicode.com/photos');
-		const data = await res.json();
-		return {
-			props: { data },
-		};
-	} catch (error) {
-		const data = error;
-		return {
-			props: { data },
-		};
-	}
+export default function Home({ cart }) {
+	return (
+		<Layout cart={cart} title='We Made It || Home'>
+			<Link
+				href={{
+					pathname: `/Shop/[...cat]`,
+					query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
+				}}
+			>
+				<a className='shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out m-5'>
+					<Image src='/homepagephoto.png' height={720} width={1280} />
+				</a>
+			</Link>
+			<Headers title='Our Story' />
+			<AboutStore />
+			<Location />
+		</Layout>
+	);
 }

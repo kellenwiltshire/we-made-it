@@ -5,38 +5,43 @@ function AboutStore() {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container flex flex-row flex-wrap justify-center'>
-				<div className='w-full text-center leading-loose space-y-2'>
+				<div className='w-full mx-3 md:w-2/3 text-xs md:text-base text-center leading-loose md:space-y-2'>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in
-						ligula faucibus, gravida libero quis, commodo turpis. In pharetra
-						gravida purus, non ullamcorper arcu malesuada ut. Donec ultricies
-						congue risus, non dictum ante mattis sit amet. Etiam in ultricies
-						quam. Morbi tincidunt enim vehicula auctor vulputate. Donec euismod
-						et mauris eget placerat. Donec felis quam, interdum in arcu quis,
-						porttitor ultrices ligula. Pellentesque pellentesque urna quis
-						euismod mattis. In leo quam, malesuada a erat sed, tincidunt
-						sagittis erat. Integer vitae convallis mauris, at fermentum augue.
-						Donec sagittis iaculis sapien, a pretium felis venenatis vel. Nam
-						volutpat luctus nibh ut commodo.
+						Hello! My name is Amanda VanGoor and I am the owner behind We Made
+						It.
 					</p>
 					<p>
-						Fusce luctus quam ac mauris convallis, fermentum ornare risus
-						aliquam. Pellentesque porta quam ac metus rutrum, id gravida magna
-						luctus. Pellentesque euismod erat ut metus facilisis efficitur. Ut
-						in dictum purus. Proin nisi nunc, accumsan non rutrum vel, tristique
-						at turpis. Sed id varius odio. In porttitor nisl nec pellentesque
-						ultrices. Sed ac vulputate elit. In eget porttitor nulla. Nunc
-						pretium sodales lacus, blandit consequat dui scelerisque nec. Aenean
-						euismod est arcu, sed lacinia libero varius vitae.
+						I decided in December 2020 that I wanted to open my own handmade
+						boutique so that I could not only sell my own items, but also offer
+						a more affordable option to other local makers to sell their
+						products.
 					</p>
+					<p>
+						I have my own handmade business called Sew Sweet Handmade, created
+						in 2018 and run by myself and my partner, Eileen.
+					</p>
+					<p>
+						We Made It was named not only for the handmade aspect of our
+						products, but also because we opened a business during a world-wide
+						pandemic. We Made It through a lot of struggles and issues as came
+						out with a beautiful shop with over 60 local vendors.
+					</p>
+					<p>
+						We offer items from baby products to plants, jewelry, woodworking,
+						signs, decor and more. This is truly a one-stop-shop that Newcastle
+						desperately needed!
+					</p>
+					<p>Thank you for shopping locally for handmade items</p>
 				</div>
-				<Link href='/Vendors/vendors'>
-					<a>
-						<p className='mt-5 text-xl transition duration-300 ease-in-out border-b border-white hover:border-b-2 hover:border-dark-purple p-1'>
-							BECOME A VENDOR
-						</p>
-					</a>
-				</Link>
+				<div className='w-full flex justify-center'>
+					<Link href='/Vendors/vendors'>
+						<a>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+								BECOME A VENDOR
+							</p>
+						</a>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

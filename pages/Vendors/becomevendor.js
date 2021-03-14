@@ -2,9 +2,9 @@ import React from 'react';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
 import Layout from '../../components/Layout/Layout';
 
-function becomevendor() {
+function becomevendor({ cart }) {
 	return (
-		<Layout>
+		<Layout cart={cart} title='Become A Vendor || We Made It'>
 			<BecomeVendor />
 		</Layout>
 	);

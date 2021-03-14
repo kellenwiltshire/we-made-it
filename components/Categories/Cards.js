@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
-function Cards({ title, image, category, page, id }) {
+function Cards({ title, image, category, id }) {
+	let cat = category.replace(' ', '');
+	let name = category;
 	return (
 		<Link
 			href={{
-				pathname: '/Shop/[cat]',
-				query: { cat: category },
+				pathname: `/Shop/[...cat]`,
+				query: { cat: cat, name: name, cursor: null },
 			}}
 		>
 			<a>
