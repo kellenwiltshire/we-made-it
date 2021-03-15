@@ -41,6 +41,18 @@ function AboutStore() {
 							</p>
 						</a>
 					</Link>
+					<Link
+						href={{
+							pathname: `/Shop/[...cat]`,
+							query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
+						}}
+					>
+						<a>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+								SHOP NOW
+							</p>
+						</a>
+					</Link>
 				</div>
 			</div>
 		</div>
