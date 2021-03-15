@@ -6,7 +6,16 @@ function VendorCards({ vendor, image, owner }) {
 		<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 shadow-lg rounded transform hover:scale-105 duration-300 ease-in-out m-1 md:m-5'>
 			<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 shadow rounded m-5'>
 				<div>
-					<img src={image} alt='' width='600px' height='auto' />
+					{image ? (
+						<img src={image} alt='' width='600px' height='auto' />
+					) : (
+						<img
+							src='/pictureComingSoon.png'
+							alt=''
+							width='600px'
+							height='auto'
+						/>
+					)}
 				</div>
 			</div>
 			<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
