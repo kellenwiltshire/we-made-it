@@ -5,7 +5,7 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function SearchItems({ cart, data }) {
-	if (data) {
+	if (data.items.objects) {
 		let items = data.items.objects;
 		return (
 			<Layout cart={cart} title='We Made It'>
@@ -31,10 +31,16 @@ export default function SearchItems({ cart, data }) {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<p>
-					This is Embarassing! We might be having trouble connecting with
-					Square. Please try again later!
-				</p>
+				<div className='flex flex-col text-center'>
+					<p>
+						This is Embarassing! We might be having trouble connecting with
+						Square. Please try again later!
+					</p>
+					<p>
+						We may also not be able to find what you are looking for. Try a
+						different search!
+					</p>
+				</div>
 			</Layout>
 		);
 	}
