@@ -26,7 +26,7 @@ function Footer() {
 			<div className='w-full flex flex-col my-4'>
 				<div className='w-full flex justify-center'>
 					<div className='flex items-center'>
-						<a href='#'>
+						<a href='https://www.facebook.com/wemadeit.newcastle'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								className='icon icon-tabler icon-tabler-brand-facebook mx-2'
@@ -61,7 +61,7 @@ function Footer() {
 								<polyline points='3 7 12 13 21 7' />
 							</svg>
 						</a>
-						<a href='#'>
+						<a href='https://www.instagram.com/wemadeit.newcastle/'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								className='icon icon-tabler icon-tabler-brand-instagram mx-2'
