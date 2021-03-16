@@ -5,28 +5,39 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function SearchItems({ cart, data }) {
-	if (data.items.objects) {
-		let items = data.items.objects;
-		return (
-			<Layout cart={cart} title='We Made It'>
-				<Headers title='Search Results' />
-				<CategorySelect />
+	if (data) {
+		if (data.items.objects) {
+			let items = data.items.objects;
+			return (
+				<Layout cart={cart} title='We Made It'>
+					<Headers title='Search Results' />
+					<CategorySelect />
 
-				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-					{items.map((list, i) => {
-						return (
-							<ProductCards
-								item={items[i]}
-								title={items[i].itemData.name}
-								image='/pictureComingSoon.png'
-								key={i}
-								itemID={items[i].id}
-							/>
-						);
-					})}
-				</div>
-			</Layout>
-		);
+					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
+						{items.map((list, i) => {
+							return (
+								<ProductCards
+									item={items[i]}
+									title={items[i].itemData.name}
+									image='/pictureComingSoon.png'
+									key={i}
+									itemID={items[i].id}
+								/>
+							);
+						})}
+					</div>
+				</Layout>
+			);
+		} else {
+			return (
+				<Layout cart={cart} title={`We Made It`}>
+					<Headers title='OOP! Nothing Found!' />
+					<div className='flex flex-col text-center'>
+						<p>Try a different search!</p>
+					</div>
+				</Layout>
+			);
+		}
 	} else {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
