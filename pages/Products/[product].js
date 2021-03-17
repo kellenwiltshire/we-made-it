@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 
 export default function ShopProduct({ data, setCart, cart }) {
+	console.log(data);
 	if (data) {
 		const itemName = data.itemName;
 		const [price, setPrice] = useState(
@@ -202,16 +203,13 @@ export async function getServerSideProps({ query }) {
 	const item = query.product;
 	let inventoryCounts;
 	try {
-		const productInfo = await fetch(
-			'https://we-made-it-api.herokuapp.com/itemInfo',
-			{
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					item: item,
-				}),
-			},
-		);
+		const productInfo = await fetch('http://LOCALHOST:4000/itemInfo', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				item: item,
+			}),
+		});
 		const data = await productInfo.json();
 
 		return {

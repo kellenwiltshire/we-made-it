@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, image, title, item }) {
+function ProductCards({ itemID, title, item }) {
+	const [image, setImage] = useState('/pictureComingSoon.png');
+	if (item.imageId) {
+		fetch('http://LOCALHOST:4000/imageRequest', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				item: item.imageId,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setImage(data.image);
+			})
+			.catch((err) => console.log(err));
+	}
 	const price = item.itemData.variations[0].itemVariationData.priceMoney.amount;
 	let roundedPrice = (price / 100).toFixed(2);
 	return (

@@ -20,7 +20,6 @@ export default function ShopCategories({ data, cat, name, cart }) {
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
-								image='/pictureComingSoon.png'
 								key={i}
 								itemID={items[i].id}
 							/>
@@ -50,7 +49,7 @@ export async function getServerSideProps({ query }) {
 
 	if (cursor) {
 		try {
-			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
+			const res = await fetch('http://LOCALHOST:4000/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -69,7 +68,7 @@ export async function getServerSideProps({ query }) {
 		}
 	} else {
 		try {
-			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
+			const res = await fetch('http://LOCALHOST:4000/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
