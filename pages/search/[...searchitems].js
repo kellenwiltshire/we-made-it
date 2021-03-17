@@ -6,8 +6,9 @@ import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function SearchItems({ cart, data }) {
 	if (data) {
-		if (data.items.objects) {
-			let items = data.items.objects;
+		if (data.items.items) {
+			let items = data.items.items;
+
 			return (
 				<Layout cart={cart} title='We Made It'>
 					<Headers title='Search Results' />
@@ -15,13 +16,17 @@ export default function SearchItems({ cart, data }) {
 
 					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 						{items.map((list, i) => {
+							let price = (
+								items[i].itemData.variations[0].itemVariationData.priceMoney
+									.amount / 100
+							).toFixed(2);
 							return (
 								<ProductCards
 									item={items[i]}
 									title={items[i].itemData.name}
-									image='/pictureComingSoon.png'
 									key={i}
 									itemID={items[i].id}
+									price={price}
 								/>
 							);
 						})}

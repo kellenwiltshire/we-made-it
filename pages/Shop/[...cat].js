@@ -16,12 +16,17 @@ export default function ShopCategories({ data, cat, name, cart }) {
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{items.map((list, i) => {
+						let price = (
+							items[i].itemData.variations[0].itemVariationData.priceMoney
+								.amount / 100
+						).toFixed(2);
 						return (
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
 								key={i}
 								itemID={items[i].id}
+								price={price}
 							/>
 						);
 					})}
@@ -49,7 +54,7 @@ export async function getServerSideProps({ query }) {
 
 	if (cursor) {
 		try {
-			const res = await fetch('http://LOCALHOST:4000/catalog', {
+			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -68,7 +73,7 @@ export async function getServerSideProps({ query }) {
 		}
 	} else {
 		try {
-			const res = await fetch('http://LOCALHOST:4000/catalog', {
+			const res = await fetch('https://we-made-it-api.herokuapp.com/catalog', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

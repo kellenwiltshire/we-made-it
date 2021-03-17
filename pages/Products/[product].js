@@ -8,7 +8,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 	if (data) {
 		const [image, setImage] = useState('/pictureComingSoon.png');
 		if (data.imageId) {
-			fetch('http://LOCALHOST:4000/imageRequest', {
+			fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -68,7 +68,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 					setInventory(response.counts[0].quantity);
 				})
 				.catch((error) => {
-					console.log(error);
 					setInventory(0);
 				});
 		};
@@ -157,7 +156,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 											>
 												{data.itemVarData.map((item, i) => {
 													return (
-														<option value={i}>
+														<option key={i} value={i}>
 															{data.itemVarData[i].itemVariationData.name}
 														</option>
 													);
@@ -211,13 +210,16 @@ export default function ShopProduct({ data, setCart, cart }) {
 export async function getServerSideProps({ query }) {
 	const item = query.product;
 	try {
-		const productInfo = await fetch('http://LOCALHOST:4000/itemInfo', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				item: item,
-			}),
-		});
+		const productInfo = await fetch(
+			'https://we-made-it-api.herokuapp.com/itemInfo',
+			{
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					item: item,
+				}),
+			},
+		);
 		const data = await productInfo.json();
 
 		return {
