@@ -16,13 +16,17 @@ export default function ShopCategories({ data, cat, name, cart }) {
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
 				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{items.map((list, i) => {
+						let price = (
+							items[i].itemData.variations[0].itemVariationData.priceMoney
+								.amount / 100
+						).toFixed(2);
 						return (
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
-								image='/pictureComingSoon.png'
 								key={i}
 								itemID={items[i].id}
+								price={price}
 							/>
 						);
 					})}

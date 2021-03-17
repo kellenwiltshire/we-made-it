@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, image, title, item }) {
-	const price = item.itemData.variations[0].itemVariationData.priceMoney.amount;
-	let roundedPrice = (price / 100).toFixed(2);
+function ProductCards({ itemID, title, item, price }) {
+	const [image, setImage] = useState('/pictureComingSoon.png');
+	if (item.imageId) {
+		fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				item: item.imageId,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setImage(data.image);
+			})
+			.catch((err) => console.log(err));
+	}
+	// const price = (
+	// 	item.itemData.variations[0].itemVariationData.priceMoney.amount / 100
+	// ).toFixed(2);
 	return (
 		<Link
 			href={{
@@ -22,7 +38,7 @@ function ProductCards({ itemID, image, title, item }) {
 						{title}
 					</h2>
 					<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base'>
-						${roundedPrice}
+						${price}
 					</p>
 				</div>
 			</a>

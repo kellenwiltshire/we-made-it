@@ -6,6 +6,21 @@ import Headers from '../../components/Layout/Headers';
 
 export default function ShopProduct({ data, setCart, cart }) {
 	if (data) {
+		const [image, setImage] = useState('/pictureComingSoon.png');
+		if (data.imageId) {
+			fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					item: data.imageId,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					setImage(data.image);
+				})
+				.catch((err) => console.log(err));
+		}
 		const itemName = data.itemName;
 		const [price, setPrice] = useState(
 			(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(
@@ -53,7 +68,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 					setInventory(response.counts[0].quantity);
 				})
 				.catch((error) => {
-					console.log(error);
 					setInventory(0);
 				});
 		};
@@ -93,12 +107,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 					</div>
 					<div className='flex flex-col md:flex-row -mx-4'>
 						<div className='md:flex-1 px-4'>
-							<img
-								src='/pictureComingSoon.png'
-								alt=''
-								height='500px'
-								width='500px'
-							/>
+							<img src={image} alt='' height='500px' width='500px' />
 						</div>
 						<div className='md:flex-1 px-4'>
 							<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl'>
@@ -147,7 +156,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 											>
 												{data.itemVarData.map((item, i) => {
 													return (
-														<option value={i}>
+														<option key={i} value={i}>
 															{data.itemVarData[i].itemVariationData.name}
 														</option>
 													);
@@ -200,7 +209,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 export async function getServerSideProps({ query }) {
 	const item = query.product;
-	let inventoryCounts;
 	try {
 		const productInfo = await fetch(
 			'https://we-made-it-api.herokuapp.com/itemInfo',
