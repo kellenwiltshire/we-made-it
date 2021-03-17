@@ -45,7 +45,8 @@ export const vendors = [
 	{
 		vendor: 'Bijouterie By Chels',
 		owner: 'Chelsey Amyotte',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bijouterie.jpg',
 	},
 	{
 		vendor: 'Blessings by Creative Kelli',
@@ -406,7 +407,8 @@ export const vendors = [
 	{
 		vendor: 'Wild & Free Bowmanville',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/wildfreebowmanville.jpg',
 	},
 	{
 		vendor: 'Wild & Whimsy Scrunchie Boutique',

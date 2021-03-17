@@ -17,9 +17,6 @@ function ProductCards({ itemID, title, item, price }) {
 			})
 			.catch((err) => console.log(err));
 	}
-	// const price = (
-	// 	item.itemData.variations[0].itemVariationData.priceMoney.amount / 100
-	// ).toFixed(2);
 	return (
 		<Link
 			href={{
