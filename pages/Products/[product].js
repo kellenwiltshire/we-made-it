@@ -5,8 +5,22 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 
 export default function ShopProduct({ data, setCart, cart }) {
-	console.log(data);
 	if (data) {
+		const [image, setImage] = useState('/pictureComingSoon.png');
+		if (data.imageId) {
+			fetch('http://LOCALHOST:4000/imageRequest', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					item: data.imageId,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					setImage(data.image);
+				})
+				.catch((err) => console.log(err));
+		}
 		const itemName = data.itemName;
 		const [price, setPrice] = useState(
 			(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(
@@ -94,12 +108,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 					</div>
 					<div className='flex flex-col md:flex-row -mx-4'>
 						<div className='md:flex-1 px-4'>
-							<img
-								src='/pictureComingSoon.png'
-								alt=''
-								height='500px'
-								width='500px'
-							/>
+							<img src={image} alt='' height='500px' width='500px' />
 						</div>
 						<div className='md:flex-1 px-4'>
 							<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl'>
@@ -201,7 +210,6 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 export async function getServerSideProps({ query }) {
 	const item = query.product;
-	let inventoryCounts;
 	try {
 		const productInfo = await fetch('http://LOCALHOST:4000/itemInfo', {
 			method: 'post',
