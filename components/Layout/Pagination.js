@@ -19,7 +19,7 @@ function Pagination({ currentCursor, name, cat }) {
 				<li className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
 					<Link
 						href={{
-							pathname: `Shop/${cat[0]}`,
+							pathname: `/Shop/${cat[0]}`,
 							query: { cat: cat[0], name: name, cursor: currentCursor },
 						}}
 					>
