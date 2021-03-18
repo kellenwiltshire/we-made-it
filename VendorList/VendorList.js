@@ -13,7 +13,8 @@ export const vendors = [
 	{
 		vendor: 'Ammicala Creations',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ammicalacreations.jpg',
 	},
 	{
 		vendor: 'Ariana Jewelry',
@@ -118,12 +119,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/coppercole.jpg',
 	},
 	{
-		vendor: 'Creatiffaty',
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/creatiffaty.jpg',
-	},
-	{
 		vendor: 'Dance With Me',
 		owner: '',
 		image: '',
@@ -195,7 +190,8 @@ export const vendors = [
 	{
 		vendor: 'Jam Designs',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/jamdesigns.jpg',
 	},
 	{
 		vendor: "Jim's Garage Creations",
@@ -261,7 +257,8 @@ export const vendors = [
 	{
 		vendor: 'Of The North',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ofthenorth.jpg',
 	},
 	{
 		vendor: 'One Of A Kind Gifts by Joanna',
@@ -318,11 +315,6 @@ export const vendors = [
 		owner: '',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/simplysluggish.jpg',
-	},
-	{
-		vendor: 'Soap of the North',
-		owner: '',
-		image: '',
 	},
 	{
 		vendor: 'Stick Stuff Studio',

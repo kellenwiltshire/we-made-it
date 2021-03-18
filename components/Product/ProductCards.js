@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, title, item, price }) {
-	const [image, setImage] = useState('/pictureComingSoon.png');
+function ProductCards({ itemID, title, item, price, defaultImage }) {
+	const [image, setImage] = useState(defaultImage);
+
 	if (item.imageId) {
 		fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
 			method: 'post',
@@ -24,8 +25,8 @@ function ProductCards({ itemID, title, item, price }) {
 				query: { product: itemID },
 			}}
 		>
-			<a className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
-				<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
+			<a className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
+				<div className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
 					<div>
 						<img src={image} alt='' width='600px' height='auto' />
 					</div>
