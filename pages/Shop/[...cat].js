@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
@@ -7,26 +7,33 @@ import Pagination from '../../components/Layout/Pagination';
 
 export default function ShopCategories({ data, cat, name, cart }) {
 	if (data) {
-		let items = data.items.objects;
+		const [items, setItems] = useState([]);
+		const dataItems = data.items.objects;
+		useEffect(() => {
+			setItems(dataItems);
+		}, [data]);
 		let currentCursor = data.items.cursor;
+		console.log(items);
 		return (
 			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title={name} />
 				{/* <CategorySelect /> */}
 				<Pagination currentCursor={currentCursor} name={name} cat={cat} />
-				<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
+				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{items.map((list, i) => {
 						let price = (
 							items[i].itemData.variations[0].itemVariationData.priceMoney
 								.amount / 100
 						).toFixed(2);
+
 						return (
 							<ProductCards
 								item={items[i]}
 								title={items[i].itemData.name}
-								key={i}
+								key={items[i].id}
 								itemID={items[i].id}
 								price={price}
+								defaultImage='/pictureComingSoon.png'
 							/>
 						);
 					})}
@@ -62,6 +69,7 @@ export async function getServerSideProps({ query }) {
 				}),
 			});
 			const data = await res.json();
+
 			return {
 				props: { data, cat, name },
 			};

@@ -3,33 +3,13 @@ import React from 'react';
 function Footer() {
 	return (
 		<footer className='bg-dark-purple w-full py-6 px-4 '>
-			<div className='px-4 pt-3 pb-4 border-b -mx-4 border-gray-400'>
-				<div className='max-w-xl mx-auto'>
-					<h2 className='text-xl text-left inline-block font-semibold text-white'>
-						Join Our Newsletter
-					</h2>
-
-					<form action='#' className='mt-2'>
-						<div className='flex items-center'>
-							<input
-								type='email'
-								className='w-full px-2 py-4 mr-2  bg-gray-100 shadow-inner rounded-md border border-gray-400 focus:outline-none'
-								required
-							/>
-							<button className='bg-purple-200 text-gray-700 px-5 py-2 rounded shadow -ml-28 hover:bg-purple-700 hover:text-gray-200 transition ease-in-out duration-300'>
-								Sign Up
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
 			<div className='w-full flex flex-col my-4'>
 				<div className='w-full flex justify-center'>
 					<div className='flex items-center'>
 						<a href='https://www.facebook.com/wemadeit.newcastle'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								className='icon icon-tabler icon-tabler-brand-facebook mx-2'
+								className='icon icon-tabler icon-tabler-brand-facebook mx-5'
 								width='30'
 								height='30'
 								viewBox='0 0 24 24'
@@ -46,7 +26,7 @@ function Footer() {
 						<a href='#'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								className='icon icon-tabler icon-tabler-mail mx-2'
+								className='icon icon-tabler icon-tabler-mail mx-5'
 								width='30'
 								height='30'
 								viewBox='0 0 24 24'
@@ -64,7 +44,7 @@ function Footer() {
 						<a href='https://www.instagram.com/wemadeit.newcastle/'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								className='icon icon-tabler icon-tabler-brand-instagram mx-2'
+								className='icon icon-tabler icon-tabler-brand-instagram mx-5'
 								width='30'
 								height='30'
 								viewBox='0 0 24 24'

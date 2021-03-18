@@ -1,6 +1,16 @@
 import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 function BecomeVendor() {
+	const [state, handleSubmit] = useForm('moqpgoog');
+	if (state.succeeded) {
+		return (
+			<p className='text-center text-lg'>
+				Thank for your interest in becoming a Vendor! Please allow 1 week for a
+				response!
+			</p>
+		);
+	}
 	return (
 		<div className='container flex h-full'>
 			<div className='h-auto w-full'>
@@ -54,12 +64,16 @@ function BecomeVendor() {
 									</div>
 								</div>
 
-								<form className='p-6 flex flex-col justify-center'>
+								<form
+									className='p-6 flex flex-col justify-center'
+									onSubmit={handleSubmit}
+								>
 									<div className='flex flex-col'>
 										<label htmlFor='name' className='hidden'>
 											Full Name
 										</label>
 										<input
+											required
 											type='name'
 											name='name'
 											id='name'
@@ -73,6 +87,7 @@ function BecomeVendor() {
 											Email
 										</label>
 										<input
+											required
 											type='email'
 											name='email'
 											id='email'
@@ -86,6 +101,7 @@ function BecomeVendor() {
 											Number
 										</label>
 										<input
+											required
 											type='tel'
 											name='tel'
 											id='tel'
@@ -99,6 +115,7 @@ function BecomeVendor() {
 											Business Name
 										</label>
 										<input
+											required
 											type='name'
 											name='businessName'
 											id='businessName'
@@ -112,6 +129,7 @@ function BecomeVendor() {
 											Address
 										</label>
 										<input
+											required
 											type='name'
 											name='address'
 											id='address'
@@ -189,6 +207,7 @@ function BecomeVendor() {
 											Description
 										</label>
 										<textarea
+											required
 											id='description'
 											name='description'
 											rows='3'
@@ -198,6 +217,7 @@ function BecomeVendor() {
 									</div>
 
 									<button
+										disabled={state.submitting}
 										type='submit'
 										className='md:w-32 bg-purple-200 hover:bg-purple-700 text-gray-700 hover:text-gray-200 font-bold py-3 px-6 rounded-lg mt-3 transition ease-in-out duration-300'
 									>

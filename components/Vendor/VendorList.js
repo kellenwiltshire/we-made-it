@@ -10,7 +10,6 @@ function VendorList({ vendors }) {
 						<VendorCards
 							vendor={vendors[i].vendor}
 							image={vendors[i].image}
-							owner={vendors[i].owner}
 							key={i}
 						/>
 					);
