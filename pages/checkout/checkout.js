@@ -7,16 +7,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function Checkout({ cart, setCart }) {
 	const orderID = uuidv4();
-	console.log('Checkout Cart: ', cart);
 	const router = useRouter();
 	const deleteItem = (index) => {
 		cart.splice(index, 1);
 		setCart(cart);
-		router.push('/checkout/checkout');
+		if (cart.length < 1) {
+			router.push('/');
+		} else {
+			router.push('/checkout/checkout');
+		}
 	};
 
 	let lineItems = [];
-	console.log(lineItems);
 
 	const handleCheckout = () => {
 		fetch('https://we-made-it-api.herokuapp.com/checkout', {
@@ -29,7 +31,6 @@ export default function Checkout({ cart, setCart }) {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				router.push(data.checkout.checkoutPageUrl);
 			})
 			.catch((err) => console.log(err));

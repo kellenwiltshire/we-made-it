@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 function BecomeVendor() {
 	const [state, handleSubmit] = useForm('moqpgoog');
+	const [submitStatus, setSubmitStatus] = useState('Submit');
 	if (state.succeeded) {
-		return (
-			<p className='text-center text-lg'>
-				Thank for your interest in becoming a Vendor! Please allow 1 week for a
-				response!
-			</p>
-		);
+		setSubmitStatus('Submitted!');
 	}
 	return (
 		<div className='container flex h-full'>
@@ -221,7 +217,7 @@ function BecomeVendor() {
 										type='submit'
 										className='md:w-32 bg-purple-200 hover:bg-purple-700 text-gray-700 hover:text-gray-200 font-bold py-3 px-6 rounded-lg mt-3 transition ease-in-out duration-300'
 									>
-										Submit
+										{submitStatus}
 									</button>
 								</form>
 							</div>

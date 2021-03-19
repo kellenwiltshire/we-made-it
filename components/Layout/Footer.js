@@ -23,7 +23,7 @@ function Footer() {
 								<path d='M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3' />
 							</svg>
 						</a>
-						<a href='#'>
+						<a href='mailto: wemade-it@outlook.com'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								className='icon icon-tabler icon-tabler-mail mx-5'
@@ -62,14 +62,15 @@ function Footer() {
 						</a>
 					</div>
 				</div>
-				<div className='w-full flex justify-center flex-row flex-wrap lg:justify-between'>
-					<p className='text-white w-full lg:w-auto text-center'>
-						All rights reserved
-					</p>
+				<div className='w-full flex justify-center flex-row flex-wrap'>
+					<p className='text-white w-full text-center'>All rights reserved</p>
 
-					<p className=' text-gray-400 px-2 pt-6 w-full lg:w-auto text-center'>
+					<a
+						href='https://kellenwiltshire.com/'
+						className=' text-gray-400 px-2 pt-6 w-full text-center'
+					>
 						Web Development by Kellen Wiltshire
-					</p>
+					</a>
 				</div>
 			</div>
 		</footer>
