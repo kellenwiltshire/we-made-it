@@ -14,7 +14,7 @@ export default function SearchItems({ cart, data }) {
 					<Headers title='Search Results' />
 					<CategorySelect />
 
-					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
+					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body h-full'>
 						{items.map((list, i) => {
 							let price = (
 								items[i].itemData.variations[0].itemVariationData.priceMoney
@@ -24,9 +24,10 @@ export default function SearchItems({ cart, data }) {
 								<ProductCards
 									item={items[i]}
 									title={items[i].itemData.name}
-									key={i}
+									key={items[i].id}
 									itemID={items[i].id}
 									price={price}
+									defaultImage='/pictureComingSoon.png'
 								/>
 							);
 						})}

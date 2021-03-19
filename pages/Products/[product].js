@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 
 export default function ShopProduct({ data, setCart, cart }) {
+	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	if (data) {
 		const [image, setImage] = useState('/pictureComingSoon.png');
 		if (data.imageId) {
@@ -88,7 +89,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 		};
 
 		const showSubmitSuccess = () => {
-			document.getElementById('success').style.visibility = 'visible';
+			setCartStatus('Added to Cart!');
 		};
 
 		updateInventory();
@@ -169,19 +170,10 @@ export default function ShopProduct({ data, setCart, cart }) {
 										type='submit'
 										className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
 									>
-										Add to Cart
+										{cartStatus}
 									</button>
 								</form>
 							</div>
-
-							<div
-								id='success'
-								style={{ visibility: 'hidden' }}
-								className='text-center justify-center align-middle'
-							>
-								<h1>Added to Cart!</h1>
-							</div>
-
 							<div>
 								<p className='text-xs leading-none text-gray-500 mb-5'>
 									Due to the nature of our store, all items are final sale. We
