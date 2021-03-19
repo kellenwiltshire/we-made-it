@@ -7,6 +7,8 @@ export default function ShopCategories({ cart, setCart }) {
 		setCart([]);
 	};
 
+	resetCart();
+
 	return (
 		<Layout cart={cart} title='Checkout Completed || We Made It'>
 			<Headers title='Checkout Completed!' />
