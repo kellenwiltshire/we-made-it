@@ -25,7 +25,7 @@ function ProductCards({ itemID, title, item, price, defaultImage }) {
 				query: { product: itemID },
 			}}
 		>
-			<a className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
+			<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
 				<div className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
 					<div>
 						<img src={image} alt='' width='600px' height='auto' />
