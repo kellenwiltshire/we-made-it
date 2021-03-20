@@ -7,6 +7,7 @@ function CheckoutCard({
 	price,
 	description,
 	quantity,
+	image,
 }) {
 	const removeItem = () => {
 		deleteItem(index);
@@ -14,11 +15,7 @@ function CheckoutCard({
 
 	return (
 		<div className='flex flex-row flex-wrap border rounded border-black w-full h-auto'>
-			<img
-				className='h-full w-1/3 object-cover rounded-lg rounded-r-none'
-				src='/pictureComingSoon.png'
-				alt='bag'
-			/>
+			<img className='h-auto w-1/4 object-cover' src={image} alt='bag' />
 			<div className='w-2/3 px-4 py-4 bg-white rounded-lg'>
 				<div className='flex flex-row flex-wrap items-center'>
 					<h2 className='text-xl text-gray-800 font-medium mr-auto'>{name}</h2>
