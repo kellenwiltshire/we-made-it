@@ -83,6 +83,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 					name: itemName,
 					price: price,
 					description: description,
+					imageID: image,
 				},
 			]);
 			showSubmitSuccess();

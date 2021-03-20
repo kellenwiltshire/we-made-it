@@ -55,12 +55,14 @@ export default function Checkout({ cart, setCart }) {
 							});
 							return (
 								<CheckoutCard
+									key={cart[i].item}
 									quantity={cart[i].quantity}
 									index={i}
 									deleteItem={deleteItem}
 									name={cart[i].name}
 									price={cart[i].price}
 									description={cart[i].description}
+									image={cart[i].imageID}
 								/>
 							);
 						})}
