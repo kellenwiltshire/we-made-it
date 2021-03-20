@@ -9,11 +9,16 @@ export default function ShopCategories({ data, cat, name, cart }) {
 	if (data) {
 		const [items, setItems] = useState([]);
 		const dataItems = data.items.objects;
+		let itemsWithPictures = [];
+		for (let i = 0; i < dataItems.length; i++) {
+			if (dataItems[i].imageId) {
+				itemsWithPictures.push(dataItems[i]);
+			}
+		}
 		useEffect(() => {
-			setItems(dataItems);
+			setItems(itemsWithPictures);
 		}, [data]);
 		let currentCursor = data.items.cursor;
-		console.log(items);
 		return (
 			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title={name} />
