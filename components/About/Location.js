@@ -20,7 +20,7 @@ function Location() {
 							</dd>
 						</div>
 						<div className='bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-							<dt className='text-lg font-medium text-black'>Hours</dt>
+							<div className='text-lg font-medium text-black'>Hours</div>
 							<ul className='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
 								<li>Monday Closed</li>
 								<li>Tuesday 10:00 a.m. - 5:00 p.m.</li>

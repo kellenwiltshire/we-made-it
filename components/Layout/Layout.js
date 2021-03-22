@@ -9,7 +9,7 @@ function Layout({ title, children, cart }) {
 			<Head>
 				<title>{title}</title>
 				<link rel='icon' href='/favicon.ico' />
-				<meta name='We-Made-It We Made It Newcastle Ontario' />
+				<meta name='We-Made-It We Made It Newcastle Ontario Homemade Handmade Decor Local Clarington Canada Bowmanville Durham Oshawa' />
 				<meta lang='en' />
 			</Head>
 			<Navigation cart={cart} />
