@@ -37,7 +37,7 @@ export default function SearchItems({ cart, data }) {
 		} else {
 			return (
 				<Layout cart={cart} title={`We Made It`}>
-					<Headers title='OOP! Nothing Found!' />
+					<Headers title='OOPS! Nothing Found!' />
 					<div className='flex flex-col text-center'>
 						<p>Try a different search!</p>
 					</div>
