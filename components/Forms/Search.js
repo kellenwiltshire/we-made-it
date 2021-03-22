@@ -28,7 +28,11 @@ function Search() {
 					placeholder='Search'
 					onChange={onInputChange}
 				/>
-				<button type='submit' className='absolute right-0 top-0 mt-5 mr-4'>
+				<button
+					type='submit'
+					className='absolute right-0 top-0 mt-5 mr-4'
+					aria-label='Search Button'
+				>
 					<svg
 						className='text-gray-600 h-4 w-4 fill-current'
 						xmlns='http://www.w3.org/2000/svg'

@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
 	return (
-		<footer className='bg-dark-purple w-full py-6 px-4 '>
+		<footer className='bg-dark-purple w-full px-4 pb-2'>
 			<div className='w-full flex flex-col my-4'>
-				<div className='w-full flex justify-center'>
+				<div className='w-full flex justify-center pt-6'>
 					<div className='flex items-center'>
 						<a href='https://www.facebook.com/wemadeit.newcastle'>
 							<svg
@@ -62,12 +62,12 @@ function Footer() {
 						</a>
 					</div>
 				</div>
-				<div className='w-full flex justify-center flex-row flex-wrap'>
+				<div className='w-full flex justify-center flex-row flex-wrap pt-6'>
 					<p className='text-white w-full text-center'>All rights reserved</p>
 
 					<a
 						href='https://kellenwiltshire.com/'
-						className=' text-gray-400 px-2 pt-6 w-full text-center'
+						className=' text-gray-400 w-full text-center'
 					>
 						Web Development by Kellen Wiltshire
 					</a>
