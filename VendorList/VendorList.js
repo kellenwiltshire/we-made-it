@@ -294,11 +294,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/rootfulpieces.jpg',
 	},
 	{
-		vendor: 'Roseberry Preservations',
-		owner: '',
-		image: '',
-	},
-	{
 		vendor: 'Sew Sweet Handmade',
 		owner: 'Eileen VanGoor',
 		image:
