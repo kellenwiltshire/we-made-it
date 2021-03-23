@@ -22,8 +22,10 @@ function BecomeVendor() {
 									<div className='flex items-center mt-8 text-black dark:text-gray-400'>
 										<div className='text-md tracking-wide font-semibold w-full'>
 											Please fill out the form for Vendor Application. Please
-											allow 1 week for response. Only accepted vendors will be
-											contacted at this time. Thank you!
+											note that we are currently not accepting new Vendor's at
+											this time. Any application received will be added to a
+											waitlist and you will be contacted once a spot opens.
+											Thank you for your interest!
 										</div>
 									</div>
 

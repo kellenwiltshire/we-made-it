@@ -22,13 +22,14 @@ function Location() {
 						<div className='bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
 							<div className='text-lg font-medium text-black'>Hours</div>
 							<ul className='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2'>
+								<li>Winter Hours</li>
 								<li>Monday Closed</li>
-								<li>Tuesday 10:00 a.m. - 5:00 p.m.</li>
-								<li>Wednesday 10:00 a.m. - 5:00 p.m.</li>
-								<li> Thursday 10:00 a.m. - 7:00 p.m.</li>
+								<li>Tuesday 10:00 a.m. - 4:00 p.m.</li>
+								<li>Wednesday 10:00 a.m. - 4:00 p.m.</li>
+								<li> Thursday 10:00 a.m. - 4:00 p.m.</li>
 								<li>Friday 10:00 a.m. - 7:00 p.m.</li>
-								<li> Saturday 10:00 a.m. - 7:00 p.m.</li>
-								<li>Sunday 10:00 a.m. - 5:00 p.m.</li>
+								<li> Saturday 10:00 a.m. - 4:00 p.m.</li>
+								<li>Sunday 10:00 a.m. - 4:00 p.m.</li>
 							</ul>
 						</div>
 						<div className='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>

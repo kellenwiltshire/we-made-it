@@ -11,26 +11,28 @@ export default function SearchItems({ cart, data }) {
 
 			return (
 				<Layout cart={cart} title='We Made It'>
-					<Headers title='Search Results' />
-					<CategorySelect />
+					<div className='flex flex-row flex-wrap h-full'>
+						<Headers title='Search Results' />
+						<CategorySelect />
 
-					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full font-body h-full'>
-						{items.map((list, i) => {
-							let price = (
-								items[i].itemData.variations[0].itemVariationData.priceMoney
-									.amount / 100
-							).toFixed(2);
-							return (
-								<ProductCards
-									item={items[i]}
-									title={items[i].itemData.name}
-									key={items[i].id}
-									itemID={items[i].id}
-									price={price}
-									defaultImage='/pictureComingSoon.png'
-								/>
-							);
-						})}
+						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
+							{items.map((list, i) => {
+								let price = (
+									items[i].itemData.variations[0].itemVariationData.priceMoney
+										.amount / 100
+								).toFixed(2);
+								return (
+									<ProductCards
+										item={items[i]}
+										title={items[i].itemData.name}
+										key={items[i].id}
+										itemID={items[i].id}
+										price={price}
+										defaultImage='/pictureComingSoon.png'
+									/>
+								);
+							})}
+						</div>
 					</div>
 				</Layout>
 			);
