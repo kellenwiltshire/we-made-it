@@ -146,27 +146,30 @@ export default function ShopProduct({ data, setCart, cart }) {
 										onChange={onInputChange}
 										className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 pb-1'
 									/>
+									{data.itemVarData[0].itemVariationData.name != '' ? (
+										<div className='flex py-4 space-x-4'>
+											<div className='relative'>
+												<div className='text-left p-2 block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
+													Variation
+												</div>
 
-									<div className='flex py-4 space-x-4'>
-										<div className='relative'>
-											<div className='text-center block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
-												Variation
+												<select
+													onChange={onSelectChange}
+													className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 flex items-end pb-1'
+												>
+													{data.itemVarData.map((item, i) => {
+														return (
+															<option key={i} value={i}>
+																{data.itemVarData[i].itemVariationData.name}
+															</option>
+														);
+													})}
+												</select>
 											</div>
-											<select
-												onChange={onSelectChange}
-												className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 flex items-end pb-1'
-											>
-												{data.itemVarData.map((item, i) => {
-													return (
-														<option key={i} value={i}>
-															{data.itemVarData[i].itemVariationData.name}
-														</option>
-													);
-												})}
-											</select>
 										</div>
-									</div>
-
+									) : (
+										<div className='py-10'></div>
+									)}
 									<button
 										type='submit'
 										className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'

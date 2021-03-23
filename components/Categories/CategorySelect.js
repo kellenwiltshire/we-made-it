@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function CategorySelect() {
 	return (
-		<div className='container my-5'>
+		<div className='container m-2 my-5'>
 			<div className='w-full flex flex-row justify-between'>
 				<Link
 					href={{

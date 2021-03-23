@@ -9,7 +9,8 @@ function Search() {
 		input = e.target.value;
 	};
 
-	const handleSearch = () => {
+	const handleSearch = (e) => {
+		e.preventDefault();
 		router.push({
 			pathname: '/search/[...searchitems]',
 			query: { searchitems: input },

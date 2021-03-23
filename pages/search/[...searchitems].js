@@ -11,7 +11,7 @@ export default function SearchItems({ cart, data }) {
 
 			return (
 				<Layout cart={cart} title='We Made It'>
-					<div className='flex flex-row flex-wrap h-full'>
+					<div className='flex flex-row flex-wrap justify-center h-full'>
 						<Headers title='Search Results' />
 						<CategorySelect />
 
