@@ -303,7 +303,7 @@ export const vendors = [
 		vendor: "She'll Be Painting",
 		owner: 'Shelby Wiltshire',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/shellbypainting.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/shellbepainting.jpg',
 	},
 	{
 		vendor: 'Simply Sluggish',
