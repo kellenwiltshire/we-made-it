@@ -12,7 +12,7 @@ function Pagination({ currentCursor, name, cat }) {
 						onClick={() => router.back()}
 						className='flex items-center font-bold'
 					>
-						<span className='mx-1'>Previous</span>
+						<span className='mx-1 font-title'>Previous</span>
 					</div>
 				</li>
 
@@ -24,7 +24,7 @@ function Pagination({ currentCursor, name, cat }) {
 						}}
 					>
 						<div className='flex items-center font-bold'>
-							<span className='mx-1'>Next</span>
+							<span className='mx-1 font-title'>Next</span>
 						</div>
 					</Link>
 				</li>

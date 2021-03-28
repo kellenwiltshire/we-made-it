@@ -40,7 +40,7 @@ export default function SearchItems({ cart, data }) {
 			return (
 				<Layout cart={cart} title={`We Made It`}>
 					<Headers title='OOPS! Nothing Found!' />
-					<div className='flex flex-col text-center'>
+					<div className='flex flex-col text-center font-body'>
 						<p>Try a different search!</p>
 					</div>
 				</Layout>
@@ -50,7 +50,7 @@ export default function SearchItems({ cart, data }) {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<div className='flex flex-col text-center'>
+				<div className='flex flex-col text-center font-body'>
 					<p>
 						This is Embarassing! We might be having trouble connecting with
 						Square. Please try again later!

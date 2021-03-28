@@ -13,7 +13,7 @@ export default function ShopCategories({ cart, setCart }) {
 		<Layout cart={cart} title='Checkout Completed || We Made It'>
 			<Headers title='Checkout Completed!' />
 			<div>
-				<p>Thank You So Much for Your Purchase!</p>
+				<p className='font-body'>Thank You So Much for Your Purchase!</p>
 			</div>
 		</Layout>
 	);

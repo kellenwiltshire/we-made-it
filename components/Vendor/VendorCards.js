@@ -19,7 +19,7 @@ function VendorCards({ vendor, image }) {
 				</div>
 			</div>
 			<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
-				<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full'>
+				<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
 					{vendor}
 				</h2>
 			</div>

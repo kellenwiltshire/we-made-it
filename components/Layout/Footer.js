@@ -63,11 +63,13 @@ function Footer() {
 					</div>
 				</div>
 				<div className='w-full flex justify-center flex-row flex-wrap pt-6'>
-					<p className='text-white w-full text-center'>All rights reserved</p>
+					<p className='text-white w-full text-center font-body'>
+						All rights reserved
+					</p>
 
 					<a
 						href='https://kellenwiltshire.com/'
-						className=' text-gray-400 w-full text-center'
+						className=' text-gray-400 w-full text-center font-body'
 					>
 						Web Development by Kellen Wiltshire
 					</a>

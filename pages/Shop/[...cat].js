@@ -50,7 +50,7 @@ export default function ShopCategories({ data, cat, name, cart }) {
 		return (
 			<Layout cart={cart} title={`${name} || We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<p>
+				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>

@@ -102,7 +102,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 							onClick={() => router.back()}
 							className='flex items-center font-bold'
 						>
-							<span className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+							<span className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer font-title'>
 								Back
 							</span>
 						</div>
@@ -112,7 +112,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 							<img src={image} alt='' height='500px' width='500px' />
 						</div>
 						<div className='md:flex-1 px-4'>
-							<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl'>
+							<h2 className='mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl font-title'>
 								{itemName}
 							</h2>
 
@@ -120,21 +120,21 @@ export default function ShopProduct({ data, setCart, cart }) {
 								<div>
 									<div className='rounded-lg bg-gray-100 flex py-2 px-3'>
 										<span className='text-indigo-400 mr-1 mt-1'>$</span>
-										<span className='font-bold text-indigo-600 text-3xl'>
+										<span className='font-bold text-indigo-600 text-3xl font-body'>
 											{price}
 										</span>
 									</div>
 								</div>
 							</div>
 
-							<div className='text-gray-500'>
+							<div className='text-gray-500 font-body'>
 								<span className='text-xl font-bold'>Description: </span>
 								<p className='leading-relaxed'>{description}</p>
 								<span className='text-xl font-bold'>Inventory: </span>
 								<p className='leading-relaxed'>{inventory}</p>
 							</div>
 
-							<div className='flex py-4'>
+							<div className='flex py-4 font-body'>
 								<form onSubmit={handleCart}>
 									<input
 										type='number'
@@ -179,7 +179,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 								</form>
 							</div>
 							<div>
-								<p className='text-xs leading-none text-gray-500 mb-5'>
+								<p className='text-xs leading-none text-gray-500 mb-5 font-body'>
 									Due to the nature of our store, all items are final sale. We
 									are unable to provide exchanges or refunds as vendors are paid
 									out with their sales.
@@ -194,7 +194,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<p>
+				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>
