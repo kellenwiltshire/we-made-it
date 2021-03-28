@@ -2,7 +2,8 @@ export const vendors = [
 	{
 		vendor: '3 Beez Buzz',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/3beesbuzz.jpg',
 	},
 	{
 		vendor: '4 Peas Handmade',
@@ -41,7 +42,8 @@ export const vendors = [
 	{
 		vendor: 'Be You Boutique',
 		owner: 'Amanda MacAlpine',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/beyouboutique.jpg',
 	},
 	{
 		vendor: 'Bijouterie By Chels',
@@ -70,7 +72,8 @@ export const vendors = [
 	{
 		vendor: "Brianna's Sweet Treats",
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/briannessweettreats.jpg',
 	},
 	{
 		vendor: 'Bumblebee Custom Creations',
@@ -110,7 +113,8 @@ export const vendors = [
 	{
 		vendor: 'Contagious Designs',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/contagiousdesigns.jpg',
 	},
 	{
 		vendor: 'Copper & Cole',
@@ -145,7 +149,7 @@ export const vendors = [
 		vendor: 'ECC',
 		owner: '',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ecc.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/endlesscrochet.jpg',
 	},
 	{
 		vendor: "Eli's Stitchery",
@@ -173,7 +177,8 @@ export const vendors = [
 	{
 		vendor: 'Gypsy Blues',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/gypsyblues.jpg',
 	},
 	{
 		vendor: "Hurry Home Art's and Crafts",
@@ -377,7 +382,8 @@ export const vendors = [
 	{
 		vendor: 'Tyger Lily Creations',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/tygerlily.jpg',
 	},
 	{
 		vendor: 'Uplifting Naturals',
