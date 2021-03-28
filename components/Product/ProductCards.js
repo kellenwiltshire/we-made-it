@@ -32,10 +32,10 @@ function ProductCards({ itemID, title, item, price, defaultImage }) {
 					</div>
 				</div>
 				<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
-					<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full'>
+					<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
 						{title}
 					</h2>
-					<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base'>
+					<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base font-body'>
 						${price}
 					</p>
 				</div>

@@ -45,7 +45,7 @@ function AboutStore() {
 						</a>
 					</div>
 				</div>
-				<div className='w-full mx-3 md:w-2/3 text-xs md:text-base text-center leading-loose md:space-y-2'>
+				<div className='w-full mx-3 md:w-2/3 text-xs md:text-base text-center leading-loose md:space-y-2 font-body'>
 					<p>
 						Hello! My name is Amanda VanGoor and I am the owner behind We Made
 						It.
@@ -76,7 +76,7 @@ function AboutStore() {
 				<div className='w-full flex justify-center'>
 					<Link href='/Vendors/becomevendor'>
 						<a>
-							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer font-title'>
 								BECOME A VENDOR
 							</p>
 						</a>
@@ -88,7 +88,7 @@ function AboutStore() {
 						}}
 					>
 						<a>
-							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer font-title'>
 								SHOP NOW
 							</p>
 						</a>
