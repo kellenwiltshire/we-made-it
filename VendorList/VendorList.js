@@ -155,7 +155,7 @@ export const vendors = [
 		vendor: "Eli's Stitchery",
 		owner: '',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/elisstitchery.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/elsstichery.jpg',
 	},
 	{
 		vendor: 'Endless Crochet Creations',

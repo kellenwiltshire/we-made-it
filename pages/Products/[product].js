@@ -146,7 +146,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 										onChange={onInputChange}
 										className='cursor-pointer appearance-none rounded-xl border border-purple-200 h-14 pb-1'
 									/>
-									{data.itemVarData[0].itemVariationData.name != '' ? (
+									{data.itemVarData.length > 1 ? (
 										<div className='flex py-4 space-x-4'>
 											<div className='relative'>
 												<div className='text-left p-2 block text-xs uppercase text-gray-400 tracking-wide font-semibold'>
