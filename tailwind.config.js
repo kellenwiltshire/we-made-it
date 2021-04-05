@@ -7,6 +7,10 @@ module.exports = {
 				'dark-purple': '#604195',
 			},
 		},
+		fontFamily: {
+			title: 'Raleway',
+			body: 'Open Sans',
+		},
 	},
 	variants: {
 		extend: {},

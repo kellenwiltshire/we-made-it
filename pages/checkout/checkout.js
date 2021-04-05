@@ -44,7 +44,7 @@ export default function Checkout({ cart, setCart }) {
 					<div className='h-auto w-full'>
 						<button
 							onClick={handleCheckout}
-							className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto'
+							className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto font-title'
 						>
 							Continue to Checkout
 						</button>
@@ -74,7 +74,7 @@ export default function Checkout({ cart, setCart }) {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
 				<Headers title='OOPS! Something Went Wrong!' />
-				<p>
+				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>
