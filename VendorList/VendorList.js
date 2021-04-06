@@ -3,13 +3,13 @@ export const vendors = [
 		vendor: '4 Peas Handmade',
 		owner: '',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/abeego.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/4peas.jpg',
 	},
 	{
 		vendor: 'Abeego',
 		owner: '',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/4peas.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/abeego.jpg',
 	},
 	{
 		vendor: `Amanda's Market Stand`,
