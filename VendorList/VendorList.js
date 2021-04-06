@@ -1,15 +1,21 @@
 export const vendors = [
 	{
-		vendor: '3 Beez Buzz',
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/3beesbuzz.jpg',
-	},
-	{
 		vendor: '4 Peas Handmade',
 		owner: '',
 		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/abeego.jpg',
+	},
+	{
+		vendor: 'Abeego',
+		owner: '',
+		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/4peas.jpg',
+	},
+	{
+		vendor: `Amanda's Market Stand`,
+		owner: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/amandasmarketstand.jpg',
 	},
 	{
 		vendor: 'Ammicala Creations',
@@ -32,12 +38,14 @@ export const vendors = [
 	{
 		vendor: 'Artsy Fartsy',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/artsyfartsy.jpg',
 	},
 	{
 		vendor: 'Banndy',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/banndy.jpg',
 	},
 	{
 		vendor: 'Be You Boutique',
@@ -70,12 +78,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blush.jpg',
 	},
 	{
-		vendor: "Brianna's Sweet Treats",
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/briannessweettreats.jpg',
-	},
-	{
 		vendor: 'Bumblebee Custom Creations',
 		owner: '',
 		image:
@@ -104,11 +106,6 @@ export const vendors = [
 		owner: '',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/charityknits.jpg',
-	},
-	{
-		vendor: 'Compassions',
-		owner: '',
-		image: '',
 	},
 	{
 		vendor: 'Contagious Designs',
@@ -146,12 +143,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/duetpetalstreasures.jpg',
 	},
 	{
-		vendor: 'ECC',
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/endlesscrochet.jpg',
-	},
-	{
 		vendor: "Eli's Stitchery",
 		owner: '',
 		image:
@@ -161,12 +152,6 @@ export const vendors = [
 		vendor: 'Endless Crochet Creations',
 		owner: '',
 		image: '',
-	},
-	{
-		vendor: "GG's Quilts and More",
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ggquiltsmore.jpg',
 	},
 	{
 		vendor: 'Gram an Am Beauty',
@@ -266,6 +251,12 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ofthenorth.jpg',
 	},
 	{
+		vendor: 'Oh So Simple Creations',
+		owner: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ohsosimplecreations.JPG',
+	},
+	{
 		vendor: 'One Of A Kind Gifts by Joanna',
 		owner: '',
 		image: '',
@@ -322,10 +313,10 @@ export const vendors = [
 		image: '',
 	},
 	{
-		vendor: 'Subversive Sisters',
+		vendor: 'Straw Hut Co.',
 		owner: '',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/subversivesisters.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/strawhutco.jpg',
 	},
 	{
 		vendor: "Terri's Krafty Korner",
@@ -402,12 +393,6 @@ export const vendors = [
 		owner: '',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/wildfreebowmanville.jpg',
-	},
-	{
-		vendor: 'Wild & Whimsy Scrunchie Boutique',
-		owner: '',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/wildwhimsy.jpg',
 	},
 	{
 		vendor: 'Wray of Sunshine',
