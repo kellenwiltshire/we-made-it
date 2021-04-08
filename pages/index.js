@@ -11,8 +11,7 @@ export default function Home({ cart }) {
 		<Layout cart={cart} title='We Made It || Home'>
 			<Link
 				href={{
-					pathname: `/Shop/[...cat]`,
-					query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
+					pathname: `/Shop/shop`,
 				}}
 			>
 				<a className='shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out m-5'>
