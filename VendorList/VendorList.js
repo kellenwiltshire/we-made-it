@@ -75,7 +75,7 @@ export const vendors = [
 		vendor: 'Blush',
 		owner: 'Wanda Russell',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blush.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blush.jpeg',
 	},
 	{
 		vendor: 'Bumblebee Custom Creations',
