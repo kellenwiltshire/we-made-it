@@ -25,7 +25,6 @@ export default function ShopCategories({ data, cart }) {
 			return currentItems;
 		};
 		const handlePageChange = (e) => {
-			e.preventDefault();
 			const page = e.selected + 1;
 			setCurrPage(page);
 			const start = e.selected * 50 - 50;
@@ -37,6 +36,10 @@ export default function ShopCategories({ data, cart }) {
 			setItems(itemsWithPictures);
 			setCurrItems(getCurrItems(currPage));
 			setNumPages(itemsWithPictures.length / 50);
+		}, [data]);
+
+		useEffect(() => {
+			setCurrItems(getCurrItems(currPage));
 		}, [currPage]);
 		console.log('Current Items: ', currItems);
 		console.log('All Items: ', items);
@@ -52,6 +55,9 @@ export default function ShopCategories({ data, cart }) {
 						onPageChange={handlePageChange}
 						pageRangeDisplayed={5}
 						marginPagesDisplayed={2}
+						containerClassName={'pagination'}
+						subContainerClassName={'pages pagination'}
+						activeClassName={'active'}
 					/>
 				</div>
 				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
@@ -66,6 +72,7 @@ export default function ShopCategories({ data, cart }) {
 								item={items[i]}
 								title={items[i].itemData.name}
 								itemID={items[i].id}
+								key={items[i].id}
 								price={price}
 								defaultImage='/pictureComingSoon.png'
 							/>
