@@ -12,6 +12,7 @@ export default function ShopCategories({ data, cart }) {
 		const [numPages, setNumPages] = useState(1);
 		const [offset, setOffset] = useState(0);
 		const [perPage, setPerPage] = useState(50);
+		const [sort, setSort] = useState('none');
 		let isLoaded = false;
 		const dataItems = data.items;
 		let itemsWithPictures = [];
@@ -22,6 +23,42 @@ export default function ShopCategories({ data, cart }) {
 			}
 		}
 
+		const sortChange = (e) => {
+			if (e.target.value === 'Name Ascending (A-Z)') {
+				console.log('Sorting A to Z');
+				let sortedItems = items.sort((a, b) => {
+					return a.itemData.name.localeCompare(b.itemData.name);
+				});
+				setItems(sortedItems);
+				setOffset(0);
+				setSort(e.target.value);
+			} else if (e.target.value === 'Name Descending (Z-A)') {
+				console.log('Sorting Z to A');
+				let sortedItems = items.sort((a, b) => {
+					return a.itemData.name.localeCompare(b.itemData.name);
+				});
+				sortedItems.reverse();
+				setItems(sortedItems);
+				setOffset(0);
+				setSort(e.target.value);
+			} else if (e.target.value === 'Price (Low to High)') {
+				items.sort((a, b) => {
+					a.itemData.variations[0].itemVariationData.priceMoney.amount >
+					b.itemData.variations[0].itemVariationData.priceMoney.amount
+						? 1
+						: -1;
+				});
+			} else if (e.target.value === 'Price (High to Low)') {
+				items.sort((a, b) => {
+					a.itemData.variations[0].itemVariationData.priceMoney.amount >
+					b.itemData.variations[0].itemVariationData.priceMoney.amount
+						? 1
+						: -1;
+				});
+				items.reverse();
+			}
+		};
+
 		const handlePageChange = (e) => {
 			const selectedPage = e.selected;
 			const newOffset = selectedPage * perPage;
@@ -30,21 +67,24 @@ export default function ShopCategories({ data, cart }) {
 
 		useEffect(() => {
 			setItems(itemsWithPictures);
-			console.log('Items set: ', items);
 			setCurrItems(items.slice(offset, offset + perPage));
-			console.log('Curr Items Set: ', currItems);
 			setNumPages(itemsWithPictures.length / 50);
 		}, []);
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
-			console.log(currItems);
+			console.log('Current Items Set: ', currItems);
 		}, [offset]);
+
+		useEffect(() => {
+			setCurrItems(items.slice(offset, offset + perPage));
+			console.log('Sort Current Items Set: ', currItems);
+		}, [sort]);
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
 				<Headers title='Shop' />
 				{/* <CategorySelect /> */}
-				<div className='w-full flex justify-center'>
+				<div className='w-full flex flex-row flex-wrap justify-center'>
 					<ReactPaginate
 						pageCount={numPages}
 						onPageChange={handlePageChange}
@@ -54,6 +94,22 @@ export default function ShopCategories({ data, cart }) {
 						subContainerClassName={'pages pagination'}
 						activeClassName={'active'}
 					/>
+					<div className='w-full justify-center flex align-middle'>
+						<label htmlFor='plan'>Sort</label>
+						<select
+							type='name'
+							name='sort'
+							id='sort'
+							className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
+							onChange={sortChange}
+						>
+							<option>---</option>
+							<option>Name Ascending (A-Z)</option>
+							<option>Name Descending (Z-A)</option>
+							<option>Price (High to Low)</option>
+							<option>Price (Low to High)</option>
+						</select>
+					</div>
 				</div>
 				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{currItems.map((list, i) => {
@@ -72,7 +128,6 @@ export default function ShopCategories({ data, cart }) {
 								item={currItems[i]}
 								title={currItems[i].itemData.name}
 								itemID={currItems[i].id}
-								key={currItems[i].id}
 								price={price}
 								defaultImage='/pictureComingSoon.png'
 							/>
