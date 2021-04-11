@@ -42,24 +42,56 @@ export default function ShopCategories({ data, cart }) {
 				setOffset(0);
 				setSort(e.target.value);
 			} else if (e.target.value === 'Price (Low to High)') {
-				let sortedItems = items.sort((a, b) => {
-					a.itemData.variations[0].itemVariationData.priceMoney.amount >
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-						? 1
-						: -1;
+				let sortedItems = items;
+				sortedItems.sort((a, b) => {
+					if (a.itemData.variations && b.itemData.variations) {
+						if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount >
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return 1;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount <
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return -1;
+						} else {
+							return 0;
+						}
+					} else {
+						return 0;
+					}
 				});
 				setItems(sortedItems);
 				setOffset(0);
 				setSort(e.target.value);
 			} else if (e.target.value === 'Price (High to Low)') {
-				let sortedItems = items.sort((a, b) => {
-					a.itemData.variations[0].itemVariationData.priceMoney.amount >
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-						? 1
-						: -1;
+				let sortedItems = items;
+				sortedItems.sort((a, b) => {
+					if (a.itemData.variations && b.itemData.variations) {
+						if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount >
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return 1;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount <
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return -1;
+						} else {
+							return 0;
+						}
+					} else {
+						return 0;
+					}
 				});
-				items.reverse();
+				sortedItems.reverse();
 				setItems(sortedItems);
+				setOffset(0);
+				setSort(e.target.value);
+			} else {
+				setItems(itemsWithPictures);
 				setOffset(0);
 				setSort(e.target.value);
 			}
@@ -75,12 +107,18 @@ export default function ShopCategories({ data, cart }) {
 			setItems(itemsWithPictures);
 			setCurrItems(items.slice(offset, offset + perPage));
 			setNumPages(itemsWithPictures.length / 50);
+			setOffset(0);
 		}, []);
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
 			console.log('Current Items Set: ', currItems);
 		}, [offset]);
+
+		useEffect(() => {
+			setCurrItems(items.slice(offset, offset + perPage));
+			console.log('Current Items Set: ', currItems);
+		}, [isLoaded]);
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
@@ -109,7 +147,7 @@ export default function ShopCategories({ data, cart }) {
 							className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 							onChange={sortChange}
 						>
-							<option>---</option>
+							<option selected>---</option>
 							<option>Name Ascending (A-Z)</option>
 							<option>Name Descending (Z-A)</option>
 							<option>Price (High to Low)</option>
