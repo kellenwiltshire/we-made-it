@@ -12,20 +12,18 @@ export default function ShopCategories({ data, cart }) {
 		const [numPages, setNumPages] = useState(1);
 		const [offset, setOffset] = useState(0);
 		const [perPage, setPerPage] = useState(50);
-		const [sort, setSort] = useState('none');
-		let isLoaded = false;
+		const [sort, setSort] = useState('');
 		const dataItems = data.items;
 		let itemsWithPictures = [];
 
-		for (let i = 0; i < dataItems.length; i++) {
-			if (dataItems[i].imageId) {
-				itemsWithPictures.push(dataItems[i]);
-			}
-		}
+		// for (let i = 0; i < dataItems.length; i++) {
+		// 	if (dataItems[i].imageId) {
+		// 		itemsWithPictures.push(dataItems[i]);
+		// 	}
+		// }
 
 		const sortChange = (e) => {
 			if (e.target.value === 'Name Ascending (A-Z)') {
-				console.log('Sorting A to Z');
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
@@ -33,7 +31,6 @@ export default function ShopCategories({ data, cart }) {
 				setOffset(0);
 				setSort(e.target.value);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
-				console.log('Sorting Z to A');
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
@@ -104,26 +101,25 @@ export default function ShopCategories({ data, cart }) {
 		};
 
 		useEffect(() => {
+			for (let i = 0; i < dataItems.length; i++) {
+				if (dataItems[i].imageId) {
+					itemsWithPictures.push(dataItems[i]);
+				}
+			}
 			setItems(itemsWithPictures);
 			setCurrItems(items.slice(offset, offset + perPage));
 			setNumPages(itemsWithPictures.length / 50);
-			setOffset(0);
 		}, []);
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
-			console.log('Current Items Set: ', currItems);
 		}, [offset]);
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
-			console.log('Current Items Set: ', currItems);
-		}, [isLoaded]);
-
-		useEffect(() => {
-			setCurrItems(items.slice(offset, offset + perPage));
-			console.log('Sort Current Items Set: ', currItems);
 		}, [sort]);
+
+		console.log('Current Items Length: ', currItems.length);
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
 				<Headers title='Shop' />
@@ -146,8 +142,9 @@ export default function ShopCategories({ data, cart }) {
 							id='sort'
 							className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 							onChange={sortChange}
+							defaultValue='---'
 						>
-							<option selected>---</option>
+							<option>---</option>
 							<option>Name Ascending (A-Z)</option>
 							<option>Name Descending (Z-A)</option>
 							<option>Price (High to Low)</option>
