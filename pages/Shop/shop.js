@@ -10,8 +10,9 @@ export default function ShopCategories({ data, cart }) {
 	if (data) {
 		const [items, setItems] = useState([]);
 		const [currItems, setCurrItems] = useState([]);
-		const [currPage, setCurrPage] = useState(1);
 		const [numPages, setNumPages] = useState(1);
+		const [offset, setOffset] = useState(0);
+		const [perPage, setPerPage] = useState(50);
 		const dataItems = data.items;
 		let itemsWithPictures = [];
 		for (let i = 0; i < dataItems.length; i++) {
@@ -19,31 +20,37 @@ export default function ShopCategories({ data, cart }) {
 				itemsWithPictures.push(dataItems[i]);
 			}
 		}
-		const getCurrItems = (page) => {
-			const start = page * 50 - 50;
-			const currentItems = items.slice(start, start + 50);
-			return currentItems;
-		};
+
 		const handlePageChange = (e) => {
-			const page = e.selected + 1;
-			setCurrPage(page);
-			const start = e.selected * 50 - 50;
-			const currentItems = items.slice(start, start + 50);
+			let newOffSet;
+			console.log('Selected Page: ', e.selected);
+			if (e.selected === 0) {
+				newOffSet = 0;
+				setOffset(newOffSet);
+				console.log('Offset: ', offset);
+			} else {
+				newOffSet = e.selected * perPage;
+				console.log('MATH: ', e.selected * perPage);
+				setOffset(newOffSet);
+				console.log('Offset: ', offset);
+			}
+			const currentItems = items.slice(offset, offset + perPage);
 			setCurrItems(currentItems);
+			console.log('New Curr Items: ', currItems);
 		};
 
 		useEffect(() => {
+			console.log('THIS RAN Now');
 			setItems(itemsWithPictures);
-			setCurrItems(getCurrItems(currPage));
+			console.log('Items set: ', items);
+			setCurrItems(items.slice(offset, offset + perPage));
+			console.log('Curr Items Set: ', currItems);
 			setNumPages(itemsWithPictures.length / 50);
 		}, [data]);
 
 		useEffect(() => {
-			setCurrItems(getCurrItems(currPage));
-		}, [currPage]);
-		console.log('Current Items: ', currItems);
-		console.log('All Items: ', items);
-		console.log(numPages);
+			setCurrItems(items.slice(offset, offset + perPage));
+		}, [offset]);
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
 				<Headers title='Shop' />
