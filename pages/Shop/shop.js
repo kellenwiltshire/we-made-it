@@ -42,20 +42,26 @@ export default function ShopCategories({ data, cart }) {
 				setOffset(0);
 				setSort(e.target.value);
 			} else if (e.target.value === 'Price (Low to High)') {
-				items.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					a.itemData.variations[0].itemVariationData.priceMoney.amount >
 					b.itemData.variations[0].itemVariationData.priceMoney.amount
 						? 1
 						: -1;
 				});
+				setItems(sortedItems);
+				setOffset(0);
+				setSort(e.target.value);
 			} else if (e.target.value === 'Price (High to Low)') {
-				items.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					a.itemData.variations[0].itemVariationData.priceMoney.amount >
 					b.itemData.variations[0].itemVariationData.priceMoney.amount
 						? 1
 						: -1;
 				});
 				items.reverse();
+				setItems(sortedItems);
+				setOffset(0);
+				setSort(e.target.value);
 			}
 		};
 
