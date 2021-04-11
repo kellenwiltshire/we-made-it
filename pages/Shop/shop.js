@@ -117,16 +117,15 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						activeClassName={'active'}
 					/>
 					<div className='w-full justify-center flex align-middle'>
-						<label htmlFor='plan'>Sort</label>
 						<select
 							type='name'
 							name='sort'
 							id='sort'
 							className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
 							onChange={sortChange}
-							defaultValue='---'
+							defaultValue='Sort Items'
 						>
-							<option>---</option>
+							<option>Sort Items</option>
 							<option>Name Ascending (A-Z)</option>
 							<option>Name Descending (Z-A)</option>
 							<option>Price (High to Low)</option>
