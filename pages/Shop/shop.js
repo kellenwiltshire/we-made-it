@@ -5,22 +5,24 @@ import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
-export default function ShopCategories({ data, cart }) {
-	if (data) {
-		const [items, setItems] = useState([]);
-		const [currItems, setCurrItems] = useState([]);
-		const [numPages, setNumPages] = useState(1);
-		const [offset, setOffset] = useState(0);
+export default function ShopCategories({ itemsWithPictures, cart }) {
+	if (itemsWithPictures) {
 		const [perPage, setPerPage] = useState(50);
+		const [offset, setOffset] = useState(0);
+		const [items, setItems] = useState(itemsWithPictures);
+		const [currItems, setCurrItems] = useState(
+			items.slice(offset, offset + perPage),
+		);
+		const [numPages, setNumPages] = useState(itemsWithPictures.length / 50);
 		const [sort, setSort] = useState('');
-		const dataItems = data.items;
-		let itemsWithPictures = [];
 
-		// for (let i = 0; i < dataItems.length; i++) {
-		// 	if (dataItems[i].imageId) {
-		// 		itemsWithPictures.push(dataItems[i]);
-		// 	}
-		// }
+		useEffect(() => {
+			setCurrItems(items.slice(offset, offset + perPage));
+		}, [offset]);
+
+		useEffect(() => {
+			setCurrItems(items.slice(offset, offset + perPage));
+		}, [sort]);
 
 		const sortChange = (e) => {
 			if (e.target.value === 'Name Ascending (A-Z)') {
@@ -100,26 +102,6 @@ export default function ShopCategories({ data, cart }) {
 			setOffset(newOffset);
 		};
 
-		useEffect(() => {
-			for (let i = 0; i < dataItems.length; i++) {
-				if (dataItems[i].imageId) {
-					itemsWithPictures.push(dataItems[i]);
-				}
-			}
-			setItems(itemsWithPictures);
-			setCurrItems(items.slice(offset, offset + perPage));
-			setNumPages(itemsWithPictures.length / 50);
-		}, []);
-
-		useEffect(() => {
-			setCurrItems(items.slice(offset, offset + perPage));
-		}, [offset]);
-
-		useEffect(() => {
-			setCurrItems(items.slice(offset, offset + perPage));
-		}, [sort]);
-
-		console.log('Current Items Length: ', currItems.length);
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
 				<Headers title='Shop' />
@@ -161,7 +143,7 @@ export default function ShopCategories({ data, cart }) {
 									.amount / 100
 							).toFixed(2);
 						} else {
-							price = '$??.??';
+							price = '??.??';
 						}
 
 						return (
@@ -171,6 +153,7 @@ export default function ShopCategories({ data, cart }) {
 								itemID={currItems[i].id}
 								price={price}
 								defaultImage='/pictureComingSoon.png'
+								key={Math.random()}
 							/>
 						);
 					})}
@@ -191,14 +174,21 @@ export default function ShopCategories({ data, cart }) {
 }
 
 export async function getStaticProps() {
+	let itemsWithPictures = [];
 	try {
 		const res = await fetch('https://we-made-it-api.herokuapp.com/newcatalog', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 		});
 		const data = await res.json();
+		const dataItems = data.items;
+		for (let i = 0; i < dataItems.length; i++) {
+			if (dataItems[i].imageId) {
+				itemsWithPictures.push(dataItems[i]);
+			}
+		}
 		return {
-			props: { data },
+			props: { itemsWithPictures },
 			revalidate: 3600,
 		};
 	} catch (error) {
