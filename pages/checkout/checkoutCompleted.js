@@ -20,8 +20,16 @@ export default function ShopCategories({ cart, setCart }) {
 					<div className='container px-5 py-24 mx-auto'>
 						<div className='xl:w-1/2 lg:w-3/4 w-full mx-auto text-center'>
 							<p className='leading-relaxed text-lg'>
-								Thank you so much for your Order and for supporting Local! You
-								can pick up your Order at the address below!
+								Thank you so much for your Order and for supporting Local!
+							</p>
+							<p>
+								Please allow up to 1 day for order completion. We will email you
+								once your order is ready for pickup! All order can be picked up
+								at the address below.
+							</p>
+							<p>
+								If this is a rush order, please email us at
+								wemadeit.newcastle@gmail.com
 							</p>
 
 							<span className='inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6'></span>

@@ -262,6 +262,12 @@ export const vendors = [
 		image: '',
 	},
 	{
+		vendor: 'Pop Culture Candles',
+		owner: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/popculturecandles.jpg',
+	},
+	{
 		vendor: 'Press & Thread Design',
 		owner: '',
 		image:
