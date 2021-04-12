@@ -210,11 +210,14 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					<ReactPaginate
 						pageCount={numPages}
 						onPageChange={handlePageChange}
-						pageRangeDisplayed={3}
+						pageRangeDisplayed={2}
 						marginPagesDisplayed={1}
-						containerClassName={'pagination'}
-						subContainerClassName={'pages pagination'}
-						activeClassName={'active'}
+						previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+						breakClassName='p-2 border-dark-purple border'
+						nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+						containerClassName='flex flex-row flex-wrap m-5 align-middle'
+						pageClassName='p-2 border-dark-purple border'
+						activeClassName='bg-dark-purple text-white'
 					/>
 				</div>
 			</Layout>
