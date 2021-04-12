@@ -4,23 +4,25 @@ import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
-import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function ShopCategories({ itemsWithPictures, cart }) {
 	if (itemsWithPictures) {
-		const [perPage, setPerPage] = useState(50);
-		const [offset, setOffset] = useState(0);
-		const [items, setItems] = useState(itemsWithPictures);
+		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
+		const [offset, setOffset] = useState(0); // Offset for Pagination
+		const [items, setItems] = useState(itemsWithPictures); //Items, obviously
 		const [currItems, setCurrItems] = useState(
+			//Keeps track of the current items that are being displayed on the page
 			items.slice(offset, offset + perPage),
 		);
-		const [numPages, setNumPages] = useState(itemsWithPictures.length / 50);
-		const [sort, setSort] = useState('');
+		const [numPages, setNumPages] = useState(itemsWithPictures.length / 50); //Determine number of pages
+		const [sort, setSort] = useState(''); //Initial Sort State
 
+		//This effect updates the items on the page when a new page is selected
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
 		}, [offset]);
 
+		//This effect updates the current items on the page whenever the sort method changes
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
 			const sortSelection = document.querySelector('#sort');
@@ -30,6 +32,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 			filterSelection.selectedIndex = 0;
 		}, [sort]);
 
+		//This function makes sure everything is reset and correct whenever sort or filters have been applied
 		const updatePage = (newItems, pageNum) => {
 			setItems(newItems);
 			setOffset(0);
@@ -118,6 +121,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 			setOffset(newOffset);
 		};
 
+		//Handles a filter reset
 		const resetItems = (e) => {
 			e.preventDefault();
 			setItems(itemsWithPictures);
@@ -129,23 +133,13 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
 				<Headers title='Shop' />
-				{/* <CategorySelect /> */}
 				<div className='w-full flex flex-row flex-wrap justify-center'>
-					<ReactPaginate
-						pageCount={numPages}
-						onPageChange={handlePageChange}
-						pageRangeDisplayed={3}
-						marginPagesDisplayed={1}
-						containerClassName={'pagination'}
-						subContainerClassName={'pages pagination'}
-						activeClassName={'active'}
-					/>
-					<div className='w-full justify-center flex align-middle'>
+					<div className='w-full justify-center flex flex-row flex-wrap align-middle'>
 						<select
 							type='name'
 							name='sort'
 							id='sort'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
 							onChange={sortChange}
 							defaultValue='Sort Items'
 						>
@@ -159,7 +153,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							type='name'
 							name='filter'
 							id='filter'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
 							onChange={filterChange}
 							defaultValue='Filter Items'
 						>
@@ -171,11 +165,23 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						<button
 							onClick={resetItems}
 							type='submit'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2 hover:bg-purple-500 hover:text-white'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 hover:bg-dark-purple hover:text-white'
 						>
 							Reset Filters
 						</button>
 					</div>
+					<ReactPaginate
+						pageCount={numPages}
+						onPageChange={handlePageChange}
+						pageRangeDisplayed={2}
+						marginPagesDisplayed={1}
+						previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+						breakClassName='p-2 border-dark-purple border'
+						nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+						containerClassName='flex flex-row flex-wrap m-5 align-middle'
+						pageClassName='p-2 border-dark-purple border'
+						activeClassName='bg-dark-purple text-white'
+					/>
 				</div>
 				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 					{currItems.map((list, i) => {
@@ -191,7 +197,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 									title={currItems[i].itemData.name}
 									itemID={currItems[i].id}
 									price={price}
-									defaultImage='/pictureComingSoon.png'
+									defaultImage='/sparklelogoblack.png'
 									key={Math.random()}
 								/>
 							);
@@ -199,6 +205,17 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							return;
 						}
 					})}
+				</div>
+				<div className='w-full flex flex-row flex-wrap justify-center'>
+					<ReactPaginate
+						pageCount={numPages}
+						onPageChange={handlePageChange}
+						pageRangeDisplayed={3}
+						marginPagesDisplayed={1}
+						containerClassName={'pagination'}
+						subContainerClassName={'pages pagination'}
+						activeClassName={'active'}
+					/>
 				</div>
 			</Layout>
 		);
