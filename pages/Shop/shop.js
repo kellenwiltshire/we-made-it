@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
+import { vendors } from '../../VendorList/VendorList';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
 export default function ShopCategories({ itemsWithPictures, cart }) {
@@ -22,24 +23,45 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
+			const sortSelection = document.querySelector('#sort');
+			const filterSelection = document.querySelector('#filter');
+
+			sortSelection.selectedIndex = 0;
+			filterSelection.selectedIndex = 0;
 		}, [sort]);
+
+		const updatePage = (newItems, pageNum) => {
+			setItems(newItems);
+			setOffset(0);
+			setSort(pageNum);
+			setNumPages(newItems.length / 50);
+		};
+
+		const filterChange = (e) => {
+			const filteredItems = itemsWithPictures.filter((item) => {
+				if (item.itemData.description) {
+					let fixedDescription = item.itemData.description.toLowerCase();
+					let fixedFilterName = e.target.value.toLowerCase();
+					return fixedDescription.includes(fixedFilterName);
+				} else {
+					return;
+				}
+			});
+			updatePage(filteredItems, e.target.value);
+		};
 
 		const sortChange = (e) => {
 			if (e.target.value === 'Name Ascending (A-Z)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				setItems(sortedItems);
-				setOffset(0);
-				setSort(e.target.value);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
-				setItems(sortedItems);
-				setOffset(0);
-				setSort(e.target.value);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (Low to High)') {
 				let sortedItems = items;
 				sortedItems.sort((a, b) => {
@@ -61,9 +83,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						return 0;
 					}
 				});
-				setItems(sortedItems);
-				setOffset(0);
-				setSort(e.target.value);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (High to Low)') {
 				let sortedItems = items;
 				sortedItems.sort((a, b) => {
@@ -86,13 +106,9 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					}
 				});
 				sortedItems.reverse();
-				setItems(sortedItems);
-				setOffset(0);
-				setSort(e.target.value);
+				updatePage(sortedItems, e.target.value);
 			} else {
-				setItems(itemsWithPictures);
-				setOffset(0);
-				setSort(e.target.value);
+				updatePage(itemsWithPictures, e.target.value);
 			}
 		};
 
@@ -100,6 +116,14 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 			const selectedPage = e.selected;
 			const newOffset = selectedPage * perPage;
 			setOffset(newOffset);
+		};
+
+		const resetItems = (e) => {
+			e.preventDefault();
+			setItems(itemsWithPictures);
+			setOffset(0);
+			setSort('');
+			setNumPages(itemsWithPictures.length / 50);
 		};
 
 		return (
@@ -110,8 +134,8 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					<ReactPaginate
 						pageCount={numPages}
 						onPageChange={handlePageChange}
-						pageRangeDisplayed={5}
-						marginPagesDisplayed={2}
+						pageRangeDisplayed={3}
+						marginPagesDisplayed={1}
 						containerClassName={'pagination'}
 						subContainerClassName={'pages pagination'}
 						activeClassName={'active'}
@@ -121,7 +145,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							type='name'
 							name='sort'
 							id='sort'
-							className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2'
 							onChange={sortChange}
 							defaultValue='Sort Items'
 						>
@@ -131,6 +155,26 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							<option>Price (High to Low)</option>
 							<option>Price (Low to High)</option>
 						</select>
+						<select
+							type='name'
+							name='filter'
+							id='filter'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2'
+							onChange={filterChange}
+							defaultValue='Filter Items'
+						>
+							<option>Filter Items</option>
+							{vendors.map((ven, i) => {
+								return <option key={i}>{vendors[i].vendor}</option>;
+							})}
+						</select>
+						<button
+							onClick={resetItems}
+							type='submit'
+							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none m-2 hover:bg-purple-500 hover:text-white'
+						>
+							Reset Filters
+						</button>
 					</div>
 				</div>
 				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
@@ -141,20 +185,19 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								currItems[i].itemData.variations[0].itemVariationData.priceMoney
 									.amount / 100
 							).toFixed(2);
+							return (
+								<ProductCards
+									item={currItems[i]}
+									title={currItems[i].itemData.name}
+									itemID={currItems[i].id}
+									price={price}
+									defaultImage='/pictureComingSoon.png'
+									key={Math.random()}
+								/>
+							);
 						} else {
-							price = '??.??';
+							return;
 						}
-
-						return (
-							<ProductCards
-								item={currItems[i]}
-								title={currItems[i].itemData.name}
-								itemID={currItems[i].id}
-								price={price}
-								defaultImage='/pictureComingSoon.png'
-								key={Math.random()}
-							/>
-						);
 					})}
 				</div>
 			</Layout>
