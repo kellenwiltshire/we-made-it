@@ -16,6 +16,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		);
 		const [numPages, setNumPages] = useState(itemsWithPictures.length / 50); //Determine number of pages
 		const [sort, setSort] = useState(''); //Initial Sort State
+		const [filterOpen, setFilterOpen] = useState(false);
 
 		//This effect updates the items on the page when a new page is selected
 		useEffect(() => {
@@ -132,93 +133,156 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 
 		return (
 			<Layout cart={cart} title={`Shop || We Made It`}>
-				<Headers title='Shop' />
-				<div className='w-full flex flex-row flex-wrap justify-center'>
-					<div className='w-full justify-center flex flex-row flex-wrap align-middle'>
-						<select
-							type='name'
-							name='sort'
-							id='sort'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
-							onChange={sortChange}
-							defaultValue='Sort Items'
-						>
-							<option>Sort Items</option>
-							<option>Name Ascending (A-Z)</option>
-							<option>Name Descending (Z-A)</option>
-							<option>Price (High to Low)</option>
-							<option>Price (Low to High)</option>
-						</select>
-						<select
-							type='name'
-							name='filter'
-							id='filter'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
-							onChange={filterChange}
-							defaultValue='Filter Items'
-						>
-							<option>Filter Items</option>
-							{vendors.map((ven, i) => {
-								return <option key={i}>{vendors[i].vendor}</option>;
-							})}
-						</select>
+				<div className='flex flex-row flex-wrap justify-center h-full'>
+					<Headers title='Shop' />
+					<div className='w-full flex flex-row flex-wrap justify-center'>
 						<button
-							onClick={resetItems}
-							type='submit'
-							className='w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 hover:bg-dark-purple hover:text-white'
+							className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent flex justify-center lg:hidden outline-none focus:outline-none w-full'
+							type='button'
+							onClick={() => setFilterOpen(!filterOpen)}
+							aria-label='Filter Button'
 						>
-							Reset Filters
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								class='icon icon-tabler icon-tabler-filter'
+								width='24'
+								height='24'
+								viewBox='0 0 24 24'
+								stroke-width='1.5'
+								stroke='#604195'
+								fill='none'
+								stroke-linecap='round'
+								stroke-linejoin='round'
+							>
+								<path stroke='none' d='M0 0h24v24H0z' fill='none' />
+								<path d='M5.5 5h13a1 1 0 0 1 .5 1.5l-5 5.5l0 7l-4 -3l0 -4l-5 -5.5a1 1 0 0 1 .5 -1.5' />
+							</svg>
 						</button>
+						<div
+							className={
+								'lg:flex flex-grow items-center' +
+								(filterOpen ? ' flex' : ' hidden')
+							}
+						>
+							<div className='w-full justify-center flex flex-row flex-wrap align-middle'>
+								<select
+									type='name'
+									name='sort'
+									id='sort'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
+									onChange={sortChange}
+									defaultValue='Sort Items'
+								>
+									<option>Sort Items</option>
+									<option>Name Ascending (A-Z)</option>
+									<option>Name Descending (Z-A)</option>
+									<option>Price (High to Low)</option>
+									<option>Price (Low to High)</option>
+								</select>
+								<select
+									type='name'
+									name='filter'
+									id='filter'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
+									onChange={filterChange}
+									defaultValue='Filter Items'
+								>
+									<option>Filter Items</option>
+									{vendors.map((ven, i) => {
+										return <option key={i}>{vendors[i].vendor}</option>;
+									})}
+								</select>
+								<button
+									onClick={resetItems}
+									type='submit'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 hover:bg-dark-purple hover:text-white'
+								>
+									Reset Filters
+								</button>
+							</div>
+						</div>
+						<div className='hidden sm:block'>
+							<ReactPaginate
+								pageCount={numPages}
+								onPageChange={handlePageChange}
+								pageRangeDisplayed={2}
+								marginPagesDisplayed={1}
+								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								breakClassName='p-2 border-dark-purple border'
+								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								containerClassName='flex flex-row flex-wrap m-5 align-middle'
+								pageClassName='p-2 border-dark-purple border'
+								activeClassName='bg-dark-purple text-white'
+							/>
+						</div>
+						<div className='block sm:hidden'>
+							<ReactPaginate
+								pageCount={numPages}
+								onPageChange={handlePageChange}
+								pageRangeDisplayed={2}
+								marginPagesDisplayed={1}
+								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								breakClassName='hidden'
+								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								containerClassName='flex flex-row flex-wrap m-5 align-middle'
+								pageClassName='hidden'
+								activeClassName='bg-dark-purple text-white'
+							/>
+						</div>
 					</div>
-					<ReactPaginate
-						pageCount={numPages}
-						onPageChange={handlePageChange}
-						pageRangeDisplayed={2}
-						marginPagesDisplayed={1}
-						previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-						breakClassName='p-2 border-dark-purple border'
-						nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-						containerClassName='flex flex-row flex-wrap m-5 align-middle'
-						pageClassName='p-2 border-dark-purple border'
-						activeClassName='bg-dark-purple text-white'
-					/>
-				</div>
-				<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-					{currItems.map((list, i) => {
-						let price;
-						if (currItems[i].itemData.variations) {
-							price = (
-								currItems[i].itemData.variations[0].itemVariationData.priceMoney
-									.amount / 100
-							).toFixed(2);
-							return (
-								<ProductCards
-									item={currItems[i]}
-									title={currItems[i].itemData.name}
-									itemID={currItems[i].id}
-									price={price}
-									defaultImage='/sparklelogoblack.png'
-									key={Math.random()}
-								/>
-							);
-						} else {
-							return;
-						}
-					})}
-				</div>
-				<div className='w-full flex flex-row flex-wrap justify-center'>
-					<ReactPaginate
-						pageCount={numPages}
-						onPageChange={handlePageChange}
-						pageRangeDisplayed={2}
-						marginPagesDisplayed={1}
-						previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-						breakClassName='p-2 border-dark-purple border'
-						nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-						containerClassName='flex flex-row flex-wrap m-5 align-middle'
-						pageClassName='p-2 border-dark-purple border'
-						activeClassName='bg-dark-purple text-white'
-					/>
+					<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
+						{currItems.map((list, i) => {
+							let price;
+							if (currItems[i].itemData.variations) {
+								price = (
+									currItems[i].itemData.variations[0].itemVariationData
+										.priceMoney.amount / 100
+								).toFixed(2);
+								return (
+									<ProductCards
+										item={currItems[i]}
+										title={currItems[i].itemData.name}
+										itemID={currItems[i].id}
+										price={price}
+										defaultImage='/sparklelogoblack.png'
+										key={Math.random()}
+									/>
+								);
+							} else {
+								return;
+							}
+						})}
+					</div>
+					<div className='w-full flex flex-row flex-wrap justify-center'>
+						<div className='hidden sm:block'>
+							<ReactPaginate
+								pageCount={numPages}
+								onPageChange={handlePageChange}
+								pageRangeDisplayed={2}
+								marginPagesDisplayed={1}
+								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								breakClassName='p-2 border-dark-purple border'
+								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								containerClassName='flex flex-row flex-wrap m-5 align-middle'
+								pageClassName='p-2 border-dark-purple border'
+								activeClassName='bg-dark-purple text-white'
+							/>
+						</div>
+						<div className='block sm:hidden'>
+							<ReactPaginate
+								pageCount={numPages}
+								onPageChange={handlePageChange}
+								pageRangeDisplayed={2}
+								marginPagesDisplayed={1}
+								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								breakClassName='hidden'
+								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								containerClassName='flex flex-row flex-wrap m-5 align-middle'
+								pageClassName='hidden'
+								activeClassName='bg-dark-purple text-white'
+							/>
+						</div>
+					</div>
 				</div>
 			</Layout>
 		);
