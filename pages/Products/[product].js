@@ -7,7 +7,7 @@ import Headers from '../../components/Layout/Headers';
 export default function ShopProduct({ data, setCart, cart }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	if (data) {
-		const [image, setImage] = useState('/pictureComingSoon.png');
+		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
 			fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
 				method: 'post',

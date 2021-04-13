@@ -83,8 +83,7 @@ function AboutStore() {
 					</Link>
 					<Link
 						href={{
-							pathname: `/Shop/[...cat]`,
-							query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
+							pathname: `/Shop/shop`,
 						}}
 					>
 						<a>

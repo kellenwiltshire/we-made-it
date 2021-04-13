@@ -4,16 +4,18 @@ import { useRouter } from 'next/router';
 function Search() {
 	const router = useRouter();
 	let input = '';
+	let Shortenedinput = '';
 
 	const onInputChange = (e) => {
 		input = e.target.value;
+		Shortenedinput = e.target.value.split(' ').join('');
 	};
 
 	const handleSearch = (e) => {
 		e.preventDefault();
 		router.push({
 			pathname: '/search/[...searchitems]',
-			query: { searchitems: input },
+			query: { searchitems: Shortenedinput, search: input },
 		});
 	};
 	return (

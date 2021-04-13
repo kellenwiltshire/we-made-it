@@ -7,8 +7,7 @@ function CategorySelect() {
 			<div className='w-full flex flex-row justify-between'>
 				<Link
 					href={{
-						pathname: `/Shop/[...cat]`,
-						query: { cat: 'ShopAll', name: 'Shop All', cursor: null },
+						pathname: `/Shop/shop`,
 					}}
 				>
 					<a className='border-2 border-purple-500 rounded-lg font-bold text-purple-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-purple-500 hover:text-white mr-6 font-title'>
