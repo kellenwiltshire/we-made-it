@@ -4,11 +4,10 @@ import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 
-export default function SearchItems({ cart, data }) {
-	if (data) {
-		if (data.items.items) {
-			let items = data.items.items;
-
+export default function SearchItems({ cart, searchresults }) {
+	if (searchresults) {
+		if (searchresults.items.items) {
+			let results = searchresults.items.items;
 			return (
 				<Layout cart={cart} title='We Made It'>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
@@ -16,21 +15,22 @@ export default function SearchItems({ cart, data }) {
 						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{items.map((list, i) => {
+							{results.map((list, i) => {
 								let price;
-								if (items[i].itemData.variations) {
+								if (results[i].itemData.variations) {
 									if (
-										items[i].itemData.variations[0].itemVariationData.priceMoney
+										results[i].itemData.variations[0].itemVariationData
+											.priceMoney
 									) {
 										price = (
-											items[i].itemData.variations[0].itemVariationData
+											results[i].itemData.variations[0].itemVariationData
 												.priceMoney.amount / 100
 										).toFixed(2);
 										return (
 											<ProductCards
-												item={items[i]}
-												title={items[i].itemData.name}
-												itemID={items[i].id}
+												item={results[i]}
+												title={results[i].itemData.name}
+												itemID={results[i].id}
 												price={price}
 												defaultImage='/sparklelogoblack.png'
 												key={Math.random()}
@@ -87,12 +87,12 @@ export async function getServerSideProps({ query }) {
 				}),
 			},
 		);
-		const data = await res.json();
+		const searchresults = await res.json();
 		return {
-			props: { data },
+			props: { searchresults },
 		};
 	} catch (error) {
-		const data = error;
+		const results = error;
 		return {
 			props: {},
 		};

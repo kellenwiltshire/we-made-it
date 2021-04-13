@@ -136,28 +136,16 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 				<div className='flex flex-row flex-wrap justify-center h-full'>
 					<Headers title='Shop' />
 					<div className='w-full flex flex-row flex-wrap justify-center'>
-						<button
-							className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent flex justify-center lg:hidden outline-none focus:outline-none w-full'
-							type='button'
-							onClick={() => setFilterOpen(!filterOpen)}
-							aria-label='Filter Button'
-						>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								class='icon icon-tabler icon-tabler-filter'
-								width='24'
-								height='24'
-								viewBox='0 0 24 24'
-								stroke-width='1.5'
-								stroke='#604195'
-								fill='none'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+						<div className='w-full flex justify-center'>
+							<button
+								className='text-dark-purple cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-dark-purple rounded bg-transparent flex justify-center lg:hidden outline-none focus:outline-none'
+								type='button'
+								onClick={() => setFilterOpen(!filterOpen)}
+								aria-label='Filter Button'
 							>
-								<path stroke='none' d='M0 0h24v24H0z' fill='none' />
-								<path d='M5.5 5h13a1 1 0 0 1 .5 1.5l-5 5.5l0 7l-4 -3l0 -4l-5 -5.5a1 1 0 0 1 .5 -1.5' />
-							</svg>
-						</button>
+								Filters
+							</button>
+						</div>
 						<div
 							className={
 								'lg:flex flex-grow items-center w-full' +
