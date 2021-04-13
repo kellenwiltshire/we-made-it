@@ -160,7 +160,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						</button>
 						<div
 							className={
-								'lg:flex flex-grow items-center' +
+								'lg:flex flex-grow items-center w-full' +
 								(filterOpen ? ' flex' : ' hidden')
 							}
 						>

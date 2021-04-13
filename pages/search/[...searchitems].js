@@ -17,20 +17,29 @@ export default function SearchItems({ cart, data }) {
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{items.map((list, i) => {
-								let price = (
-									items[i].itemData.variations[0].itemVariationData.priceMoney
-										.amount / 100
-								).toFixed(2);
-								return (
-									<ProductCards
-										item={items[i]}
-										title={items[i].itemData.name}
-										key={items[i].id}
-										itemID={items[i].id}
-										price={price}
-										defaultImage='/pictureComingSoon.png'
-									/>
-								);
+								let price;
+								if (items[i].itemData.variations) {
+									if (
+										items[i].itemData.variations[0].itemVariationData.priceMoney
+									) {
+										price = (
+											items[i].itemData.variations[0].itemVariationData
+												.priceMoney.amount / 100
+										).toFixed(2);
+										return (
+											<ProductCards
+												item={items[i]}
+												title={items[i].itemData.name}
+												itemID={items[i].id}
+												price={price}
+												defaultImage='/sparklelogoblack.png'
+												key={Math.random()}
+											/>
+										);
+									}
+								} else {
+									return;
+								}
 							})}
 						</div>
 					</div>
@@ -66,7 +75,7 @@ export default function SearchItems({ cart, data }) {
 }
 
 export async function getServerSideProps({ query }) {
-	const search = query.searchitems;
+	const search = query.search;
 	try {
 		const res = await fetch(
 			'https://we-made-it-api.herokuapp.com/searchitems',
