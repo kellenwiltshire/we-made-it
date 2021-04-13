@@ -197,7 +197,8 @@ export const vendors = [
 	{
 		vendor: 'Lakebreeze Pottery',
 		owner: '',
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/lakebreezepottery.jpg',
 	},
 	{
 		vendor: 'LeighVanna',
