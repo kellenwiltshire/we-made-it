@@ -38,7 +38,7 @@ function VendorSale() {
 							<a>
 								<div
 									key={i}
-									className='bg-purple-200 rounded flex p-4 items-center m-2'
+									className='flex mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
 								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
