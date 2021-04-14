@@ -138,7 +138,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					<div className='w-full flex flex-row flex-wrap justify-center'>
 						<div className='w-full flex justify-center'>
 							<button
-								className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
+								className=' block lg:hidden mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
 								type='button'
 								onClick={() => setFilterOpen(!filterOpen)}
 								aria-label='Filter Button'
