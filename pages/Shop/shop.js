@@ -138,7 +138,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					<div className='w-full flex flex-row flex-wrap justify-center'>
 						<div className='w-full flex justify-center'>
 							<button
-								className='text-dark-purple cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-dark-purple rounded bg-transparent flex justify-center lg:hidden outline-none focus:outline-none'
+								className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
 								type='button'
 								onClick={() => setFilterOpen(!filterOpen)}
 								aria-label='Filter Button'
@@ -157,7 +157,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 									type='name'
 									name='sort'
 									id='sort'
-									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 									onChange={sortChange}
 									defaultValue='Sort Items'
 								>
@@ -171,7 +171,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 									type='name'
 									name='filter'
 									id='filter'
-									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 									onChange={filterChange}
 									defaultValue='Filter Items'
 								>
@@ -183,7 +183,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								<button
 									onClick={resetItems}
 									type='submit'
-									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 hover:bg-dark-purple hover:text-white'
+									className='m-2 mt-2 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
 								>
 									Reset Filters
 								</button>
@@ -195,12 +195,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								onPageChange={handlePageChange}
 								pageRangeDisplayed={2}
 								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-								breakClassName='p-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
+								breakClassName='py-1 px-2 border-dark-purple border'
+								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
 								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='p-2 border-dark-purple border'
-								activeClassName='bg-dark-purple text-white'
+								pageClassName='py-1 px-2 border-dark-purple border font-body'
+								activeClassName='bg-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -209,12 +209,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								onPageChange={handlePageChange}
 								pageRangeDisplayed={2}
 								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
 								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
 								containerClassName='flex flex-row flex-wrap m-5 align-middle'
 								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-white'
+								activeClassName='bg-dark-purple text-gray-200'
 							/>
 						</div>
 					</div>

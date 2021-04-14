@@ -102,7 +102,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 							onClick={() => router.back()}
 							className='flex items-center font-bold'
 						>
-							<span className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer font-title'>
+							<span className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'>
 								Back
 							</span>
 						</div>
