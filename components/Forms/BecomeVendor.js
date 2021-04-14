@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 function BecomeVendor() {
 	const [state, handleSubmit] = useForm('moqpgoog');
 	const [submitStatus, setSubmitStatus] = useState('Submit');
 	if (state.succeeded) {
-		setSubmitStatus('Submitted!');
+		return (
+			<div className='text-gray-600 body-font'>
+				<div className='container mx-auto flex px-5 items-center justify-center flex-col'>
+					<img
+						className='lg:w-2/6 md:w-3/6 w-5/6 object-cover object-center rounded'
+						alt='hero'
+						src='/sparklelogoblack.png'
+					/>
+					<div className='text-center lg:w-2/3 w-full'>
+						<h1 class='title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900'>
+							Thank you so much for your Vendor Application!
+						</h1>
+						<p className='mb-8 leading-relaxed'>
+							Please allow up to 1 week for Application processing.
+						</p>
+						<p className='mb-8 leading-relaxed'>
+							If you have any further questions, please email us at
+							wemadeit.newcastle@gmail.com
+						</p>
+					</div>
+				</div>
+			</div>
+		);
 	}
+
 	return (
 		<div className='container flex h-full'>
 			<div className='h-auto w-full'>
