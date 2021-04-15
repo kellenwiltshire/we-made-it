@@ -22,8 +22,28 @@ export default function Checkout({ cart, setCart }) {
 	let isDiscount = false;
 
 	//This function gathers all the Vendor's that currently have a sale running
-	const [sales, setSales] = useState([]);
-	const checkForSales = () => {
+	const [discountInformation, setDiscountInformation] = useState([]);
+	const [salePrices, setSalePrices] = useState([]);
+	//checks vendors for discount information for API
+	const checkForDiscounts = () => {
+		const currentSales = [];
+		vendors.filter((sale) => {
+			if (sale.sale) {
+				let discounts = {
+					uid: sale.vendor,
+					catalogObjectId: sale.discount,
+					scope: 'LINE_ITEM',
+				};
+				currentSales.push(discounts);
+			} else {
+				return;
+			}
+		});
+		return currentSales;
+	};
+
+	//checks Vendors for Sale  Prices
+	const checkForSalePrices = () => {
 		const currentSales = vendors.filter((sale) => {
 			if (sale.sale) {
 				return sale;
@@ -34,9 +54,11 @@ export default function Checkout({ cart, setCart }) {
 		return currentSales;
 	};
 	useEffect(() => {
-		setSales(checkForSales());
+		setDiscountInformation(checkForDiscounts());
+		setSalePrices(checkForSalePrices());
 	}, []);
-	console.log('Vendor with Sales: ', sales);
+	console.log('Discount Information: ', discountInformation);
+	console.log('Vendor with Sales: ', salePrices);
 	console.log('Cart: ', cart);
 
 	let lineItems = [];
@@ -45,12 +67,12 @@ export default function Checkout({ cart, setCart }) {
 	const checkCartDiscounts = () => {
 		cart.filter((item) => {
 			if (item.description) {
-				for (let i = 0; i < sales.length; i++) {
-					const lowerCaseVendor = sales[i].vendor.toLowerCase();
+				for (let i = 0; i < salePrices.length; i++) {
+					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
 					const lowerCaseItem = item.description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discount = sales[i].discount;
-						item.sale = sales[i].sale;
+						item.discountUid = salePrices[i].vendor;
+						item.sale = salePrices[i].sale;
 						isDiscount = true;
 						// return newItem;
 					}
@@ -61,24 +83,41 @@ export default function Checkout({ cart, setCart }) {
 	checkCartDiscounts();
 
 	const handleCheckout = () => {
-		// if (isDiscount) {
-		// 	console.log('DISCOUNT DETECTED');
-		// 	console.log(lineItems);
-		// } else {
-		fetch('https://we-made-it-api.herokuapp.com/checkout', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
+		if (isDiscount) {
+			console.log({
 				lineItems: lineItems,
+				discounts: discountInformation,
 				orderID: orderID,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				router.push(data.checkout.checkoutPageUrl);
+			});
+			fetch('https://we-made-it-api.herokuapp.com/discountCheckout', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					lineItems: lineItems,
+					discounts: discountInformation,
+					orderID: orderID,
+				}),
 			})
-			.catch((err) => console.log(err));
-		// }
+				.then((response) => response.json())
+				.then((data) => {
+					router.push(data.checkout.checkoutPageUrl);
+				})
+				.catch((err) => console.log(err));
+		} else {
+			fetch('https://we-made-it-api.herokuapp.com/checkout', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					lineItems: lineItems,
+					orderID: orderID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					router.push(data.checkout.checkoutPageUrl);
+				})
+				.catch((err) => console.log(err));
+		}
 	};
 
 	if (cart) {
@@ -95,11 +134,11 @@ export default function Checkout({ cart, setCart }) {
 						</button>
 						<div className='flex flex-row flex-wrap'>
 							{cart.map((list, i) => {
-								if (cart[i].discount) {
+								if (cart[i].discountUid) {
 									lineItems.push({
 										quantity: cart[i].quantity.toString(),
 										catalogObjectId: cart[i].item,
-										appliedDiscounts: [{ discountUid: cart[i].discount }],
+										appliedDiscounts: [{ discountUid: cart[i].discountUid }],
 									});
 								} else {
 									lineItems.push({

@@ -18,7 +18,7 @@ function CheckoutCard({
 	let newPrice;
 
 	if (discount) {
-		newPrice = price * fixedDiscount;
+		newPrice = price - price * fixedDiscount;
 	}
 
 	return (
