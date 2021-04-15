@@ -33,7 +33,7 @@ export const vendors = [
 	{
 		vendor: 'Artsy Fartsy',
 		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/artsyfartsy.jpg',
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/artsyfartsy.png',
 	},
 	{
 		vendor: 'Banndy',
