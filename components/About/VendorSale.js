@@ -18,7 +18,6 @@ function VendorSale() {
 	useEffect(() => {
 		setSales(checkForSales());
 	}, []);
-	console.log(sales);
 	return (
 		<div className='w-full flex flex-row flex-wrap justify-center'>
 			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />
@@ -27,6 +26,7 @@ function VendorSale() {
 					const shortenedVendor = sales[i].vendor.split(' ').join('');
 					return (
 						<Link
+							key={i}
 							href={{
 								pathname: `/search/[...searchitems]`,
 								query: {

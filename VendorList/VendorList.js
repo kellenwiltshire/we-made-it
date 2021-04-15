@@ -297,6 +297,7 @@ export const vendors = [
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/theknottyisland.jpg',
 		sale: 29,
+		discount: 'VBRXIOXNI6OJHH625OHGJAAK',
 	},
 	{
 		vendor: 'The Quilting Queen',
