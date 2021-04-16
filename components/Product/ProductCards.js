@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, title, item, price, defaultImage }) {
+function ProductCards({ itemID, title, item, price, defaultImage, salePrice }) {
 	const [image, setImage] = useState(defaultImage);
 
 	if (item.imageId) {
@@ -18,30 +18,57 @@ function ProductCards({ itemID, title, item, price, defaultImage }) {
 			})
 			.catch((err) => console.log(err));
 	}
-	return (
-		<Link
-			href={{
-				pathname: '/Products/[product]',
-				query: { product: itemID },
-			}}
-		>
-			<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
-				<div className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
-					<div>
-						<img src={image} alt='' width='600px' height='auto' />
+	if (salePrice) {
+		return (
+			<Link
+				href={{
+					pathname: '/Products/[product]',
+					query: { product: itemID },
+				}}
+			>
+				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
+					<div className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
+						<div>
+							<img src={image} alt='' width='600px' height='auto' />
+						</div>
 					</div>
-				</div>
-				<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
-					<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
-						{title}
-					</h2>
-					<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base font-body'>
-						${price}
-					</p>
-				</div>
-			</a>
-		</Link>
-	);
+					<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
+						<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
+							{title}
+						</h2>
+						<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base font-body'>
+							Sale Price: ${salePrice}
+						</p>
+					</div>
+				</a>
+			</Link>
+		);
+	} else {
+		return (
+			<Link
+				href={{
+					pathname: '/Products/[product]',
+					query: { product: itemID },
+				}}
+			>
+				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 md:shadow-lg cursor-pointer rounded transform hover:scale-105 duration-300 ease-in-out md:m-5'>
+					<div className='flex flex-wrap bg-white w-36 sm:w-40 md:w-80 shadow cursor-pointer rounded m-5'>
+						<div>
+							<img src={image} alt='' width='600px' height='auto' />
+						</div>
+					</div>
+					<div className='flex flex-wrap bg-white w-28 sm:w-40 md:w-80'>
+						<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
+							{title}
+						</h2>
+						<p className='md:ml-5 text-center md:text-left w-full text-xs md:text-base font-body'>
+							${price}
+						</p>
+					</div>
+				</a>
+			</Link>
+		);
+	}
 }
 
 export default ProductCards;

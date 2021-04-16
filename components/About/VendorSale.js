@@ -20,10 +20,7 @@ function VendorSale() {
 	}, []);
 	return (
 		<div className='w-full flex flex-row flex-wrap justify-center'>
-			<Headers
-				title='Current Vendor Sales'
-				subtitle='Discount Applied at Checkout'
-			/>
+			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />
 			<div className='pb-2 sm:w-1/2 w-full flex flex-row justify-center'>
 				{sales.map((vendor, i) => {
 					const shortenedVendor = sales[i].vendor.split(' ').join('');

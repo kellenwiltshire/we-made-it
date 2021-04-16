@@ -18,6 +18,37 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
 
+		const [salePrices, setSalePrices] = useState([]);
+		const checkForSalePrices = () => {
+			const currentSales = vendors.filter((sale) => {
+				if (sale.sale) {
+					return sale;
+				} else {
+					return;
+				}
+			});
+			return currentSales;
+		};
+
+		useEffect(() => {
+			setSalePrices(checkForSalePrices());
+		}, []);
+
+		const checkCartDiscounts = () => {
+			currItems.filter((item) => {
+				if (item.itemData.description) {
+					for (let i = 0; i < salePrices.length; i++) {
+						const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+						const lowerCaseItem = item.itemData.description.toLowerCase();
+						if (lowerCaseItem.includes(lowerCaseVendor)) {
+							item.sale = salePrices[i].sale;
+						}
+					}
+				}
+			});
+		};
+		checkCartDiscounts();
+
 		//This effect updates the items on the page when a new page is selected
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
@@ -222,20 +253,38 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						{currItems.map((list, i) => {
 							let price;
 							if (currItems[i].itemData.variations) {
-								price = (
-									currItems[i].itemData.variations[0].itemVariationData
-										.priceMoney.amount / 100
-								).toFixed(2);
-								return (
-									<ProductCards
-										item={currItems[i]}
-										title={currItems[i].itemData.name}
-										itemID={currItems[i].id}
-										price={price}
-										defaultImage='/sparklelogoblack.png'
-										key={Math.random()}
-									/>
-								);
+								if (currItems[i].sale) {
+									let currPrice =
+										currItems[i].itemData.variations[0].itemVariationData
+											.priceMoney.amount / 100;
+									price = currPrice - currPrice * (currItems[i].sale / 100);
+									price = price.toFixed(2);
+									return (
+										<ProductCards
+											item={currItems[i]}
+											title={currItems[i].itemData.name}
+											itemID={currItems[i].id}
+											salePrice={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
+								} else {
+									price = (
+										currItems[i].itemData.variations[0].itemVariationData
+											.priceMoney.amount / 100
+									).toFixed(2);
+									return (
+										<ProductCards
+											item={currItems[i]}
+											title={currItems[i].itemData.name}
+											itemID={currItems[i].id}
+											price={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
+								}
 							} else {
 								return;
 							}
