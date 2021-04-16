@@ -30,7 +30,7 @@ export default function Checkout({ cart, setCart }) {
 		vendors.filter((sale) => {
 			if (sale.sale) {
 				let discounts = {
-					uid: sale.vendor,
+					uid: sale.vendor.split(' ').join(''),
 					catalogObjectId: sale.discount,
 					scope: 'LINE_ITEM',
 				};
@@ -57,10 +57,6 @@ export default function Checkout({ cart, setCart }) {
 		setDiscountInformation(checkForDiscounts());
 		setSalePrices(checkForSalePrices());
 	}, []);
-	console.log('Discount Information: ', discountInformation);
-	console.log('Vendor with Sales: ', salePrices);
-	console.log('Cart: ', cart);
-
 	let lineItems = [];
 
 	//Check Cart Items for Discounts
@@ -71,10 +67,9 @@ export default function Checkout({ cart, setCart }) {
 					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
 					const lowerCaseItem = item.description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discountUid = salePrices[i].vendor;
+						item.discountUid = salePrices[i].vendor.split(' ').join('');
 						item.sale = salePrices[i].sale;
 						isDiscount = true;
-						// return newItem;
 					}
 				}
 			}
@@ -84,11 +79,6 @@ export default function Checkout({ cart, setCart }) {
 
 	const handleCheckout = () => {
 		if (isDiscount) {
-			console.log({
-				lineItems: lineItems,
-				discounts: discountInformation,
-				orderID: orderID,
-			});
 			fetch('https://we-made-it-api.herokuapp.com/discountCheckout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },

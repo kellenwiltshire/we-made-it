@@ -20,8 +20,11 @@ function VendorSale() {
 	}, []);
 	return (
 		<div className='w-full flex flex-row flex-wrap justify-center'>
-			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />
-			<div class='p-2 sm:w-1/2 w-full flex flex-row justify-center'>
+			<Headers
+				title='Current Vendor Sales'
+				subtitle='Discount Applied at Checkout'
+			/>
+			<div className='pb-2 sm:w-1/2 w-full flex flex-row justify-center'>
 				{sales.map((vendor, i) => {
 					const shortenedVendor = sales[i].vendor.split(' ').join('');
 					return (
@@ -38,7 +41,7 @@ function VendorSale() {
 							<a>
 								<div
 									key={i}
-									className='flex mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'
+									className='flex mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 rounded-lg cursor-pointer font-title'
 								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
