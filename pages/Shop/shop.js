@@ -248,12 +248,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								onPageChange={handlePageChange}
 								pageRangeDisplayed={2}
 								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center'
-								breakClassName='p-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center'
+								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
+								breakClassName='py-1 px-2 border-dark-purple border'
+								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
 								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='p-2 border-dark-purple border'
-								activeClassName='bg-dark-purple text-white'
+								pageClassName='py-1 px-2 border-dark-purple border font-body'
+								activeClassName='bg-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -262,12 +262,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 								onPageChange={handlePageChange}
 								pageRangeDisplayed={2}
 								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
 								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center'
+								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
 								containerClassName='flex flex-row flex-wrap m-5 align-middle'
 								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-white'
+								activeClassName='bg-dark-purple text-gray-200'
 							/>
 						</div>
 					</div>
