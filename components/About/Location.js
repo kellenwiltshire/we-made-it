@@ -16,7 +16,7 @@ function Location() {
 								Location
 							</dt>
 							<dd className='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 font-body'>
-								<p>101 King Ave E</p>
+								<p>101 King Ave W</p>
 								<p>Newcastle, On</p>
 								<p>L1B 1E3</p>
 							</dd>
