@@ -47,12 +47,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/beyouboutique.jpg',
 	},
 	{
-		vendor: 'Bijouterie By Chels',
-		owner: 'Chelsey Amyotte',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bijouterie.jpg',
-	},
-	{
 		vendor: 'Blessings by Creative Kelli',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blessingsbycreativekelli.jpg',
@@ -117,11 +111,6 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/designsbybecc.jpg',
 	},
 	{
-		vendor: 'Duet Petals & Treasures',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/duetpetalstreasures.jpg',
-	},
-	{
 		vendor: "Eli's Stitchery",
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/elsstichery.jpg',
@@ -134,11 +123,6 @@ export const vendors = [
 		vendor: 'Gram an Am Beauty',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/gramambeauty.jpg',
-	},
-	{
-		vendor: 'Gypsy Blues',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/gypsyblues.jpg',
 	},
 	{
 		vendor: "Hurry Home Art's and Crafts",
@@ -157,7 +141,8 @@ export const vendors = [
 	},
 	{
 		vendor: "Jim's Garage Creations",
-		image: '',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/jimsgaragecreations.jpg',
 	},
 	{
 		vendor: 'KIFF',
@@ -226,22 +211,9 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/popculturecandles.jpg',
 	},
 	{
-		vendor: 'Press & Thread Design',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/pressthreaddesign.jpg',
-	},
-	{
-		vendor: 'Quilts By Margaret',
-		image: '',
-	},
-	{
 		vendor: "Raiz'd Crafting",
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/raizdcrafting.jpg',
-	},
-	{
-		vendor: 'Redefined',
-		image: '',
 	},
 	{
 		vendor: 'Rootful Pieces',
