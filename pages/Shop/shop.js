@@ -18,6 +18,38 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
 
+		const [salePrices, setSalePrices] = useState([]);
+		const checkForSalePrices = () => {
+			const vendorList = vendors;
+			const currentSales = vendorList.filter((sale) => {
+				if (sale.sale) {
+					return sale;
+				} else {
+					return;
+				}
+			});
+			return currentSales;
+		};
+
+		useEffect(() => {
+			setSalePrices(checkForSalePrices());
+		}, []);
+
+		const checkDiscounts = () => {
+			currItems.filter((item) => {
+				if (item.itemData.description) {
+					for (let i = 0; i < salePrices.length; i++) {
+						const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+						const lowerCaseItem = item.itemData.description.toLowerCase();
+						if (lowerCaseItem.includes(lowerCaseVendor)) {
+							item.sale = salePrices[i].sale;
+						}
+					}
+				}
+			});
+		};
+		checkDiscounts();
+
 		//This effect updates the items on the page when a new page is selected
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
@@ -176,8 +208,8 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 									defaultValue='Filter Items'
 								>
 									<option>Filter Items</option>
-									{vendors.map((ven, i) => {
-										return <option key={i}>{vendors[i].vendor}</option>;
+									{vendors.map((vendor, i) => {
+										return <option key={i}>{vendor.vendor}</option>;
 									})}
 								</select>
 								<button
@@ -219,23 +251,41 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						</div>
 					</div>
 					<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-						{currItems.map((list, i) => {
+						{currItems.map((item, i) => {
 							let price;
-							if (currItems[i].itemData.variations) {
-								price = (
-									currItems[i].itemData.variations[0].itemVariationData
-										.priceMoney.amount / 100
-								).toFixed(2);
-								return (
-									<ProductCards
-										item={currItems[i]}
-										title={currItems[i].itemData.name}
-										itemID={currItems[i].id}
-										price={price}
-										defaultImage='/sparklelogoblack.png'
-										key={Math.random()}
-									/>
-								);
+							if (item.itemData.variations) {
+								if (item.sale) {
+									let currPrice =
+										item.itemData.variations[0].itemVariationData.priceMoney
+											.amount / 100;
+									price = currPrice - currPrice * (item.sale / 100);
+									price = price.toFixed(2);
+									return (
+										<ProductCards
+											item={item}
+											title={item.itemData.name}
+											itemID={item.id}
+											salePrice={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
+								} else {
+									price = (
+										item.itemData.variations[0].itemVariationData.priceMoney
+											.amount / 100
+									).toFixed(2);
+									return (
+										<ProductCards
+											item={item}
+											title={item.itemData.name}
+											itemID={item.id}
+											price={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
+								}
 							} else {
 								return;
 							}

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
+import { vendors } from '../../VendorList/VendorList';
 
 export default function Checkout({ cart, setCart }) {
 	const orderID = uuidv4();
@@ -18,22 +19,95 @@ export default function Checkout({ cart, setCart }) {
 		}
 	};
 
+	let isDiscount = false;
+
+	//This function gathers all the Vendor's that currently have a sale running
+	const [discountInformation, setDiscountInformation] = useState([]);
+	const [salePrices, setSalePrices] = useState([]);
+	//checks vendors for discount information for API
+	const checkForDiscounts = () => {
+		const currentSales = [];
+		vendors.filter((sale) => {
+			if (sale.sale) {
+				let discounts = {
+					uid: sale.vendor.split(' ').join(''),
+					catalogObjectId: sale.discount,
+					scope: 'LINE_ITEM',
+				};
+				currentSales.push(discounts);
+			} else {
+				return;
+			}
+		});
+		return currentSales;
+	};
+
+	//checks Vendors for Sale  Prices
+	const checkForSalePrices = () => {
+		const currentSales = vendors.filter((sale) => {
+			if (sale.sale) {
+				return sale;
+			} else {
+				return;
+			}
+		});
+		return currentSales;
+	};
+	useEffect(() => {
+		setDiscountInformation(checkForDiscounts());
+		setSalePrices(checkForSalePrices());
+	}, []);
 	let lineItems = [];
 
+	//Check Cart Items for Discounts
+	const checkCartDiscounts = () => {
+		cart.filter((item) => {
+			if (item.description) {
+				for (let i = 0; i < salePrices.length; i++) {
+					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+					const lowerCaseItem = item.description.toLowerCase();
+					if (lowerCaseItem.includes(lowerCaseVendor)) {
+						item.discountUid = salePrices[i].vendor.split(' ').join('');
+						item.sale = salePrices[i].sale;
+						isDiscount = true;
+					}
+				}
+			}
+		});
+	};
+	checkCartDiscounts();
+
 	const handleCheckout = () => {
-		fetch('https://we-made-it-api.herokuapp.com/checkout', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				lineItems: lineItems,
-				orderID: orderID,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				router.push(data.checkout.checkoutPageUrl);
+		if (isDiscount) {
+			fetch('https://we-made-it-api.herokuapp.com/discountCheckout', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					lineItems: lineItems,
+					discounts: discountInformation,
+					orderID: orderID,
+				}),
 			})
-			.catch((err) => console.log(err));
+				.then((response) => response.json())
+				.then((data) => {
+					router.push(data.checkout.checkoutPageUrl);
+				})
+				.catch((err) => console.log(err));
+		} else {
+			fetch('https://we-made-it-api.herokuapp.com/checkout', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					lineItems: lineItems,
+					orderID: orderID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					router.push(data.checkout.checkoutPageUrl);
+				})
+				.catch((err) => console.log(err));
+		}
 	};
 
 	if (cart) {
@@ -48,24 +122,36 @@ export default function Checkout({ cart, setCart }) {
 						>
 							Continue to Checkout
 						</button>
-						{cart.map((list, i) => {
-							lineItems.push({
-								quantity: cart[i].quantity.toString(),
-								catalogObjectId: cart[i].item,
-							});
-							return (
-								<CheckoutCard
-									key={cart[i].item}
-									quantity={cart[i].quantity}
-									index={i}
-									deleteItem={deleteItem}
-									name={cart[i].name}
-									price={cart[i].price}
-									description={cart[i].description}
-									image={cart[i].imageID}
-								/>
-							);
-						})}
+						<div className='flex flex-row flex-wrap'>
+							{cart.map((item, i) => {
+								if (item.discountUid) {
+									lineItems.push({
+										quantity: item.quantity.toString(),
+										catalogObjectId: item.item,
+										appliedDiscounts: [{ discountUid: item.discountUid }],
+									});
+								} else {
+									lineItems.push({
+										quantity: item.quantity.toString(),
+										catalogObjectId: item.item,
+									});
+								}
+
+								return (
+									<CheckoutCard
+										key={item.item}
+										quantity={item.quantity}
+										index={i}
+										deleteItem={deleteItem}
+										name={item.name}
+										price={item.price}
+										description={item.description}
+										image={item.imageID}
+										discount={item.sale}
+									/>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</Layout>

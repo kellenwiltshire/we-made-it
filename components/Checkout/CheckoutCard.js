@@ -8,29 +8,43 @@ function CheckoutCard({
 	description,
 	quantity,
 	image,
+	discount,
 }) {
 	const removeItem = () => {
 		deleteItem(index);
 	};
 
+	const fixedDiscount = discount / 100;
+	let newPrice;
+
+	if (discount) {
+		newPrice = price - price * fixedDiscount;
+	}
+
 	return (
-		<div className='flex flex-row flex-wrap border rounded border-black w-full h-auto'>
-			<img className='h-auto w-1/4 object-cover' src={image} alt='bag' />
-			<div className='w-2/3 px-4 py-4 bg-white rounded-lg'>
-				<div className='flex flex-row flex-wrap items-center'>
-					<h2 className='text-xl text-gray-800 font-medium mr-auto font-title'>
+		<div className='m-2 flex flex-row flex-wrap border rounded border-black w-96 h-auto'>
+			<div className='block relative h-48 rounded overflow-hidden'>
+				<img
+					className='h-auto object-cover object-center'
+					src={image}
+					alt='bag'
+				/>
+			</div>
+			<div className='px-4 py-4 bg-white rounded-lg'>
+				<div className='flex flex-row flex-wrap'>
+					<h2 className='text-xl text-gray-800 font-medium mr-auto font-title w-full'>
 						{name}
 					</h2>
 					<div className='flex flex-wrap font-body'>
-						<p className='text-gray-800 font-semibold tracking-tighter w-full'>
-							${price}
+						<p className='text-center md:text-left w-full text-xs md:text-base font-body'>
+							{discount ? 'Sale Price: $' + newPrice.toFixed(2) : '$' + price}
 						</p>
-						<p className='text-gray-800 font-semibold tracking-tighter'>
+						<p className='text-center md:text-left w-full text-xs md:text-base font-body'>
 							quantity: {quantity}
 						</p>
 					</div>
 				</div>
-				<p className='text-sm text-gray-700 mt-4'>{description}</p>
+				<p className='text-sm text-gray-700 mt-4 font-body'>{description}</p>
 				<div className='flex items-center justify-end mt-4 top-auto'>
 					<button
 						onClick={removeItem}

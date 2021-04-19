@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
+import { vendors } from '../../VendorList/VendorList';
 
 export default function SearchItems({ cart, searchresults }) {
 	if (searchresults) {
 		if (searchresults.items.items) {
 			let results = searchresults.items.items;
+			const [salePrices, setSalePrices] = useState([]);
+			const checkForSalePrices = () => {
+				const currentSales = vendors.filter((sale) => {
+					if (sale.sale) {
+						return sale;
+					} else {
+						return;
+					}
+				});
+				return currentSales;
+			};
+
+			useEffect(() => {
+				setSalePrices(checkForSalePrices());
+			}, []);
+
+			const checkCartDiscounts = () => {
+				results.filter((item) => {
+					if (item.itemData.description) {
+						for (let i = 0; i < salePrices.length; i++) {
+							const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+							const lowerCaseItem = item.itemData.description.toLowerCase();
+							if (lowerCaseItem.includes(lowerCaseVendor)) {
+								item.sale = salePrices[i].sale;
+							}
+						}
+					}
+				});
+			};
+			checkCartDiscounts();
 			return (
 				<Layout cart={cart} title='We Made It'>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
@@ -15,22 +47,35 @@ export default function SearchItems({ cart, searchresults }) {
 						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((list, i) => {
+							{results.map((result, i) => {
 								let price;
-								if (results[i].itemData.variations) {
-									if (
-										results[i].itemData.variations[0].itemVariationData
-											.priceMoney
-									) {
+								if (result.itemData.variations) {
+									if (result.sale) {
+										let currPrice =
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100;
+										price = currPrice - currPrice * (result.sale / 100);
+										price = price.toFixed(2);
+										return (
+											<ProductCards
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
+												salePrice={price}
+												defaultImage='/sparklelogoblack.png'
+												key={Math.random()}
+											/>
+										);
+									} else {
 										price = (
-											results[i].itemData.variations[0].itemVariationData
-												.priceMoney.amount / 100
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100
 										).toFixed(2);
 										return (
 											<ProductCards
-												item={results[i]}
-												title={results[i].itemData.name}
-												itemID={results[i].id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												price={price}
 												defaultImage='/sparklelogoblack.png'
 												key={Math.random()}

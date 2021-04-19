@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import VendorSale from '../components/About/VendorSale';
 
 export default function Home({ cart }) {
 	return (
@@ -25,6 +26,7 @@ export default function Home({ cart }) {
 			</Link>
 			<Headers title='Our Story' />
 			<AboutStore />
+			<VendorSale />
 			<Location />
 		</Layout>
 	);

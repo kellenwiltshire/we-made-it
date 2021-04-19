@@ -3,9 +3,11 @@ import Layout from '../../components/Layout/Layout';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
+import { vendors } from '../../VendorList/VendorList';
 
 export default function ShopProduct({ data, setCart, cart }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
+	let discount = false;
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
@@ -44,6 +46,37 @@ export default function ShopProduct({ data, setCart, cart }) {
 				quantity = inventory;
 			}
 		};
+
+		const [newPrice, setNewPrice] = useState();
+		const [salePrices, setSalePrices] = useState([]);
+		const checkForSalePrices = () => {
+			const currentSales = vendors.filter((sale) => {
+				if (sale.sale) {
+					return sale;
+				} else {
+					return;
+				}
+			});
+			return currentSales;
+		};
+
+		useEffect(() => {
+			setSalePrices(checkForSalePrices());
+		}, []);
+
+		useEffect(() => {
+			if (description) {
+				for (let i = 0; i < salePrices.length; i++) {
+					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+					const lowerCaseItem = description.toLowerCase();
+					if (lowerCaseItem.includes(lowerCaseVendor)) {
+						const sale = salePrices[i].sale / 100;
+						let newCurrPrice = price - price * sale;
+						setNewPrice(newCurrPrice);
+					}
+				}
+			}
+		}, [salePrices]);
 
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
@@ -119,10 +152,15 @@ export default function ShopProduct({ data, setCart, cart }) {
 							<div className='flex items-center space-x-4 my-4'>
 								<div>
 									<div className='rounded-lg bg-gray-100 flex py-2 px-3'>
-										<span className='text-indigo-400 mr-1 mt-1'>$</span>
-										<span className='font-bold text-indigo-600 text-3xl font-body'>
-											{price}
-										</span>
+										{newPrice ? (
+											<span className='font-bold text-yellow-700 text-3xl font-body'>
+												Sale Price: ${newPrice.toFixed(2)}
+											</span>
+										) : (
+											<span className='font-bold text-indigo-600 text-3xl font-body'>
+												${price}
+											</span>
+										)}
 									</div>
 								</div>
 							</div>
