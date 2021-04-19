@@ -55,6 +55,16 @@ export default function SearchItems({ cart, searchresults }) {
 											.pricingType === 'VARIABLE_PRICING'
 									) {
 										price = 'Variable Pricing - Contact Store for Details';
+										return (
+											<ProductCards
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
+												price={price}
+												defaultImage='/sparklelogoblack.png'
+												key={Math.random()}
+											/>
+										);
 									} else if (result.sale) {
 										let currPrice =
 											result.itemData.variations[0].itemVariationData.priceMoney

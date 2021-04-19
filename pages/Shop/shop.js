@@ -271,6 +271,16 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 									'VARIABLE_PRICING'
 								) {
 									price = 'Variable Pricing - Contact Store for Details';
+									return (
+										<ProductCards
+											item={item}
+											title={item.itemData.name}
+											itemID={item.id}
+											price={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
 								} else if (item.sale) {
 									let currPrice =
 										item.itemData.variations[0].itemVariationData.priceMoney
