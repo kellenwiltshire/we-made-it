@@ -7,7 +7,6 @@ import { vendors } from '../../VendorList/VendorList';
 
 export default function ShopProduct({ data, setCart, cart }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
-	let discount = false;
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
@@ -25,12 +24,9 @@ export default function ShopProduct({ data, setCart, cart }) {
 				.catch((err) => console.log(err));
 		}
 		const itemName = data.itemName;
-		const [price, setPrice] = useState(
-			(data.itemVarData[0].itemVariationData.priceMoney.amount / 100).toFixed(
-				2,
-			),
-		);
+		const [price, setPrice] = useState();
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
+		const [isVariablePricing, setIsVariablePricing] = useState(false);
 		const description = data.itemDescription;
 		const router = useRouter();
 
@@ -38,6 +34,21 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 		let quantity = 1;
 		let selectedItem;
+
+		const setInitialPrice = () => {
+			if (
+				data.itemVarData[0].itemVariationData.pricingType === 'VARIABLE_PRICING'
+			) {
+				let newPrice = 'VARAIBLE PRICING - Contact Store for Details';
+				setIsVariablePricing(true);
+				return newPrice;
+			} else {
+				let newPrice = (
+					data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+				).toFixed(2);
+				return newPrice;
+			}
+		};
 
 		const onInputChange = (e) => {
 			e.preventDefault();
@@ -62,6 +73,7 @@ export default function ShopProduct({ data, setCart, cart }) {
 
 		useEffect(() => {
 			setSalePrices(checkForSalePrices());
+			setPrice(setInitialPrice());
 		}, []);
 
 		useEffect(() => {
@@ -208,12 +220,14 @@ export default function ShopProduct({ data, setCart, cart }) {
 									) : (
 										<div className='py-10'></div>
 									)}
-									<button
-										type='submit'
-										className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
-									>
-										{cartStatus}
-									</button>
+									{isVariablePricing ? null : (
+										<button
+											type='submit'
+											className='mx-1 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer'
+										>
+											{cartStatus}
+										</button>
+									)}
 								</form>
 							</div>
 							<div>
