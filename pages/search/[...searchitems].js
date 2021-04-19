@@ -50,7 +50,12 @@ export default function SearchItems({ cart, searchresults }) {
 							{results.map((result, i) => {
 								let price;
 								if (result.itemData.variations) {
-									if (result.sale) {
+									if (
+										item.itemData.variations[0].itemVariationData
+											.pricingType === 'VARIABLE_PRICING'
+									) {
+										price = 'Variable Pricing - Contact Store for Details';
+									} else if (result.sale) {
 										let currPrice =
 											result.itemData.variations[0].itemVariationData.priceMoney
 												.amount / 100;

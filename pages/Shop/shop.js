@@ -83,7 +83,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					return;
 				}
 			});
-			updatePage(filteredItems, e.target.value);
+			updatePage(filteredItems, 0);
 		};
 
 		const sortChange = (e) => {
@@ -91,18 +91,24 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				updatePage(sortedItems, e.target.value);
+				updatePage(sortedItems, 0);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems, e.target.value);
+				updatePage(sortedItems, 0);
 			} else if (e.target.value === 'Price (Low to High)') {
-				let sortedItems = items;
-				sortedItems.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
+							a.itemData.variations[0].itemVariationData.pricingType ===
+								'VARIABLE_PRICING' ||
+							b.itemData.variations[0].itemVariationData.pricingType ===
+								'VARIABLE_PRICING'
+						) {
+							return 0;
+						} else if (
 							a.itemData.variations[0].itemVariationData.priceMoney.amount >
 							b.itemData.variations[0].itemVariationData.priceMoney.amount
 						) {
@@ -119,12 +125,19 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						return 0;
 					}
 				});
-				updatePage(sortedItems, e.target.value);
+				updatePage(sortedItems, 0);
 			} else if (e.target.value === 'Price (High to Low)') {
-				let sortedItems = items;
-				sortedItems.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
+						console.log(a);
 						if (
+							a.itemData.variations[0].itemVariationData.pricingType ===
+								'VARIABLE_PRICING' ||
+							b.itemData.variations[0].itemVariationData.pricingType ===
+								'VARIABLE_PRICING'
+						) {
+							return 0;
+						} else if (
 							a.itemData.variations[0].itemVariationData.priceMoney.amount >
 							b.itemData.variations[0].itemVariationData.priceMoney.amount
 						) {
@@ -254,7 +267,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						{currItems.map((item, i) => {
 							let price;
 							if (item.itemData.variations) {
-								if (item.sale) {
+								if (
+									item.itemData.variations[0].itemVariationData.pricingType ===
+									'VARIABLE_PRICING'
+								) {
+									price = 'Variable Pricing - Contact Store for Details';
+								} else if (item.sale) {
 									let currPrice =
 										item.itemData.variations[0].itemVariationData.priceMoney
 											.amount / 100;
