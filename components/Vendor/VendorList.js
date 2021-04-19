@@ -5,13 +5,9 @@ function VendorList({ vendors }) {
 	return (
 		<div className='w-full flex justify-center'>
 			<div className='container md:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-				{vendors.map((list, i) => {
+				{vendors.map((vendor, i) => {
 					return (
-						<VendorCards
-							vendor={vendors[i].vendor}
-							image={vendors[i].image}
-							key={i}
-						/>
+						<VendorCards vendor={vendor.vendor} image={vendor.image} key={i} />
 					);
 				})}
 			</div>

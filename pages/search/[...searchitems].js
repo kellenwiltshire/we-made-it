@@ -47,20 +47,20 @@ export default function SearchItems({ cart, searchresults }) {
 						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((list, i) => {
+							{results.map((result, i) => {
 								let price;
-								if (results[i].itemData.variations) {
-									if (results[i].sale) {
+								if (result.itemData.variations) {
+									if (result.sale) {
 										let currPrice =
-											results[i].itemData.variations[0].itemVariationData
-												.priceMoney.amount / 100;
-										price = currPrice - currPrice * (results[i].sale / 100);
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100;
+										price = currPrice - currPrice * (result.sale / 100);
 										price = price.toFixed(2);
 										return (
 											<ProductCards
-												item={results[i]}
-												title={results[i].itemData.name}
-												itemID={results[i].id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												salePrice={price}
 												defaultImage='/sparklelogoblack.png'
 												key={Math.random()}
@@ -68,14 +68,14 @@ export default function SearchItems({ cart, searchresults }) {
 										);
 									} else {
 										price = (
-											results[i].itemData.variations[0].itemVariationData
-												.priceMoney.amount / 100
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100
 										).toFixed(2);
 										return (
 											<ProductCards
-												item={results[i]}
-												title={results[i].itemData.name}
-												itemID={results[i].id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												price={price}
 												defaultImage='/sparklelogoblack.png'
 												key={Math.random()}

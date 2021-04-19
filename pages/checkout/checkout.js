@@ -123,31 +123,31 @@ export default function Checkout({ cart, setCart }) {
 							Continue to Checkout
 						</button>
 						<div className='flex flex-row flex-wrap'>
-							{cart.map((list, i) => {
-								if (cart[i].discountUid) {
+							{cart.map((item, i) => {
+								if (item.discountUid) {
 									lineItems.push({
-										quantity: cart[i].quantity.toString(),
-										catalogObjectId: cart[i].item,
-										appliedDiscounts: [{ discountUid: cart[i].discountUid }],
+										quantity: item.quantity.toString(),
+										catalogObjectId: item.item,
+										appliedDiscounts: [{ discountUid: item.discountUid }],
 									});
 								} else {
 									lineItems.push({
-										quantity: cart[i].quantity.toString(),
-										catalogObjectId: cart[i].item,
+										quantity: item.quantity.toString(),
+										catalogObjectId: item.item,
 									});
 								}
 
 								return (
 									<CheckoutCard
-										key={cart[i].item}
-										quantity={cart[i].quantity}
+										key={item.item}
+										quantity={item.quantity}
 										index={i}
 										deleteItem={deleteItem}
-										name={cart[i].name}
-										price={cart[i].price}
-										description={cart[i].description}
-										image={cart[i].imageID}
-										discount={cart[i].sale}
+										name={item.name}
+										price={item.price}
+										description={item.description}
+										image={item.imageID}
+										discount={item.sale}
 									/>
 								);
 							})}
