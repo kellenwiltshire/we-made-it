@@ -129,7 +129,6 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 			} else if (e.target.value === 'Price (High to Low)') {
 				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
-						console.log(a);
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
 								'VARIABLE_PRICING' ||
