@@ -51,7 +51,7 @@ export default function SearchItems({ cart, searchresults }) {
 								let price;
 								if (result.itemData.variations) {
 									if (
-										item.itemData.variations[0].itemVariationData
+										result.itemData.variations[0].itemVariationData
 											.pricingType === 'VARIABLE_PRICING'
 									) {
 										price = 'Variable Pricing - Contact Store for Details';
