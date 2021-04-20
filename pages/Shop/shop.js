@@ -380,7 +380,7 @@ export async function getStaticProps() {
 		}
 		return {
 			props: { itemsWithPictures },
-			revalidate: 3600,
+			revalidate: 60,
 		};
 	} catch (error) {
 		return {

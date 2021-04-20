@@ -62,6 +62,11 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blush.jpeg',
 	},
 	{
+		vendor: 'Buck Naked Soap Company',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bucknakedsoapcompany.jpg',
+	},
+	{
 		vendor: 'Bumblebee Custom Creations',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bumblebee.jpg',
@@ -109,6 +114,11 @@ export const vendors = [
 		vendor: 'Designs by Becc',
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/designsbybecc.jpg',
+	},
+	{
+		vendor: 'Eclair Lips',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/exlairlips.jpg',
 	},
 	{
 		vendor: "Eli's Stitchery",
@@ -183,6 +193,11 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/momsiesmalas.jpg',
 	},
 	{
+		vendor: 'North Hound Life',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/northhoundlife.jpg',
+	},
+	{
 		vendor: 'Northern Kolbassa',
 		image: '',
 	},
@@ -204,6 +219,16 @@ export const vendors = [
 	{
 		vendor: 'One Of A Kind Gifts by Joanna',
 		image: '',
+	},
+	{
+		vendor: 'Penny Paper Co.',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/pennypaperco.jpg',
+	},
+	{
+		vendor: 'Pink Lemon Decor',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/pinklemondecor.jpg',
 	},
 	{
 		vendor: 'Pop Culture Candles',
@@ -245,6 +270,11 @@ export const vendors = [
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/strawhutco.jpg',
 	},
 	{
+		vendor: 'Sweetsmith Candy Co',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/sweetsmithcandoco.jpg',
+	},
+	{
 		vendor: "Terri's Krafty Korner",
 		image:
 			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/terriskraftykorner.jpg',
@@ -283,6 +313,11 @@ export const vendors = [
 	{
 		vendor: "Tim's Stain Glass",
 		image: '',
+	},
+	{
+		vendor: 'Tiny Teethers',
+		image:
+			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/tinyteethers.jpg',
 	},
 	{
 		vendor: "Tula's Candles",
