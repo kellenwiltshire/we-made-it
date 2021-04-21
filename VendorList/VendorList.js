@@ -1,105 +1,89 @@
 export const vendors = [
 	{
 		vendor: '4 Peas Handmade',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/4peas.jpg',
+		image: '/vendorphotos/4peas.jpg',
 	},
 	{
 		vendor: 'Abeego',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/abeego.jpg',
+		image: '/vendorphotos/abeego.jpg',
 	},
 	{
 		vendor: `Amanda's Market Stand`,
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/amandasmarketstand.jpg',
+		image: '/vendorphotos/amandasmarketstand.jpg',
 	},
 	{
 		vendor: 'Ammicala Creations',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ammicalacreations.jpg',
+		image: '/vendorphotos/ammicalacreations.jpg',
 	},
 	{
 		vendor: 'Ariana Jewelry',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/arianajewelry.jpg',
+		image: '/vendorphotos/arianajewelry.jpg',
+	},
+	{
+		vendor: 'Arrow It Forward',
+		image: '/vendorphotos/arrowitforward.jpg',
 	},
 	{
 		vendor: 'Art Arrows',
 		owner: 'Leanne Clark',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/artarrows.jpg',
+		image: '/vendorphotos/artarrows.jpg',
 	},
 	{
 		vendor: 'Artsy Fartsy',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/artsyfartsy.png',
+		image: '/vendorphotos/artsyfartsy.png',
 	},
 	{
 		vendor: 'Banndy',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/banndy.jpg',
+		image: '/vendorphotos/banndy.jpg',
 	},
 	{
 		vendor: 'Be You Boutique',
 		owner: 'Amanda MacAlpine',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/beyouboutique.jpg',
+		image: '/vendorphotos/beyouboutique.jpg',
 	},
 	{
 		vendor: 'Blessings by Creative Kelli',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blessingsbycreativekelli.jpg',
+		image: '/vendorphotos/blessingsbycreativekelli.jpg',
 	},
 	{
 		vendor: 'Blissful Bubbles Bath and Body',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blissfulbubbles.jpg',
+		image: '/vendorphotos/blissfulbubbles.jpg',
 	},
 	{
 		vendor: 'Blush',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/blush.jpeg',
+		image: '/vendorphotos/blush.jpeg',
 	},
 	{
 		vendor: 'Buck Naked Soap Company',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bucknakedsoapcompany.jpg',
+		image: '/vendorphotos/bucknakedsoapcompany.jpg',
 	},
 	{
 		vendor: 'Bumblebee Custom Creations',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/bumblebee.jpg',
+		image: '/vendorphotos/bumblebee.jpg',
 	},
 	{
 		vendor: 'Cafe Candle Co.',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/cafecandle.jpg',
+		image: '/vendorphotos/cafecandle.jpg',
 	},
 	{
 		vendor: 'Captivating Bath + Body',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/captirating.jpg',
+		image: '/vendorphotos/captirating.jpg',
 	},
 	{
 		vendor: "Carly's Creations",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/carlyscreations.jpg',
+		image: '/vendorphotos/carlyscreations.jpg',
 	},
 	{
 		vendor: 'Charity Knits',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/charityknits.jpg',
+		image: '/vendorphotos/charityknits.jpg',
 	},
 	{
 		vendor: 'Contagious Designs',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/contagiousdesigns.jpg',
+		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
 	{
 		vendor: 'Copper & Cole',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/coppercole.jpg',
+		image: '/vendorphotos/coppercole.jpg',
 	},
 	{
 		vendor: 'Dance With Me',
@@ -107,23 +91,19 @@ export const vendors = [
 	},
 	{
 		vendor: "Dawn's Signs & Designs",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/dawnssignsdesigns.jpg',
+		image: '/vendorphotos/dawnssignsdesigns.jpg',
 	},
 	{
 		vendor: 'Designs by Becc',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/designsbybecc.jpg',
+		image: '/vendorphotos/designsbybecc.jpg',
 	},
 	{
 		vendor: 'Eclair Lips',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/exlairlips.jpg',
+		image: '/vendorphotos/exlairlips.jpg',
 	},
 	{
 		vendor: "Eli's Stitchery",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/elsstichery.jpg',
+		image: '/vendorphotos/elsstichery.jpg',
 	},
 	{
 		vendor: 'Endless Crochet Creations',
@@ -131,43 +111,35 @@ export const vendors = [
 	},
 	{
 		vendor: 'Gram an Am Beauty',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/gramambeauty.jpg',
+		image: '/vendorphotos/gramambeauty.jpg',
 	},
 	{
 		vendor: "Hurry Home Art's and Crafts",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/hurryhome.jpg',
+		image: '/vendorphotos/hurryhome.jpg',
 	},
 	{
 		vendor: 'Idlewood Crafts',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/idlewoodcrafts.jpg',
+		image: '/vendorphotos/idlewoodcrafts.jpg',
 	},
 	{
 		vendor: 'Jam Designs',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/jamdesigns.jpg',
+		image: '/vendorphotos/jamdesigns.jpg',
 	},
 	{
 		vendor: "Jim's Garage Creations",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/jimsgaragecreations.jpg',
+		image: '/vendorphotos/jimsgaragecreations.jpg',
 	},
 	{
 		vendor: 'KIFF',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/kiff.jpg',
+		image: '/vendorphotos/kiff.jpg',
 	},
 	{
 		vendor: 'Lakebreeze Pottery',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/lakebreezepottery.jpg',
+		image: '/vendorphotos/lakebreezepottery.jpg',
 	},
 	{
 		vendor: 'LeighVanna',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/leighvanna.jpg',
+		image: '/vendorphotos/leighvanna.jpg',
 	},
 	{
 		vendor: "Lo'Carfi",
@@ -179,23 +151,19 @@ export const vendors = [
 	},
 	{
 		vendor: "Madi's Custom Creations",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/madicustomcreations.jpg',
+		image: '/vendorphotos/madicustomcreations.jpg',
 	},
 	{
 		vendor: 'Meraki Accessories',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/meraki.jpg',
+		image: '/vendorphotos/meraki.jpg',
 	},
 	{
 		vendor: "Momsie's Malas",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/momsiesmalas.jpg',
+		image: '/vendorphotos/momsiesmalas.jpg',
 	},
 	{
 		vendor: 'North Hound Life',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/northhoundlife.jpg',
+		image: '/vendorphotos/northhoundlife.jpg',
 	},
 	{
 		vendor: 'Northern Kolbassa',
@@ -203,18 +171,15 @@ export const vendors = [
 	},
 	{
 		vendor: 'Of The Essence - The Art of Essential Oils',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/oftheessence.jpg',
+		image: '/vendorphotos/oftheessence.jpg',
 	},
 	{
 		vendor: 'Of The North',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ofthenorth.jpg',
+		image: '/vendorphotos/ofthenorth.jpg',
 	},
 	{
 		vendor: 'Oh So Simple Creations',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/ohsosimplecreations.JPG',
+		image: '/vendorphotos/ohsosimplecreations.JPG',
 	},
 	{
 		vendor: 'One Of A Kind Gifts by Joanna',
@@ -222,43 +187,35 @@ export const vendors = [
 	},
 	{
 		vendor: 'Penny Paper Co.',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/pennypaperco.jpg',
+		image: '/vendorphotos/pennypaperco.jpg',
 	},
 	{
 		vendor: 'Pink Lemon Decor',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/pinklemondecor.jpg',
+		image: '/vendorphotos/pinklemondecor.jpg',
 	},
 	{
 		vendor: 'Pop Culture Candles',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/popculturecandles.jpg',
+		image: '/vendorphotos/popculturecandles.jpg',
 	},
 	{
 		vendor: "Raiz'd Crafting",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/raizdcrafting.jpg',
+		image: '/vendorphotos/raizdcrafting.jpg',
 	},
 	{
 		vendor: 'Rootful Pieces',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/rootfulpieces.jpg',
+		image: '/vendorphotos/rootfulpieces.jpg',
 	},
 	{
 		vendor: 'Sew Sweet Handmade',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/sewsweet.jpg',
+		image: '/vendorphotos/sewsweet.jpg',
 	},
 	{
 		vendor: "She'll Be Painting",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/shellbepainting.jpg',
+		image: '/vendorphotos/shellbepainting.jpg',
 	},
 	{
 		vendor: 'Simply Sluggish',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/simplysluggish.jpg',
+		image: '/vendorphotos/simplysluggish.jpg',
 	},
 	{
 		vendor: 'Stick Stuff Studio',
@@ -266,38 +223,31 @@ export const vendors = [
 	},
 	{
 		vendor: 'Straw Hut Co.',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/strawhutco.jpg',
+		image: '/vendorphotos/strawhutco.jpg',
 	},
 	{
 		vendor: 'Sweetsmith Candy Co',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/sweetsmithcandoco.jpg',
+		image: '/vendorphotos/sweetsmithcandoco.jpg',
 	},
 	{
 		vendor: "Terri's Krafty Korner",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/terriskraftykorner.jpg',
+		image: '/vendorphotos/terriskraftykorner.jpg',
 	},
 	{
 		vendor: 'The Canuck Co',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/thecanuckco.jpg',
+		image: '/vendorphotos/thecanuckco.jpg',
 	},
 	{
 		vendor: 'The Halliday Shoppe',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/thehallidayshoppe.jpg',
+		image: '/vendorphotos/thehallidayshoppe.jpg',
 	},
 	{
 		vendor: 'The Knitting Nurse',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/theknittingnurse.jpg',
+		image: '/vendorphotos/theknittingnurse.jpg',
 	},
 	{
 		vendor: 'The Knotty Island',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/theknottyisland.jpg',
+		image: '/vendorphotos/theknottyisland.jpg',
 		sale: 29,
 		discount: 'VBRXIOXNI6OJHH625OHGJAAK',
 	},
@@ -307,42 +257,35 @@ export const vendors = [
 	},
 	{
 		vendor: 'The Woolie North',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/thewoolienorth.jpg',
+		image: '/vendorphotos/thewoolienorth.jpg',
 	},
 	{
 		vendor: "Tim's Stain Glass",
-		image: '',
+		image: '/vendorphotos/timsstainedglass.png',
 	},
 	{
 		vendor: 'Tiny Teethers',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/tinyteethers.jpg',
+		image: '/vendorphotos/tinyteethers.jpg',
 	},
 	{
 		vendor: "Tula's Candles",
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/tulascandles.jpg',
+		image: '/vendorphotos/tulascandles.jpg',
 	},
 	{
 		vendor: 'Tyger Lily Creations',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/tygerlily.jpg',
+		image: '/vendorphotos/tygerlily.jpg',
 	},
 	{
 		vendor: 'Uplifting Naturals',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/upliftingnaturals.jpg',
+		image: '/vendorphotos/upliftingnaturals.jpg',
 	},
 	{
 		vendor: 'VS Knit',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/vsknits.jpg',
+		image: '/vendorphotos/vsknits.jpg',
 	},
 	{
 		vendor: 'Wild & Free Bowmanville',
-		image:
-			'https://we-made-it.s3.us-east-2.amazonaws.com/Vendor+Photos/wildfreebowmanville.jpg',
+		image: '/vendorphotos/wildfreebowmanville.jpg',
 	},
 	{
 		vendor: 'Wray of Sunshine',
