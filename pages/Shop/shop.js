@@ -7,14 +7,15 @@ import { vendors } from '../../VendorList/VendorList';
 
 export default function ShopCategories({ itemsWithPictures, cart }) {
 	if (itemsWithPictures) {
+		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
 		const [offset, setOffset] = useState(0); // Offset for Pagination
-		const [items, setItems] = useState(itemsWithPictures); //Items, obviously
+		const [items, setItems] = useState(initialItems); //Items, obviously
 		const [currItems, setCurrItems] = useState(
 			//Keeps track of the current items that are being displayed on the page
 			items.slice(offset, offset + perPage),
 		);
-		const [numPages, setNumPages] = useState(itemsWithPictures.length / 50); //Determine number of pages
+		const [numPages, setNumPages] = useState(initialItems.length / 50); //Determine number of pages
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
 
@@ -74,7 +75,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		};
 
 		const filterChange = (e) => {
-			const filteredItems = itemsWithPictures.filter((item) => {
+			const filteredItems = initialItems.filter((item) => {
 				if (item.itemData.description) {
 					let fixedDescription = item.itemData.description.toLowerCase();
 					let fixedFilterName = e.target.value.toLowerCase();
@@ -169,10 +170,10 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		//Handles a filter reset
 		const resetItems = (e) => {
 			e.preventDefault();
-			setItems(itemsWithPictures);
+			setItems(initialItems);
 			setOffset(0);
 			setSort('');
-			setNumPages(itemsWithPictures.length / 50);
+			setNumPages(initialItems.length / 50);
 		};
 
 		return (
