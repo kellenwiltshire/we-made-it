@@ -26,7 +26,7 @@ export default function Home({ cart }) {
 			</Link>
 			<Headers title='Our Story' />
 			<AboutStore />
-			<VendorSale />
+			{/* <VendorSale /> */}
 			<Location />
 		</Layout>
 	);

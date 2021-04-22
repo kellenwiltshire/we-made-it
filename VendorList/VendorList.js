@@ -248,8 +248,8 @@ export const vendors = [
 	{
 		vendor: 'The Knotty Island',
 		image: '/vendorphotos/theknottyisland.jpg',
-		sale: 29,
-		discount: 'VBRXIOXNI6OJHH625OHGJAAK',
+		// sale: 29,
+		// discount: 'VBRXIOXNI6OJHH625OHGJAAK',
 	},
 	{
 		vendor: 'The Quilting Queen',
