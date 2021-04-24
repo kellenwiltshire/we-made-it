@@ -5,15 +5,15 @@ import MenuIcon from '../Icons/MenuIcon';
 import CartIcon from '../Icons/CartIcon';
 import NewSearch from '../Forms/NewSearch';
 
-function Navigation({ cart }) {
+function HomeNav({ cart }) {
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	let category = 'Shop All';
 	let cat = category.replace(' ', '');
 	let name = category;
 	return (
-		<div className='mx-auto flex p-5 flex-row flex-wrap items-center bg-banner'>
+		<div className='mx-auto flex p-5 flex-row flex-wrap items-center bg-purple-200'>
 			<Link href='/'>
-				<a className='text-sm font-bold leading-relaxed inline-block mr-4 pt-1 whitespace-no-wrap uppercase text-white bg-purple-200 rounded-lg p-1 bg-opacity-75'>
+				<a className='text-sm font-bold leading-relaxed inline-block mr-4 pt-1 whitespace-no-wrap uppercase text-white'>
 					<Image
 						src='/Plain-Logo-Black.png'
 						alt='Plain Logo'
@@ -23,7 +23,7 @@ function Navigation({ cart }) {
 				</a>
 			</Link>
 			<button
-				className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none bg-purple-200 p-1 bg-opacity-75'
+				className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
 				type='button'
 				onClick={() => setNavbarOpen(!navbarOpen)}
 				aria-label='Menu Button'
@@ -35,7 +35,7 @@ function Navigation({ cart }) {
 					'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')
 				}
 			>
-				<ul className='flex flex-col lg:flex-row list-none bg-purple-200 rounded-lg bg-opacity-75'>
+				<ul className='flex flex-col lg:flex-row list-none'>
 					<li>
 						<Link href='/Vendors/vendors'>
 							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
@@ -85,4 +85,4 @@ function Navigation({ cart }) {
 	);
 }
 
-export default Navigation;
+export default HomeNav;

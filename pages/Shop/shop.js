@@ -367,25 +367,19 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 
 export async function getStaticProps() {
 	let itemsWithPictures = [];
-	try {
-		const res = await fetch('https://we-made-it-api.herokuapp.com/newcatalog', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const data = await res.json();
-		const dataItems = data.items;
-		for (let i = 0; i < dataItems.length; i++) {
-			if (dataItems[i].imageId) {
-				itemsWithPictures.push(dataItems[i]);
-			}
+	const res = await fetch('https://we-made-it-api.herokuapp.com/newcatalog', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/json' },
+	});
+	const data = await res.json();
+	const dataItems = data.items;
+	for (let i = 0; i < dataItems.length; i++) {
+		if (dataItems[i].imageId) {
+			itemsWithPictures.push(dataItems[i]);
 		}
-		return {
-			props: { itemsWithPictures },
-			revalidate: 3600,
-		};
-	} catch (error) {
-		return {
-			props: {},
-		};
 	}
+	return {
+		props: { itemsWithPictures },
+		revalidate: 3600,
+	};
 }

@@ -6,6 +6,9 @@ module.exports = {
 			colors: {
 				'dark-purple': '#604195',
 			},
+			backgroundImage: {
+				banner: "url('/Banner.png')",
+			},
 		},
 		fontFamily: {
 			title: 'Raleway',
