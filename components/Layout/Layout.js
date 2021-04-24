@@ -2,8 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import HomeNav from './HomeNav';
 
-function Layout({ title, children, cart }) {
+function Layout({ title, children, cart, navStyle }) {
 	return (
 		<div>
 			<Head>
@@ -19,7 +20,12 @@ function Layout({ title, children, cart }) {
 					rel='stylesheet'
 				/>
 			</Head>
-			<Navigation cart={cart} />
+			{navStyle === 'home' ? (
+				<HomeNav cart={cart} />
+			) : (
+				<Navigation cart={cart} />
+			)}
+
 			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				{children}
 			</main>

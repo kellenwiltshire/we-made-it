@@ -9,7 +9,7 @@ import VendorSale from '../components/About/VendorSale';
 
 export default function Home({ cart }) {
 	return (
-		<Layout cart={cart} title='We Made It || Home'>
+		<Layout cart={cart} title='We Made It || Home' navStyle={'home'}>
 			<Link
 				href={{
 					pathname: `/Shop/shop`,

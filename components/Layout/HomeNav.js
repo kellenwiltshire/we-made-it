@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import MenuIcon from '../../Icons/MenuIcon';
-import CartIcon from '../../Icons/CartIcon';
-import NewSearch from '../../Forms/NewSearch';
+import MenuIcon from '../Icons/MenuIcon';
+import CartIcon from '../Icons/CartIcon';
+import NewSearch from '../Forms/NewSearch';
 
-function NewNav2({ cart }) {
+function HomeNav({ cart }) {
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	let category = 'Shop All';
 	let cat = category.replace(' ', '');
@@ -85,4 +85,4 @@ function NewNav2({ cart }) {
 	);
 }
 
-export default NewNav2;
+export default HomeNav;
