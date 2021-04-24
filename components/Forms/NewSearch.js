@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import SearchIcon from '../Icons/SearchIcon';
 
-function Search() {
+function NewSearch() {
 	const router = useRouter();
 	let input = '';
 	let Shortenedinput = '';
@@ -20,7 +20,7 @@ function Search() {
 		});
 	};
 	return (
-		<div className='flex justify-center w-full font-body mb-2'>
+		<div className='flex ml-auto w-auto font-body mb-2'>
 			<form
 				onSubmit={handleSearch}
 				className='pt-2 relative mx-auto text-gray-600 font-body'
@@ -44,4 +44,4 @@ function Search() {
 	);
 }
 
-export default Search;
+export default NewSearch;
