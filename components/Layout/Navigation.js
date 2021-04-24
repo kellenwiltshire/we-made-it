@@ -30,12 +30,31 @@ function Navigation({ cart }) {
 			>
 				<MenuIcon />
 			</button>
+			{cart.length > 0 ? (
+				<Link href={'/checkout/checkout'}>
+					<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
+						<span className='ml-2 flex flex-row'>
+							<CartIcon />({cart.length})
+						</span>
+					</a>
+				</Link>
+			) : (
+				<Link href={'/checkout/checkout'}>
+					<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
+						<span className='ml-2 flex flex-row'>
+							<CartIcon />({cart.length})
+						</span>
+					</a>
+				</Link>
+			)}
+			<NewSearch />
 			<div
 				className={
-					'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')
+					'lg:flex flex-grow items-center bg-purple-200 p-1 bg-opacity-75 rounded' +
+					(navbarOpen ? ' flex' : ' hidden')
 				}
 			>
-				<ul className='flex flex-col lg:flex-row list-none bg-purple-200 rounded-lg bg-opacity-75'>
+				<ul className='flex flex-col lg:flex-row list-none'>
 					<li>
 						<Link href='/Vendors/vendors'>
 							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
@@ -61,26 +80,8 @@ function Navigation({ cart }) {
 							</a>
 						</Link>
 					</li>
-					{cart.length > 0 ? (
-						<Link href={'/checkout/checkout'}>
-							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-								<span className='ml-2 flex flex-row'>
-									<CartIcon />({cart.length})
-								</span>
-							</a>
-						</Link>
-					) : (
-						<Link href={'/checkout/checkout'}>
-							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-								<span className='ml-2 flex flex-row'>
-									<CartIcon />({cart.length})
-								</span>
-							</a>
-						</Link>
-					)}
 				</ul>
 			</div>
-			<NewSearch />
 		</div>
 	);
 }

@@ -30,6 +30,24 @@ function HomeNav({ cart }) {
 			>
 				<MenuIcon />
 			</button>
+			{cart.length > 0 ? (
+				<Link href={'/checkout/checkout'}>
+					<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
+						<span className='ml-2 flex flex-row'>
+							<CartIcon />({cart.length})
+						</span>
+					</a>
+				</Link>
+			) : (
+				<Link href={'/checkout/checkout'}>
+					<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
+						<span className='ml-2 flex flex-row'>
+							<CartIcon />({cart.length})
+						</span>
+					</a>
+				</Link>
+			)}
+			<NewSearch />
 			<div
 				className={
 					'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')
@@ -61,26 +79,8 @@ function HomeNav({ cart }) {
 							</a>
 						</Link>
 					</li>
-					{cart.length > 0 ? (
-						<Link href={'/checkout/checkout'}>
-							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-								<span className='ml-2 flex flex-row'>
-									<CartIcon />({cart.length})
-								</span>
-							</a>
-						</Link>
-					) : (
-						<Link href={'/checkout/checkout'}>
-							<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-								<span className='ml-2 flex flex-row'>
-									<CartIcon />({cart.length})
-								</span>
-							</a>
-						</Link>
-					)}
 				</ul>
 			</div>
-			<NewSearch />
 		</div>
 	);
 }
