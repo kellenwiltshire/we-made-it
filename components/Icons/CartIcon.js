@@ -9,7 +9,7 @@ function CartIcon() {
 			height='24'
 			viewBox='0 0 24 24'
 			strokeWidth='1.5'
-			stroke='#ffffff'
+			stroke='#000000'
 			fill='none'
 			strokeLinecap='round'
 			strokeLinejoin='round'
