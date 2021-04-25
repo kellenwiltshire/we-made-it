@@ -20,7 +20,7 @@ function NewSearch() {
 		});
 	};
 	return (
-		<div className='flex ml-auto w-auto font-body mb-2'>
+		<div className='flex w-auto font-body mb-2'>
 			<form
 				onSubmit={handleSearch}
 				className='pt-2 relative mx-auto text-gray-600 font-body'
