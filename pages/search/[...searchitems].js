@@ -6,34 +6,19 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
 
-export default function SearchItems({ cart, searchresults }) {
+export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
 		if (searchresults.items.items) {
 			let results = searchresults.items.items;
-			const [salePrices, setSalePrices] = useState([]);
-			const checkForSalePrices = () => {
-				const currentSales = vendors.filter((sale) => {
-					if (sale.sale) {
-						return sale;
-					} else {
-						return;
-					}
-				});
-				return currentSales;
-			};
-
-			useEffect(() => {
-				setSalePrices(checkForSalePrices());
-			}, []);
 
 			const checkCartDiscounts = () => {
 				results.filter((item) => {
 					if (item.itemData.description) {
-						for (let i = 0; i < salePrices.length; i++) {
-							const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+						for (let i = 0; i < vendorSales.length; i++) {
+							const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 							const lowerCaseItem = item.itemData.description.toLowerCase();
 							if (lowerCaseItem.includes(lowerCaseVendor)) {
-								item.sale = salePrices[i].sale;
+								item.sale = vendorSales[i].sale;
 							}
 						}
 					}

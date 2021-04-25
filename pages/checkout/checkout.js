@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import { vendors } from '../../VendorList/VendorList';
 
-export default function Checkout({ cart, setCart }) {
+export default function Checkout({ cart, setCart, vendorSales }) {
 	const orderID = uuidv4();
 	const router = useRouter();
 	const deleteItem = (index) => {
@@ -21,9 +21,7 @@ export default function Checkout({ cart, setCart }) {
 
 	let isDiscount = false;
 
-	//This function gathers all the Vendor's that currently have a sale running
 	const [discountInformation, setDiscountInformation] = useState([]);
-	const [salePrices, setSalePrices] = useState([]);
 	//checks vendors for discount information for API
 	const checkForDiscounts = () => {
 		const currentSales = [];
@@ -41,21 +39,8 @@ export default function Checkout({ cart, setCart }) {
 		});
 		return currentSales;
 	};
-
-	//checks Vendors for Sale  Prices
-	const checkForSalePrices = () => {
-		const currentSales = vendors.filter((sale) => {
-			if (sale.sale) {
-				return sale;
-			} else {
-				return;
-			}
-		});
-		return currentSales;
-	};
 	useEffect(() => {
 		setDiscountInformation(checkForDiscounts());
-		setSalePrices(checkForSalePrices());
 	}, []);
 	let lineItems = [];
 
@@ -63,12 +48,12 @@ export default function Checkout({ cart, setCart }) {
 	const checkCartDiscounts = () => {
 		cart.filter((item) => {
 			if (item.description) {
-				for (let i = 0; i < salePrices.length; i++) {
-					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+				for (let i = 0; i < vendorSales.length; i++) {
+					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 					const lowerCaseItem = item.description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discountUid = salePrices[i].vendor.split(' ').join('');
-						item.sale = salePrices[i].sale;
+						item.discountUid = vendorSales[i].vendor.split(' ').join('');
+						item.sale = vendorSales[i].sale;
 						isDiscount = true;
 					}
 				}

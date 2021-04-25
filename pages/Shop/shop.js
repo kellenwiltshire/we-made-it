@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
 
-export default function ShopCategories({ itemsWithPictures, cart }) {
+export default function ShopCategories({
+	itemsWithPictures,
+	cart,
+	vendorSales,
+}) {
 	if (itemsWithPictures) {
-		console.log(itemsWithPictures[0]);
-
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
 		const [offset, setOffset] = useState(0); // Offset for Pagination
@@ -22,31 +23,14 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
 
-		const [salePrices, setSalePrices] = useState([]);
-		const checkForSalePrices = () => {
-			const vendorList = vendors;
-			const currentSales = vendorList.filter((sale) => {
-				if (sale.sale) {
-					return sale;
-				} else {
-					return;
-				}
-			});
-			return currentSales;
-		};
-
-		useEffect(() => {
-			setSalePrices(checkForSalePrices());
-		}, []);
-
 		const checkDiscounts = () => {
 			currItems.filter((item) => {
 				if (item.itemData.description) {
-					for (let i = 0; i < salePrices.length; i++) {
-						const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+					for (let i = 0; i < vendorSales.length; i++) {
+						const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 						const lowerCaseItem = item.itemData.description.toLowerCase();
 						if (lowerCaseItem.includes(lowerCaseVendor)) {
-							item.sale = salePrices[i].sale;
+							item.sale = vendorSales[i].sale;
 						}
 					}
 				}
@@ -238,17 +222,13 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							</div>
 						</div>
 						<div className='hidden sm:block'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='py-1 px-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='py-1 px-2 border-dark-purple border font-body'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='py-1 px-2 border-dark-purple border font-body'
+								breakClass='bg-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -320,31 +300,23 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					</div>
 					<div className='w-full flex flex-row flex-wrap justify-center'>
 						<div className='hidden sm:block'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='py-1 px-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='py-1 px-2 border-dark-purple border font-body'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='py-1 px-2 border-dark-purple border font-body'
+								breakClass='bg-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='hidden'
+								breakClass='hidden'
 							/>
 						</div>
 					</div>

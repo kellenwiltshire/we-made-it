@@ -2,9 +2,27 @@ import { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import * as gtag from '../lib/gtag';
 import { useRouter } from 'next/router';
+import { vendors } from '../VendorList/VendorList';
 
 function MyApp({ Component, pageProps }) {
 	const [cart, setCart] = useState([]);
+	const [vendorSales, setVendorSales] = useState([]);
+
+	const checkForVendorSales = () => {
+		const vendorList = vendors;
+		const currentSales = vendorList.filter((sale) => {
+			if (sale.sale) {
+				return sale;
+			} else {
+				return;
+			}
+		});
+		return currentSales;
+	};
+
+	useEffect(() => {
+		setVendorSales(checkForVendorSales());
+	}, []);
 
 	const router = useRouter();
 	useEffect(() => {
@@ -17,7 +35,14 @@ function MyApp({ Component, pageProps }) {
 		};
 	}, [router.events]);
 
-	return <Component {...pageProps} cart={cart} setCart={setCart} />;
+	return (
+		<Component
+			{...pageProps}
+			cart={cart}
+			setCart={setCart}
+			vendorSales={vendorSales}
+		/>
+	);
 }
 
 export default MyApp;

@@ -2,7 +2,8 @@ import React from 'react';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
 import Layout from '../../components/Layout/Layout';
 
-function becomevendor({ cart }) {
+function becomevendor({ cart, vendorSales }) {
+	console.log(vendorSales);
 	return (
 		<Layout cart={cart} title='Become A Vendor || We Made It'>
 			<div className='flex flex-row flex-wrap justify-center'>

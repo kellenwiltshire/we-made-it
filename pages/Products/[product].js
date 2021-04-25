@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 import { vendors } from '../../VendorList/VendorList';
 
-export default function ShopProduct({ data, setCart, cart }) {
+export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
@@ -59,36 +59,24 @@ export default function ShopProduct({ data, setCart, cart }) {
 		};
 
 		const [newPrice, setNewPrice] = useState();
-		const [salePrices, setSalePrices] = useState([]);
-		const checkForSalePrices = () => {
-			const currentSales = vendors.filter((sale) => {
-				if (sale.sale) {
-					return sale;
-				} else {
-					return;
-				}
-			});
-			return currentSales;
-		};
 
 		useEffect(() => {
-			setSalePrices(checkForSalePrices());
 			setPrice(setInitialPrice());
 		}, []);
 
 		useEffect(() => {
 			if (description) {
-				for (let i = 0; i < salePrices.length; i++) {
-					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+				for (let i = 0; i < vendorSales.length; i++) {
+					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 					const lowerCaseItem = description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						const sale = salePrices[i].sale / 100;
+						const sale = vendorSales[i].sale / 100;
 						let newCurrPrice = price - price * sale;
 						setNewPrice(newCurrPrice);
 					}
 				}
 			}
-		}, [salePrices]);
+		}, []);
 
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
