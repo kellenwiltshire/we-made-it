@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
+import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
 
 export default function ShopCategories({ itemsWithPictures, cart }) {
 	if (itemsWithPictures) {
+		console.log(itemsWithPictures[0]);
+
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
 		const [offset, setOffset] = useState(0); // Offset for Pagination
@@ -249,17 +252,13 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							/>
 						</div>
 						<div className='block sm:hidden'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='hidden'
+								breakClass='hidden'
 							/>
 						</div>
 					</div>
@@ -278,7 +277,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -294,7 +293,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											salePrice={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -309,7 +308,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -366,18 +365,12 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 }
 
 export async function getStaticProps() {
-	let itemsWithPictures = [];
-	const res = await fetch('https://we-made-it-api.herokuapp.com/newcatalog', {
+	const res = await fetch('http://localhost:4000/newcatalog', {
 		method: 'post',
 		headers: { 'Content-Type': 'application/json' },
 	});
 	const data = await res.json();
-	const dataItems = data.items;
-	for (let i = 0; i < dataItems.length; i++) {
-		if (dataItems[i].imageId) {
-			itemsWithPictures.push(dataItems[i]);
-		}
-	}
+	const itemsWithPictures = data.items;
 	return {
 		props: { itemsWithPictures },
 		revalidate: 3600,

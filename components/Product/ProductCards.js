@@ -1,23 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, title, item, price, defaultImage, salePrice }) {
-	const [image, setImage] = useState(defaultImage);
-
-	if (item.imageId) {
-		fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				item: item.imageId,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setImage(data.image);
-			})
-			.catch((err) => console.log(err));
-	}
+function ProductCards({ itemID, title, item, price, image, salePrice }) {
 	if (salePrice) {
 		return (
 			<Link
