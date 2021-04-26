@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import SearchIcon from '../Icons/SearchIcon';
+import LoadingIcon from '../Icons/LoadingIcon';
 
 function NewSearch() {
 	const router = useRouter();
 	let input = '';
 	let Shortenedinput = '';
+	const [isSearching, setIsSearching] = useState(false);
 
 	const onInputChange = (e) => {
 		input = e.target.value;
@@ -14,6 +16,7 @@ function NewSearch() {
 
 	const handleSearch = (e) => {
 		e.preventDefault();
+		setIsSearching(true);
 		router.push({
 			pathname: '/search/[...searchitems]',
 			query: { searchitems: Shortenedinput, search: input },
@@ -32,13 +35,19 @@ function NewSearch() {
 					placeholder='Search'
 					onChange={onInputChange}
 				/>
-				<button
-					type='submit'
-					className='absolute right-0 top-0 mt-5 mr-4'
-					aria-label='Search Button'
-				>
-					<SearchIcon />
-				</button>
+				{isSearching ? (
+					<div className='absolute right-0 top-0 mt-4 mr-4'>
+						<LoadingIcon />
+					</div>
+				) : (
+					<button
+						type='submit'
+						className='absolute right-0 top-0 mt-5 mr-4'
+						aria-label='Search Button'
+					>
+						<SearchIcon />
+					</button>
+				)}
 			</form>
 		</div>
 	);

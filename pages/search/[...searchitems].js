@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
-import { vendors } from '../../VendorList/VendorList';
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
-		if (searchresults.items.items) {
-			let results = searchresults.items.items;
+		console.log(searchresults.items);
+		if (searchresults.items) {
+			let results = searchresults.items;
 
 			const checkCartDiscounts = () => {
 				results.filter((item) => {
@@ -62,7 +61,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 												title={result.itemData.name}
 												itemID={result.id}
 												salePrice={price}
-												defaultImage='/sparklelogoblack.png'
+												image={result.imageLink}
 												key={Math.random()}
 											/>
 										);
@@ -77,7 +76,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 												title={result.itemData.name}
 												itemID={result.id}
 												price={price}
-												defaultImage='/sparklelogoblack.png'
+												image={result.imageLink}
 												key={Math.random()}
 											/>
 										);
@@ -109,10 +108,6 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 						This is Embarassing! We might be having trouble connecting with
 						Square. Please try again later!
 					</p>
-					<p>
-						We may also not be able to find what you are looking for. Try a
-						different search!
-					</p>
 				</div>
 			</Layout>
 		);
@@ -122,16 +117,13 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 export async function getServerSideProps({ query }) {
 	const search = query.search;
 	try {
-		const res = await fetch(
-			'https://we-made-it-api.herokuapp.com/searchitems',
-			{
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					search: search,
-				}),
-			},
-		);
+		const res = await fetch('http://localhost:4000/searchitems', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				search: search,
+			}),
+		});
 		const searchresults = await res.json();
 		return {
 			props: { searchresults },
