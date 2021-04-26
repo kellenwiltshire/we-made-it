@@ -227,7 +227,7 @@ export default function ShopCategories({
 								handlePageChange={handlePageChange}
 								rangeDisplayed={2}
 								marginDisplayed={1}
-								pageClass='py-1 px-2 border-dark-purple border font-body'
+								pageClass='py-1 px-2 font-body border-dark-purple border font-body'
 								breakClass='bg-dark-purple text-gray-200'
 							/>
 						</div>
