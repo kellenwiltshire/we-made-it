@@ -230,8 +230,8 @@ export default function ShopCategories({
 								handlePageChange={handlePageChange}
 								rangeDisplayed={2}
 								marginDisplayed={1}
-								pageClass='py-1 px-2 font-body border-dark-purple border font-body'
-								breakClass='bg-dark-purple text-gray-200'
+								pageClass='py-1 px-2 font-body border-dark-purple border font-body cursor-pointer'
+								breakClass='border border-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -308,8 +308,8 @@ export default function ShopCategories({
 								handlePageChange={handlePageChange}
 								rangeDisplayed={2}
 								marginDisplayed={1}
-								pageClass='py-1 px-2 border-dark-purple border font-body'
-								breakClass='bg-dark-purple text-gray-200'
+								pageClass='py-1 px-2 border-dark-purple border font-body cursor-pointer'
+								breakClass='border border-dark-purple text-gray-200'
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -397,11 +397,4 @@ export async function getStaticProps() {
 			revalidate: 3600,
 		};
 	}
-
-	// const res = await fetch('https://we-made-it-v2.herokuapp.com/newcatalog', {
-	// 	method: 'post',
-	// 	headers: { 'Content-Type': 'application/json' },
-	// });
-	// const data = await res.json();
-	// const itemsWithPictures = data.items;
 }
