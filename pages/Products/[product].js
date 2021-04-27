@@ -10,7 +10,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
-			fetch('https://we-made-it-api.herokuapp.com/imageRequest', {
+			fetch('https://we-made-it-v2.herokuapp.com/imageRequest', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -90,7 +90,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		};
 
 		const updateInventory = () => {
-			fetch('https://we-made-it-api.herokuapp.com/variations', {
+			fetch('https://we-made-it-v2.herokuapp.com/variations', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -247,7 +247,7 @@ export async function getServerSideProps({ query }) {
 	const item = query.product;
 	try {
 		const productInfo = await fetch(
-			'https://we-made-it-api.herokuapp.com/itemInfo',
+			'https://we-made-it-v2.herokuapp.com/itemInfo',
 			{
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },

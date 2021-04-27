@@ -338,7 +338,7 @@ export default function ShopCategories({
 }
 
 export async function getStaticProps() {
-	const res = await fetch('http://localhost:4000/newcatalog', {
+	const res = await fetch('https://we-made-it-v2.herokuapp.com/newcatalog', {
 		method: 'post',
 		headers: { 'Content-Type': 'application/json' },
 	});

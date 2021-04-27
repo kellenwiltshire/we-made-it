@@ -64,7 +64,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 
 	const handleCheckout = () => {
 		if (isDiscount) {
-			fetch('https://we-made-it-api.herokuapp.com/discountCheckout', {
+			fetch('https://we-made-it-v2.herokuapp.com/discountCheckout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -79,7 +79,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			fetch('https://we-made-it-api.herokuapp.com/checkout', {
+			fetch('https://we-made-it-v2.herokuapp.com/checkout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

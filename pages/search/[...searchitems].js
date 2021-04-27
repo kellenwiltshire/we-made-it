@@ -117,7 +117,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 export async function getServerSideProps({ query }) {
 	const search = query.search;
 	try {
-		const res = await fetch('http://localhost:4000/searchitems', {
+		const res = await fetch('https://we-made-it-v2.herokuapp.com/searchitems', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
