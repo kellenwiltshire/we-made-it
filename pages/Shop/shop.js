@@ -62,7 +62,8 @@ export default function ShopCategories({
 		};
 
 		const filterChange = (e) => {
-			const filteredItems = initialItems.filter((item) => {
+			let filteredItems = initialItems;
+			filteredItems = filteredItems.filter((item) => {
 				if (item.itemData.description) {
 					let fixedDescription = item.itemData.description.toLowerCase();
 					let fixedFilterName = e.target.value.toLowerCase();
