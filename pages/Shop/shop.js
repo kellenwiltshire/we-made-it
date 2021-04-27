@@ -64,7 +64,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 
 			sortSelection.selectedIndex = 0;
 			filterSelection.selectedIndex = 0;
-		}, [sort]);
+		}, [sort, items]);
 
 		//This function makes sure everything is reset and correct whenever sort or filters have been applied
 		const updatePage = (newItems, pageNum) => {
@@ -75,7 +75,10 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		};
 
 		const filterChange = (e) => {
-			const filteredItems = initialItems.filter((item) => {
+			console.log(e.target.value);
+			let filteredItems = initialItems;
+			console.log(filteredItems);
+			filteredItems = filteredItems.filter((item) => {
 				if (item.itemData.description) {
 					let fixedDescription = item.itemData.description.toLowerCase();
 					let fixedFilterName = e.target.value.toLowerCase();
@@ -84,6 +87,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					return;
 				}
 			});
+			console.log(filteredItems);
 			updatePage(filteredItems, 0);
 		};
 
