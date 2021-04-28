@@ -79,20 +79,19 @@ export default function ShopCategories({
 		};
 
 		const sortChange = (e) => {
-			const itemList = initialItems;
 			if (e.target.value === 'Name Ascending (A-Z)') {
-				let sortedItems = itemList.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
-				let sortedItems = itemList.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (Low to High)') {
-				let sortedItems = itemList.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
@@ -120,7 +119,7 @@ export default function ShopCategories({
 				});
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (High to Low)') {
-				let sortedItems = itemList.sort((a, b) => {
+				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
