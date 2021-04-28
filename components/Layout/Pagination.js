@@ -8,6 +8,7 @@ function Pagination({
 	marginDisplayed,
 	pageClass,
 	breakClass,
+	currPage,
 }) {
 	return (
 		<ReactPaginate

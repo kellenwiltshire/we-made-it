@@ -348,7 +348,7 @@ export default function ShopCategories({
 export async function getStaticProps() {
 	const client = new Client({
 		environment: Environment.Production,
-		accessToken: process.env.SQUARE_ACCESS_TOKEN, //process.env.SQUARE_ACCESS_TOKEN
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
 
 	const recursiveCatalog = async (cursor = '', initialRequest = true) => {
