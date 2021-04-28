@@ -126,6 +126,8 @@ export const vendors = [
 	{
 		vendor: 'Jam Designs',
 		image: '/vendorphotos/jamdesigns.jpg',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: "Jim's Garage Creations",
