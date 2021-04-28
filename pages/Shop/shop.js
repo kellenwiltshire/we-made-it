@@ -57,10 +57,11 @@ export default function ShopCategories({
 		}, [sort, items]);
 
 		//This function makes sure everything is reset and correct whenever sort or filters have been applied
-		const updatePage = (newItems) => {
+		const updatePage = (newItems, sort) => {
 			setItems(newItems);
 			setOffset(0);
 			setCurrPage(0);
+			setSort(sort);
 			setNumPages(newItems.length / 50);
 		};
 
@@ -83,13 +84,13 @@ export default function ShopCategories({
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (Low to High)') {
 				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
@@ -117,7 +118,7 @@ export default function ShopCategories({
 						return 0;
 					}
 				});
-				updatePage(sortedItems);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (High to Low)') {
 				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
@@ -146,9 +147,9 @@ export default function ShopCategories({
 					}
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems);
+				updatePage(sortedItems, e.target.value);
 			} else {
-				updatePage(itemsWithPictures);
+				updatePage(itemsWithPictures, e.target.value);
 			}
 		};
 

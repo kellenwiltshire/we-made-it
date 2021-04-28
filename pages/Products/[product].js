@@ -129,7 +129,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		updateInventory();
 		return (
 			<Layout cart={cart} title={`${itemName} || We Made It`}>
-				<div class='container px-5 py-24 mx-auto'>
+				<div class='container px-5 mx-auto'>
 					<div className='mb-10'>
 						<div
 							onClick={() => router.back()}
@@ -143,14 +143,16 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 					<div class='lg:w-4/5 mx-auto flex flex-wrap'>
 						<img
 							alt='ecommerce'
-							class='lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded'
+							class='lg:w-1/2 w-full object-cover object-center rounded'
+							height='500px'
+							width='500px'
 							src={image}
 						/>
 						<form
 							class='lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'
 							onSubmit={handleCart}
 						>
-							<h1 class='text-gray-900 text-3xl title-font font-medium mb-1 font-title'>
+							<h1 class='text-gray-900 text-3xl title-font font-medium mb-5 font-title'>
 								{itemName}
 							</h1>
 							<p class='leading-relaxed font-body'>{description}</p>
