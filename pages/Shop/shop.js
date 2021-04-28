@@ -57,10 +57,10 @@ export default function ShopCategories({
 		}, [sort, items]);
 
 		//This function makes sure everything is reset and correct whenever sort or filters have been applied
-		const updatePage = (newItems, pageNum) => {
+		const updatePage = (newItems) => {
 			setItems(newItems);
 			setOffset(0);
-			setSort(pageNum);
+			setCurrPage(0);
 			setNumPages(newItems.length / 50);
 		};
 
@@ -79,19 +79,20 @@ export default function ShopCategories({
 		};
 
 		const sortChange = (e) => {
+			let sortedItems = initialItems;
 			if (e.target.value === 'Name Ascending (A-Z)') {
-				let sortedItems = items.sort((a, b) => {
+				sortedItems = sortedItems.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
-				let sortedItems = items.sort((a, b) => {
+				sortedItems = sortedItems.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (Low to High)') {
-				let sortedItems = items.sort((a, b) => {
+				sortedItems = sortedItems.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
@@ -117,9 +118,9 @@ export default function ShopCategories({
 						return 0;
 					}
 				});
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (High to Low)') {
-				let sortedItems = items.sort((a, b) => {
+				sortedItems = sortedItems.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
@@ -146,9 +147,9 @@ export default function ShopCategories({
 					}
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems, e.target.value);
+				updatePage(sortedItems);
 			} else {
-				updatePage(itemsWithPictures, e.target.value);
+				updatePage(initialItems);
 			}
 		};
 
@@ -163,8 +164,8 @@ export default function ShopCategories({
 		const resetItems = (e) => {
 			e.preventDefault();
 			setItems(initialItems);
+			setCurrPage(0);
 			setOffset(0);
-			setSort('');
 			setNumPages(initialItems.length / 50);
 		};
 
