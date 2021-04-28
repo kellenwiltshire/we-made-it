@@ -29,15 +29,15 @@ function HomeNav({ cart }) {
 					<ul className='flex flex-col lg:flex-row list-none'>
 						<li>
 							<Link href='/Vendors/vendors'>
-								<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-									<span className='ml-2'>Our Vendors</span>
+								<a className='px-3 py-2 flex hover:opacity-75'>
+									<span>Our Vendors</span>
 								</a>
 							</Link>
 						</li>
 						<li>
 							<Link href='/Vendors/becomevendor'>
-								<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-									<span className='ml-2'>Become a Vendor</span>
+								<a className='px-3 py-2 flex hover:opacity-75'>
+									<span>Become a Vendor</span>
 								</a>
 							</Link>
 						</li>
@@ -47,8 +47,8 @@ function HomeNav({ cart }) {
 									pathname: `/Shop/shop`,
 								}}
 							>
-								<a className='px-3 py-2 flex items-center leading-snug  hover:opacity-75'>
-									<span className='ml-2'>Shop Now</span>
+								<a className='px-3 py-2 flex hover:opacity-75'>
+									<span>Shop Now</span>
 								</a>
 							</Link>
 						</li>

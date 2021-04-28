@@ -29,15 +29,15 @@ function Navigation({ cart }) {
 					<ul className='flex flex-col lg:flex-row list-none'>
 						<li>
 							<Link href='/Vendors/vendors'>
-								<a className='px-3 py-2 flex items-center leading-snug  hover:text-gray-500 bg-purple-200 rounded-lg p-1 bg-opacity-75 mx-1'>
-									<span className='ml-2'>Our Vendors</span>
+								<a className='px-3 py-2 flex hover:text-gray-500 bg-purple-200 rounded-lg bg-opacity-75 mx-1'>
+									<span>Our Vendors</span>
 								</a>
 							</Link>
 						</li>
 						<li>
 							<Link href='/Vendors/becomevendor'>
-								<a className='px-3 py-2 flex items-center leading-snug  hover:text-gray-500 bg-purple-200 rounded-lg p-1 bg-opacity-75 mx-1'>
-									<span className='ml-2'>Become a Vendor</span>
+								<a className='px-3 py-2 flex hover:text-gray-500 bg-purple-200 rounded-lg bg-opacity-75 mx-1'>
+									<span>Become a Vendor</span>
 								</a>
 							</Link>
 						</li>
@@ -47,8 +47,8 @@ function Navigation({ cart }) {
 									pathname: `/Shop/shop`,
 								}}
 							>
-								<a className='px-3 py-2 flex items-center leading-snug hover:text-gray-500 bg-purple-200 rounded-lg p-1 bg-opacity-75 mx-1'>
-									<span className='ml-2'>Shop Now</span>
+								<a className='px-3 py-2 flex hover:text-gray-500 bg-purple-200 rounded-lg bg-opacity-75 mx-1'>
+									<span>Shop Now</span>
 								</a>
 							</Link>
 						</li>
