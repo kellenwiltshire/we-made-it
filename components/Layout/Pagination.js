@@ -21,6 +21,7 @@ function Pagination({
 			containerClassName='flex flex-row flex-wrap m-5 align-middle'
 			pageClassName={pageClass}
 			activeClassName='bg-dark-purple text-gray-200'
+			forcePage={currPage}
 		/>
 	);
 }

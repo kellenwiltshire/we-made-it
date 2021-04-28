@@ -15,6 +15,7 @@ export default function ShopCategories({
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
+		const [currPage, setCurrPage] = useState(0);
 		const [offset, setOffset] = useState(0); // Offset for Pagination
 		const [items, setItems] = useState(initialItems); //Items, obviously
 		const [currItems, setCurrItems] = useState(
@@ -155,6 +156,7 @@ export default function ShopCategories({
 			const selectedPage = e.selected;
 			const newOffset = selectedPage * perPage;
 			setOffset(newOffset);
+			setCurrPage(e.selected);
 		};
 
 		//Handles a filter reset
@@ -232,6 +234,7 @@ export default function ShopCategories({
 								marginDisplayed={1}
 								pageClass='py-1 px-2 font-body border-dark-purple border font-body cursor-pointer'
 								breakClass='border border-dark-purple text-gray-200'
+								currPage={currPage}
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -242,6 +245,7 @@ export default function ShopCategories({
 								marginDisplayed={1}
 								pageClass='hidden'
 								breakClass='hidden'
+								currPage={currPage}
 							/>
 						</div>
 					</div>
@@ -310,6 +314,7 @@ export default function ShopCategories({
 								marginDisplayed={1}
 								pageClass='py-1 px-2 border-dark-purple border font-body cursor-pointer'
 								breakClass='border border-dark-purple text-gray-200'
+								currPage={currPage}
 							/>
 						</div>
 						<div className='block sm:hidden'>
@@ -320,6 +325,7 @@ export default function ShopCategories({
 								marginDisplayed={1}
 								pageClass='hidden'
 								breakClass='hidden'
+								currPage={currPage}
 							/>
 						</div>
 					</div>
