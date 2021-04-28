@@ -14,7 +14,7 @@ function HomeNav({ cart }) {
 	let name = category;
 	return (
 		<div className='mx-auto flex p-3 flex-row flex-wrap items-center justify-center bg-purple-200'>
-			<div className='container flex flex-row flex-wrap items-center'>
+			<div className='container flex flex-row flex-wrap items-center justify-center'>
 				<Link href='/'>
 					<a className='text-sm font-bold leading-relaxed inline-block mr-4 pt-1 whitespace-no-wrap uppercase text-white bg-purple-200 rounded-lg p-1 bg-opacity-75'>
 						<Image
