@@ -75,7 +75,7 @@ export default function ShopCategories({
 					return;
 				}
 			});
-			updatePage(filteredItems, 0);
+			updatePage(filteredItems);
 		};
 
 		const sortChange = (e) => {
@@ -83,7 +83,7 @@ export default function ShopCategories({
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				updatePage(sortedItems);
+				updatePage(sortedItems, 0);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
@@ -148,7 +148,7 @@ export default function ShopCategories({
 				sortedItems.reverse();
 				updatePage(sortedItems);
 			} else {
-				updatePage(initialItems);
+				updatePage(itemsWithPictures);
 			}
 		};
 
