@@ -78,25 +78,21 @@ export default function ShopCategories({
 			updatePage(filteredItems, 0);
 		};
 
-		const compareNumbers = (a, b) => {
-			return a - b;
-		};
-
 		const sortChange = (e) => {
-			let sortedItems = initialItems;
+			const itemList = initialItems;
 			if (e.target.value === 'Name Ascending (A-Z)') {
-				sortedItems = sortedItems.sort((a, b) => {
+				let sortedItems = itemList.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
-				sortedItems = sortedItems.sort((a, b) => {
+				let sortedItems = itemList.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (Low to High)') {
-				sortedItems = sortedItems.sort((a, b) => {
+				let sortedItems = itemList.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
@@ -105,32 +101,26 @@ export default function ShopCategories({
 								'VARIABLE_PRICING'
 						) {
 							return 0;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount >
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return 1;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount <
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return -1;
 						} else {
-							return (
-								a.itemData.variations[0].itemVariationData.priceMoney.amount -
-								b.itemData.variations[0].itemVariationData.priceMoney.amount
-							);
+							return 0;
 						}
-						// else if (
-						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount >
-						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
-						// ) {
-						// 	return 1;
-						// } else if (
-						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount <
-						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
-						// ) {
-						// 	return -1;
-						// } else {
-						// 	return 0;
-						// }
 					} else {
 						return 0;
 					}
 				});
 				updatePage(sortedItems);
 			} else if (e.target.value === 'Price (High to Low)') {
-				sortedItems = sortedItems.sort((a, b) => {
+				let sortedItems = itemList.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
 						if (
 							a.itemData.variations[0].itemVariationData.pricingType ===
@@ -139,25 +129,19 @@ export default function ShopCategories({
 								'VARIABLE_PRICING'
 						) {
 							return 0;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount >
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return 1;
+						} else if (
+							a.itemData.variations[0].itemVariationData.priceMoney.amount <
+							b.itemData.variations[0].itemVariationData.priceMoney.amount
+						) {
+							return -1;
 						} else {
-							return (
-								a.itemData.variations[0].itemVariationData.priceMoney.amount -
-								b.itemData.variations[0].itemVariationData.priceMoney.amount
-							);
+							return 0;
 						}
-						// else if (
-						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount >
-						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
-						// ) {
-						// 	return 1;
-						// } else if (
-						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount <
-						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
-						// ) {
-						// 	return -1;
-						// } else {
-						// 	return 0;
-						// }
 					} else {
 						return 0;
 					}
