@@ -78,6 +78,10 @@ export default function ShopCategories({
 			updatePage(filteredItems, 0);
 		};
 
+		const compareNumbers = (a, b) => {
+			return a - b;
+		};
+
 		const sortChange = (e) => {
 			let sortedItems = initialItems;
 			if (e.target.value === 'Name Ascending (A-Z)') {
@@ -101,19 +105,25 @@ export default function ShopCategories({
 								'VARIABLE_PRICING'
 						) {
 							return 0;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount >
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return 1;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount <
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return -1;
 						} else {
-							return 0;
+							return (
+								a.itemData.variations[0].itemVariationData.priceMoney.amount -
+								b.itemData.variations[0].itemVariationData.priceMoney.amount
+							);
 						}
+						// else if (
+						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount >
+						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
+						// ) {
+						// 	return 1;
+						// } else if (
+						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount <
+						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
+						// ) {
+						// 	return -1;
+						// } else {
+						// 	return 0;
+						// }
 					} else {
 						return 0;
 					}
@@ -129,19 +139,25 @@ export default function ShopCategories({
 								'VARIABLE_PRICING'
 						) {
 							return 0;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount >
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return 1;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount <
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return -1;
 						} else {
-							return 0;
+							return (
+								a.itemData.variations[0].itemVariationData.priceMoney.amount -
+								b.itemData.variations[0].itemVariationData.priceMoney.amount
+							);
 						}
+						// else if (
+						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount >
+						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
+						// ) {
+						// 	return 1;
+						// } else if (
+						// 	a.itemData.variations[0].itemVariationData.priceMoney.amount <
+						// 	b.itemData.variations[0].itemVariationData.priceMoney.amount
+						// ) {
+						// 	return -1;
+						// } else {
+						// 	return 0;
+						// }
 					} else {
 						return 0;
 					}
