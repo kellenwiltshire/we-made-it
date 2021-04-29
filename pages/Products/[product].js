@@ -160,10 +160,16 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 								<div class='flex ml-6 items-center'>
 									<div>
 										<div class='relative'>
-											{data.itemVarData.length > 1 ? (
+											<div className='m-2'>
 												<div>
-													<span class='mr-3'>Variations</span>
-													<select class='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'>
+													<span className='mr-3'>Inventory: </span>
+													<span className='relative'>{inventory}</span>
+												</div>
+											</div>
+											{data.itemVarData.length > 1 ? (
+												<div className='m-2'>
+													<span className='mr-3'>Variations</span>
+													<select className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'>
 														{data.itemVarData.map((item, i) => {
 															return (
 																<option key={i} value={i}>
@@ -175,14 +181,16 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 												</div>
 											) : null}
 										</div>
-										<div>
-											<span class='mr-3'>Quantity</span>
-											<div className='relative'>
+										<div className='m-2'>
+											<div>
+												<span className='mr-3'>Quantity</span>
+
 												<input
 													type='number'
 													id='quantity'
 													name='quantity'
 													min='1'
+													placeholder='1'
 													max={inventory}
 													onChange={onInputChange}
 													className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base'

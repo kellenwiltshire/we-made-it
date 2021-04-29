@@ -82,10 +82,6 @@ export const vendors = [
 		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
 	{
-		vendor: 'Copper & Cole',
-		image: '/vendorphotos/coppercole.jpg',
-	},
-	{
 		vendor: 'Dance With Me',
 		image: '',
 	},
