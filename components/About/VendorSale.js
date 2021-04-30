@@ -4,8 +4,8 @@ import { vendors } from '../../VendorList/VendorList';
 import Link from 'next/link';
 import DiscountIcon from '../Icons/DiscountIcon';
 
-function VendorSale({ vendorSale }) {
-	const [sales, setSales] = useState(vendorSale);
+function VendorSale({ vendorSales }) {
+	const [sales, setSales] = useState(vendorSales);
 	return (
 		<div className='w-full flex flex-row flex-wrap justify-center'>
 			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />

@@ -7,7 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import VendorSale from '../components/About/VendorSale';
 
-export default function Home({ cart, vendorSale }) {
+export default function Home({ cart, vendorSales }) {
+	console.log(vendorSales);
 	return (
 		<Layout cart={cart} title='We Made It || Home' navStyle={'home'}>
 			<Link
@@ -27,7 +28,7 @@ export default function Home({ cart, vendorSale }) {
 			<Headers title='Our Story' />
 			<AboutStore />
 
-			<VendorSale />
+			<VendorSale vendorSales={vendorSales} />
 			<Location />
 		</Layout>
 	);
