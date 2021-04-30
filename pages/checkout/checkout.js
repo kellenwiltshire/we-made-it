@@ -5,8 +5,10 @@ import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import { vendors } from '../../VendorList/VendorList';
+import LoadingIcon from '../../components/Icons/LoadingIcon';
 
 export default function Checkout({ cart, setCart, vendorSales }) {
+	const [isCheckout, setIsCheckout] = useState(false);
 	const orderID = uuidv4();
 	const router = useRouter();
 	const deleteItem = (index) => {
@@ -63,6 +65,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 	checkCartDiscounts();
 
 	const handleCheckout = () => {
+		setIsCheckout(true);
 		if (isDiscount) {
 			fetch('https://we-made-it-v2.herokuapp.com/discountCheckout', {
 				method: 'post',
@@ -106,6 +109,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 							className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto font-title'
 						>
 							Continue to Checkout
+							{isCheckout ? <LoadingIcon /> : null}
 						</button>
 						<div className='flex flex-row flex-wrap'>
 							{cart.map((item, i) => {

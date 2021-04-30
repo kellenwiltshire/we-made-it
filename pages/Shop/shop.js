@@ -158,6 +158,7 @@ export default function ShopCategories({
 			const newOffset = selectedPage * perPage;
 			setOffset(newOffset);
 			setCurrPage(e.selected);
+			window.scrollTo(0, 0);
 		};
 
 		//Handles a filter reset
