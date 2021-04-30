@@ -5,8 +5,10 @@ import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import { vendors } from '../../VendorList/VendorList';
+import LoadingIcon from '../../components/Icons/LoadingIcon';
 
-export default function Checkout({ cart, setCart }) {
+export default function Checkout({ cart, setCart, vendorSales }) {
+	const [isCheckout, setIsCheckout] = useState(false);
 	const orderID = uuidv4();
 	const router = useRouter();
 	const deleteItem = (index) => {
@@ -21,9 +23,7 @@ export default function Checkout({ cart, setCart }) {
 
 	let isDiscount = false;
 
-	//This function gathers all the Vendor's that currently have a sale running
 	const [discountInformation, setDiscountInformation] = useState([]);
-	const [salePrices, setSalePrices] = useState([]);
 	//checks vendors for discount information for API
 	const checkForDiscounts = () => {
 		const currentSales = [];
@@ -41,21 +41,8 @@ export default function Checkout({ cart, setCart }) {
 		});
 		return currentSales;
 	};
-
-	//checks Vendors for Sale  Prices
-	const checkForSalePrices = () => {
-		const currentSales = vendors.filter((sale) => {
-			if (sale.sale) {
-				return sale;
-			} else {
-				return;
-			}
-		});
-		return currentSales;
-	};
 	useEffect(() => {
 		setDiscountInformation(checkForDiscounts());
-		setSalePrices(checkForSalePrices());
 	}, []);
 	let lineItems = [];
 
@@ -63,12 +50,12 @@ export default function Checkout({ cart, setCart }) {
 	const checkCartDiscounts = () => {
 		cart.filter((item) => {
 			if (item.description) {
-				for (let i = 0; i < salePrices.length; i++) {
-					const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+				for (let i = 0; i < vendorSales.length; i++) {
+					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 					const lowerCaseItem = item.description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discountUid = salePrices[i].vendor.split(' ').join('');
-						item.sale = salePrices[i].sale;
+						item.discountUid = vendorSales[i].vendor.split(' ').join('');
+						item.sale = vendorSales[i].sale;
 						isDiscount = true;
 					}
 				}
@@ -78,8 +65,9 @@ export default function Checkout({ cart, setCart }) {
 	checkCartDiscounts();
 
 	const handleCheckout = () => {
+		setIsCheckout(true);
 		if (isDiscount) {
-			fetch('https://we-made-it-api.herokuapp.com/discountCheckout', {
+			fetch('https://we-made-it-v2.herokuapp.com/discountCheckout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -94,7 +82,7 @@ export default function Checkout({ cart, setCart }) {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			fetch('https://we-made-it-api.herokuapp.com/checkout', {
+			fetch('https://we-made-it-v2.herokuapp.com/checkout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -121,6 +109,7 @@ export default function Checkout({ cart, setCart }) {
 							className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto font-title'
 						>
 							Continue to Checkout
+							{isCheckout ? <LoadingIcon /> : null}
 						</button>
 						<div className='flex flex-row flex-wrap'>
 							{cart.map((item, i) => {

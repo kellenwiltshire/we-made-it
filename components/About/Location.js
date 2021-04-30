@@ -34,9 +34,9 @@ function Location() {
 								<li>Monday Closed</li>
 								<li>Tuesday 11:00 a.m. - 3:00 p.m.</li>
 								<li>Wednesday 10:30 a.m. - 4:00 p.m.</li>
-								<li> Thursday 10:30 a.m. - 4:00 p.m.</li>
+								<li>Thursday 10:30 a.m. - 4:00 p.m.</li>
 								<li>Friday 10:30 a.m. - 7:00 p.m.</li>
-								<li> Saturday 10:30 a.m. - 4:00 p.m.</li>
+								<li>Saturday 10:30 a.m. - 4:00 p.m.</li>
 								<li>Sunday 11:00 a.m. - 3:00 p.m.</li>
 							</ul>
 						</div>

@@ -1,39 +1,23 @@
 import React, { useState, useEffect } from 'react';
-
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
-import { vendors } from '../../VendorList/VendorList';
 
-export default function SearchItems({ cart, searchresults }) {
+export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
-		if (searchresults.items.items) {
-			let results = searchresults.items.items;
-			const [salePrices, setSalePrices] = useState([]);
-			const checkForSalePrices = () => {
-				const currentSales = vendors.filter((sale) => {
-					if (sale.sale) {
-						return sale;
-					} else {
-						return;
-					}
-				});
-				return currentSales;
-			};
-
-			useEffect(() => {
-				setSalePrices(checkForSalePrices());
-			}, []);
+		console.log(searchresults.items);
+		if (searchresults.items) {
+			let results = searchresults.items;
 
 			const checkCartDiscounts = () => {
 				results.filter((item) => {
 					if (item.itemData.description) {
-						for (let i = 0; i < salePrices.length; i++) {
-							const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+						for (let i = 0; i < vendorSales.length; i++) {
+							const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 							const lowerCaseItem = item.itemData.description.toLowerCase();
 							if (lowerCaseItem.includes(lowerCaseVendor)) {
-								item.sale = salePrices[i].sale;
+								item.sale = vendorSales[i].sale;
 							}
 						}
 					}
@@ -77,7 +61,7 @@ export default function SearchItems({ cart, searchresults }) {
 												title={result.itemData.name}
 												itemID={result.id}
 												salePrice={price}
-												defaultImage='/sparklelogoblack.png'
+												image={result.imageLink}
 												key={Math.random()}
 											/>
 										);
@@ -92,7 +76,7 @@ export default function SearchItems({ cart, searchresults }) {
 												title={result.itemData.name}
 												itemID={result.id}
 												price={price}
-												defaultImage='/sparklelogoblack.png'
+												image={result.imageLink}
 												key={Math.random()}
 											/>
 										);
@@ -124,10 +108,6 @@ export default function SearchItems({ cart, searchresults }) {
 						This is Embarassing! We might be having trouble connecting with
 						Square. Please try again later!
 					</p>
-					<p>
-						We may also not be able to find what you are looking for. Try a
-						different search!
-					</p>
 				</div>
 			</Layout>
 		);
@@ -137,16 +117,13 @@ export default function SearchItems({ cart, searchresults }) {
 export async function getServerSideProps({ query }) {
 	const search = query.search;
 	try {
-		const res = await fetch(
-			'https://we-made-it-api.herokuapp.com/searchitems',
-			{
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					search: search,
-				}),
-			},
-		);
+		const res = await fetch('https://we-made-it-v2.herokuapp.com/searchitems', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				search: search,
+			}),
+		});
 		const searchresults = await res.json();
 		return {
 			props: { searchresults },

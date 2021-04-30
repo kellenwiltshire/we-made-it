@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
+import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
+import JSONBig from 'json-bigint';
+import { Client, Environment } from 'square';
 
-export default function ShopCategories({ itemsWithPictures, cart }) {
+export default function ShopCategories({
+	itemsWithPictures,
+	cart,
+	vendorSales,
+}) {
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
+		const [currPage, setCurrPage] = useState(0);
 		const [offset, setOffset] = useState(0); // Offset for Pagination
 		const [items, setItems] = useState(initialItems); //Items, obviously
 		const [currItems, setCurrItems] = useState(
@@ -19,31 +26,14 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
 
-		const [salePrices, setSalePrices] = useState([]);
-		const checkForSalePrices = () => {
-			const vendorList = vendors;
-			const currentSales = vendorList.filter((sale) => {
-				if (sale.sale) {
-					return sale;
-				} else {
-					return;
-				}
-			});
-			return currentSales;
-		};
-
-		useEffect(() => {
-			setSalePrices(checkForSalePrices());
-		}, []);
-
 		const checkDiscounts = () => {
 			currItems.filter((item) => {
 				if (item.itemData.description) {
-					for (let i = 0; i < salePrices.length; i++) {
-						const lowerCaseVendor = salePrices[i].vendor.toLowerCase();
+					for (let i = 0; i < vendorSales.length; i++) {
+						const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 						const lowerCaseItem = item.itemData.description.toLowerCase();
 						if (lowerCaseItem.includes(lowerCaseVendor)) {
-							item.sale = salePrices[i].sale;
+							item.sale = vendorSales[i].sale;
 						}
 					}
 				}
@@ -67,17 +57,18 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 		}, [sort, items]);
 
 		//This function makes sure everything is reset and correct whenever sort or filters have been applied
-		const updatePage = (newItems, pageNum) => {
+		const updatePage = (newItems, sort) => {
 			setItems(newItems);
 			setOffset(0);
-			setSort(pageNum);
+			setCurrPage(0);
+			setSort(sort);
 			setNumPages(newItems.length / 50);
 		};
 
 		const filterChange = (e) => {
-			console.log(e.target.value);
+
 			let filteredItems = initialItems;
-			console.log(filteredItems);
+
 			filteredItems = filteredItems.filter((item) => {
 				if (item.itemData.description) {
 					let fixedDescription = item.itemData.description.toLowerCase();
@@ -87,7 +78,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					return;
 				}
 			});
-			console.log(filteredItems);
+
 			updatePage(filteredItems, 0);
 		};
 
@@ -96,13 +87,13 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Name Descending (Z-A)') {
 				let sortedItems = items.sort((a, b) => {
 					return a.itemData.name.localeCompare(b.itemData.name);
 				});
 				sortedItems.reverse();
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (Low to High)') {
 				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
@@ -130,7 +121,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 						return 0;
 					}
 				});
-				updatePage(sortedItems, 0);
+				updatePage(sortedItems, e.target.value);
 			} else if (e.target.value === 'Price (High to Low)') {
 				let sortedItems = items.sort((a, b) => {
 					if (a.itemData.variations && b.itemData.variations) {
@@ -169,14 +160,16 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 			const selectedPage = e.selected;
 			const newOffset = selectedPage * perPage;
 			setOffset(newOffset);
+			setCurrPage(e.selected);
+			window.scrollTo(0, 0);
 		};
 
 		//Handles a filter reset
 		const resetItems = (e) => {
 			e.preventDefault();
 			setItems(initialItems);
+			setCurrPage(0);
 			setOffset(0);
-			setSort('');
 			setNumPages(initialItems.length / 50);
 		};
 
@@ -239,31 +232,25 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 							</div>
 						</div>
 						<div className='hidden sm:block'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='py-1 px-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='py-1 px-2 border-dark-purple border font-body'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='py-1 px-2 font-body border-dark-purple border font-body cursor-pointer'
+								breakClass='border border-dark-purple text-gray-200'
+								currPage={currPage}
 							/>
 						</div>
 						<div className='block sm:hidden'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='hidden'
+								breakClass='hidden'
+								currPage={currPage}
 							/>
 						</div>
 					</div>
@@ -282,7 +269,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -298,7 +285,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											salePrice={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -313,7 +300,7 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
-											defaultImage='/sparklelogoblack.png'
+											image={item.imageLink}
 											key={Math.random()}
 										/>
 									);
@@ -325,31 +312,25 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 					</div>
 					<div className='w-full flex flex-row flex-wrap justify-center'>
 						<div className='hidden sm:block'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='py-1 px-2 border-dark-purple border'
-								nextClassName='py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='py-1 px-2 border-dark-purple border font-body'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='py-1 px-2 border-dark-purple border font-body cursor-pointer'
+								breakClass='border border-dark-purple text-gray-200'
+								currPage={currPage}
 							/>
 						</div>
 						<div className='block sm:hidden'>
-							<ReactPaginate
-								pageCount={numPages}
-								onPageChange={handlePageChange}
-								pageRangeDisplayed={2}
-								marginPagesDisplayed={1}
-								previousClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-l font-title'
-								breakClassName='hidden'
-								nextClassName='m-2 py-1 px-2 border-dark-purple border w-50 text-center rounded-r font-title'
-								containerClassName='flex flex-row flex-wrap m-5 align-middle'
-								pageClassName='hidden'
-								activeClassName='bg-dark-purple text-gray-200'
+							<Pagination
+								numPages={numPages}
+								handlePageChange={handlePageChange}
+								rangeDisplayed={2}
+								marginDisplayed={1}
+								pageClass='hidden'
+								breakClass='hidden'
+								currPage={currPage}
 							/>
 						</div>
 					</div>
@@ -370,20 +351,61 @@ export default function ShopCategories({ itemsWithPictures, cart }) {
 }
 
 export async function getStaticProps() {
-	let itemsWithPictures = [];
-	const res = await fetch('https://we-made-it-api.herokuapp.com/newcatalog', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/json' },
+	const client = new Client({
+		environment: Environment.Production,
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-	const data = await res.json();
-	const dataItems = data.items;
-	for (let i = 0; i < dataItems.length; i++) {
-		if (dataItems[i].imageId) {
-			itemsWithPictures.push(dataItems[i]);
+
+	const recursiveCatalog = async (cursor = '', initialRequest = true) => {
+		let opts = 'ITEM';
+		const catalog = client.catalogApi;
+
+		const response = await catalog.listCatalog(cursor, opts);
+		const data = JSONBig.parse(JSONBig.stringify(response.result.objects));
+		const newCursor = response.result.cursor;
+
+		if (initialRequest && cursor === '') {
+			return data.concat(await recursiveCatalog(newCursor, false));
+		} else if (!initialRequest && !cursor) {
+			return data;
+		} else {
+			return data.concat(await recursiveCatalog(newCursor, false));
 		}
-	}
-	return {
-		props: { itemsWithPictures },
-		revalidate: 3600,
 	};
+
+	const newImageRequest = async (items) => {
+		const catalog = client.catalogApi;
+
+		let newItemsWithPictures = [];
+
+		for (let i = 0; i < items.length; i++) {
+			const response = await catalog.retrieveCatalogObject(items[i].imageId);
+			items[i].imageLink = response.result.object.imageData.url;
+			newItemsWithPictures.push(items[i]);
+		}
+		return newItemsWithPictures;
+	};
+
+	let items = [];
+	let filteredItems = [];
+
+	//This grabs the entire catalog at once through recursion
+	items = await recursiveCatalog();
+	//Then the items are filtered so that only ones that have photo's are returned
+	if (items) {
+		const dataItems = items;
+		for (let i = 0; i < dataItems.length; i++) {
+			if (dataItems[i].imageId) {
+				filteredItems.push(dataItems[i]);
+			}
+		}
+
+		//Finally, before returning the list of Items it grabs the URL for the photo's for each item -- This takes a while!
+		const itemsWithPictures = await newImageRequest(filteredItems);
+
+		return {
+			props: { itemsWithPictures },
+			revalidate: 3600,
+		};
+	}
 }
