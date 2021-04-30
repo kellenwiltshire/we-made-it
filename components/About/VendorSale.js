@@ -5,12 +5,11 @@ import Link from 'next/link';
 import DiscountIcon from '../Icons/DiscountIcon';
 
 function VendorSale({ vendorSales }) {
-	const [sales, setSales] = useState(vendorSales);
 	return (
 		<div className='w-full flex flex-row flex-wrap justify-center'>
 			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />
 			<div className='pb-2 sm:w-1/2 w-full flex flex-row justify-center'>
-				{sales.map((vendor, i) => {
+				{vendorSales.map((vendor, i) => {
 					const shortenedVendor = vendor.vendor.split(' ').join('');
 					return (
 						<Link
