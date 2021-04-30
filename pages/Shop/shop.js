@@ -66,7 +66,9 @@ export default function ShopCategories({
 		};
 
 		const filterChange = (e) => {
+
 			let filteredItems = initialItems;
+
 			filteredItems = filteredItems.filter((item) => {
 				if (item.itemData.description) {
 					let fixedDescription = item.itemData.description.toLowerCase();
@@ -76,7 +78,8 @@ export default function ShopCategories({
 					return;
 				}
 			});
-			updatePage(filteredItems);
+
+			updatePage(filteredItems, 0);
 		};
 
 		const sortChange = (e) => {

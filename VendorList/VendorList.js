@@ -92,6 +92,8 @@ export const vendors = [
 	{
 		vendor: 'Designs by Becc',
 		image: '/vendorphotos/designsbybecc.jpg',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Eclair Lips',
@@ -120,6 +122,8 @@ export const vendors = [
 	{
 		vendor: 'Jam Designs',
 		image: '/vendorphotos/jamdesigns.jpg',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: "Jim's Garage Creations",
@@ -244,8 +248,6 @@ export const vendors = [
 	{
 		vendor: 'The Knotty Island',
 		image: '/vendorphotos/theknottyisland.jpg',
-		// sale: 29,
-		// discount: 'VBRXIOXNI6OJHH625OHGJAAK',
 	},
 	{
 		vendor: 'The Quilting Queen',

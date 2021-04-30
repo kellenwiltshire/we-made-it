@@ -8,6 +8,10 @@ function Location() {
 					<h3 className='text-2xl leading-6 font-medium text-dark-purple text-center font-title'>
 						Store Information
 					</h3>
+					<h3 className='text leading-6 mt-2 text-center font-title'>
+						*Please Note the Store is CLOSED due to COVID19 Restrictions. The
+						times listed below are for curbside pickup.*
+					</h3>
 				</div>
 				<div className='border-t border-purple-200'>
 					<dl>
