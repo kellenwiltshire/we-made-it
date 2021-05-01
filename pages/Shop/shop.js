@@ -66,7 +66,6 @@ export default function ShopCategories({
 		};
 
 		const filterChange = (e) => {
-
 			let filteredItems = initialItems;
 
 			filteredItems = filteredItems.filter((item) => {
@@ -355,6 +354,7 @@ export async function getStaticProps() {
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
+	console.log('Shop Page Revalidate');
 
 	const recursiveCatalog = async (cursor = '', initialRequest = true) => {
 		let opts = 'ITEM';
@@ -405,7 +405,7 @@ export async function getStaticProps() {
 
 		return {
 			props: { itemsWithPictures },
-			revalidate: 3600,
+			revalidate: 60,
 		};
 	}
 }
