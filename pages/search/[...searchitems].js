@@ -107,8 +107,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 export async function getServerSideProps({ query }) {
 	const client = new Client({
 		environment: Environment.Production,
-		accessToken:
-			'EAAAEAOvAL0jdyz8rCat-Fg6hHoSpKbans9hxF1f1PESgMkGsh5vqbxhRZSJqfQ4', //process.env.SQUARE_ACCESS_TOKEN,
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
 	const search = query.search;
 
