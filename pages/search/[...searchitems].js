@@ -3,102 +3,92 @@ import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
+const JSONBig = require('json-bigint');
+const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
-		console.log(searchresults.items);
-		if (searchresults.items) {
-			let results = searchresults.items;
+		let results = searchresults;
 
-			const checkCartDiscounts = () => {
-				results.filter((item) => {
-					if (item.itemData.description) {
-						for (let i = 0; i < vendorSales.length; i++) {
-							const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-							const lowerCaseItem = item.itemData.description.toLowerCase();
-							if (lowerCaseItem.includes(lowerCaseVendor)) {
-								item.sale = vendorSales[i].sale;
-							}
+		const checkCartDiscounts = () => {
+			results.filter((item) => {
+				if (item.itemData.description) {
+					for (let i = 0; i < vendorSales.length; i++) {
+						const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
+						const lowerCaseItem = item.itemData.description.toLowerCase();
+						if (lowerCaseItem.includes(lowerCaseVendor)) {
+							item.sale = vendorSales[i].sale;
 						}
 					}
-				});
-			};
-			checkCartDiscounts();
-			return (
-				<Layout cart={cart} title='We Made It'>
-					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title='Search Results' />
-						<CategorySelect />
+				}
+			});
+		};
+		checkCartDiscounts();
+		return (
+			<Layout cart={cart} title='We Made It'>
+				<div className='flex flex-row flex-wrap justify-center h-full'>
+					<Headers title='Search Results' />
+					<CategorySelect />
 
-						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((result, i) => {
-								let price;
-								if (result.itemData.variations) {
-									if (
-										result.itemData.variations[0].itemVariationData
-											.pricingType === 'VARIABLE_PRICING'
-									) {
-										price = 'Variable Pricing - Contact Store for Details';
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												price={price}
-												defaultImage='/sparklelogoblack.png'
-												key={Math.random()}
-											/>
-										);
-									} else if (result.sale) {
-										let currPrice =
-											result.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100;
-										price = currPrice - currPrice * (result.sale / 100);
-										price = price.toFixed(2);
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												salePrice={price}
-												image={result.imageLink}
-												key={Math.random()}
-											/>
-										);
-									} else {
-										price = (
-											result.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100
-										).toFixed(2);
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												price={price}
-												image={result.imageLink}
-												key={Math.random()}
-											/>
-										);
-									}
+					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
+						{results.map((result, i) => {
+							let price;
+							if (result.itemData.variations) {
+								if (
+									result.itemData.variations[0].itemVariationData
+										.pricingType === 'VARIABLE_PRICING'
+								) {
+									price = 'Variable Pricing - Contact Store for Details';
+									return (
+										<ProductCards
+											item={result}
+											title={result.itemData.name}
+											itemID={result.id}
+											price={price}
+											defaultImage='/sparklelogoblack.png'
+											key={Math.random()}
+										/>
+									);
+								} else if (result.sale) {
+									let currPrice =
+										result.itemData.variations[0].itemVariationData.priceMoney
+											.amount / 100;
+									price = currPrice - currPrice * (result.sale / 100);
+									price = price.toFixed(2);
+									return (
+										<ProductCards
+											item={result}
+											title={result.itemData.name}
+											itemID={result.id}
+											salePrice={price}
+											image={result.imageLink}
+											key={Math.random()}
+										/>
+									);
 								} else {
-									return;
+									price = (
+										result.itemData.variations[0].itemVariationData.priceMoney
+											.amount / 100
+									).toFixed(2);
+									return (
+										<ProductCards
+											item={result}
+											title={result.itemData.name}
+											itemID={result.id}
+											price={price}
+											image={result.imageLink}
+											key={Math.random()}
+										/>
+									);
 								}
-							})}
-						</div>
+							} else {
+								return;
+							}
+						})}
 					</div>
-				</Layout>
-			);
-		} else {
-			return (
-				<Layout cart={cart} title={`We Made It`}>
-					<Headers title='OOPS! Nothing Found!' />
-					<div className='flex flex-col text-center font-body'>
-						<p>Try a different search!</p>
-					</div>
-				</Layout>
-			);
-		}
+				</div>
+			</Layout>
+		);
 	} else {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
@@ -115,23 +105,43 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 }
 
 export async function getServerSideProps({ query }) {
+	const client = new Client({
+		environment: Environment.Production,
+		accessToken:
+			'EAAAEAOvAL0jdyz8rCat-Fg6hHoSpKbans9hxF1f1PESgMkGsh5vqbxhRZSJqfQ4', //process.env.SQUARE_ACCESS_TOKEN,
+	});
 	const search = query.search;
-	try {
-		const res = await fetch('https://we-made-it-v2.herokuapp.com/searchitems', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				search: search,
-			}),
-		});
-		const searchresults = await res.json();
-		return {
-			props: { searchresults },
-		};
-	} catch (error) {
-		const results = error;
-		return {
-			props: {},
-		};
+
+	const newImageRequest = async (items) => {
+		const catalog = client.catalogApi;
+
+		let newItemsWithPictures = [];
+
+		for (let i = 0; i < items.length; i++) {
+			const response = await catalog.retrieveCatalogObject(items[i].imageId);
+			items[i].imageLink = response.result.object.imageData.url;
+			newItemsWithPictures.push(items[i]);
+		}
+		return newItemsWithPictures;
+	};
+
+	const response = await client.catalogApi.searchCatalogItems({
+		textFilter: search,
+	});
+
+	let filteredItems = [];
+
+	const data = JSONBig.parse(JSONBig.stringify(response.result.items));
+
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].imageId) {
+			filteredItems.push(data[i]);
+		}
 	}
+
+	const searchresults = await newImageRequest(filteredItems);
+
+	return {
+		props: { searchresults },
+	};
 }
