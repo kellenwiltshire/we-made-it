@@ -3,7 +3,6 @@ import Layout from '../../components/Layout/Layout';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
-import { vendors } from '../../VendorList/VendorList';
 
 export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
@@ -60,8 +59,9 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		const [newPrice, setNewPrice] = useState();
 
-		useEffect(() => {
+		useEffect(async () => {
 			setPrice(setInitialPrice());
+			setInventory(await inventoryUpdate());
 		}, []);
 
 		useEffect(() => {
@@ -78,6 +78,10 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			}
 		}, []);
 
+		useEffect(async () => {
+			setInventory(await inventoryUpdate());
+		}, [itemID]);
+
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
 			setPrice(
@@ -86,24 +90,23 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 					100
 				).toFixed(2),
 			);
+
 			setItemID(data.itemVarData[selectedItem].id);
 		};
 
-		const updateInventory = () => {
-			fetch('https://we-made-it-v2.herokuapp.com/variations', {
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					item: itemID,
-				}),
-			})
-				.then((response) => response.json())
-				.then((response) => {
-					setInventory(response.counts[0].quantity);
-				})
-				.catch((error) => {
-					setInventory(0);
-				});
+		const inventoryUpdate = async () => {
+			const response = await fetch(
+				'https://we-made-it-v2.herokuapp.com/variations',
+				{
+					method: 'post',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						item: itemID,
+					}),
+				},
+			);
+			const data = await response.json();
+			return data.counts[0].quantity;
 		};
 
 		const handleCart = (e) => {
@@ -126,10 +129,9 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			setCartStatus('Added to Cart!');
 		};
 
-		updateInventory();
 		return (
 			<Layout cart={cart} title={`${itemName} || We Made It`}>
-				<div class='container px-5 mx-auto'>
+				<div className='container px-5 mx-auto'>
 					<div className='mb-10'>
 						<button
 							onClick={() => router.back()}
@@ -143,23 +145,23 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 					<div class='lg:w-4/5 mx-auto flex flex-wrap'>
 						<img
 							alt='ecommerce'
-							class='lg:w-1/2 w-full object-cover object-center rounded'
+							className='lg:w-1/2 w-full object-cover object-center rounded'
 							height='500px'
 							width='500px'
 							src={image}
 						/>
 						<form
-							class='lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'
+							className='lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'
 							onSubmit={handleCart}
 						>
-							<h1 class='text-gray-900 text-3xl title-font font-medium mb-5 font-title'>
+							<h1 className='text-gray-900 text-3xl title-font font-medium mb-5 font-title'>
 								{itemName}
 							</h1>
-							<p class='leading-relaxed font-body'>{description}</p>
-							<div class='flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5'>
-								<div class='flex ml-6 items-center'>
+							<p className='leading-relaxed font-body'>{description}</p>
+							<div className='flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5'>
+								<div className='flex ml-6 items-center'>
 									<div>
-										<div class='relative'>
+										<div className='relative'>
 											<div className='m-2'>
 												<div>
 													<span className='mr-3'>Inventory: </span>
@@ -169,7 +171,10 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 											{data.itemVarData.length > 1 ? (
 												<div className='m-2'>
 													<span className='mr-3'>Variations</span>
-													<select className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'>
+													<select
+														onChange={onSelectChange}
+														className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'
+													>
 														{data.itemVarData.map((item, i) => {
 															return (
 																<option key={i} value={i}>
@@ -213,7 +218,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 								{isVariablePricing ? null : (
 									<button
 										type='submit'
-										class='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6 focus:outline-none hover:bg-dark-purple rounded'
+										className='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6 focus:outline-none hover:bg-dark-purple rounded'
 									>
 										{cartStatus}
 									</button>
