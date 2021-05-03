@@ -22,7 +22,7 @@ function BecomeVendor() {
 						</p>
 						<p className='mb-8 leading-relaxed'>
 							If you have any further questions, please email us at
-							wemadeit.newcastle@gmail.com
+							info@we-made-it.ca
 						</p>
 					</div>
 				</div>
