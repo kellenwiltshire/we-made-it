@@ -29,7 +29,7 @@ export default function ShopCategories({ cart, setCart }) {
 							</p>
 							<p>
 								If this is a rush order, please email us at
-								wemadeit.newcastle@gmail.com
+								info@we-made-it.ca
 							</p>
 
 							<span className='inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6'></span>
