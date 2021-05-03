@@ -12,7 +12,7 @@ function Footer() {
 						<a href='https://www.facebook.com/wemadeit.newcastle'>
 							<FacebookWhite />
 						</a>
-						<a href='mailto: wemade-it@outlook.com'>
+						<a href='mailto: info@we-made-it.ca'>
 							<EmailIcon />
 						</a>
 						<a href='https://www.instagram.com/wemadeit.newcastle/'>
