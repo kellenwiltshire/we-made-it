@@ -49,8 +49,8 @@ function Location() {
 									<a href='tel: 1 905 987 7266'>1 (905) 987 7266</a>
 								</div>
 								<div>
-									<a href='mailto: wemade-it@outlook.com'>
-										wemade-it@outlook.com
+									<a href='mailto: info@we-made-it.ca'>
+										info@we-made-it.ca
 									</a>
 								</div>
 							</div>
