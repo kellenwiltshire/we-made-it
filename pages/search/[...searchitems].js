@@ -7,7 +7,8 @@ const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
-	if (searchresults) {
+	console.log(searchresults);
+	if (searchresults.length) {
 		let results = searchresults;
 
 		const checkCartDiscounts = () => {
@@ -92,11 +93,11 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 	} else {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
-				<Headers title='OOPS! Something Went Wrong!' />
+				<Headers title='OOPS! Nothing Was Found!' />
 				<div className='flex flex-col text-center font-body'>
 					<p>
-						This is Embarassing! We might be having trouble connecting with
-						Square. Please try again later!
+						Unfortunately nothing was found with that search. Please try
+						searching for something else!
 					</p>
 				</div>
 			</Layout>

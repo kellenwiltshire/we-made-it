@@ -7,6 +7,7 @@ import Headers from '../../components/Layout/Headers';
 export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	if (data) {
+		console.log(data);
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
 			fetch('https://we-made-it-v2.herokuapp.com/imageRequest', {
@@ -27,20 +28,21 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
 		const [isVariablePricing, setIsVariablePricing] = useState(false);
 		const description = data.itemDescription;
+		const [isSale, setIsSale] = useState(false);
 		const router = useRouter();
 
 		const checkCartDiscounts = () => {
-			if (data.description) {
+			if (data.itemDescription) {
 				for (let i = 0; i < vendorSales.length; i++) {
 					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-					const lowerCaseItem = item.itemData.description.toLowerCase();
+					const lowerCaseItem = data.itemDescription.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.sale = vendorSales[i].sale;
+						data.sale = vendorSales[i].sale;
+						setIsSale(true);
 					}
 				}
 			}
 		};
-		checkCartDiscounts();
 
 		const [inventory, setInventory] = useState(null);
 
@@ -59,8 +61,8 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 				if (data.sale) {
 					let currPrice =
 						data.itemVarData[0].itemVariationData.priceMoney.amount / 100;
-					newPrice = currPrice - currPrice * (result.sale / 100);
-					newPrice = price.toFixed(2);
+					newPrice = currPrice - currPrice * (data.sale / 100);
+					newPrice = newPrice.toFixed(2);
 				} else {
 					newPrice = (
 						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
@@ -79,30 +81,18 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			}
 		};
 
-		const [newPrice, setNewPrice] = useState();
+		useEffect(async () => {
+			setInventory(await inventoryUpdate());
+		}, [itemID]);
 
 		useEffect(async () => {
-			setPrice(setInitialPrice());
 			setInventory(await inventoryUpdate());
 		}, []);
 
 		useEffect(() => {
-			if (description) {
-				for (let i = 0; i < vendorSales.length; i++) {
-					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-					const lowerCaseItem = description.toLowerCase();
-					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						const sale = vendorSales[i].sale / 100;
-						let newCurrPrice = price - price * sale;
-						setNewPrice(newCurrPrice);
-					}
-				}
-			}
-		}, []);
-
-		useEffect(async () => {
-			setInventory(await inventoryUpdate());
-		}, [itemID]);
+			checkCartDiscounts();
+			setPrice(setInitialPrice());
+		});
 
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
@@ -228,9 +218,9 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 								</div>
 							</div>
 							<div class='flex'>
-								{newPrice ? (
+								{isSale ? (
 									<span className='title-font font-medium text-2xl text-gray-900'>
-										Sale Price: ${newPrice.toFixed(2)}
+										Sale Price: ${price}
 									</span>
 								) : (
 									<span className='title-font font-medium text-2xl text-gray-900'>
