@@ -92,6 +92,7 @@ export const vendors = [
 	{
 		vendor: 'Designs by Becc',
 		image: '/vendorphotos/designsbybecc.jpg',
+		uid: 'twentypercent',
 		sale: 20,
 		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
@@ -123,6 +124,7 @@ export const vendors = [
 		vendor: 'Jam Designs',
 		image: '/vendorphotos/jamdesigns.jpg',
 		sale: 20,
+		uid: 'twentypercent',
 		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{

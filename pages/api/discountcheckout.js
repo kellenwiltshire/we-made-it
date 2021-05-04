@@ -21,18 +21,17 @@ function runMiddleware(req, res, fn) {
 	});
 }
 
-const checkout = async (req, res) => {
+const discountcheckout = async (req, res) => {
 	await runMiddleware(req, res, cors);
-
-	console.log(req.body);
 
 	const client = new Client({
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-
 	const orderID = req.body.orderID;
 	const items = req.body.lineItems;
+	const discounts = req.body.discounts;
+	console.log(discounts);
 	const checkoutID = uuidv4();
 
 	try {
@@ -42,9 +41,12 @@ const checkout = async (req, res) => {
 				order: {
 					locationId: 'L0SCPZY3N0MGA',
 					lineItems: items,
+					discounts: discounts,
 					taxes: [
 						{
+							uid: 'Tax',
 							catalogObjectId: '5Z2DUEICONXUEQYFZG7GFOE5',
+							scope: 'ORDER',
 						},
 					],
 				},
@@ -58,9 +60,9 @@ const checkout = async (req, res) => {
 		const result = await JSONBig.stringify(response.result);
 		res.json(JSONBig.parse(result));
 	} catch (error) {
-		console.log('ERROR: ', error);
+		console.log(error.result);
 		res.status(400).json('Error working with API', error);
 	}
 };
 
-export default checkout;
+export default discountcheckout;

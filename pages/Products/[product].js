@@ -29,6 +29,19 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		const description = data.itemDescription;
 		const router = useRouter();
 
+		const checkCartDiscounts = () => {
+			if (data.description) {
+				for (let i = 0; i < vendorSales.length; i++) {
+					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
+					const lowerCaseItem = item.itemData.description.toLowerCase();
+					if (lowerCaseItem.includes(lowerCaseVendor)) {
+						item.sale = vendorSales[i].sale;
+					}
+				}
+			}
+		};
+		checkCartDiscounts();
+
 		const [inventory, setInventory] = useState(null);
 
 		let quantity = 1;
@@ -42,9 +55,18 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 				setIsVariablePricing(true);
 				return newPrice;
 			} else {
-				let newPrice = (
-					data.itemVarData[0].itemVariationData.priceMoney.amount / 100
-				).toFixed(2);
+				let newPrice;
+				if (data.sale) {
+					let currPrice =
+						data.itemVarData[0].itemVariationData.priceMoney.amount / 100;
+					newPrice = currPrice - currPrice * (result.sale / 100);
+					newPrice = price.toFixed(2);
+				} else {
+					newPrice = (
+						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+					).toFixed(2);
+				}
+
 				return newPrice;
 			}
 		};

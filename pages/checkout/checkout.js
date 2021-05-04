@@ -20,6 +20,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 			router.push('/checkout/checkout');
 		}
 	};
+	console.log(vendorSales);
 
 	let isDiscount = false;
 
@@ -30,11 +31,23 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 		vendors.filter((sale) => {
 			if (sale.sale) {
 				let discounts = {
-					uid: sale.vendor.split(' ').join(''),
+					uid: sale.uid,
 					catalogObjectId: sale.discount,
 					scope: 'LINE_ITEM',
 				};
-				currentSales.push(discounts);
+				let doesExist = false;
+				if (currentSales.length) {
+					for (let i = 0; i < currentSales.length; i++) {
+						if (currentSales[i].catalogObjectId === discounts.catalogObjectId) {
+							doesExist = true;
+						}
+					}
+					if (!doesExist) {
+						currentSales.push(discounts);
+					}
+				} else {
+					currentSales.push(discounts);
+				}
 			} else {
 				return;
 			}
@@ -54,8 +67,9 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 					const lowerCaseItem = item.description.toLowerCase();
 					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discountUid = vendorSales[i].vendor.split(' ').join('');
+						item.discountUid = vendorSales[i].uid;
 						item.sale = vendorSales[i].sale;
+						item.saleObject = vendorSales[i].discount;
 						isDiscount = true;
 					}
 				}
@@ -63,11 +77,14 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 		});
 	};
 	checkCartDiscounts();
+	console.log('cart :', cart);
+
+	console.log(discountInformation);
 
 	const handleCheckout = () => {
 		setIsCheckout(true);
 		if (isDiscount) {
-			fetch('https://we-made-it-v2.herokuapp.com/discountCheckout', {
+			fetch('/api/discountcheckout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -82,7 +99,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			fetch('https://we-made-it-v2.herokuapp.com/checkout', {
+			fetch('/api/checkout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
