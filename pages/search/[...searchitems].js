@@ -8,87 +8,101 @@ const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
-		let results = searchresults;
+		if (searchresults.length) {
+			let results = searchresults;
 
-		const checkCartDiscounts = () => {
-			results.filter((item) => {
-				if (item.itemData.description) {
-					for (let i = 0; i < vendorSales.length; i++) {
-						const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-						const lowerCaseItem = item.itemData.description.toLowerCase();
-						if (lowerCaseItem.includes(lowerCaseVendor)) {
-							item.sale = vendorSales[i].sale;
+			const checkCartDiscounts = () => {
+				results.filter((item) => {
+					if (item.itemData.description) {
+						for (let i = 0; i < vendorSales.length; i++) {
+							const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
+							const lowerCaseItem = item.itemData.description.toLowerCase();
+							if (lowerCaseItem.includes(lowerCaseVendor)) {
+								item.sale = vendorSales[i].sale;
+							}
 						}
 					}
-				}
-			});
-		};
-		checkCartDiscounts();
-		return (
-			<Layout cart={cart} title='We Made It'>
-				<div className='flex flex-row flex-wrap justify-center h-full'>
-					<Headers title='Search Results' />
-					<CategorySelect />
+				});
+			};
+			checkCartDiscounts();
+			return (
+				<Layout cart={cart} title='We Made It'>
+					<div className='flex flex-row flex-wrap justify-center h-full'>
+						<Headers title='Search Results' />
+						<CategorySelect />
 
-					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-						{results.map((result, i) => {
-							let price;
-							if (result.itemData.variations) {
-								if (
-									result.itemData.variations[0].itemVariationData
-										.pricingType === 'VARIABLE_PRICING'
-								) {
-									price = 'Variable Pricing - Contact Store for Details';
-									return (
-										<ProductCards
-											item={result}
-											title={result.itemData.name}
-											itemID={result.id}
-											price={price}
-											defaultImage='/sparklelogoblack.png'
-											key={Math.random()}
-										/>
-									);
-								} else if (result.sale) {
-									let currPrice =
-										result.itemData.variations[0].itemVariationData.priceMoney
-											.amount / 100;
-									price = currPrice - currPrice * (result.sale / 100);
-									price = price.toFixed(2);
-									return (
-										<ProductCards
-											item={result}
-											title={result.itemData.name}
-											itemID={result.id}
-											salePrice={price}
-											image={result.imageLink}
-											key={Math.random()}
-										/>
-									);
+						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
+							{results.map((result, i) => {
+								let price;
+								if (result.itemData.variations) {
+									if (
+										result.itemData.variations[0].itemVariationData
+											.pricingType === 'VARIABLE_PRICING'
+									) {
+										price = 'Variable Pricing - Contact Store for Details';
+										return (
+											<ProductCards
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
+												price={price}
+												defaultImage='/sparklelogoblack.png'
+												key={Math.random()}
+											/>
+										);
+									} else if (result.sale) {
+										let currPrice =
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100;
+										price = currPrice - currPrice * (result.sale / 100);
+										price = price.toFixed(2);
+										return (
+											<ProductCards
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
+												salePrice={price}
+												image={result.imageLink}
+												key={Math.random()}
+											/>
+										);
+									} else {
+										price = (
+											result.itemData.variations[0].itemVariationData.priceMoney
+												.amount / 100
+										).toFixed(2);
+										return (
+											<ProductCards
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
+												price={price}
+												image={result.imageLink}
+												key={Math.random()}
+											/>
+										);
+									}
 								} else {
-									price = (
-										result.itemData.variations[0].itemVariationData.priceMoney
-											.amount / 100
-									).toFixed(2);
-									return (
-										<ProductCards
-											item={result}
-											title={result.itemData.name}
-											itemID={result.id}
-											price={price}
-											image={result.imageLink}
-											key={Math.random()}
-										/>
-									);
+									return;
 								}
-							} else {
-								return;
-							}
-						})}
+							})}
+						</div>
 					</div>
-				</div>
-			</Layout>
-		);
+				</Layout>
+			);
+		} else {
+			return (
+				<Layout cart={cart} title={`We Made It`}>
+					<Headers title='OOPS! Nothing Was Found!' />
+					<div className='flex flex-col text-center font-body'>
+						<p>
+							Unfortunately nothing was found with that search. Please try
+							searching for something else!
+						</p>
+					</div>
+				</Layout>
+			);
+		}
 	} else {
 		return (
 			<Layout cart={cart} title={`We Made It`}>
