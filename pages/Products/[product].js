@@ -7,7 +7,6 @@ import Headers from '../../components/Layout/Headers';
 export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	if (data) {
-		console.log(data);
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
 			fetch('https://we-made-it-v2.herokuapp.com/imageRequest', {

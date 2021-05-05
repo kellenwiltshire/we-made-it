@@ -7,8 +7,7 @@ const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
-	console.log(searchresults);
-	if (searchresults.length) {
+	if (searchresults) {
 		let results = searchresults;
 
 		const checkCartDiscounts = () => {
@@ -111,6 +110,9 @@ export async function getServerSideProps({ query }) {
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
 	const search = query.search;
+	console.log(query.search);
+
+	let filteredItems = [];
 
 	const newImageRequest = async (items) => {
 		const catalog = client.catalogApi;
@@ -124,19 +126,23 @@ export async function getServerSideProps({ query }) {
 		}
 		return newItemsWithPictures;
 	};
+	try {
+		const response = await client.catalogApi.searchCatalogItems({
+			textFilter: search,
+		});
 
-	const response = await client.catalogApi.searchCatalogItems({
-		textFilter: search,
-	});
+		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
 
-	let filteredItems = [];
-
-	const data = JSONBig.parse(JSONBig.stringify(response.result.items));
-
-	for (let i = 0; i < data.length; i++) {
-		if (data[i].imageId) {
-			filteredItems.push(data[i]);
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].imageId) {
+				filteredItems.push(data[i]);
+			}
 		}
+	} catch (error) {
+		console.log('Search Error: ', error);
+		return {
+			props: {},
+		};
 	}
 
 	const searchresults = await newImageRequest(filteredItems);
