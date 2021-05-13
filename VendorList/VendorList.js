@@ -31,9 +31,6 @@ export const vendors = [
 	{
 		vendor: 'Artsy Fartsy',
 		image: '/vendorphotos/artsyfartsy.png',
-		sale: 20,
-		uid: 'twentypercent',
-		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Banndy',
@@ -95,9 +92,9 @@ export const vendors = [
 	{
 		vendor: 'Designs by Becc',
 		image: '/vendorphotos/designsbybecc.jpg',
-		uid: 'twentypercent',
-		sale: 20,
-		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
+		// uid: 'twentypercent',
+		// sale: 20,
+		// discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Eclair Lips',
@@ -126,9 +123,6 @@ export const vendors = [
 	{
 		vendor: 'Jam Designs',
 		image: '/vendorphotos/jamdesigns.jpg',
-		sale: 20,
-		uid: 'twentypercent',
-		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: "Jim's Garage Creations",
