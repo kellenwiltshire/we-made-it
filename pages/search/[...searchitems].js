@@ -7,6 +7,7 @@ const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
+	console.log(searchresults);
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
