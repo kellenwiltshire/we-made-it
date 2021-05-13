@@ -133,6 +133,10 @@ export const vendors = [
 		image: '/vendorphotos/kiff.jpg',
 	},
 	{
+		vendor: 'L & L Co',
+		image: '/vendorphotos/llco.jpg',
+	},
+	{
 		vendor: 'Lakebreeze Pottery',
 		image: '/vendorphotos/lakebreezepottery.jpg',
 	},
