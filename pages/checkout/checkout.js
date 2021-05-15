@@ -84,7 +84,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 	const handleCheckout = () => {
 		setIsCheckout(true);
 		if (isDiscount) {
-			fetch('/api/discountcheckout', {
+			fetch('https://we-made-it.ca/api/discountcheckout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -99,7 +99,7 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			fetch('/api/checkout', {
+			fetch('https://we-made-it.ca/api/checkout', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

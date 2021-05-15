@@ -9,7 +9,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
-			fetch('/api/imageRequest', {
+			fetch('https://we-made-it.ca/api/imageRequest', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -106,7 +106,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		};
 
 		const inventoryUpdate = async () => {
-			const response = await fetch('/api/inventory', {
+			const response = await fetch('https://we-made-it.ca/api/inventory', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
