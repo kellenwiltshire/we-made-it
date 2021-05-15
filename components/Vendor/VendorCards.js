@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 
 function VendorCards({ vendor, image }) {
-	const shortenedVendor = vendor.split(' ').join('');
+	const fixedVendor = vendor.replace(/\s+/g, '%20');
 	return (
 		<Link
 			href={{
-				pathname: `/search/[...searchitems]`,
-				query: { searchitems: shortenedVendor, search: vendor },
+				pathname: '/vendorsearch/[vendorsearch]',
+				query: { vendorsearch: fixedVendor },
 			}}
 		>
 			<a>

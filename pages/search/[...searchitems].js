@@ -7,7 +7,6 @@ const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
 export default function SearchItems({ cart, searchresults, vendorSales }) {
-	console.log(searchresults);
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
@@ -125,7 +124,7 @@ export async function getServerSideProps({ query }) {
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
 	const search = query.search;
-	console.log(query.search);
+	console.log('Search: ', query.search);
 
 	let filteredItems = [];
 
