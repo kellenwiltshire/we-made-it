@@ -3,6 +3,7 @@ import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
+import { vendors } from '../../VendorList/VendorList';
 const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
@@ -118,13 +119,31 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 	}
 }
 
-export async function getServerSideProps({ query }) {
+export async function getStaticPaths() {
+	const vendorList = vendors;
+	const fixedVendors = vendorList.map((ven) => {
+		const fixedVen = ven.vendor.replace(/\s+/g, '%20');
+		return fixedVen;
+	});
+
+	// Get the paths we want to pre-render based on posts
+	const paths = fixedVendors.map((ven) => ({
+		params: { vendorsearch: ven },
+	}));
+
+	// We'll pre-render only these paths at build time.
+	// { fallback: false } means other routes should 404.
+	return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+	console.log(params);
 	const client = new Client({
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-	const search = query.search;
-	console.log('Search: ', query.search);
+	const search = params.vendorsearch.replace(/%20/g, ' ');
+	console.log('Vendor: ', search);
 
 	let filteredItems = [];
 
