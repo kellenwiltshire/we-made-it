@@ -153,10 +153,10 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 							</span>
 						</button>
 					</div>
-					<div class='lg:w-4/5 mx-auto flex flex-wrap'>
+					<div class='md:w-4/5 mx-auto flex flex-wrap'>
 						<img
 							alt='ecommerce'
-							className='lg:w-1/2 w-full object-cover object-center rounded'
+							className='md:w-1/2 w-full rounded'
 							height='500px'
 							width='500px'
 							src={image}
@@ -170,7 +170,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 							</h1>
 							<p className='leading-relaxed font-body'>{description}</p>
 							<div className='flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5'>
-								<div className='flex ml-6 items-center'>
+								<div className='flex md:ml-6 items-center'>
 									<div>
 										<div className='relative'>
 											<div className='m-2'>
