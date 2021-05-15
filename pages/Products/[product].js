@@ -9,7 +9,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
-			fetch('https://we-made-it-v2.herokuapp.com/imageRequest', {
+			fetch('/api/imageRequest', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -106,16 +106,13 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		};
 
 		const inventoryUpdate = async () => {
-			const response = await fetch(
-				'https://we-made-it-v2.herokuapp.com/variations',
-				{
-					method: 'post',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						item: itemID,
-					}),
-				},
-			);
+			const response = await fetch('/api/inventory', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					item: itemID,
+				}),
+			});
 			const data = await response.json();
 			return data.counts[0].quantity;
 		};
@@ -153,7 +150,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 							</span>
 						</button>
 					</div>
-					<div class='md:w-4/5 mx-auto flex flex-wrap'>
+					<div className='md:w-4/5 mx-auto flex flex-wrap'>
 						<img
 							alt='ecommerce'
 							className='md:w-1/2 w-full rounded'
@@ -216,7 +213,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 									</div>
 								</div>
 							</div>
-							<div class='flex'>
+							<div className='flex'>
 								{isSale ? (
 									<span className='title-font font-medium text-2xl text-gray-900'>
 										Sale Price: ${price}

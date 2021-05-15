@@ -140,8 +140,7 @@ export async function getStaticProps({ params }) {
 	console.log(params);
 	const client = new Client({
 		environment: Environment.Production,
-		accessToken:
-			'EAAAEAOvAL0jdyz8rCat-Fg6hHoSpKbans9hxF1f1PESgMkGsh5vqbxhRZSJqfQ4', //process.env.SQUARE_ACCESS_TOKEN,
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
 	const search = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
