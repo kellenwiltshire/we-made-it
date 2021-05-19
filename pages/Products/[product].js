@@ -3,6 +3,8 @@ import Layout from '../../components/Layout/Layout';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
+import JSONBig from 'json-bigint';
+import { Client, Environment } from 'square';
 
 export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
@@ -252,23 +254,48 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 export async function getServerSideProps({ query }) {
 	const item = query.product;
-	try {
-		const productInfo = await fetch(
-			'https://we-made-it-v2.herokuapp.com/itemInfo',
-			{
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					item: item,
-				}),
-			},
-		);
-		const data = await productInfo.json();
 
-		return {
-			props: { data },
-		};
+	const client = new Client({
+		environment: Environment.Production,
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
+	});
+
+	const catalog = client.catalogApi;
+
+	try {
+		const response = await catalog.retrieveCatalogObject(item);
+		const itemID = response.result.object.id;
+		const itemName = response.result.object.itemData.name;
+		const itemDescription = response.result.object.itemData.description;
+		const itemVarData = response.result.object.itemData.variations;
+		if (response.result.object.imageId) {
+			return {
+				props: {
+					data: {
+						itemID: JSONBig.parse(JSONBig.stringify(itemID)),
+						itemName: itemName,
+						itemDescription: itemDescription,
+						itemVarData: JSONBig.parse(JSONBig.stringify(itemVarData)),
+						imageId: JSONBig.parse(
+							JSONBig.stringify(response.result.object.imageId),
+						),
+					},
+				},
+			};
+		} else {
+			return {
+				props: {
+					data: {
+						itemID: JSONBig.parse(JSONBig.stringify(itemID)),
+						itemName: itemName,
+						itemDescription: itemDescription,
+						itemVarData: JSONBig.parse(JSONBig.stringify(itemVarData)),
+					},
+				},
+			};
+		}
 	} catch (error) {
+		console.log(error);
 		return {
 			props: {},
 		};

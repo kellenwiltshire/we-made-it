@@ -6,17 +6,20 @@ import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
+import { useRouter } from 'next/router';
 
 export default function ShopCategories({
 	itemsWithPictures,
 	cart,
 	vendorSales,
+	currPage,
+	setCurrPage,
 }) {
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
 		const [currPage, setCurrPage] = useState(0);
-		const [offset, setOffset] = useState(0); // Offset for Pagination
+		const [offset, setOffset] = useState(currPage * perPage); // Offset for Pagination
 		const [items, setItems] = useState(initialItems); //Items, obviously
 		const [currItems, setCurrItems] = useState(
 			//Keeps track of the current items that are being displayed on the page
@@ -25,6 +28,7 @@ export default function ShopCategories({
 		const [numPages, setNumPages] = useState(initialItems.length / 50); //Determine number of pages
 		const [sort, setSort] = useState(''); //Initial Sort State
 		const [filterOpen, setFilterOpen] = useState(false);
+		const router = useRouter();
 
 		const checkDiscounts = () => {
 			currItems.filter((item) => {
@@ -41,9 +45,33 @@ export default function ShopCategories({
 		};
 		checkDiscounts();
 
+		//This looks at the URL to see if the user's url has already been looking through product pages and updates the current items accordingly
+		useEffect(() => {
+			const urlString = document.location.href;
+			if (urlString.includes('page')) {
+				const urlSplitString = urlString.split('=');
+				const urlNumber = Number(urlSplitString[1]);
+				const newPageNumber = urlNumber - 1;
+				if (newPageNumber < 1) {
+					setCurrPage(0);
+					router.push(`?page=${currPage + 1}`, undefined, { shallow: true });
+				} else {
+					setCurrPage(newPageNumber);
+					router.push(`?page=${newPageNumber + 1}`, undefined, {
+						shallow: true,
+					});
+					setOffset(newPageNumber * perPage);
+				}
+			} else {
+				router.push(`?page=${currPage + 1}`, undefined, { shallow: true });
+			}
+		}, []);
+
 		//This effect updates the items on the page when a new page is selected
+		//This also sets the URL so that if the user navigates back from looking at a product they don't lose their place.
 		useEffect(() => {
 			setCurrItems(items.slice(offset, offset + perPage));
+			router.push(`?page=${currPage + 1}`, undefined, { shallow: true });
 		}, [offset]);
 
 		//This effect updates the current items on the page whenever the sort method changes
@@ -391,6 +419,12 @@ export async function getStaticProps() {
 
 	//This grabs the entire catalog at once through recursion
 	items = await recursiveCatalog();
+
+	//!DEV
+	// const catalog = client.catalogApi;
+	// const response = await catalog.listCatalog('', 'ITEM');
+	// items = JSONBig.parse(JSONBig.stringify(response.result.objects));
+
 	//Then the items are filtered so that only ones that have photo's are returned
 	if (items) {
 		const dataItems = items;
