@@ -88,13 +88,13 @@ export const vendors = [
 	{
 		vendor: "Dawn's Signs & Designs",
 		image: '/vendorphotos/dawnssignsdesigns.jpg',
+		uid: 'twentypercent',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Designs by Becc',
 		image: '/vendorphotos/designsbybecc.jpg',
-		// uid: 'twentypercent',
-		// sale: 20,
-		// discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Eclair Lips',
@@ -199,6 +199,10 @@ export const vendors = [
 	{
 		vendor: 'Pop Culture Candles',
 		image: '/vendorphotos/popculturecandles.jpg',
+	},
+	{
+		vendor: 'Rags by Raisin and Mags',
+		image: '/vendorphotos/ragsraisinmags.jpeg',
 	},
 	{
 		vendor: "Raiz'd Crafting",
