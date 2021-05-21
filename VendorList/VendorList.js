@@ -70,10 +70,6 @@ export const vendors = [
 		image: '/vendorphotos/captirating.jpg',
 	},
 	{
-		vendor: "Carly's Creations",
-		image: '/vendorphotos/carlyscreations.jpg',
-	},
-	{
 		vendor: 'Charity Knits',
 		image: '/vendorphotos/charityknits.jpg',
 	},
@@ -222,6 +218,10 @@ export const vendors = [
 	},
 	{
 		vendor: 'Simply Sluggish',
+		image: '/vendorphotos/softhavenhome.jpg',
+	},
+	{
+		vendor: 'Soft Haven Home',
 		image: '/vendorphotos/simplysluggish.jpg',
 	},
 	{
