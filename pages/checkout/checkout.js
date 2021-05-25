@@ -6,9 +6,15 @@ import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import { vendors } from '../../VendorList/VendorList';
 import LoadingIcon from '../../components/Icons/LoadingIcon';
+import {
+	checkCartDiscounts,
+	checkForDiscounts,
+	checkItemDiscount,
+} from '../../components/utils';
 
 export default function Checkout({ cart, setCart, vendorSales }) {
 	const [isCheckout, setIsCheckout] = useState(false);
+	const [isDiscount, setIsDiscount] = useState(false);
 	const orderID = uuidv4();
 	const router = useRouter();
 	const deleteItem = (index) => {
@@ -20,66 +26,13 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 			router.push('/checkout/checkout');
 		}
 	};
-	console.log(vendorSales);
-
-	let isDiscount = false;
 
 	const [discountInformation, setDiscountInformation] = useState([]);
-	//checks vendors for discount information for API
-	const checkForDiscounts = () => {
-		const currentSales = [];
-		vendors.filter((sale) => {
-			if (sale.sale) {
-				let discounts = {
-					uid: sale.uid,
-					catalogObjectId: sale.discount,
-					scope: 'LINE_ITEM',
-				};
-				let doesExist = false;
-				if (currentSales.length) {
-					for (let i = 0; i < currentSales.length; i++) {
-						if (currentSales[i].catalogObjectId === discounts.catalogObjectId) {
-							doesExist = true;
-						}
-					}
-					if (!doesExist) {
-						currentSales.push(discounts);
-					}
-				} else {
-					currentSales.push(discounts);
-				}
-			} else {
-				return;
-			}
-		});
-		return currentSales;
-	};
 	useEffect(() => {
 		setDiscountInformation(checkForDiscounts());
+		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 	}, []);
 	let lineItems = [];
-
-	//Check Cart Items for Discounts
-	const checkCartDiscounts = () => {
-		cart.filter((item) => {
-			if (item.description) {
-				for (let i = 0; i < vendorSales.length; i++) {
-					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-					const lowerCaseItem = item.description.toLowerCase();
-					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						item.discountUid = vendorSales[i].uid;
-						item.sale = vendorSales[i].sale;
-						item.saleObject = vendorSales[i].discount;
-						isDiscount = true;
-					}
-				}
-			}
-		});
-	};
-	checkCartDiscounts();
-	console.log('cart :', cart);
-
-	console.log(discountInformation);
 
 	const handleCheckout = () => {
 		setIsCheckout(true);

@@ -7,13 +7,12 @@ import { vendors } from '../../VendorList/VendorList';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
+import { checkProductDiscounts } from '../../components/utils';
 
 export default function ShopCategories({
 	itemsWithPictures,
 	cart,
 	vendorSales,
-	currPage,
-	setCurrPage,
 }) {
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
@@ -30,20 +29,7 @@ export default function ShopCategories({
 		const [filterOpen, setFilterOpen] = useState(false);
 		const router = useRouter();
 
-		const checkDiscounts = () => {
-			currItems.filter((item) => {
-				if (item.itemData.description) {
-					for (let i = 0; i < vendorSales.length; i++) {
-						const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-						const lowerCaseItem = item.itemData.description.toLowerCase();
-						if (lowerCaseItem.includes(lowerCaseVendor)) {
-							item.sale = vendorSales[i].sale;
-						}
-					}
-				}
-			});
-		};
-		checkDiscounts();
+		checkProductDiscounts(currItems, vendorSales);
 
 		//This looks at the URL to see if the user's url has already been looking through product pages and updates the current items accordingly
 		useEffect(() => {

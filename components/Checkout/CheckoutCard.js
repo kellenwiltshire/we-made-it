@@ -14,12 +14,7 @@ function CheckoutCard({
 		deleteItem(index);
 	};
 
-	const fixedDiscount = discount / 100;
 	let newPrice;
-
-	if (discount) {
-		newPrice = price - price * fixedDiscount;
-	}
 
 	return (
 		<div className='m-2 flex flex-row flex-wrap border rounded border-black w-96 h-auto'>
@@ -37,7 +32,7 @@ function CheckoutCard({
 					</h2>
 					<div className='flex flex-wrap font-body'>
 						<p className='text-center md:text-left w-full text-xs md:text-base font-body'>
-							{discount ? 'Sale Price: $' + newPrice.toFixed(2) : '$' + price}
+							{discount ? 'Sale Price: $' + price : '$' + price}
 						</p>
 						<p className='text-center md:text-left w-full text-xs md:text-base font-body'>
 							quantity: {quantity}
