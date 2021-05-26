@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Headers from '../Layout/Headers';
-import { vendors } from '../../VendorList/VendorList';
 import Link from 'next/link';
 import DiscountIcon from '../Icons/DiscountIcon';
 
@@ -10,16 +9,13 @@ function VendorSale({ vendorSales }) {
 			<Headers title='Current Vendor Sales' subtitle='Prices as Marked' />
 			<div className='pb-2 sm:w-1/2 w-full flex flex-row justify-center flex-wrap'>
 				{vendorSales.map((vendor, i) => {
-					const shortenedVendor = vendor.vendor.split(' ').join('');
+					const fixedVendor = vendor.vendor.replace(/\s+/g, '%20');
 					return (
 						<Link
 							key={i}
 							href={{
-								pathname: `/search/[...searchitems]`,
-								query: {
-									searchitems: shortenedVendor,
-									search: vendor.vendor,
-								},
+								pathname: '/vendorsearch/[vendorsearch]',
+								query: { vendorsearch: fixedVendor },
 							}}
 						>
 							<a>

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
+import { checkItemDiscount } from '../../components/utils';
 
 export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
@@ -31,19 +32,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		const description = data.itemDescription;
 		const [isSale, setIsSale] = useState(false);
 		const router = useRouter();
-
-		const checkCartDiscounts = () => {
-			if (data.itemDescription) {
-				for (let i = 0; i < vendorSales.length; i++) {
-					const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-					const lowerCaseItem = data.itemDescription.toLowerCase();
-					if (lowerCaseItem.includes(lowerCaseVendor)) {
-						data.sale = vendorSales[i].sale;
-						setIsSale(true);
-					}
-				}
-			}
-		};
+		const [buttonStatus, setButtonStatus] = useState(true);
 
 		const [inventory, setInventory] = useState(null);
 
@@ -56,21 +45,22 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			) {
 				let newPrice = 'VARAIBLE PRICING - Contact Store for Details';
 				setIsVariablePricing(true);
+				setButtonStatus(false);
 				return newPrice;
 			} else {
 				let newPrice;
-				if (data.sale) {
+				if (isSale) {
 					let currPrice =
 						data.itemVarData[0].itemVariationData.priceMoney.amount / 100;
 					newPrice = currPrice - currPrice * (data.sale / 100);
 					newPrice = newPrice.toFixed(2);
+					return newPrice;
 				} else {
 					newPrice = (
 						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
 					).toFixed(2);
+					return newPrice;
 				}
-
-				return newPrice;
 			}
 		};
 
@@ -84,16 +74,25 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
+			if (inventory <= 0) {
+				setButtonStatus(false);
+			}
 		}, [itemID]);
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
+			if (inventory <= 0) {
+				setButtonStatus(false);
+			}
 		}, []);
 
 		useEffect(() => {
-			checkCartDiscounts();
 			setPrice(setInitialPrice());
 		});
+
+		useEffect(() => {
+			checkItemDiscount(data, vendorSales, setIsSale);
+		}, []);
 
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
@@ -116,6 +115,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 				}),
 			});
 			const data = await response.json();
+
 			return data.counts[0].quantity;
 		};
 
@@ -225,13 +225,17 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 										${price}
 									</span>
 								)}
-								{isVariablePricing ? null : (
+								{buttonStatus ? (
 									<button
 										type='submit'
 										className='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6 focus:outline-none hover:bg-dark-purple rounded'
 									>
 										{cartStatus}
 									</button>
+								) : (
+									<div className='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6  rounded'>
+										Sold Out
+									</div>
 								)}
 							</div>
 						</form>

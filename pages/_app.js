@@ -2,23 +2,11 @@ import { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import * as gtag from '../lib/gtag';
 import { useRouter } from 'next/router';
-import { vendors } from '../VendorList/VendorList';
+import { checkForVendorSales } from '../components/utils';
 
 function MyApp({ Component, pageProps }) {
 	const [cart, setCart] = useState([]);
 	const [vendorSales, setVendorSales] = useState([]);
-
-	const checkForVendorSales = () => {
-		const vendorList = vendors;
-		const currentSales = vendorList.filter((sale) => {
-			if (sale.sale) {
-				return sale;
-			} else {
-				return;
-			}
-		});
-		return currentSales;
-	};
 
 	useEffect(() => {
 		setVendorSales(checkForVendorSales());

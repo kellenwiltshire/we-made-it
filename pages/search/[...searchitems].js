@@ -3,6 +3,7 @@ import Headers from '../../components/Layout/Headers';
 import Layout from '../../components/Layout/Layout';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
+import { checkProductDiscounts } from '../../components/utils';
 const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
@@ -10,21 +11,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
-
-			const checkCartDiscounts = () => {
-				results.filter((item) => {
-					if (item.itemData.description) {
-						for (let i = 0; i < vendorSales.length; i++) {
-							const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
-							const lowerCaseItem = item.itemData.description.toLowerCase();
-							if (lowerCaseItem.includes(lowerCaseVendor)) {
-								item.sale = vendorSales[i].sale;
-							}
-						}
-					}
-				});
-			};
-			checkCartDiscounts();
+			checkProductDiscounts(results, vendorSales);
 			return (
 				<Layout cart={cart} title='We Made It'>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
