@@ -34,7 +34,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		const router = useRouter();
 		const [buttonStatus, setButtonStatus] = useState(true);
 
-		const [inventory, setInventory] = useState(null);
+		const [inventory, setInventory] = useState(1);
 
 		let quantity = 1;
 		let selectedItem;
@@ -74,14 +74,14 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			if (inventory <= 0) {
+			if (inventory < 1) {
 				setButtonStatus(false);
 			}
 		}, [itemID]);
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			if (inventory <= 0) {
+			if (inventory < 1) {
 				setButtonStatus(false);
 			}
 		}, []);
@@ -115,7 +115,9 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 				}),
 			});
 			const data = await response.json();
-
+			if (data.counts[0].quantity < 1) {
+				setButtonStatus(false);
+			}
 			return data.counts[0].quantity;
 		};
 
