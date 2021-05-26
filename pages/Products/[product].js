@@ -32,6 +32,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		const description = data.itemDescription;
 		const [isSale, setIsSale] = useState(false);
 		const router = useRouter();
+		const [buttonStatus, setButtonStatus] = useState(true);
 
 		const [inventory, setInventory] = useState(null);
 
@@ -44,6 +45,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			) {
 				let newPrice = 'VARAIBLE PRICING - Contact Store for Details';
 				setIsVariablePricing(true);
+				setButtonStatus(false);
 				return newPrice;
 			} else {
 				let newPrice;
@@ -72,10 +74,16 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
+			if (inventory <= 0) {
+				setButtonStatus(false);
+			}
 		}, [itemID]);
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
+			if (inventory <= 0) {
+				setButtonStatus(false);
+			}
 		}, []);
 
 		useEffect(() => {
@@ -107,6 +115,7 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 				}),
 			});
 			const data = await response.json();
+
 			return data.counts[0].quantity;
 		};
 
@@ -216,13 +225,17 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 										${price}
 									</span>
 								)}
-								{isVariablePricing ? null : (
+								{buttonStatus ? (
 									<button
 										type='submit'
 										className='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6 focus:outline-none hover:bg-dark-purple rounded'
 									>
 										{cartStatus}
 									</button>
+								) : (
+									<div className='flex ml-auto text-black bg-purple-200 border-0 py-2 px-6  rounded'>
+										Sold Out
+									</div>
 								)}
 							</div>
 						</form>
