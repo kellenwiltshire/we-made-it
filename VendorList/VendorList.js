@@ -49,10 +49,6 @@ export const vendors = [
 		image: '/vendorphotos/blissfulbubbles.jpg',
 	},
 	{
-		vendor: 'Blush',
-		image: '/vendorphotos/blush.jpeg',
-	},
-	{
 		vendor: 'Buck Naked Soap Company',
 		image: '/vendorphotos/bucknakedsoapcompany.jpg',
 	},
