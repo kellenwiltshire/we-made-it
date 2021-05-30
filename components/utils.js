@@ -17,7 +17,10 @@ export const checkProductDiscounts = (results, vendorSales) => {
 			for (let i = 0; i < vendorSales.length; i++) {
 				const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 				const lowerCaseItem = item.itemData.description.toLowerCase();
-				if (lowerCaseItem.includes(lowerCaseVendor)) {
+				if (
+					lowerCaseItem.includes(lowerCaseVendor) &&
+					lowerCaseItem.includes('*sale*')
+				) {
 					item.sale = vendorSales[i].sale;
 				}
 			}
@@ -30,7 +33,10 @@ export const checkItemDiscount = (data, vendorSales, setIsSale) => {
 		for (let i = 0; i < vendorSales.length; i++) {
 			const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 			const lowerCaseItem = data.itemDescription.toLowerCase();
-			if (lowerCaseItem.includes(lowerCaseVendor)) {
+			if (
+				lowerCaseItem.includes(lowerCaseVendor) &&
+				lowerCaseItem.includes('*sale*')
+			) {
 				data.sale = vendorSales[i].sale;
 				setIsSale(true);
 			}
@@ -73,7 +79,10 @@ export const checkCartDiscounts = (cart, vendorSales, setIsDiscount) => {
 			for (let i = 0; i < vendorSales.length; i++) {
 				const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
 				const lowerCaseItem = item.description.toLowerCase();
-				if (lowerCaseItem.includes(lowerCaseVendor)) {
+				if (
+					lowerCaseItem.includes(lowerCaseVendor) &&
+					lowerCaseItem.includes('*sale*')
+				) {
 					item.discountUid = vendorSales[i].uid;
 					item.sale = vendorSales[i].sale;
 					item.saleObject = vendorSales[i].discount;

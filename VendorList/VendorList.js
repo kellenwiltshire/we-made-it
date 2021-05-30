@@ -38,7 +38,6 @@ export const vendors = [
 	},
 	{
 		vendor: 'Be You Boutique',
-		owner: 'Amanda MacAlpine',
 		image: '/vendorphotos/beyouboutique.jpg',
 	},
 	{
@@ -48,10 +47,6 @@ export const vendors = [
 	{
 		vendor: 'Blissful Bubbles Bath and Body',
 		image: '/vendorphotos/blissfulbubbles.jpg',
-	},
-	{
-		vendor: 'Blush',
-		image: '/vendorphotos/blush.jpeg',
 	},
 	{
 		vendor: 'Buck Naked Soap Company',
@@ -74,19 +69,19 @@ export const vendors = [
 		image: '/vendorphotos/charityknits.jpg',
 	},
 	{
+		vendor: 'Charming Art Studio',
+		image: '/vendorphotos/charmingartstudio.png',
+	},
+	{
 		vendor: 'Contagious Designs',
 		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
 	{
 		vendor: 'Dance With Me',
 		image: '',
-	},
-	{
-		vendor: "Dawn's Signs & Designs",
-		image: '/vendorphotos/dawnssignsdesigns.jpg',
-		uid: 'twentypercent',
-		sale: 20,
-		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
+		// uid: 'twentypercent',
+		// sale: 20,
+		// discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Designs by Becc',
@@ -102,7 +97,7 @@ export const vendors = [
 	},
 	{
 		vendor: 'Endless Crochet Creations',
-		image: '',
+		image: '/vendorphotos/endlesscrochetcreations.jpg',
 	},
 	{
 		vendor: 'Gram an Am Beauty',
@@ -159,6 +154,10 @@ export const vendors = [
 	{
 		vendor: "Momsie's Malas",
 		image: '/vendorphotos/momsiesmalas.jpg',
+	},
+	{
+		vendor: 'Naturally Posh Baby',
+		image: '/vendorphotos/naturallyposhbaby.jpg',
 	},
 	{
 		vendor: 'North Hound Life',
@@ -285,15 +284,15 @@ export const vendors = [
 		image: '/vendorphotos/upliftingnaturals.jpg',
 	},
 	{
+		vendor: 'Victoria Rose',
+		image: '/vendorphotos/victoriarose.jpg',
+	},
+	{
 		vendor: 'VS Knit',
 		image: '/vendorphotos/vsknits.jpg',
 	},
 	{
 		vendor: 'Wild & Free Bowmanville',
 		image: '/vendorphotos/wildfreebowmanville.jpg',
-	},
-	{
-		vendor: 'Wray of Sunshine',
-		image: '',
 	},
 ];
