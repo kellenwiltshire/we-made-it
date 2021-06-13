@@ -286,6 +286,9 @@ export const vendors = [
 	{
 		vendor: 'Victoria Rose',
 		image: '/vendorphotos/victoriarose.jpg',
+		uid: 'fortypercent',
+		sale: 40,
+		discount: 'FWNUIDTSAVULZOKZTLMB5B65',
 	},
 	{
 		vendor: 'VS Knit',
