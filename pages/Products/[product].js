@@ -74,16 +74,16 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			if (inventory < 1) {
-				setButtonStatus(false);
-			}
+			// if (inventory < 1) {
+			// 	setButtonStatus(false);
+			// }
 		}, [itemID]);
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			if (inventory < 1) {
-				setButtonStatus(false);
-			}
+			// if (inventory < 1) {
+			// 	setButtonStatus(false);
+			// }
 		}, []);
 
 		useEffect(() => {
@@ -117,6 +117,8 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 			const data = await response.json();
 			if (data.counts[0].quantity < 1) {
 				setButtonStatus(false);
+			} else {
+				setButtonStatus(true);
 			}
 			return data.counts[0].quantity;
 		};
