@@ -1,14 +1,18 @@
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import VendorList from '../../components/Vendor/VendorList';
 import React from 'react';
 import { vendors } from '../../VendorList/VendorList';
 
-export default function Vendors({ cart }) {
+export default function Vendors({ setNavStyle }) {
+	setNavStyle('vendors');
 	return (
-		<Layout cart={cart} title='Our Vendors || We Made It'>
+		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+			<Head>
+				<title>We Made It || Vendors</title>
+			</Head>
 			<Headers title='Our Vendors' />
 			<VendorList vendors={vendors} />
-		</Layout>
+		</div>
 	);
 }

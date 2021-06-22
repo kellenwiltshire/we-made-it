@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +12,8 @@ import {
 	checkItemDiscount,
 } from '../../components/utils';
 
-export default function Checkout({ cart, setCart, vendorSales }) {
+export default function Checkout({ setNavStyle, cart, setCart, vendorSales }) {
+	setNavStyle('checkout');
 	const [isCheckout, setIsCheckout] = useState(false);
 	const [isDiscount, setIsDiscount] = useState(false);
 	const orderID = uuidv4();
@@ -70,7 +71,10 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 
 	if (cart) {
 		return (
-			<Layout cart={cart} title='Checkout || We Made It'>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>Checkout || We Made It</title>
+				</Head>
 				<Headers title='Checkout' />
 				<div className='container flex h-full'>
 					<div className='h-auto w-full'>
@@ -113,17 +117,20 @@ export default function Checkout({ cart, setCart, vendorSales }) {
 						</div>
 					</div>
 				</div>
-			</Layout>
+			</div>
 		);
 	} else {
 		return (
-			<Layout cart={cart} title={`We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>Checkout || We Made It</title>
+				</Head>
 				<Headers title='OOPS! Something Went Wrong!' />
 				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>
-			</Layout>
+			</div>
 		);
 	}
 }

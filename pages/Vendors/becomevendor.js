@@ -1,11 +1,14 @@
 import React from 'react';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 
-function becomevendor({ cart, vendorSales }) {
-	console.log(vendorSales);
+function becomevendor({ setNavStyle }) {
+	setNavStyle('vendors');
 	return (
-		<Layout cart={cart} title='Become A Vendor || We Made It'>
+		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+			<Head>
+				<title>Become A Vendor || We Made It</title>
+			</Head>
 			<div className='flex flex-row flex-wrap justify-center'>
 				{/* <h1 className='text-center text-xl mt-5 font-body'>
 					We are not currently accepting new Vendor's at this time. Any
@@ -13,7 +16,7 @@ function becomevendor({ cart, vendorSales }) {
 				</h1> */}
 				<BecomeVendor />
 			</div>
-		</Layout>
+		</div>
 	);
 }
 

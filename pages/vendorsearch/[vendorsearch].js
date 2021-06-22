@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
@@ -9,18 +9,24 @@ const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
 export default function VendorSearchItems({
+	setNavStyle,
 	cart,
 	searchresults,
 	vendorSales,
+	search,
 }) {
+	setNavStyle('vendorsearch');
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
 			checkProductDiscounts(results, vendorSales);
 			return (
-				<Layout cart={cart} title='We Made It'>
+				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+					<Head>
+						<title>{search} || We Made It</title>
+					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title='Search Results' />
+						<Headers title={search} />
 						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
@@ -80,11 +86,14 @@ export default function VendorSearchItems({
 							})}
 						</div>
 					</div>
-				</Layout>
+				</div>
 			);
 		} else {
 			return (
-				<Layout cart={cart} title={`We Made It`}>
+				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+					<Head>
+						<title>We Made It</title>
+					</Head>
 					<Headers title='OOPS! Nothing Was Found!' />
 					<div className='flex flex-col text-center font-body'>
 						<p>
@@ -92,12 +101,15 @@ export default function VendorSearchItems({
 							searching for something else!
 						</p>
 					</div>
-				</Layout>
+				</div>
 			);
 		}
 	} else {
 		return (
-			<Layout cart={cart} title={`We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>We Made It</title>
+				</Head>
 				<Headers title='OOPS! Nothing Was Found!' />
 				<div className='flex flex-col text-center font-body'>
 					<p>
@@ -105,7 +117,7 @@ export default function VendorSearchItems({
 						searching for something else!
 					</p>
 				</div>
-			</Layout>
+			</div>
 		);
 	}
 }
@@ -172,7 +184,7 @@ export async function getStaticProps({ params }) {
 	const searchresults = await newImageRequest(filteredItems);
 
 	return {
-		props: { searchresults },
+		props: { searchresults, search },
 		revalidate: 60,
 	};
 }

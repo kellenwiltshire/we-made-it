@@ -3,10 +3,12 @@ import '../styles/globals.css';
 import * as gtag from '../lib/gtag';
 import { useRouter } from 'next/router';
 import { checkForVendorSales } from '../components/utils';
+import Layout from '../components/Layout/Layout';
 
 function MyApp({ Component, pageProps }) {
 	const [cart, setCart] = useState([]);
 	const [vendorSales, setVendorSales] = useState([]);
+	const [navStyle, setNavStyle] = useState('home');
 
 	useEffect(() => {
 		setVendorSales(checkForVendorSales());
@@ -24,12 +26,15 @@ function MyApp({ Component, pageProps }) {
 	}, [router.events]);
 
 	return (
-		<Component
-			{...pageProps}
-			cart={cart}
-			setCart={setCart}
-			vendorSales={vendorSales}
-		/>
+		<Layout cart={cart} navStyle={navStyle}>
+			<Component
+				{...pageProps}
+				cart={cart}
+				setCart={setCart}
+				vendorSales={vendorSales}
+				setNavStyle={setNavStyle}
+			/>
+		</Layout>
 	);
 }
 

@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import { checkProductDiscounts } from '../../components/utils';
 const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 
-export default function SearchItems({ cart, searchresults, vendorSales }) {
+export default function SearchItems({
+	setNavStyle,
+	cart,
+	searchresults,
+	vendorSales,
+}) {
+	setNavStyle('search');
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
 			checkProductDiscounts(results, vendorSales);
 			return (
-				<Layout cart={cart} title='We Made It'>
+				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+					<Head>
+						<title>Search || We Made It</title>
+					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
 						<Headers title='Search Results' />
 						<CategorySelect />
@@ -75,11 +84,14 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 							})}
 						</div>
 					</div>
-				</Layout>
+				</div>
 			);
 		} else {
 			return (
-				<Layout cart={cart} title={`We Made It`}>
+				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+					<Head>
+						<title>Search || We Made It</title>
+					</Head>
 					<Headers title='OOPS! Nothing Was Found!' />
 					<div className='flex flex-col text-center font-body'>
 						<p>
@@ -87,12 +99,15 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 							searching for something else!
 						</p>
 					</div>
-				</Layout>
+				</div>
 			);
 		}
 	} else {
 		return (
-			<Layout cart={cart} title={`We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>Search || We Made It</title>
+				</Head>
 				<Headers title='OOPS! Nothing Was Found!' />
 				<div className='flex flex-col text-center font-body'>
 					<p>
@@ -100,7 +115,7 @@ export default function SearchItems({ cart, searchresults, vendorSales }) {
 						searching for something else!
 					</p>
 				</div>
-			</Layout>
+			</div>
 		);
 	}
 }

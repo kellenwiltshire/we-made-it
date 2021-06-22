@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
@@ -7,8 +7,15 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkItemDiscount } from '../../components/utils';
 
-export default function ShopProduct({ data, setCart, cart, vendorSales }) {
+export default function ShopProduct({
+	setNavStyle,
+	data,
+	setCart,
+	cart,
+	vendorSales,
+}) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
+	setNavStyle('products');
 	if (data) {
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
@@ -74,16 +81,10 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			// if (inventory < 1) {
-			// 	setButtonStatus(false);
-			// }
 		}, [itemID]);
 
 		useEffect(async () => {
 			setInventory(await inventoryUpdate());
-			// if (inventory < 1) {
-			// 	setButtonStatus(false);
-			// }
 		}, []);
 
 		useEffect(() => {
@@ -144,7 +145,10 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 		};
 
 		return (
-			<Layout cart={cart} title={`${itemName} || We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>{itemName} || We Made It</title>
+				</Head>
 				<div className='container px-5 mx-auto'>
 					<div className='mb-10'>
 						<button
@@ -245,17 +249,20 @@ export default function ShopProduct({ data, setCart, cart, vendorSales }) {
 						</form>
 					</div>
 				</div>
-			</Layout>
+			</div>
 		);
 	} else {
 		return (
-			<Layout cart={cart} title={`We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>We Made It</title>
+				</Head>
 				<Headers title='OOPS! Something Went Wrong!' />
 				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>
-			</Layout>
+			</div>
 		);
 	}
 }

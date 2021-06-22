@@ -4,12 +4,12 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import HomeNav from './HomeNav';
 import Messenger from './Messenger';
+import MessengerMessageUs from 'react-messenger-message-us';
 
 function Layout({ title, children, cart, navStyle }) {
 	return (
 		<div>
 			<Head>
-				<title>{title}</title>
 				<link rel='icon' href='/favicon.ico' />
 				<meta description='We-Made-It We Made It Newcastle Ontario Homemade Handmade Decor Boutique Local Clarington Canada Bowmanville Durham Oshawa' />
 				<meta name='We Made It Local Handmade Boutique' />
@@ -30,7 +30,12 @@ function Layout({ title, children, cart, navStyle }) {
 			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				{children}
 			</main>
-			<Messenger />
+			<div className='sticky bottom-5 flex justify-end w-full pr-2'>
+				<MessengerMessageUs
+					pageId={process.env.MESSENGER_PAGE_ID}
+					appId={process.env.MESSENGER_APP_ID}
+				/>
+			</div>
 			<Footer />
 		</div>
 	);

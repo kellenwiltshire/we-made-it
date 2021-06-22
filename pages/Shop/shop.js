@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
@@ -11,9 +11,10 @@ import { checkProductDiscounts } from '../../components/utils';
 
 export default function ShopCategories({
 	itemsWithPictures,
-	cart,
 	vendorSales,
+	setNavStyle,
 }) {
+	setNavStyle('shop');
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
@@ -187,7 +188,10 @@ export default function ShopCategories({
 		};
 
 		return (
-			<Layout cart={cart} title={`Shop || We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>Shop || We Made It</title>
+				</Head>
 				<div className='flex flex-row flex-wrap justify-center h-full'>
 					<Headers title='Shop' />
 					<div className='w-full flex flex-row flex-wrap justify-center'>
@@ -348,17 +352,20 @@ export default function ShopCategories({
 						</div>
 					</div>
 				</div>
-			</Layout>
+			</div>
 		);
 	} else {
 		return (
-			<Layout cart={cart} title={`Shop || We Made It`}>
+			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+				<Head>
+					<title>Shop || We Made It</title>
+				</Head>
 				<Headers title='OOPS! Something Went Wrong!' />
 				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
 					Square. Please try again later!
 				</p>
-			</Layout>
+			</div>
 		);
 	}
 }

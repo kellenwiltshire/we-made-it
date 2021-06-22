@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Layout from '../../components/Layout/Layout';
+import Head from 'next/head';
 import Location from '../../components/About/Location';
 
-export default function ShopCategories({ cart, setCart }) {
+export default function ShopCategories({ setNavStyle, cart, setCart }) {
+	setNavStyle('checkout');
 	const resetCart = () => {
 		setCart([]);
 	};
@@ -13,7 +14,10 @@ export default function ShopCategories({ cart, setCart }) {
 	}, []);
 
 	return (
-		<Layout cart={cart} title='Checkout Completed || We Made It'>
+		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+			<Head>
+				<title>Checkout Completed || We Made It</title>
+			</Head>
 			<div className='w-full h-full'>
 				<Headers title='Checkout Completed!' />
 				<div className='w-full flex flex-col justify-center'>
@@ -28,8 +32,7 @@ export default function ShopCategories({ cart, setCart }) {
 								at the address below.
 							</p>
 							<p>
-								If this is a rush order, please email us at
-								info@we-made-it.ca
+								If this is a rush order, please email us at info@we-made-it.ca
 							</p>
 
 							<span className='inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6'></span>
@@ -44,6 +47,6 @@ export default function ShopCategories({ cart, setCart }) {
 					</div>
 				</div>
 			</div>
-		</Layout>
+		</div>
 	);
 }

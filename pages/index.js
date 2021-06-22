@@ -1,15 +1,19 @@
 import AboutStore from '../components/About/AboutStore';
 import Location from '../components/About/Location';
 import Headers from '../components/Layout/Headers';
-import Layout from '../components/Layout/Layout';
+import Head from 'next/head';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import VendorSale from '../components/About/VendorSale';
 
-export default function Home({ cart, vendorSales }) {
+export default function Home({ setNavStyle, vendorSales }) {
+	setNavStyle('home');
 	return (
-		<Layout cart={cart} title='We Made It || Home' navStyle={'home'}>
+		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+			<Head>
+				<title>We Made It || Home</title>
+			</Head>
 			<Link
 				href={{
 					pathname: `/Shop/shop`,
@@ -29,6 +33,6 @@ export default function Home({ cart, vendorSales }) {
 
 			<VendorSale vendorSales={vendorSales} />
 			<Location />
-		</Layout>
+		</div>
 	);
 }
