@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import HomeNav from './HomeNav';
+import Messenger from './Messenger';
 
 function Layout({ title, children, cart, navStyle }) {
 	return (
@@ -29,6 +30,7 @@ function Layout({ title, children, cart, navStyle }) {
 			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				{children}
 			</main>
+			<Messenger />
 			<Footer />
 		</div>
 	);

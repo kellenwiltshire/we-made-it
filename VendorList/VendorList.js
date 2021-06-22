@@ -31,6 +31,9 @@ export const vendors = [
 	{
 		vendor: 'Artsy Fartsy',
 		image: '/vendorphotos/artsyfartsy.png',
+		uid: 'twentypercent',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Banndy',
