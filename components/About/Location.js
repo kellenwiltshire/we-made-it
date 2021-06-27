@@ -8,10 +8,6 @@ function Location() {
 					<h3 className='text-2xl leading-6 font-medium text-dark-purple text-center font-title'>
 						Store Information
 					</h3>
-					<h3 className='text leading-6 mt-2 text-center font-title'>
-						*Please Note the Store is CLOSED due to COVID19 Restrictions. The
-						times listed below are for curbside pickup.*
-					</h3>
 				</div>
 				<div className='border-t border-purple-200'>
 					<dl>
@@ -30,14 +26,13 @@ function Location() {
 								Hours
 							</div>
 							<ul className='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 font-body'>
-								<li>*COVID Lockdown Hours*</li>
 								<li>Monday Closed</li>
 								<li>Tuesday 10:00 a.m. - 4:00 p.m.</li>
 								<li>Wednesday 10:00 a.m. - 4:00 p.m.</li>
-								<li>Thursday 10:00 a.m. - 4:00 p.m.</li>
+								<li>Thursday 10:00 a.m. - 6:00 p.m.</li>
 								<li>Friday 10:00 a.m. - 5:00 p.m.</li>
 								<li>Saturday 10:00 a.m. - 4:00 p.m.</li>
-								<li>Sunday Closed</li>
+								<li>Sunday 11:00 a.m. - 3:00 p.m.</li>
 							</ul>
 						</div>
 						<div className='bg-purple-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
@@ -46,7 +41,7 @@ function Location() {
 							</div>
 							<div className='mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 font-body'>
 								<div>
-									<a href='tel: 1 905 987 7266'>1 (905) 987 7266</a>
+									<a href='tel: 1 905 987 7266'>1 (289) 356-4833</a>
 								</div>
 								<div>
 									<a href='mailto: info@we-made-it.ca'>info@we-made-it.ca</a>
