@@ -21,6 +21,7 @@ function NewSearch() {
 			pathname: '/search/[...searchitems]',
 			query: { searchitems: Shortenedinput, search: input },
 		});
+		setIsSearching(false);
 	};
 	return (
 		<div className='flex w-auto font-body mb-2'>

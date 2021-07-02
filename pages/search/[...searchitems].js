@@ -135,11 +135,22 @@ export async function getServerSideProps({ query }) {
 
 		let newItemsWithPictures = [];
 
-		for (let i = 0; i < items.length; i++) {
-			const response = await catalog.retrieveCatalogObject(items[i].imageId);
-			items[i].imageLink = response.result.object.imageData.url;
-			newItemsWithPictures.push(items[i]);
+		if (items.length > 50) {
+			const upperLimit = items.length - 50;
+			const offset = Math.floor(Math.random() * upperLimit);
+			for (let i = offset; i < offset + 50; i++) {
+				const response = await catalog.retrieveCatalogObject(items[i].imageId);
+				items[i].imageLink = response.result.object.imageData.url;
+				newItemsWithPictures.push(items[i]);
+			}
+		} else {
+			for (let i = 0; i < items.length; i++) {
+				const response = await catalog.retrieveCatalogObject(items[i].imageId);
+				items[i].imageLink = response.result.object.imageData.url;
+				newItemsWithPictures.push(items[i]);
+			}
 		}
+
 		return newItemsWithPictures;
 	};
 	try {
@@ -147,12 +158,19 @@ export async function getServerSideProps({ query }) {
 			textFilter: search,
 		});
 
-		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
+		if (response.result.items) {
+			const data = JSONBig.parse(JSONBig.stringify(response.result.items));
 
-		for (let i = 0; i < data.length; i++) {
-			if (data[i].imageId) {
-				filteredItems.push(data[i]);
+			for (let i = 0; i < data.length; i++) {
+				if (data[i].imageId) {
+					filteredItems.push(data[i]);
+				}
 			}
+		} else {
+			console.log('Search Error: ', response);
+			return {
+				props: {},
+			};
 		}
 	} catch (error) {
 		console.log('Search Error: ', error);
