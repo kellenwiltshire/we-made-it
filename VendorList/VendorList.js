@@ -42,9 +42,6 @@ export const vendors = [
 	{
 		vendor: 'Be You Boutique',
 		image: '/vendorphotos/beyouboutique.jpg',
-		// uid: 'twentypercent',
-		// sale: 20,
-		// discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'Blessings by Creative Kelli',
@@ -257,6 +254,9 @@ export const vendors = [
 	{
 		vendor: 'The Knotty Island',
 		image: '/vendorphotos/theknottyisland.jpg',
+		uid: 'twentypercent',
+		sale: 20,
+		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'The Quilting Queen',
