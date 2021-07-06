@@ -4,6 +4,10 @@ export const vendors = [
 		image: '/vendorphotos/4peas.jpg',
 	},
 	{
+		vendor: 'Apt. 6 Skin Co',
+		image: '/vendorphotos/apt6skinco.jpg',
+	},
+	{
 		vendor: 'Abeego',
 		image: '/vendorphotos/abeego.jpg',
 	},
@@ -36,6 +40,10 @@ export const vendors = [
 		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
+		vendor: 'Attitude',
+		image: '/vendorphotos/attitude.jpg',
+	},
+	{
 		vendor: 'Banndy',
 		image: '/vendorphotos/banndy.jpg',
 	},
@@ -52,6 +60,10 @@ export const vendors = [
 		image: '/vendorphotos/blissfulbubbles.jpg',
 	},
 	{
+		vendor: 'Bold Faced',
+		image: 'boldfaced.jpg',
+	},
+	{
 		vendor: 'Buck Naked Soap Company',
 		image: '/vendorphotos/bucknakedsoapcompany.jpg',
 	},
@@ -61,7 +73,7 @@ export const vendors = [
 	},
 	{
 		vendor: 'Cafe Candle Co.',
-		image: '/vendorphotos/cafecandle.jpg',
+		image: '/vendorphotos/cafecandleco.jpg',
 	},
 	{
 		vendor: 'Captivating Bath + Body',
@@ -80,19 +92,11 @@ export const vendors = [
 		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
 	{
-		vendor: 'Dance With Me',
-		image: '',
-	},
-	{
-		vendor: 'Designs by Becc',
-		image: '/vendorphotos/designsbybecc.jpg',
-	},
-	{
 		vendor: 'Eclair Lips',
 		image: '/vendorphotos/exlairlips.jpg',
 	},
 	{
-		vendor: "Eli's Stitchery",
+		vendor: "El's Stitchery",
 		image: '/vendorphotos/elsstichery.jpg',
 	},
 	{
@@ -104,8 +108,16 @@ export const vendors = [
 		image: '/vendorphotos/gramambeauty.jpg',
 	},
 	{
+		vendor: 'Great Canadian Meat',
+		image: '/vendorphotos/greatcanadianmeat.jpg',
+	},
+	{
 		vendor: "Hurry Home Art's and Crafts",
 		image: '/vendorphotos/hurryhome.jpg',
+	},
+	{
+		vendor: 'iWood',
+		image: 'iwood.jpg',
 	},
 	{
 		vendor: 'Idlewood Crafts',
@@ -120,12 +132,24 @@ export const vendors = [
 		image: '/vendorphotos/jimsgaragecreations.jpg',
 	},
 	{
+		vendor: "Jenny Marie's Cracker Company",
+		image: '/vendorphotos/jennymariescrackercompany.jpg',
+	},
+	{
+		vendor: 'Kennedy Floral Farm',
+		image: '/vendorphotos/kennedyfloralfarm.jpg',
+	},
+	{
 		vendor: 'KIFF',
 		image: '/vendorphotos/kiff.jpg',
 	},
 	{
 		vendor: 'L & L Co',
 		image: '/vendorphotos/llco.jpg',
+	},
+	{
+		vendor: 'La Dee Da Gourmet Sauces',
+		image: '/vendorphotos/ladeedagorumetsauces.jpg',
 	},
 	{
 		vendor: 'Lakebreeze Pottery',
@@ -136,11 +160,11 @@ export const vendors = [
 		image: '/vendorphotos/leighvanna.jpg',
 	},
 	{
-		vendor: "Lo'Carfi",
-		image: '',
+		vendor: 'Level Up',
+		image: '/vendorphotos/levelup.jpg',
 	},
 	{
-		vendor: 'Local Enniskillen Valley Beeswax',
+		vendor: "Lo'Carfi",
 		image: '',
 	},
 	{
@@ -158,6 +182,10 @@ export const vendors = [
 	{
 		vendor: 'Naturally Posh Baby',
 		image: '/vendorphotos/naturallyposhbaby.jpg',
+	},
+	{
+		vendor: 'Naughty Florals',
+		image: '/vendorphotos/naughtyflorals.jpg',
 	},
 	{
 		vendor: 'North Hound Life',
@@ -182,6 +210,10 @@ export const vendors = [
 	{
 		vendor: 'One Of A Kind Gifts by Joanna',
 		image: '',
+	},
+	{
+		vendor: 'Party Mountain Paper Co.',
+		image: '/vendorphotos/partymountainpaperco.jpg',
 	},
 	{
 		vendor: 'Penny Paper Co.',
@@ -216,12 +248,20 @@ export const vendors = [
 		image: '/vendorphotos/shellbepainting.jpg',
 	},
 	{
+		vendor: "She's Sew Creative",
+		image: '/vendorphotos/shessewcreative.jpg',
+	},
+	{
 		vendor: 'Simply Sluggish',
-		image: '/vendorphotos/softhavenhome.jpg',
+		image: '/vendorphotos/simplysluggish.jpg',
+	},
+	{
+		vendor: 'So',
+		image: '/vendorphotos/So.jpg',
 	},
 	{
 		vendor: 'Soft Haven Home',
-		image: '/vendorphotos/simplysluggish.jpg',
+		image: '/vendorphotos/softhavenhome.jpg',
 	},
 	{
 		vendor: 'Stick Stuff Studio',
@@ -232,12 +272,20 @@ export const vendors = [
 		image: '/vendorphotos/strawhutco.jpg',
 	},
 	{
+		vendor: 'Sugar Crush Co.',
+		image: '/vendorphotos/sugarcrushco.jpg',
+	},
+	{
 		vendor: 'Sweetsmith Candy Co',
 		image: '/vendorphotos/sweetsmithcandoco.jpg',
 	},
 	{
 		vendor: "Terri's Krafty Korner",
 		image: '/vendorphotos/terriskraftykorner.jpg',
+	},
+	{
+		vendor: 'The Brothery',
+		image: '/vendorphotos/thebrothery.jpg',
 	},
 	{
 		vendor: 'The Canuck Co',
