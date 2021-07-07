@@ -61,7 +61,7 @@ export const vendors = [
 	},
 	{
 		vendor: 'Bold Faced',
-		image: 'boldfaced.jpg',
+		image: '/vendorphotos/boldfaced.jpg',
 	},
 	{
 		vendor: 'Buck Naked Soap Company',
@@ -117,7 +117,7 @@ export const vendors = [
 	},
 	{
 		vendor: 'iWood',
-		image: 'iwood.jpg',
+		image: '/vendorphotos/iwood.jpg',
 	},
 	{
 		vendor: 'Idlewood Crafts',
