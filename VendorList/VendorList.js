@@ -12,6 +12,10 @@ export const vendors = [
 		image: '/vendorphotos/abeego.jpg',
 	},
 	{
+		vendor: 'Ahimsa Eco Solutions',
+		image: '/vendorphotos/ahimsaecosolutions.jpg',
+	},
+	{
 		vendor: `Amanda's Market Stand`,
 		image: '/vendorphotos/amandasmarketstand.jpg',
 	},
@@ -48,6 +52,10 @@ export const vendors = [
 		image: '/vendorphotos/beyouboutique.jpg',
 	},
 	{
+		vendor: 'Beata Bath Creations',
+		image: '/vendorphotos/beatabathcreations.jpg',
+	},
+	{
 		vendor: 'Blessings by Creative Kelli',
 		image: '/vendorphotos/blessingsbycreativekelli.jpg',
 	},
@@ -80,8 +88,24 @@ export const vendors = [
 		image: '/vendorphotos/charityknits.jpg',
 	},
 	{
+		vendor: "Christina's Custom Gifts",
+		image: '/vendorphotos/christinascustomgifts',
+	},
+	{
 		vendor: 'Contagious Designs',
 		image: '/vendorphotos/contagiousdesigns.jpg',
+	},
+	{
+		vendor: 'Colourscapes by Wendy',
+		image: '/vendorphotos/colourscapesbywendy.png',
+	},
+	{
+		vendor: 'Crafty Co.',
+		image: '/vendorphotos/craftyco.jpg',
+	},
+	{
+		vendor: 'Creating Inspiration',
+		image: '/vendorphotos/creatinginspiration.jpg',
 	},
 	{
 		vendor: 'Eclair Lips',
@@ -104,6 +128,10 @@ export const vendors = [
 		image: '/vendorphotos/greatcanadianmeat.jpg',
 	},
 	{
+		vendor: 'Honest As F*ck Mom',
+		image: '/vendorphotos/honestasfckmom.jpg',
+	},
+	{
 		vendor: "Hurry Home Art's and Crafts",
 		image: '/vendorphotos/hurryhome.jpg',
 	},
@@ -122,6 +150,10 @@ export const vendors = [
 	{
 		vendor: "Jenny Marie's Cracker Company",
 		image: '/vendorphotos/jennymariescrackercompany.jpg',
+	},
+	{
+		vendor: 'JK Beads',
+		image: '/vendorphotos/jkbeads.jpg',
 	},
 	{
 		vendor: 'Kennedy Floral Farm',
@@ -151,9 +183,18 @@ export const vendors = [
 		vendor: "Madi's Custom Creations",
 		image: '/vendorphotos/madicustomcreations.jpg',
 	},
+
+	{
+		vendor: 'Matter Company',
+		image: '/vendorphotos/mattercompany.png',
+	},
 	{
 		vendor: 'Meraki Accessories',
 		image: '/vendorphotos/meraki.jpg',
+	},
+	{
+		vendor: 'Midnight Raven Studio',
+		image: '/vendorphotos/midnightravenstudio.jpg',
 	},
 	{
 		vendor: "Momsie's Malas",
@@ -278,6 +319,11 @@ export const vendors = [
 		vendor: 'The Woolie North',
 		image: '/vendorphotos/thewoolienorth.jpg',
 	},
+
+	{
+		vendor: 'Three Wicks',
+		image: '/vendorphotos/threewicks.png',
+	},
 	{
 		vendor: "Tim's Stain Glass",
 		image: '/vendorphotos/timsstainedglass.png',
@@ -285,6 +331,10 @@ export const vendors = [
 	{
 		vendor: 'Tiny Teethers',
 		image: '/vendorphotos/tinyteethers.jpg',
+	},
+	{
+		vendor: 'Top Hat and Monocle',
+		image: '/vendorphotos/tophatandmonocle.jpg',
 	},
 	{
 		vendor: "Tula's Candles",
@@ -309,5 +359,9 @@ export const vendors = [
 	{
 		vendor: 'Wild & Free Bowmanville',
 		image: '/vendorphotos/wildfreebowmanville.jpg',
+	},
+	{
+		vendor: 'William Rae Designs',
+		image: '/vendorphotos/williamraedesigns.jpg',
 	},
 ];
