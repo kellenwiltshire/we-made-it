@@ -44,10 +44,6 @@ export const vendors = [
 		image: '/vendorphotos/attitude.jpg',
 	},
 	{
-		vendor: 'Banndy',
-		image: '/vendorphotos/banndy.jpg',
-	},
-	{
 		vendor: 'Be You Boutique',
 		image: '/vendorphotos/beyouboutique.jpg',
 	},
@@ -84,10 +80,6 @@ export const vendors = [
 		image: '/vendorphotos/charityknits.jpg',
 	},
 	{
-		vendor: 'Charming Art Studio',
-		image: '/vendorphotos/charmingartstudio.png',
-	},
-	{
 		vendor: 'Contagious Designs',
 		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
@@ -120,10 +112,6 @@ export const vendors = [
 		image: '/vendorphotos/iwood.jpg',
 	},
 	{
-		vendor: 'Idlewood Crafts',
-		image: '/vendorphotos/idlewoodcrafts.jpg',
-	},
-	{
 		vendor: 'Jam Designs',
 		image: '/vendorphotos/jamdesigns.jpg',
 	},
@@ -144,10 +132,6 @@ export const vendors = [
 		image: '/vendorphotos/kiff.jpg',
 	},
 	{
-		vendor: 'L & L Co',
-		image: '/vendorphotos/llco.jpg',
-	},
-	{
 		vendor: 'La Dee Da Gourmet Sauces',
 		image: '/vendorphotos/ladeedagorumetsauces.jpg',
 	},
@@ -162,10 +146,6 @@ export const vendors = [
 	{
 		vendor: 'Level Up',
 		image: '/vendorphotos/levelup.jpg',
-	},
-	{
-		vendor: "Lo'Carfi",
-		image: '',
 	},
 	{
 		vendor: "Madi's Custom Creations",
@@ -244,16 +224,8 @@ export const vendors = [
 		image: '/vendorphotos/sewsweet.jpg',
 	},
 	{
-		vendor: "She'll Be Painting",
-		image: '/vendorphotos/shellbepainting.jpg',
-	},
-	{
 		vendor: "She's Sew Creative",
 		image: '/vendorphotos/shessewcreative.jpg',
-	},
-	{
-		vendor: 'Simply Sluggish',
-		image: '/vendorphotos/simplysluggish.jpg',
 	},
 	{
 		vendor: 'So',
@@ -286,14 +258,6 @@ export const vendors = [
 	{
 		vendor: 'The Brothery',
 		image: '/vendorphotos/thebrothery.jpg',
-	},
-	{
-		vendor: 'The Canuck Co',
-		image: '/vendorphotos/thecanuckco.jpg',
-	},
-	{
-		vendor: 'The Halliday Shoppe',
-		image: '/vendorphotos/thehallidayshoppe.jpg',
 	},
 	{
 		vendor: 'The Knitting Nurse',
