@@ -4,8 +4,16 @@ export const vendors = [
 		image: '/vendorphotos/4peas.jpg',
 	},
 	{
+		vendor: 'Apt. 6 Skin Co',
+		image: '/vendorphotos/apt6skinco.jpg',
+	},
+	{
 		vendor: 'Abeego',
 		image: '/vendorphotos/abeego.jpg',
+	},
+	{
+		vendor: 'Ahimsa Eco Solutions',
+		image: '/vendorphotos/ahimsaecosolutions.jpg',
 	},
 	{
 		vendor: `Amanda's Market Stand`,
@@ -36,12 +44,16 @@ export const vendors = [
 		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
-		vendor: 'Banndy',
-		image: '/vendorphotos/banndy.jpg',
+		vendor: 'Attitude',
+		image: '/vendorphotos/attitude.jpg',
 	},
 	{
 		vendor: 'Be You Boutique',
 		image: '/vendorphotos/beyouboutique.jpg',
+	},
+	{
+		vendor: 'Beata Bath Creations',
+		image: '/vendorphotos/beatabathcreations.jpg',
 	},
 	{
 		vendor: 'Blessings by Creative Kelli',
@@ -50,6 +62,10 @@ export const vendors = [
 	{
 		vendor: 'Blissful Bubbles Bath and Body',
 		image: '/vendorphotos/blissfulbubbles.jpg',
+	},
+	{
+		vendor: 'Bold Faced',
+		image: '/vendorphotos/boldfaced.jpg',
 	},
 	{
 		vendor: 'Buck Naked Soap Company',
@@ -61,7 +77,7 @@ export const vendors = [
 	},
 	{
 		vendor: 'Cafe Candle Co.',
-		image: '/vendorphotos/cafecandle.jpg',
+		image: '/vendorphotos/cafecandleco.jpg',
 	},
 	{
 		vendor: 'Captivating Bath + Body',
@@ -72,27 +88,31 @@ export const vendors = [
 		image: '/vendorphotos/charityknits.jpg',
 	},
 	{
-		vendor: 'Charming Art Studio',
-		image: '/vendorphotos/charmingartstudio.png',
+		vendor: "Christina's Custom Gifts",
+		image: '/vendorphotos/christinascustomgifts',
 	},
 	{
 		vendor: 'Contagious Designs',
 		image: '/vendorphotos/contagiousdesigns.jpg',
 	},
 	{
-		vendor: 'Dance With Me',
-		image: '',
+		vendor: 'Colourscapes by Wendy',
+		image: '/vendorphotos/colourscapesbywendy.png',
 	},
 	{
-		vendor: 'Designs by Becc',
-		image: '/vendorphotos/designsbybecc.jpg',
+		vendor: 'Crafty Co.',
+		image: '/vendorphotos/craftyco.jpg',
+	},
+	{
+		vendor: 'Creating Inspiration',
+		image: '/vendorphotos/creatinginspiration.jpg',
 	},
 	{
 		vendor: 'Eclair Lips',
 		image: '/vendorphotos/exlairlips.jpg',
 	},
 	{
-		vendor: "Eli's Stitchery",
+		vendor: "El's Stitchery",
 		image: '/vendorphotos/elsstichery.jpg',
 	},
 	{
@@ -104,12 +124,20 @@ export const vendors = [
 		image: '/vendorphotos/gramambeauty.jpg',
 	},
 	{
+		vendor: 'Great Canadian Meat',
+		image: '/vendorphotos/greatcanadianmeat.jpg',
+	},
+	{
+		vendor: 'Honest As F*ck Mom',
+		image: '/vendorphotos/honestasfckmom.jpg',
+	},
+	{
 		vendor: "Hurry Home Art's and Crafts",
 		image: '/vendorphotos/hurryhome.jpg',
 	},
 	{
-		vendor: 'Idlewood Crafts',
-		image: '/vendorphotos/idlewoodcrafts.jpg',
+		vendor: 'iWood',
+		image: '/vendorphotos/iwood.jpg',
 	},
 	{
 		vendor: 'Jam Designs',
@@ -120,12 +148,24 @@ export const vendors = [
 		image: '/vendorphotos/jimsgaragecreations.jpg',
 	},
 	{
+		vendor: "Jenny Marie's Cracker Company",
+		image: '/vendorphotos/jennymariescrackercompany.jpg',
+	},
+	{
+		vendor: 'JK Beads',
+		image: '/vendorphotos/jkbeads.jpg',
+	},
+	{
+		vendor: 'Kennedy Floral Farm',
+		image: '/vendorphotos/kennedyfloralfarm.jpg',
+	},
+	{
 		vendor: 'KIFF',
 		image: '/vendorphotos/kiff.jpg',
 	},
 	{
-		vendor: 'L & L Co',
-		image: '/vendorphotos/llco.jpg',
+		vendor: 'La Dee Da Gourmet Sauces',
+		image: '/vendorphotos/ladeedagorumetsauces.jpg',
 	},
 	{
 		vendor: 'Lakebreeze Pottery',
@@ -136,20 +176,25 @@ export const vendors = [
 		image: '/vendorphotos/leighvanna.jpg',
 	},
 	{
-		vendor: "Lo'Carfi",
-		image: '',
-	},
-	{
-		vendor: 'Local Enniskillen Valley Beeswax',
-		image: '',
+		vendor: 'Level Up',
+		image: '/vendorphotos/levelup.jpg',
 	},
 	{
 		vendor: "Madi's Custom Creations",
 		image: '/vendorphotos/madicustomcreations.jpg',
 	},
+
+	{
+		vendor: 'Matter Company',
+		image: '/vendorphotos/mattercompany.png',
+	},
 	{
 		vendor: 'Meraki Accessories',
 		image: '/vendorphotos/meraki.jpg',
+	},
+	{
+		vendor: 'Midnight Raven Studio',
+		image: '/vendorphotos/midnightravenstudio.jpg',
 	},
 	{
 		vendor: "Momsie's Malas",
@@ -158,6 +203,10 @@ export const vendors = [
 	{
 		vendor: 'Naturally Posh Baby',
 		image: '/vendorphotos/naturallyposhbaby.jpg',
+	},
+	{
+		vendor: 'Naughty Florals',
+		image: '/vendorphotos/naughtyflorals.jpg',
 	},
 	{
 		vendor: 'North Hound Life',
@@ -182,6 +231,10 @@ export const vendors = [
 	{
 		vendor: 'One Of A Kind Gifts by Joanna',
 		image: '',
+	},
+	{
+		vendor: 'Party Mountain Paper Co.',
+		image: '/vendorphotos/partymountainpaperco.jpg',
 	},
 	{
 		vendor: 'Penny Paper Co.',
@@ -212,16 +265,16 @@ export const vendors = [
 		image: '/vendorphotos/sewsweet.jpg',
 	},
 	{
-		vendor: "She'll Be Painting",
-		image: '/vendorphotos/shellbepainting.jpg',
+		vendor: "She's Sew Creative",
+		image: '/vendorphotos/shessewcreative.jpg',
 	},
 	{
-		vendor: 'Simply Sluggish',
-		image: '/vendorphotos/softhavenhome.jpg',
+		vendor: 'So',
+		image: '/vendorphotos/So.jpg',
 	},
 	{
 		vendor: 'Soft Haven Home',
-		image: '/vendorphotos/simplysluggish.jpg',
+		image: '/vendorphotos/softhavenhome.jpg',
 	},
 	{
 		vendor: 'Stick Stuff Studio',
@@ -232,6 +285,10 @@ export const vendors = [
 		image: '/vendorphotos/strawhutco.jpg',
 	},
 	{
+		vendor: 'Sugar Crush Co.',
+		image: '/vendorphotos/sugarcrushco.jpg',
+	},
+	{
 		vendor: 'Sweetsmith Candy Co',
 		image: '/vendorphotos/sweetsmithcandoco.jpg',
 	},
@@ -240,12 +297,8 @@ export const vendors = [
 		image: '/vendorphotos/terriskraftykorner.jpg',
 	},
 	{
-		vendor: 'The Canuck Co',
-		image: '/vendorphotos/thecanuckco.jpg',
-	},
-	{
-		vendor: 'The Halliday Shoppe',
-		image: '/vendorphotos/thehallidayshoppe.jpg',
+		vendor: 'The Brothery',
+		image: '/vendorphotos/thebrothery.jpg',
 	},
 	{
 		vendor: 'The Knitting Nurse',
@@ -254,9 +307,9 @@ export const vendors = [
 	{
 		vendor: 'The Knotty Island',
 		image: '/vendorphotos/theknottyisland.jpg',
-		uid: 'twentypercent',
-		sale: 20,
-		discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
+		// uid: 'twentypercent',
+		// sale: 20,
+		// discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
 	},
 	{
 		vendor: 'The Quilting Queen',
@@ -266,6 +319,11 @@ export const vendors = [
 		vendor: 'The Woolie North',
 		image: '/vendorphotos/thewoolienorth.jpg',
 	},
+
+	{
+		vendor: 'Three Wicks',
+		image: '/vendorphotos/threewicks.png',
+	},
 	{
 		vendor: "Tim's Stain Glass",
 		image: '/vendorphotos/timsstainedglass.png',
@@ -273,6 +331,10 @@ export const vendors = [
 	{
 		vendor: 'Tiny Teethers',
 		image: '/vendorphotos/tinyteethers.jpg',
+	},
+	{
+		vendor: 'Top Hat and Monocle',
+		image: '/vendorphotos/tophatandmonocle.jpg',
 	},
 	{
 		vendor: "Tula's Candles",
@@ -297,5 +359,9 @@ export const vendors = [
 	{
 		vendor: 'Wild & Free Bowmanville',
 		image: '/vendorphotos/wildfreebowmanville.jpg',
+	},
+	{
+		vendor: 'William Rae Designs',
+		image: '/vendorphotos/williamraedesigns.jpg',
 	},
 ];
