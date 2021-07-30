@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 function BecomeVendor() {
+	const [location, setLocation] = useState('Newcastle');
 	const [state, handleSubmit] = useForm('moqpgoog');
 	const [submitStatus, setSubmitStatus] = useState('Submit');
 	if (state.succeeded) {
@@ -187,42 +188,109 @@ function BecomeVendor() {
 									</div>
 
 									<div className='flex flex-col mt-2'>
-										<label htmlFor='plan'>Size and Plan Preference</label>
+										<label htmlFor='plan'>Location</label>
 										<select
 											type='name'
-											name='planPreference'
-											id='planPreference'
+											name='location'
+											id='location'
 											className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
+											onChange={(e) => setLocation(e.target.value)}
 										>
-											<option>
-												3ft wide x 2ft deep $200 +tax monthly (2 month
-												commitment upfront, then monthly)
-											</option>
-											<option>
-												4ft wide x 2ft deep $265 +tax (2 month commitment
-												upfront, then monthly)
-											</option>
-											<option>
-												5ft wide x 2ft deep $330 +tax (2 month commitment
-												upfront, then monthly)
-											</option>
-											<option>
-												Business Community Display (business cards and/or
-												pamphlet on a shelf) $10 +tax monthly
-											</option>
-											<option>
-												3ft wide x 2ft deep THREE MONTH UPFRONT & SAVE! $190
-												monthly (3 months upfront) =$570 +tax
-											</option>
-											<option>
-												4ft wide x 2ft deep THREE MONTH UPFRONT & SAVE! $251.75
-												monthly (3 months upfront) =$755.25 +tax
-											</option>
-											<option>
-												2ft x 1ft Shelf $50 +tax (2 months upfront)
-											</option>
+											<option>Newcastle</option>
+											<option>Cobourg</option>
 										</select>
 									</div>
+
+									{location === 'Newcastle' ? (
+										<div className='flex flex-col mt-2'>
+											<label htmlFor='plan'>
+												Size and Plan Preference (2 Months upfront required)
+											</label>
+											<select
+												type='name'
+												name='planPreference'
+												id='planPreference'
+												className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
+												defaultValue='-----------'
+											>
+												<option>-----------</option>
+												<option>$50/month ~ Shelf space - Monthly Plan</option>
+												<option>$45/month ~ Shelf space - 3 Month Plan</option>
+												<option>$40/month ~ Shelf space - 6 Month Plan</option>
+												<option>
+													$150/month ~ Full Wall Space 2 Ft wide - Monthly Plan
+												</option>
+												<option>
+													$135/month ~ Full Wall Space 2 Ft wide - 3 Month Plan
+												</option>
+												<option>
+													$120/month ~ Full Wall Space 2 Ft wide - 6 Month Plan
+												</option>
+												<option>
+													$200/month ~ Full Wall Space 3 Ft wide - Monthly Plan
+												</option>
+												<option>
+													$180/month ~ Full Wall Space 3 Ft wide - 3 Month Plan
+													(save $60/year)
+												</option>
+												<option>
+													$260/month ~ Full Wall Space 3 Ft wide - 6 Month Plan
+													(save $120/year)
+												</option>
+											</select>
+										</div>
+									) : (
+										<div className='flex flex-col mt-2'>
+											<label htmlFor='plan'>
+												Size and Plan Preference (2 Months upfront required)
+											</label>
+											<select
+												type='name'
+												name='planPreference'
+												id='planPreference'
+												className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-purple-500 focus:outline-none'
+												defaultValue='-----------'
+											>
+												<option>-----------</option>
+												<option>$75/month ~ Shelf space - 3 Month Plan</option>
+												<option>$70/month ~ Shelf space - 6 Month Plan</option>
+												<option>
+													$200/month ~ Full Wall Space 2 Ft wide - Monthly Plan
+												</option>
+												<option>
+													$195/month ~ Full Wall Space 2 Ft wide - 3 Month Plan
+													(save $60/year)
+												</option>
+												<option>
+													$190/month ~ Full Wall Space 2 Ft wide - 6 Month Plan
+													(save $120/year)
+												</option>
+												<option>
+													$275/month ~ Full Wall Space 3 Ft wide - Monthly Plan
+												</option>
+												<option>
+													$270/month ~ Full Wall Space 3 Ft wide - 3 Month Plan
+													(save $60/year)
+												</option>
+												<option>
+													$265/month ~ Full Wall Space 3 Ft wide - 6 Month Plan
+													(save $120/year)
+												</option>
+												<option>
+													$160 per month ~ Half-wall Space 2 Ft wide x 4ft high
+													- Monthly Plan
+												</option>
+												<option>
+													$155 per month ~ Half-wall Space 2 Ft wide x 4ft high
+													– 3 Month Plan (save $60/year)
+												</option>
+												<option>
+													$150 per month ~ Half-wall Space 2 Ft wide x 4ft high
+													– 6 Month Plan (save $120/year)
+												</option>
+											</select>
+										</div>
+									)}
 
 									<div className='flex flex-col mt-2'>
 										<label htmlFor='description' className='hidden'>
