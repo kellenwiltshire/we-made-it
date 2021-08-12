@@ -129,7 +129,7 @@ export async function getStaticPaths() {
 		return fixedVen;
 	});
 
-	// Get the paths we want to pre-render based on posts
+	// Get the paths we want to pre-render based on vendors
 	const paths = fixedVendors.map((ven) => ({
 		params: { vendorsearch: ven },
 	}));
