@@ -125,7 +125,7 @@ export default function VendorSearchItems({
 export async function getStaticPaths() {
 	const vendorList = vendors;
 	const fixedVendors = vendorList.map((ven) => {
-		const fixedVen = ven.vendor.replace(/\s+/g, '%20');
+		const fixedVen = ven.vendor.replace(/ /g, '%20');
 		return fixedVen;
 	});
 
