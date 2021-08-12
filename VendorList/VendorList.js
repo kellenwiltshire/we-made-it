@@ -349,10 +349,6 @@ export const vendors = [
 		image: '/vendorphotos/upliftingnaturals.jpg',
 	},
 	{
-		vendor: 'Victoria Rose',
-		image: '/vendorphotos/victoriarose.jpg',
-	},
-	{
 		vendor: 'VS Knit',
 		image: '/vendorphotos/vsknits.jpg',
 	},
@@ -361,7 +357,7 @@ export const vendors = [
 		image: '/vendorphotos/wildfreebowmanville.jpg',
 	},
 	{
-		vendor: 'William Rae Designs',
+		vendor: 'williamraedesigns',
 		image: '/vendorphotos/williamraedesigns.jpg',
 	},
 ];
