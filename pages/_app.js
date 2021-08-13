@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import * as gtag from '../lib/gtag';
 import { useRouter } from 'next/router';
-import { checkForVendorSales } from '../components/utils';
+import { checkForVendorSales } from '../utils/sales';
 import Layout from '../components/Layout/Layout';
 import { Provider } from 'react-redux';
 import { useStore } from '../store';

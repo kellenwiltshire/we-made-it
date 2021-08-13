@@ -7,7 +7,8 @@ import { vendors } from '../../VendorList/VendorList';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
-import { checkProductDiscounts } from '../../components/utils';
+import { checkProductDiscounts } from '../../utils/sales';
+import { filterChange, sortChange } from '../../utils/sort';
 import { useSelector } from 'react-redux';
 
 const getItems = () => {
@@ -26,7 +27,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 		const [items, setItems] = useState(initialItems); //Items, obviously
 		const [currItems, setCurrItems] = useState(
 			//Keeps track of the current items that are being displayed on the page
-			items.slice(offset, offset + perPage),
+			initialItems.slice(offset, offset + perPage),
 		);
 		const [numPages, setNumPages] = useState(initialItems.length / 50); //Determine number of pages
 		const [sort, setSort] = useState(''); //Initial Sort State
@@ -66,7 +67,9 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 
 		//This effect updates the current items on the page whenever the sort method changes
 		useEffect(() => {
-			setCurrItems(items.slice(offset, offset + perPage));
+			if (items.length > 50) {
+				setCurrItems(items.slice(offset, offset + perPage));
+			} else setCurrItems(items);
 			const sortSelection = document.querySelector('#sort');
 			const filterSelection = document.querySelector('#filter');
 
@@ -81,96 +84,6 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 			setCurrPage(0);
 			setSort(sort);
 			setNumPages(newItems.length / 50);
-		};
-
-		const filterChange = (e) => {
-			let filteredItems = initialItems;
-
-			filteredItems = filteredItems.filter((item) => {
-				if (item.itemData.description) {
-					let fixedDescription = item.itemData.description.toLowerCase();
-					let fixedFilterName = e.target.value.toLowerCase();
-					return fixedDescription.includes(fixedFilterName);
-				} else {
-					return;
-				}
-			});
-
-			updatePage(filteredItems, 0);
-		};
-
-		const sortChange = (e) => {
-			if (e.target.value === 'Name Ascending (A-Z)') {
-				let sortedItems = items.sort((a, b) => {
-					return a.itemData.name.localeCompare(b.itemData.name);
-				});
-				updatePage(sortedItems, e.target.value);
-			} else if (e.target.value === 'Name Descending (Z-A)') {
-				let sortedItems = items.sort((a, b) => {
-					return a.itemData.name.localeCompare(b.itemData.name);
-				});
-				sortedItems.reverse();
-				updatePage(sortedItems, e.target.value);
-			} else if (e.target.value === 'Price (Low to High)') {
-				let sortedItems = items.sort((a, b) => {
-					if (a.itemData.variations && b.itemData.variations) {
-						if (
-							a.itemData.variations[0].itemVariationData.pricingType ===
-								'VARIABLE_PRICING' ||
-							b.itemData.variations[0].itemVariationData.pricingType ===
-								'VARIABLE_PRICING'
-						) {
-							return 0;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount >
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return 1;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount <
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return -1;
-						} else {
-							return 0;
-						}
-					} else {
-						return 0;
-					}
-				});
-				updatePage(sortedItems, e.target.value);
-			} else if (e.target.value === 'Price (High to Low)') {
-				let sortedItems = items.sort((a, b) => {
-					if (a.itemData.variations && b.itemData.variations) {
-						if (
-							a.itemData.variations[0].itemVariationData.pricingType ===
-								'VARIABLE_PRICING' ||
-							b.itemData.variations[0].itemVariationData.pricingType ===
-								'VARIABLE_PRICING'
-						) {
-							return 0;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount >
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return 1;
-						} else if (
-							a.itemData.variations[0].itemVariationData.priceMoney.amount <
-							b.itemData.variations[0].itemVariationData.priceMoney.amount
-						) {
-							return -1;
-						} else {
-							return 0;
-						}
-					} else {
-						return 0;
-					}
-				});
-				sortedItems.reverse();
-				updatePage(sortedItems, e.target.value);
-			} else {
-				updatePage(itemsWithPictures, e.target.value);
-			}
 		};
 
 		const handlePageChange = (e) => {
@@ -220,7 +133,9 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									name='sort'
 									id='sort'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-									onChange={sortChange}
+									onChange={(e) =>
+										updatePage(sortChange(e, items), e.target.value)
+									}
 									defaultValue='Sort Items'
 								>
 									<option>Sort Items</option>
@@ -234,7 +149,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									name='filter'
 									id='filter'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-									onChange={filterChange}
+									onChange={(e) => updatePage(filterChange(e, initialItems), 0)}
 									defaultValue='Filter Items'
 								>
 									<option>Filter Items</option>

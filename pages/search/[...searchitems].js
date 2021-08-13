@@ -3,7 +3,7 @@ import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
-import { checkProductDiscounts } from '../../components/utils';
+import { checkProductDiscounts } from '../../utils/sales';
 const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
 

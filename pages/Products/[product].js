@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
-import { checkItemDiscount } from '../../components/utils';
+import { checkItemDiscount } from '../../utils/sales';
 
 export default function ShopProduct({
 	setNavStyle,
