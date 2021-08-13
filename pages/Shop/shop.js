@@ -134,7 +134,10 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									id='sort'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 									onChange={(e) =>
-										updatePage(sortChange(e, items), e.target.value)
+										updatePage(
+											sortChange(e, items, initialItems),
+											e.target.value,
+										)
 									}
 									defaultValue='Sort Items'
 								>

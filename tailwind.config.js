@@ -9,6 +9,9 @@ module.exports = {
 			backgroundImage: {
 				banner: "url('/Banner.png')",
 			},
+			height: (theme) => ({
+				120: '30rem',
+			}),
 		},
 		fontFamily: {
 			title: 'Raleway',
