@@ -143,7 +143,7 @@ export default function Shop({ vendorSales, setNavStyle }) {
 						</div>
 					</div>
 					<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
-						{currItems.map((item, i) => {
+						{currItems.map((item) => {
 							let price;
 							if (item.itemData.variations) {
 								if (
@@ -306,6 +306,7 @@ export async function getStaticProps() {
 				initialReduxState: {
 					items: itemsWithPictures,
 				},
+				revalidate: 3600,
 			},
 		};
 

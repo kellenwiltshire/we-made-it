@@ -132,7 +132,7 @@ export const vendors = [
 		image: '/vendorphotos/honestasfckmom.jpg',
 	},
 	{
-		vendor: "Hurry Home Art's and Crafts",
+		vendor: 'Hurry Home Arts and Crafts',
 		image: '/vendorphotos/hurryhome.jpg',
 	},
 	{

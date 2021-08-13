@@ -36,7 +36,10 @@ export default function ShopFilters({
 						id='sort'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 						onChange={(e) =>
-							updatePage(sortChange(e, items, initialItems), e.target.value)
+							updatePage(
+								sortChange(e.target.value, items, initialItems),
+								e.target.value,
+							)
 						}
 						defaultValue='Sort Items'
 					>
@@ -51,7 +54,9 @@ export default function ShopFilters({
 						name='filter'
 						id='filter'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-						onChange={(e) => updatePage(filterChange(e, initialItems), 0)}
+						onChange={(e) =>
+							updatePage(filterChange(e.target.value, initialItems), 0)
+						}
 						defaultValue='Vendors'
 					>
 						<option>Vendors</option>
@@ -65,7 +70,7 @@ export default function ShopFilters({
 						id='location'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 						onChange={(e) =>
-							updatePage(locationChange(e, items), e.target.value)
+							updatePage(locationChange(e.target.value, items), e.target.value)
 						}
 						defaultValue='Location'
 					>

@@ -1,10 +1,10 @@
-export const filterChange = (e, initialItems) => {
+export const filterChange = (param, initialItems) => {
 	let filteredItems = initialItems;
 
 	filteredItems = filteredItems.filter((item) => {
 		if (item.itemData.description) {
 			let fixedDescription = item.itemData.description.toLowerCase();
-			let fixedFilterName = e.target.value.toLowerCase();
+			let fixedFilterName = param.toLowerCase();
 			return fixedDescription.includes(fixedFilterName);
 		} else {
 			return;
@@ -14,19 +14,19 @@ export const filterChange = (e, initialItems) => {
 	return filteredItems;
 };
 
-export const sortChange = (e, items, initialItems) => {
-	if (e.target.value === 'Name Ascending (A-Z)') {
+export const sortChange = (param, items, initialItems) => {
+	if (param === 'Name Ascending (A-Z)') {
 		let sortedItems = items.sort((a, b) => {
 			return a.itemData.name.localeCompare(b.itemData.name);
 		});
 		return sortedItems;
-	} else if (e.target.value === 'Name Descending (Z-A)') {
+	} else if (param === 'Name Descending (Z-A)') {
 		let sortedItems = items.sort((a, b) => {
 			return a.itemData.name.localeCompare(b.itemData.name);
 		});
 		sortedItems.reverse();
 		return sortedItems;
-	} else if (e.target.value === 'Price (Low to High)') {
+	} else if (param === 'Price (Low to High)') {
 		let sortedItems = items.sort((a, b) => {
 			if (a.itemData.variations && b.itemData.variations) {
 				if (
@@ -54,7 +54,7 @@ export const sortChange = (e, items, initialItems) => {
 			}
 		});
 		return sortedItems;
-	} else if (e.target.value === 'Price (High to Low)') {
+	} else if (param === 'Price (High to Low)') {
 		let sortedItems = items.sort((a, b) => {
 			if (a.itemData.variations && b.itemData.variations) {
 				if (
@@ -88,12 +88,12 @@ export const sortChange = (e, items, initialItems) => {
 	}
 };
 
-export const locationChange = (e, initialItems) => {
+export const locationChange = (param, initialItems) => {
 	const newcastleStore = 'L0SCPZY3N0MGA';
 	const cobourgStore = 'LQQF7JXRMNY9M';
 	let filteredItems = initialItems;
 
-	if (e.target.value === 'Newcastle') {
+	if (param === 'Newcastle') {
 		filteredItems = filteredItems.filter((item) => {
 			if (item.presentAtLocationIds) {
 				return item.presentAtLocationIds.includes(newcastleStore);
@@ -101,7 +101,7 @@ export const locationChange = (e, initialItems) => {
 				return;
 			}
 		});
-	} else if (e.target.value === 'Cobourg') {
+	} else if (param === 'Cobourg') {
 		filteredItems = filteredItems.filter((item) => {
 			if (item.presentAtLocationIds) {
 				return item.presentAtLocationIds.includes(cobourgStore);

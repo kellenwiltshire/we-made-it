@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../utils/sales';
-const JSONBig = require('json-bigint');
-const { Client, Environment } = require('square');
 import { useSelector } from 'react-redux';
+import { filterChange } from '../../utils/sort';
 
 const getItems = () => {
 	return useSelector((state) => ({ itemsWithPictures: state.items }));
@@ -21,9 +20,9 @@ export default function VendorSearchItems({
 	console.log(itemsWithPictures);
 	console.log(search);
 	setNavStyle('vendorsearch');
-	if (searchresults) {
-		if (searchresults.length) {
-			let results = searchresults;
+	if (itemsWithPictures) {
+		if (itemsWithPictures.length) {
+			const results = filterChange(search, itemsWithPictures);
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
@@ -34,53 +33,53 @@ export default function VendorSearchItems({
 						<Headers title={search} />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((result, i) => {
+							{results.map((item) => {
 								let price;
-								if (result.itemData.variations) {
+								if (item.itemData.variations) {
 									if (
-										result.itemData.variations[0].itemVariationData
+										item.itemData.variations[0].itemVariationData
 											.pricingType === 'VARIABLE_PRICING'
 									) {
 										price = 'Variable Pricing - Contact Store for Details';
 										return (
 											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
+												title={item.itemData.name}
+												itemID={item.id}
 												price={price}
-												defaultImage='/sparklelogoblack.png'
-												key={Math.random()}
+												image={item.imageLink}
+												key={item.id}
+												location={item.presentAtLocationIds}
 											/>
 										);
-									} else if (result.sale) {
+									} else if (item.sale) {
 										let currPrice =
-											result.itemData.variations[0].itemVariationData.priceMoney
+											item.itemData.variations[0].itemVariationData.priceMoney
 												.amount / 100;
-										price = currPrice - currPrice * (result.sale / 100);
+										price = currPrice - currPrice * (item.sale / 100);
 										price = price.toFixed(2);
 										return (
 											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
+												title={item.itemData.name}
+												itemID={item.id}
 												salePrice={price}
-												image={result.imageLink}
-												key={Math.random()}
+												image={item.imageLink}
+												key={item.id}
+												location={item.presentAtLocationIds}
 											/>
 										);
 									} else {
 										price = (
-											result.itemData.variations[0].itemVariationData.priceMoney
+											item.itemData.variations[0].itemVariationData.priceMoney
 												.amount / 100
 										).toFixed(2);
 										return (
 											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
+												title={item.itemData.name}
+												itemID={item.id}
 												price={price}
-												image={result.imageLink}
-												key={Math.random()}
+												image={item.imageLink}
+												key={item.id}
+												location={item.presentAtLocationIds}
 											/>
 										);
 									}
@@ -144,48 +143,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	console.log(params);
-	const client = new Client({
-		environment: Environment.Production,
-		accessToken: process.env.SQUARE_ACCESS_TOKEN,
-	});
 	const search = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
-
-	let filteredItems = [];
-
-	// const newImageRequest = async (items) => {
-	// 	const catalog = client.catalogApi;
-
-	// 	let newItemsWithPictures = [];
-
-	// 	for (let i = 0; i < items.length; i++) {
-	// 		const response = await catalog.retrieveCatalogObject(items[i].imageId);
-	// 		items[i].imageLink = response.result.object.imageData.url;
-	// 		newItemsWithPictures.push(items[i]);
-	// 	}
-	// 	return newItemsWithPictures;
-	// };
-	// try {
-	// 	const response = await client.catalogApi.searchCatalogItems({
-	// 		textFilter: search,
-	// 	});
-
-	// 	const data = JSONBig.parse(JSONBig.stringify(response.result.items));
-
-	// 	for (let i = 0; i < data.length; i++) {
-	// 		if (data[i].imageId) {
-	// 			filteredItems.push(data[i]);
-	// 		}
-	// 	}
-	// } catch (error) {
-	// 	console.log('Search Error: ', error);
-	// 	return {
-	// 		props: {},
-	// 	};
-	// }
-
-	// const searchresults = await newImageRequest(filteredItems);
 
 	return {
 		props: { search },
