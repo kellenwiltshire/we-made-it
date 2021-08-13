@@ -18,6 +18,8 @@ const getItems = () => {
 export default function ShopCategories({ vendorSales, setNavStyle }) {
 	const { itemsWithPictures } = getItems();
 	console.log(itemsWithPictures);
+
+	const newcastleStore = 'L0SCPZY3N0MGA';
 	setNavStyle('shop');
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
@@ -149,6 +151,23 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 								</select>
 								<select
 									type='name'
+									name='location'
+									id='location'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
+									onChange={(e) =>
+										updatePage(
+											sortChange(e, items, initialItems),
+											e.target.value,
+										)
+									}
+									defaultValue='Location'
+								>
+									<option>Location</option>
+									<option>Newcastle</option>
+									<option>Cobourg</option>
+								</select>
+								<select
+									type='name'
 									name='filter'
 									id='filter'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
@@ -209,6 +228,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 											price={price}
 											image={item.imageLink}
 											key={Math.random()}
+											location={item.presentAtLocationIds}
 										/>
 									);
 								} else if (item.sale) {
@@ -225,6 +245,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 											salePrice={price}
 											image={item.imageLink}
 											key={Math.random()}
+											location={item.presentAtLocationIds}
 										/>
 									);
 								} else {
@@ -240,6 +261,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 											price={price}
 											image={item.imageLink}
 											key={Math.random()}
+											location={item.presentAtLocationIds}
 										/>
 									);
 								}

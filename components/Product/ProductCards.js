@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-function ProductCards({ itemID, title, price, image, salePrice }) {
+function ProductCards({ itemID, title, price, image, salePrice, location }) {
+	const newcastleStore = 'L0SCPZY3N0MGA';
+	const cobourgStore = 'LQQF7JXRMNY9M';
 	if (salePrice) {
 		return (
 			<Link
@@ -24,6 +26,19 @@ function ProductCards({ itemID, title, price, image, salePrice }) {
             rounded-tl-sm triangle'
 						>
 							<div className=''>Sale: ${price}</div>
+						</div>
+						<div>
+							{location
+								? location.map((loc) => {
+										if ((loc = newcastleStore)) {
+											return <div>Newcastle</div>;
+										} else if ((loc = cobourgStore)) {
+											return <div>Cobourg</div>;
+										} else {
+											return null;
+										}
+								  })
+								: null}
 						</div>
 					</div>
 				</a>
@@ -51,6 +66,19 @@ function ProductCards({ itemID, title, price, image, salePrice }) {
             rounded-tl-sm triangle'
 						>
 							<div className=''>${price}</div>
+						</div>
+						<div className='font-body text-xs pt-4 px-4'>
+							{location
+								? location.map((loc) => {
+										if ((loc = newcastleStore)) {
+											return <div>Newcastle</div>;
+										} else if ((loc = cobourgStore)) {
+											return <div>Cobourg</div>;
+										} else {
+											return null;
+										}
+								  })
+								: null}
 						</div>
 					</div>
 				</a>
