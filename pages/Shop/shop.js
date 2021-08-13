@@ -8,7 +8,7 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
 import { checkProductDiscounts } from '../../utils/sales';
-import { filterChange, sortChange } from '../../utils/sort';
+import { filterChange, sortChange, locationChange } from '../../utils/sort';
 import { useSelector } from 'react-redux';
 
 const getItems = () => {
@@ -155,10 +155,7 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									id='location'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 									onChange={(e) =>
-										updatePage(
-											sortChange(e, items, initialItems),
-											e.target.value,
-										)
+										updatePage(locationChange(e, items), e.target.value)
 									}
 									defaultValue='Location'
 								>

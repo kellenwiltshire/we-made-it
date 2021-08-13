@@ -87,3 +87,29 @@ export const sortChange = (e, items, initialItems) => {
 		return initialItems;
 	}
 };
+
+export const locationChange = (e, initialItems) => {
+	const newcastleStore = 'L0SCPZY3N0MGA';
+	const cobourgStore = 'LQQF7JXRMNY9M';
+	let filteredItems = initialItems;
+
+	if (e.target.value === 'Newcastle') {
+		filteredItems = filteredItems.filter((item) => {
+			if (item.presentAtLocationIds) {
+				return item.presentAtLocationIds.includes(newcastleStore);
+			} else {
+				return;
+			}
+		});
+	} else if (e.target.value === 'Cobourg') {
+		filteredItems = filteredItems.filter((item) => {
+			if (item.presentAtLocationIds) {
+				return item.presentAtLocationIds.includes(cobourgStore);
+			} else {
+				return;
+			}
+		});
+	}
+
+	return filteredItems;
+};
