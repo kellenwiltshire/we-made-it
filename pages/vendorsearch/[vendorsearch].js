@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
-import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../utils/sales';
 const JSONBig = require('json-bigint');
@@ -15,12 +14,12 @@ const getItems = () => {
 
 export default function VendorSearchItems({
 	setNavStyle,
-	searchresults,
 	vendorSales,
 	search,
 }) {
 	const { itemsWithPictures } = getItems();
 	console.log(itemsWithPictures);
+	console.log(search);
 	setNavStyle('vendorsearch');
 	if (searchresults) {
 		if (searchresults.length) {
@@ -33,7 +32,6 @@ export default function VendorSearchItems({
 					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
 						<Headers title={search} />
-						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{results.map((result, i) => {
@@ -156,41 +154,40 @@ export async function getStaticProps({ params }) {
 
 	let filteredItems = [];
 
-	const newImageRequest = async (items) => {
-		const catalog = client.catalogApi;
+	// const newImageRequest = async (items) => {
+	// 	const catalog = client.catalogApi;
 
-		let newItemsWithPictures = [];
+	// 	let newItemsWithPictures = [];
 
-		for (let i = 0; i < items.length; i++) {
-			const response = await catalog.retrieveCatalogObject(items[i].imageId);
-			items[i].imageLink = response.result.object.imageData.url;
-			newItemsWithPictures.push(items[i]);
-		}
-		return newItemsWithPictures;
-	};
-	try {
-		const response = await client.catalogApi.searchCatalogItems({
-			textFilter: search,
-		});
+	// 	for (let i = 0; i < items.length; i++) {
+	// 		const response = await catalog.retrieveCatalogObject(items[i].imageId);
+	// 		items[i].imageLink = response.result.object.imageData.url;
+	// 		newItemsWithPictures.push(items[i]);
+	// 	}
+	// 	return newItemsWithPictures;
+	// };
+	// try {
+	// 	const response = await client.catalogApi.searchCatalogItems({
+	// 		textFilter: search,
+	// 	});
 
-		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
+	// 	const data = JSONBig.parse(JSONBig.stringify(response.result.items));
 
-		for (let i = 0; i < data.length; i++) {
-			if (data[i].imageId) {
-				filteredItems.push(data[i]);
-			}
-		}
-	} catch (error) {
-		console.log('Search Error: ', error);
-		return {
-			props: {},
-		};
-	}
+	// 	for (let i = 0; i < data.length; i++) {
+	// 		if (data[i].imageId) {
+	// 			filteredItems.push(data[i]);
+	// 		}
+	// 	}
+	// } catch (error) {
+	// 	console.log('Search Error: ', error);
+	// 	return {
+	// 		props: {},
+	// 	};
+	// }
 
-	const searchresults = await newImageRequest(filteredItems);
+	// const searchresults = await newImageRequest(filteredItems);
 
 	return {
-		props: { searchresults, search },
-		revalidate: 60,
+		props: { search },
 	};
 }
