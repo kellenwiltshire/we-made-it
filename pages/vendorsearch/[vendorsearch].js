@@ -7,14 +7,20 @@ import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../components/utils';
 const JSONBig = require('json-bigint');
 const { Client, Environment } = require('square');
+import { useSelector } from 'react-redux';
+
+const getItems = () => {
+	return useSelector((state) => ({ itemsWithPictures: state.items }));
+};
 
 export default function VendorSearchItems({
 	setNavStyle,
-	cart,
 	searchresults,
 	vendorSales,
 	search,
 }) {
+	const { itemsWithPictures } = getItems();
+	console.log(itemsWithPictures);
 	setNavStyle('vendorsearch');
 	if (searchresults) {
 		if (searchresults.length) {

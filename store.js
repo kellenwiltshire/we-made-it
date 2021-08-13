@@ -6,11 +6,9 @@ let store;
 
 // const initialCart = [];
 
-const initialState = [
-	{
-		item: '',
-	},
-];
+const initialState = {
+	items: [],
+};
 
 const itemsReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -58,4 +56,5 @@ export const initializeStore = (preloadedState) => {
 
 export function useStore(initialState) {
 	const store = useMemo(() => initializeStore(initialState), [initialState]);
+	return store;
 }

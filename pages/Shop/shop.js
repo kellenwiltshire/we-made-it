@@ -8,12 +8,15 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
 import { checkProductDiscounts } from '../../components/utils';
+import { useSelector } from 'react-redux';
 
-export default function ShopCategories({
-	itemsWithPictures,
-	vendorSales,
-	setNavStyle,
-}) {
+const getItems = () => {
+	return useSelector((state) => ({ itemsWithPictures: state.items }));
+};
+
+export default function ShopCategories({ vendorSales, setNavStyle }) {
+	const { itemsWithPictures } = getItems();
+	console.log(itemsWithPictures);
 	setNavStyle('shop');
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
@@ -432,7 +435,9 @@ export async function getStaticProps() {
 
 		return {
 			props: {
-				initialReduxState: [...items],
+				initialReduxState: {
+					items: itemsWithPictures,
+				},
 			},
 		};
 
