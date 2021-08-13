@@ -9,17 +9,17 @@ import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
 import { checkProductDiscounts } from '../../utils/sales';
 import { filterChange, sortChange, locationChange } from '../../utils/sort';
+import { categories, locations } from '../../utils/options';
 import { useSelector } from 'react-redux';
 
 const getItems = () => {
 	return useSelector((state) => ({ itemsWithPictures: state.items }));
 };
 
-export default function ShopCategories({ vendorSales, setNavStyle }) {
+export default function Shop({ vendorSales, setNavStyle }) {
 	const { itemsWithPictures } = getItems();
 	console.log(itemsWithPictures);
 
-	const newcastleStore = 'L0SCPZY3N0MGA';
 	setNavStyle('shop');
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
@@ -151,20 +151,6 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 								</select>
 								<select
 									type='name'
-									name='location'
-									id='location'
-									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-									onChange={(e) =>
-										updatePage(locationChange(e, items), e.target.value)
-									}
-									defaultValue='Location'
-								>
-									<option>Location</option>
-									<option>Newcastle</option>
-									<option>Cobourg</option>
-								</select>
-								<select
-									type='name'
 									name='filter'
 									id='filter'
 									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
@@ -174,6 +160,36 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									<option>Filter Items</option>
 									{vendors.map((vendor, i) => {
 										return <option key={i}>{vendor.vendor}</option>;
+									})}
+								</select>
+								<select
+									type='name'
+									name='location'
+									id='location'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
+									onChange={(e) =>
+										updatePage(locationChange(e, items), e.target.value)
+									}
+									defaultValue='Location'
+								>
+									<option>Location</option>
+									{locations.map((loc) => {
+										return <option key={loc}>{loc}</option>;
+									})}
+								</select>
+								<select
+									type='name'
+									name='category'
+									id='category'
+									className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
+									// onChange={(e) =>
+									// 	updatePage(locationChange(e, items), e.target.value)
+									// }
+									defaultValue='Category'
+								>
+									<option>Category</option>
+									{categories.map((cat) => {
+										return <option key={cat}>{cat}</option>;
 									})}
 								</select>
 								<button
@@ -219,12 +235,11 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									price = 'Variable Pricing - Contact Store for Details';
 									return (
 										<ProductCards
-											item={item}
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
 											image={item.imageLink}
-											key={Math.random()}
+											key={item.id}
 											location={item.presentAtLocationIds}
 										/>
 									);
@@ -236,12 +251,11 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									price = price.toFixed(2);
 									return (
 										<ProductCards
-											item={item}
 											title={item.itemData.name}
 											itemID={item.id}
 											salePrice={price}
 											image={item.imageLink}
-											key={Math.random()}
+											key={item.id}
 											location={item.presentAtLocationIds}
 										/>
 									);
@@ -252,12 +266,11 @@ export default function ShopCategories({ vendorSales, setNavStyle }) {
 									).toFixed(2);
 									return (
 										<ProductCards
-											item={item}
 											title={item.itemData.name}
 											itemID={item.id}
 											price={price}
 											image={item.imageLink}
-											key={Math.random()}
+											key={item.id}
 											location={item.presentAtLocationIds}
 										/>
 									);
