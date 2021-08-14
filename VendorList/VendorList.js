@@ -89,7 +89,7 @@ export const vendors = [
 	},
 	{
 		vendor: "Christina's Custom Gifts",
-		image: '/vendorphotos/christinascustomgifts',
+		image: '/vendorphotos/christinascustomgifts.jpg',
 	},
 	{
 		vendor: 'Contagious Designs',

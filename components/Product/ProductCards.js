@@ -25,7 +25,7 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
 							className='font-body font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-red-200
             rounded-tl-sm triangle'
 						>
-							<div className=''>Sale: ${price}</div>
+							<div className=''>Sale: ${salePrice}</div>
 						</div>
 						<div>
 							{location
