@@ -1,6 +1,6 @@
 const nextConfig = {
 	experimental: {
-		staticPageGenerationTimeout: 3600,
+		staticPageGenerationTimeout: 1800,
 	},
 };
 
