@@ -4,10 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 let store;
 
-// const initialCart = [];
-
 const initialState = {
 	items: [],
+	cart: [],
 };
 
 const itemsReducer = (state = initialState, action) => {
