@@ -17,7 +17,6 @@ export default function VendorSearchItems({
 	search,
 }) {
 	const { itemsWithPictures } = getItems();
-	console.log(itemsWithPictures);
 	console.log(search);
 	setNavStyle('vendorsearch');
 	if (itemsWithPictures) {
@@ -148,5 +147,6 @@ export async function getStaticProps({ params }) {
 
 	return {
 		props: { search },
+		revalidate: 60,
 	};
 }
