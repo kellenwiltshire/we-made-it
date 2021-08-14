@@ -242,7 +242,6 @@ export default function Shop({ vendorSales, setNavStyle }) {
 }
 
 export async function getStaticProps() {
-	experimental.staticPageGenerationTimeout = 3600;
 	const client = new Client({
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
