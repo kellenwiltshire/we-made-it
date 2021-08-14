@@ -124,29 +124,38 @@ export default function VendorSearchItems({
 	}
 }
 
-export async function getStaticPaths() {
-	const vendorList = vendors;
-	const fixedVendors = vendorList.map((ven) => {
-		const fixedVen = ven.vendor.replace(/ /g, '%20');
-		return fixedVen;
-	});
+// export async function getStaticPaths() {
+// 	const vendorList = vendors;
+// 	const fixedVendors = vendorList.map((ven) => {
+// 		const fixedVen = ven.vendor.replace(/ /g, '%20');
+// 		return fixedVen;
+// 	});
 
-	// Get the paths we want to pre-render based on vendors
-	const paths = fixedVendors.map((ven) => ({
-		params: { vendorsearch: ven },
-	}));
+// 	// Get the paths we want to pre-render based on vendors
+// 	const paths = fixedVendors.map((ven) => ({
+// 		params: { vendorsearch: ven },
+// 	}));
 
-	// We'll pre-render only these paths at build time.
-	// { fallback: false } means other routes should 404.
-	return { paths, fallback: false };
-}
+// 	// We'll pre-render only these paths at build time.
+// 	// { fallback: false } means other routes should 404.
+// 	return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
-	const search = params.vendorsearch.replace(/%20/g, ' ');
+// export async function getStaticProps({ params }) {
+// 	const search = params.vendorsearch.replace(/%20/g, ' ');
+// 	console.log('Vendor: ', search);
+
+// 	return {
+// 		props: { search },
+// 		revalidate: 60,
+// 	};
+// }
+
+export async function getServerSideProps({ query }) {
+	const search = query.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
 
 	return {
 		props: { search },
-		revalidate: 60,
 	};
 }
