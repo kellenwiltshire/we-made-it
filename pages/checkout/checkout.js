@@ -4,13 +4,12 @@ import Head from 'next/head';
 import CheckoutCard from '../../components/Checkout/CheckoutCard';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
-import { vendors } from '../../VendorList/VendorList';
 import LoadingIcon from '../../components/Icons/LoadingIcon';
 import {
 	checkCartDiscounts,
 	checkForDiscounts,
 	checkItemDiscount,
-} from '../../components/utils';
+} from '../../utils/sales';
 
 export default function Checkout({ setNavStyle, cart, setCart, vendorSales }) {
 	setNavStyle('checkout');
