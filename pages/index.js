@@ -31,7 +31,7 @@ export default function Home({ setNavStyle, vendorSales }) {
 			<Headers title='Our Story' />
 			<AboutStore />
 
-			<VendorSale vendorSales={vendorSales} />
+			{/* <VendorSale vendorSales={vendorSales} /> */}
 			<Location />
 		</div>
 	);
