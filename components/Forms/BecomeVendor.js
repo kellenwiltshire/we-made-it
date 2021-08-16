@@ -234,7 +234,7 @@ function BecomeVendor() {
 													(save $60/year)
 												</option>
 												<option>
-													$260/month ~ Full Wall Space 3 Ft wide - 6 Month Plan
+													$160/month ~ Full Wall Space 3 Ft wide - 6 Month Plan
 													(save $120/year)
 												</option>
 											</select>
