@@ -267,6 +267,8 @@ export default function ShopProduct({
 	}
 }
 
+//! Set this to SSG all product pages at build time
+
 export async function getServerSideProps({ query }) {
 	const item = query.product;
 

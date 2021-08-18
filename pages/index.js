@@ -104,8 +104,8 @@ export async function getStaticProps() {
 				initialReduxState: {
 					items: itemsWithPictures,
 				},
-				revalidate: 3600,
 			},
+			revalidate: 3600,
 		};
 	}
 }
