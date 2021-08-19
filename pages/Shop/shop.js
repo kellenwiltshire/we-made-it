@@ -67,14 +67,10 @@ export default function Shop({ vendorSales, setNavStyle }) {
 
 		//This effect updates the current items on the page whenever the sort method changes
 		useEffect(() => {
+			console.log('curr items updated');
 			if (items.length > 50) {
 				setCurrItems(items.slice(offset, offset + perPage));
 			} else setCurrItems(items);
-			const sortSelection = document.querySelector('#sort');
-			const filterSelection = document.querySelector('#filter');
-
-			sortSelection.selectedIndex = 0;
-			filterSelection.selectedIndex = 0;
 		}, [sort, items]);
 
 		//This function makes sure everything is reset and correct whenever sort or filters have been applied
@@ -157,7 +153,7 @@ export default function Shop({ vendorSales, setNavStyle }) {
 											itemID={item.id}
 											price={price}
 											image={item.imageLink}
-											key={item.id}
+											key={Math.random()}
 											location={item.presentAtLocationIds}
 										/>
 									);
@@ -173,7 +169,7 @@ export default function Shop({ vendorSales, setNavStyle }) {
 											itemID={item.id}
 											salePrice={price}
 											image={item.imageLink}
-											key={item.id}
+											key={Math.random()}
 											location={item.presentAtLocationIds}
 										/>
 									);
@@ -188,7 +184,7 @@ export default function Shop({ vendorSales, setNavStyle }) {
 											itemID={item.id}
 											price={price}
 											image={item.imageLink}
-											key={item.id}
+											key={Math.random()}
 											location={item.presentAtLocationIds}
 										/>
 									);

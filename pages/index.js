@@ -80,12 +80,12 @@ export async function getStaticProps() {
 	let filteredItems = [];
 
 	//This grabs the entire catalog at once through recursion
-	items = await recursiveCatalog();
+	// items = await recursiveCatalog();
 
 	//!DEV
-	// const catalog = client.catalogApi;
-	// const response = await catalog.listCatalog('', 'ITEM');
-	// items = JSONBig.parse(JSONBig.stringify(response.result.objects));
+	const catalog = client.catalogApi;
+	const response = await catalog.listCatalog('', 'ITEM');
+	items = JSONBig.parse(JSONBig.stringify(response.result.objects));
 
 	//Then the items are filtered so that only ones that have photo's are returned
 	if (items) {
