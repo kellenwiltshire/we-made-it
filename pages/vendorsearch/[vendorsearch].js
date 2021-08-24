@@ -12,22 +12,22 @@ import { devCatalog } from '../../utils/devCatalog';
 export default function VendorSearchItems({
 	setNavStyle,
 	vendorSales,
-	search,
+	venSearch,
 	itemsWithPictures,
 }) {
-	console.log(search);
+	console.log(venSearch);
 	setNavStyle('vendorsearch');
 	if (itemsWithPictures) {
 		if (itemsWithPictures.length) {
-			const results = filterChange(search, itemsWithPictures);
+			const results = filterChange(venSearch, itemsWithPictures);
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 					<Head>
-						<title>{search} || We Made It</title>
+						<title>{venSearch} || We Made It</title>
 					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title={search} />
+						<Headers title={venSearch} />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{results.map((item) => {
@@ -139,103 +139,20 @@ export async function getStaticPaths() {
 	return { paths, fallback: false };
 }
 
-// export async function getStaticProps({ params }) {
-// 	const search = params.vendorsearch.replace(/%20/g, ' ');
-// 	console.log('Vendor: ', search);
-
-// 	return {
-// 		props: { search },
-// 		revalidate: 60,
-// 	};
-// }
-
 export async function getStaticProps({ params }) {
 	const search = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
 	console.log('Vendor Page Revalidate');
-	// const itemsWithPictures = await catalog();
+	const itemsWithPictures = await catalog();
 
 	//!Dev Purposes
-	const itemsWithPictures = await devCatalog();
+	// const itemsWithPictures = await devCatalog();
 
 	return {
 		props: {
 			itemsWithPictures: itemsWithPictures,
-			search: search,
+			venSearch: search,
 		},
 		revalidate: 3600,
 	};
 }
-
-// export async function getStaticProps({ params }) {
-// 	const search = params.vendorsearch.replace(/%20/g, ' ');
-// 	console.log('Vendor: ', search);
-
-// 	const client = new Client({
-// 		environment: Environment.Production,
-// 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
-// 	});
-// 	console.log('Shop Page Revalidate');
-
-// 	const recursiveCatalog = async (cursor = '', initialRequest = true) => {
-// 		let opts = 'ITEM';
-// 		const catalog = client.catalogApi;
-
-// 		const response = await catalog.listCatalog(cursor, opts);
-// 		const data = JSONBig.parse(JSONBig.stringify(response.result.objects));
-// 		const newCursor = response.result.cursor;
-
-// 		if (initialRequest && cursor === '') {
-// 			return data.concat(await recursiveCatalog(newCursor, false));
-// 		} else if (!initialRequest && !cursor) {
-// 			return data;
-// 		} else {
-// 			return data.concat(await recursiveCatalog(newCursor, false));
-// 		}
-// 	};
-
-// 	const newImageRequest = async (items) => {
-// 		const catalog = client.catalogApi;
-
-// 		let newItemsWithPictures = [];
-
-// 		for (let i = 0; i < items.length; i++) {
-// 			const response = await catalog.retrieveCatalogObject(items[i].imageId);
-// 			items[i].imageLink = response.result.object.imageData.url;
-// 			newItemsWithPictures.push(items[i]);
-// 		}
-// 		return newItemsWithPictures;
-// 	};
-
-// 	let items = [];
-// 	let filteredItems = [];
-
-// 	//This grabs the entire catalog at once through recursion
-// 	// items = await recursiveCatalog();
-
-// 	//!DEV
-// 	const catalog = client.catalogApi;
-// 	const response = await catalog.listCatalog('', 'ITEM');
-// 	items = JSONBig.parse(JSONBig.stringify(response.result.objects));
-
-// 	//Then the items are filtered so that only ones that have photo's are returned
-// 	if (items) {
-// 		const dataItems = items;
-// 		for (let i = 0; i < dataItems.length; i++) {
-// 			if (dataItems[i].imageId) {
-// 				filteredItems.push(dataItems[i]);
-// 			}
-// 		}
-
-// 		//Finally, before returning the list of Items it grabs the URL for the photo's for each item -- This takes a while!
-// 		const itemsWithPictures = await newImageRequest(filteredItems);
-
-// 		return {
-// 			props: {
-// 				itemsWithPictures: itemsWithPictures,
-// 				search: search,
-// 			},
-// 			revalidate: 3600,
-// 		};
-// 	}
-// }

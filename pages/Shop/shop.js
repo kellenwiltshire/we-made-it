@@ -235,10 +235,10 @@ export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 
 export async function getStaticProps() {
 	console.log('Shop Page Revalidate');
-	// const itemsWithPictures = await catalog();
+	const itemsWithPictures = await catalog();
 
 	//!Dev Purposes
-	const itemsWithPictures = await devCatalog();
+	// const itemsWithPictures = await devCatalog();
 
 	return {
 		props: {
