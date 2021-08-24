@@ -6,7 +6,7 @@ import CartIcon from '../Icons/CartIcon';
 import NewSearch from '../Forms/NewSearch';
 import SearchIconBig from '../Icons/SearchIconBig';
 
-function Navigation({ cart }) {
+function Navigation({ cart, search, setSearch }) {
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
 	let category = 'Shop All';
@@ -79,7 +79,7 @@ function Navigation({ cart }) {
 						(searchOpen ? ' flex' : ' hidden')
 					}
 				>
-					<NewSearch />
+					<NewSearch search={search} setSearch={setSearch} />
 				</div>
 				{cart.length > 0 ? (
 					<Link href={'/checkout/checkout'}>
@@ -104,7 +104,7 @@ function Navigation({ cart }) {
 						(searchOpen ? ' flex' : ' hidden')
 					}
 				>
-					<NewSearch />
+					<NewSearch search={search} setSearch={setSearch} />
 				</div>
 				<div
 					className={

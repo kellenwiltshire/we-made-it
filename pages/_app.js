@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
 	const [cart, setCart] = useState([]);
 	const [vendorSales, setVendorSales] = useState([]);
 	const [navStyle, setNavStyle] = useState('home');
+	const [search, setSearch] = useState('');
 	const store = useStore(pageProps.initialReduxState);
 
 	useEffect(() => {
@@ -30,13 +31,19 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<Provider store={store}>
-			<Layout cart={cart} navStyle={navStyle}>
+			<Layout
+				cart={cart}
+				navStyle={navStyle}
+				search={search}
+				setSearch={setSearch}
+			>
 				<Component
 					{...pageProps}
 					cart={cart}
 					setCart={setCart}
 					vendorSales={vendorSales}
 					setNavStyle={setNavStyle}
+					search={search}
 				/>
 			</Layout>
 		</Provider>

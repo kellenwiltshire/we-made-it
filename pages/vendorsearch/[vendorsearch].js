@@ -6,17 +6,15 @@ import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../utils/sales';
 import { useSelector } from 'react-redux';
 import { filterChange } from '../../utils/sort';
-
-const getItems = () => {
-	return useSelector((state) => ({ itemsWithPictures: state.items }));
-};
+import { catalog } from '../../utils/recusiveCatalog';
+import { devCatalog } from '../../utils/devCatalog';
 
 export default function VendorSearchItems({
 	setNavStyle,
 	vendorSales,
 	search,
+	itemsWithPictures,
 }) {
-	const { itemsWithPictures } = getItems();
 	console.log(search);
 	setNavStyle('vendorsearch');
 	if (itemsWithPictures) {
@@ -124,22 +122,22 @@ export default function VendorSearchItems({
 	}
 }
 
-// export async function getStaticPaths() {
-// 	const vendorList = vendors;
-// 	const fixedVendors = vendorList.map((ven) => {
-// 		const fixedVen = ven.vendor.replace(/ /g, '%20');
-// 		return fixedVen;
-// 	});
+export async function getStaticPaths() {
+	const vendorList = vendors;
+	const fixedVendors = vendorList.map((ven) => {
+		const fixedVen = ven.vendor.replace(/ /g, '%20');
+		return fixedVen;
+	});
 
-// 	// Get the paths we want to pre-render based on vendors
-// 	const paths = fixedVendors.map((ven) => ({
-// 		params: { vendorsearch: ven },
-// 	}));
+	// Get the paths we want to pre-render based on vendors
+	const paths = fixedVendors.map((ven) => ({
+		params: { vendorsearch: ven },
+	}));
 
-// 	// We'll pre-render only these paths at build time.
-// 	// { fallback: false } means other routes should 404.
-// 	return { paths, fallback: false };
-// }
+	// We'll pre-render only these paths at build time.
+	// { fallback: false } means other routes should 404.
+	return { paths, fallback: false };
+}
 
 // export async function getStaticProps({ params }) {
 // 	const search = params.vendorsearch.replace(/%20/g, ' ');
@@ -151,11 +149,93 @@ export default function VendorSearchItems({
 // 	};
 // }
 
-export async function getServerSideProps({ query }) {
-	const search = query.vendorsearch.replace(/%20/g, ' ');
+export async function getStaticProps({ params }) {
+	const search = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
+	console.log('Vendor Page Revalidate');
+	// const itemsWithPictures = await catalog();
+
+	//!Dev Purposes
+	const itemsWithPictures = await devCatalog();
 
 	return {
-		props: { search },
+		props: {
+			itemsWithPictures: itemsWithPictures,
+			search: search,
+		},
+		revalidate: 3600,
 	};
 }
+
+// export async function getStaticProps({ params }) {
+// 	const search = params.vendorsearch.replace(/%20/g, ' ');
+// 	console.log('Vendor: ', search);
+
+// 	const client = new Client({
+// 		environment: Environment.Production,
+// 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
+// 	});
+// 	console.log('Shop Page Revalidate');
+
+// 	const recursiveCatalog = async (cursor = '', initialRequest = true) => {
+// 		let opts = 'ITEM';
+// 		const catalog = client.catalogApi;
+
+// 		const response = await catalog.listCatalog(cursor, opts);
+// 		const data = JSONBig.parse(JSONBig.stringify(response.result.objects));
+// 		const newCursor = response.result.cursor;
+
+// 		if (initialRequest && cursor === '') {
+// 			return data.concat(await recursiveCatalog(newCursor, false));
+// 		} else if (!initialRequest && !cursor) {
+// 			return data;
+// 		} else {
+// 			return data.concat(await recursiveCatalog(newCursor, false));
+// 		}
+// 	};
+
+// 	const newImageRequest = async (items) => {
+// 		const catalog = client.catalogApi;
+
+// 		let newItemsWithPictures = [];
+
+// 		for (let i = 0; i < items.length; i++) {
+// 			const response = await catalog.retrieveCatalogObject(items[i].imageId);
+// 			items[i].imageLink = response.result.object.imageData.url;
+// 			newItemsWithPictures.push(items[i]);
+// 		}
+// 		return newItemsWithPictures;
+// 	};
+
+// 	let items = [];
+// 	let filteredItems = [];
+
+// 	//This grabs the entire catalog at once through recursion
+// 	// items = await recursiveCatalog();
+
+// 	//!DEV
+// 	const catalog = client.catalogApi;
+// 	const response = await catalog.listCatalog('', 'ITEM');
+// 	items = JSONBig.parse(JSONBig.stringify(response.result.objects));
+
+// 	//Then the items are filtered so that only ones that have photo's are returned
+// 	if (items) {
+// 		const dataItems = items;
+// 		for (let i = 0; i < dataItems.length; i++) {
+// 			if (dataItems[i].imageId) {
+// 				filteredItems.push(dataItems[i]);
+// 			}
+// 		}
+
+// 		//Finally, before returning the list of Items it grabs the URL for the photo's for each item -- This takes a while!
+// 		const itemsWithPictures = await newImageRequest(filteredItems);
+
+// 		return {
+// 			props: {
+// 				itemsWithPictures: itemsWithPictures,
+// 				search: search,
+// 			},
+// 			revalidate: 3600,
+// 		};
+// 	}
+// }

@@ -1,9 +1,11 @@
 import React from 'react';
-import Headers from '../../components/Layout/Headers';
+import Headers from '../components/Layout/Headers';
 import Head from 'next/head';
-import ProductCards from '../../components/Product/ProductCards';
-import { checkProductDiscounts } from '../../utils/sales';
-import { filterChange } from '../../utils/sort';
+import ProductCards from '../components/Product/ProductCards';
+import { checkProductDiscounts } from '../utils/sales';
+import { filterChange } from '../utils/sort';
+import JSONBig from 'json-bigint';
+import { Client, Environment } from 'square';
 
 export default function SearchItems({
 	setNavStyle,
@@ -120,9 +122,7 @@ export default function SearchItems({
 // 	};
 // }
 
-export async function getStaticProps({ query }) {
-	const search = query.search;
-	console.log('Search: ', query.search);
+export async function getStaticProps() {
 	const client = new Client({
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
@@ -185,7 +185,6 @@ export async function getStaticProps({ query }) {
 		return {
 			props: {
 				items: itemsWithPictures,
-				search: search,
 			},
 			revalidate: 3600,
 		};

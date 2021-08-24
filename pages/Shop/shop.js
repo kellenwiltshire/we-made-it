@@ -7,15 +7,11 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
 import { checkProductDiscounts } from '../../utils/sales';
-import { useSelector } from 'react-redux';
 import ShopFilters from '../../components/Layout/ShopFilters';
+import { catalog } from '../../utils/recusiveCatalog';
+import { devCatalog } from '../../utils/devCatalog';
 
-const getItems = () => {
-	return useSelector((state) => ({ itemsWithPictures: state.items }));
-};
-
-export default function Shop({ vendorSales, setNavStyle }) {
-	const { itemsWithPictures } = getItems();
+export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 	console.log(itemsWithPictures);
 
 	setNavStyle('shop');
@@ -235,4 +231,19 @@ export default function Shop({ vendorSales, setNavStyle }) {
 			</div>
 		);
 	}
+}
+
+export async function getStaticProps() {
+	console.log('Shop Page Revalidate');
+	// const itemsWithPictures = await catalog();
+
+	//!Dev Purposes
+	const itemsWithPictures = await devCatalog();
+
+	return {
+		props: {
+			itemsWithPictures: itemsWithPictures,
+		},
+		revalidate: 3600,
+	};
 }

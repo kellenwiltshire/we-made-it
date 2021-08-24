@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import SearchIcon from '../Icons/SearchIcon';
 import LoadingIcon from '../Icons/LoadingIcon';
 
-function NewSearch() {
+function NewSearch({ setSearch }) {
 	const router = useRouter();
 	let input = '';
 	let Shortenedinput = '';
@@ -11,15 +11,16 @@ function NewSearch() {
 
 	const onInputChange = (e) => {
 		input = e.target.value;
-		Shortenedinput = e.target.value.split(' ').join('');
+		Shortenedinput = e.target.value.replace(/\s+/g, '%20');
 	};
 
 	const handleSearch = (e) => {
 		e.preventDefault();
 		setIsSearching(true);
+		setSearch(Shortenedinput);
 		router.push({
-			pathname: '/search/[...searchitems]',
-			query: { searchitems: Shortenedinput, search: input },
+			pathname: '/itemsearch',
+			query: { search: Shortenedinput },
 		});
 		setIsSearching(false);
 	};

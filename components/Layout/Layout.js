@@ -6,7 +6,7 @@ import HomeNav from './HomeNav';
 import Messenger from './Messenger';
 import MessengerMessageUs from 'react-messenger-message-us';
 
-function Layout({ title, children, cart, navStyle }) {
+function Layout({ title, children, cart, navStyle, search, setSearch }) {
 	return (
 		<div>
 			<Head>
@@ -22,9 +22,9 @@ function Layout({ title, children, cart, navStyle }) {
 				/>
 			</Head>
 			{navStyle === 'home' ? (
-				<HomeNav cart={cart} />
+				<HomeNav cart={cart} search={search} setSearch={setSearch} />
 			) : (
-				<Navigation cart={cart} />
+				<Navigation cart={cart} search={search} setSearch={setSearch} />
 			)}
 
 			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
