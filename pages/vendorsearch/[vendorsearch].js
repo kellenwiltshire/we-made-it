@@ -178,7 +178,6 @@ export async function getStaticProps({ params }) {
 		console.log('Search Error: ', error);
 		return {
 			props: {},
-			revalidate: 3600,
 		};
 	}
 
