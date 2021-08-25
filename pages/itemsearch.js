@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Headers from '../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../components/Product/ProductCards';
@@ -15,10 +15,11 @@ export default function SearchItems({
 	vendorSales,
 	itemsWithPictures,
 }) {
+	const [results, setResults] = useState([]);
 	console.log(search);
 	setNavStyle('search');
 	if (itemsWithPictures) {
-		const results = filterChange(search, itemsWithPictures);
+		setResults(filterChange(search, itemsWithPictures));
 		checkProductDiscounts(results, vendorSales);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
@@ -44,7 +45,7 @@ export default function SearchItems({
 												itemID={item.id}
 												price={price}
 												image={item.imageLink}
-												key={item.id}
+												key={Math.random()}
 												location={item.presentAtLocationIds}
 											/>
 										);
@@ -60,7 +61,7 @@ export default function SearchItems({
 												itemID={item.id}
 												salePrice={price}
 												image={item.imageLink}
-												key={item.id}
+												key={Math.random()}
 												location={item.presentAtLocationIds}
 											/>
 										);
@@ -75,7 +76,7 @@ export default function SearchItems({
 												itemID={item.id}
 												price={price}
 												image={item.imageLink}
-												key={item.id}
+												key={Math.random()}
 												location={item.presentAtLocationIds}
 											/>
 										);
