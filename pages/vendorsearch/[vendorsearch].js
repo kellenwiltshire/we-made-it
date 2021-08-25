@@ -15,7 +15,6 @@ export default function VendorSearchItems({
 	venSearch,
 	itemsWithPictures,
 }) {
-	console.log(venSearch);
 	setNavStyle('vendorsearch');
 	if (itemsWithPictures) {
 		if (itemsWithPictures.length) {
