@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
-import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../utils/sales';
 import JSONBig from 'json-bigint';
@@ -27,7 +26,6 @@ export default function VendorSearchItems({
 					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
 						<Headers title={search} />
-						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{results.map((result, i) => {
