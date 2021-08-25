@@ -6,8 +6,8 @@ import { checkProductDiscounts } from '../utils/sales';
 import { filterChange } from '../utils/sort';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
-import { catalog } from '../../utils/recusiveCatalog';
-import { devCatalog } from '../../utils/devCatalog';
+import { catalog } from '../utils/recusiveCatalog';
+import { devCatalog } from '../utils/devCatalog';
 
 export default function SearchItems({
 	setNavStyle,
