@@ -15,7 +15,7 @@ export default function SearchItems({
 	vendorSales,
 	itemsWithPictures,
 }) {
-	const [results, setResults] = useState([]);
+	const [results, setResults] = useState(null);
 	console.log(search);
 	setNavStyle('search');
 	if (itemsWithPictures) {
