@@ -15,11 +15,10 @@ export default function SearchItems({
 	vendorSales,
 	itemsWithPictures,
 }) {
-	const [results, setResults] = useState(null);
 	console.log(search);
 	setNavStyle('search');
 	if (itemsWithPictures) {
-		setResults(filterChange(search, itemsWithPictures));
+		const results = filterChange(search, itemsWithPictures);
 		checkProductDiscounts(results, vendorSales);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
