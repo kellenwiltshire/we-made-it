@@ -5,8 +5,8 @@ import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../components/utils';
-const JSONBig = require('json-bigint');
-const { Client, Environment } = require('square');
+import JSONBig from 'json-bigint';
+import { Client, Environment } from 'square';
 
 export default function VendorSearchItems({
 	setNavStyle,
