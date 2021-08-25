@@ -4,7 +4,7 @@ import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
-import { checkProductDiscounts } from '../../components/utils';
+import { checkProductDiscounts } from '../../utils/sales';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 
