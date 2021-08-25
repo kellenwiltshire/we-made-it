@@ -7,7 +7,7 @@ function VendorCards({ vendor, image }) {
 		<Link
 			href={{
 				pathname: '/vendorsearch/[vendorsearch]',
-				query: { vendorsearch: fixedVendor },
+				query: { vendorsearch: fixedVendor, search: vendor },
 			}}
 		>
 			<a>
