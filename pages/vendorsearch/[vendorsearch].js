@@ -1,81 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
+import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
-import { checkProductDiscounts } from '../../utils/sales';
-import { useSelector } from 'react-redux';
-import { filterChange } from '../../utils/sort';
-import { catalog } from '../../utils/recusiveCatalog';
-import { devCatalog } from '../../utils/devCatalog';
+import { checkProductDiscounts } from '../../components/utils';
+const JSONBig = require('json-bigint');
+const { Client, Environment } = require('square');
 
 export default function VendorSearchItems({
 	setNavStyle,
+	cart,
+	searchresults,
 	vendorSales,
-	venSearch,
-	itemsWithPictures,
+	search,
 }) {
 	setNavStyle('vendorsearch');
-	if (itemsWithPictures) {
-		if (itemsWithPictures.length) {
-			const results = filterChange(venSearch, itemsWithPictures);
+	if (searchresults) {
+		if (searchresults.length) {
+			let results = searchresults;
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 					<Head>
-						<title>{venSearch} || We Made It</title>
+						<title>{search} || We Made It</title>
 					</Head>
 					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title={venSearch} />
+						<Headers title={search} />
+						<CategorySelect />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((item) => {
+							{results.map((result, i) => {
 								let price;
-								if (item.itemData.variations) {
+								if (result.itemData.variations) {
 									if (
-										item.itemData.variations[0].itemVariationData
+										result.itemData.variations[0].itemVariationData
 											.pricingType === 'VARIABLE_PRICING'
 									) {
 										price = 'Variable Pricing - Contact Store for Details';
 										return (
 											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												price={price}
-												image={item.imageLink}
-												key={item.id}
-												location={item.presentAtLocationIds}
+												defaultImage='/sparklelogoblack.png'
+												key={Math.random()}
 											/>
 										);
-									} else if (item.sale) {
+									} else if (result.sale) {
 										let currPrice =
-											item.itemData.variations[0].itemVariationData.priceMoney
+											result.itemData.variations[0].itemVariationData.priceMoney
 												.amount / 100;
-										price = currPrice - currPrice * (item.sale / 100);
+										price = currPrice - currPrice * (result.sale / 100);
 										price = price.toFixed(2);
 										return (
 											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												salePrice={price}
-												image={item.imageLink}
-												key={item.id}
-												location={item.presentAtLocationIds}
+												image={result.imageLink}
+												key={Math.random()}
 											/>
 										);
 									} else {
 										price = (
-											item.itemData.variations[0].itemVariationData.priceMoney
+											result.itemData.variations[0].itemVariationData.priceMoney
 												.amount / 100
 										).toFixed(2);
 										return (
 											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
+												item={result}
+												title={result.itemData.name}
+												itemID={result.id}
 												price={price}
-												image={item.imageLink}
-												key={item.id}
-												location={item.presentAtLocationIds}
+												image={result.imageLink}
+												key={Math.random()}
 											/>
 										);
 									}
@@ -139,19 +140,52 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+	console.log(params);
+	const client = new Client({
+		environment: Environment.Production,
+		accessToken: process.env.SQUARE_ACCESS_TOKEN,
+	});
 	const search = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', search);
-	console.log('Vendor Page Revalidate');
-	const itemsWithPictures = await catalog();
 
-	//!Dev Purposes
-	// const itemsWithPictures = await devCatalog();
+	let filteredItems = [];
+
+	const newImageRequest = async (items) => {
+		const catalog = client.catalogApi;
+
+		let newItemsWithPictures = [];
+
+		for (let i = 0; i < items.length; i++) {
+			const response = await catalog.retrieveCatalogObject(items[i].imageId);
+			items[i].imageLink = response.result.object.imageData.url;
+			newItemsWithPictures.push(items[i]);
+		}
+		return newItemsWithPictures;
+	};
+	try {
+		const response = await client.catalogApi.searchCatalogItems({
+			textFilter: search,
+		});
+
+		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
+
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].imageId) {
+				filteredItems.push(data[i]);
+			}
+		}
+	} catch (error) {
+		console.log('Search Error: ', error);
+		return {
+			props: {},
+			revalidate: 3600,
+		};
+	}
+
+	const searchresults = await newImageRequest(filteredItems);
 
 	return {
-		props: {
-			itemsWithPictures: itemsWithPictures,
-			venSearch: search,
-		},
+		props: { searchresults, search },
 		revalidate: 3600,
 	};
 }
