@@ -13,12 +13,12 @@ export default function SearchItems({
 	setNavStyle,
 	search,
 	vendorSales,
-	items,
+	itemsWithPictures,
 }) {
 	console.log(search);
 	setNavStyle('search');
-	if (items) {
-		const results = filterChange(search, items);
+	if (itemsWithPictures) {
+		const results = filterChange(search, itemsWithPictures);
 		checkProductDiscounts(results, vendorSales);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
