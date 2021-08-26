@@ -30,9 +30,9 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
 						<div>
 							{location
 								? location.map((loc) => {
-										if ((loc = newcastleStore)) {
+										if (loc === newcastleStore) {
 											return <div>Newcastle</div>;
-										} else if ((loc = cobourgStore)) {
+										} else if (loc === cobourgStore) {
 											return <div>Cobourg</div>;
 										} else {
 											return null;
