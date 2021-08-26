@@ -113,3 +113,26 @@ export const locationChange = (param, initialItems) => {
 
 	return filteredItems;
 };
+
+export const vendorLocationChange = (param, vendors) => {
+	let filteredVendors = vendors;
+	if (param === 'Newcastle') {
+		filteredVendors = filteredVendors.filter((vendor) => {
+			if (vendor.location) {
+				return vendor.location.includes('Newcastle');
+			} else {
+				return;
+			}
+		});
+	} else if (param === 'Cobourg') {
+		filteredVendors = filteredVendors.filter((vendor) => {
+			if (vendor.location) {
+				return vendor.location.includes('Cobourg');
+			} else {
+				return;
+			}
+		});
+	}
+
+	return filteredVendors;
+};
