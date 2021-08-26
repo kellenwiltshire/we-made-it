@@ -6,6 +6,7 @@ import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkItemDiscount } from '../../utils/sales';
+import { locations } from '../../utils/options';
 
 export default function ShopProduct({
 	setNavStyle,
@@ -32,6 +33,8 @@ export default function ShopProduct({
 				})
 				.catch((err) => console.log(err));
 		}
+		console.log(data.itemVarData[0].presentAtLocationIds);
+		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
 		const [price, setPrice] = useState();
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
@@ -45,6 +48,15 @@ export default function ShopProduct({
 
 		let quantity = 1;
 		let selectedItem;
+
+		let fixedItemLocation = [];
+		itemLocations.map((loc) => {
+			if (loc === 'L0SCPZY3N0MGA') {
+				fixedItemLocation.push('Newcastle');
+			} else if (loc === 'LQQF7JXRMNY9M') {
+				fixedItemLocation.push('Cobourg');
+			}
+		});
 
 		const setInitialPrice = () => {
 			if (
@@ -218,6 +230,14 @@ export default function ShopProduct({
 													onChange={onInputChange}
 													className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base'
 												/>
+											</div>
+										</div>
+										<div className='m-2'>
+											<div>
+												<span className='mr-3'>Available At: </span>
+												{fixedItemLocation.map((loc) => {
+													return <p>{loc}</p>;
+												})}
 											</div>
 										</div>
 									</div>
