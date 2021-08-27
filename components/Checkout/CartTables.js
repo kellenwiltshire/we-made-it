@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-	CartProvider,
-	useUpdateCartQuantityContext,
-} from '../../context/Store';
+import { useUpdateCartQuantityContext } from '../../context/Store';
 import Link from 'next/link';
 import Price from './Price';
 import { getCartSubTotal } from '../../utils/checkout';
