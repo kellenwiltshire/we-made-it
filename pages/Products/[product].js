@@ -7,6 +7,7 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkItemDiscount } from '../../utils/sales';
 import { locations } from '../../utils/options';
+import { useAddToCartContext } from '../../context/Store';
 
 export default function ShopProduct({
 	setNavStyle,
@@ -15,6 +16,7 @@ export default function ShopProduct({
 	cart,
 	vendorSales,
 }) {
+	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	setNavStyle('products');
 	if (data) {
@@ -46,7 +48,7 @@ export default function ShopProduct({
 
 		const [inventory, setInventory] = useState(1);
 
-		let quantity = 1;
+		const [quantity, setQuantity] = useState(1);
 		let selectedItem;
 
 		let fixedItemLocation = [];
@@ -85,9 +87,9 @@ export default function ShopProduct({
 
 		const onInputChange = (e) => {
 			e.preventDefault();
-			quantity = e.target.value;
+			setQuantity(e.target.value);
 			if (quantity > inventory) {
-				quantity = inventory;
+				setQuantity(inventory);
 			}
 		};
 
@@ -136,6 +138,20 @@ export default function ShopProduct({
 			return data.counts[0].quantity;
 		};
 
+		async function handleAddToCart(e) {
+			e.preventDefault();
+			// update store context
+			if (quantity !== '') {
+				addToCart({
+					productTitle: itemName,
+					productImage: image,
+					variantId: itemID,
+					variantPrice: price,
+					variantQuantity: quantity,
+				});
+			}
+		}
+
 		const handleCart = (e) => {
 			e.preventDefault();
 			setCart([
@@ -182,7 +198,7 @@ export default function ShopProduct({
 						/>
 						<form
 							className='lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'
-							onSubmit={handleCart}
+							onSubmit={handleAddToCart}
 						>
 							<h1 className='text-gray-900 text-3xl title-font font-medium mb-5 font-title'>
 								{itemName}
