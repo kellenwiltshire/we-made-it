@@ -41,6 +41,7 @@ export function CartProvider({ children }) {
 		// empty cart
 		if (cart.length === 0) {
 			setCart([...cart, newItem]);
+
 			saveLocalData(newItem);
 		} else {
 			let newCart = [...cart];
@@ -71,38 +72,22 @@ export function CartProvider({ children }) {
 		if (quantity === '') {
 			newQuantity = '';
 		}
-		if (cart.length > 1) {
-			let newCart = [...cart];
-			console.log('Update Cart Quantity: ', newCart);
-			newCart.forEach((item) => {
-				if (item.variantId === id) {
-					item.variantQuantity = newQuantity;
-				}
-			});
-			// take out zeroes items
-			newCart = newCart.filter((i) => i.variantQuantity !== 0);
-			setCart(newCart);
+		let newCart = [...cart];
+		newCart.forEach((item) => {
+			if (item.variantId === id) {
+				item.variantQuantity = newQuantity;
+			}
+		});
 
-			saveLocalData(newCart);
-		} else {
-			let newCart = cart;
-			console.log('Update Cart Quantity: ', newCart);
-			if (newCart.variantId === id) {
-				newCart.variantQuantity = newQuantity;
-			}
-			// take out zeroes items
-			if (newCart.variantQuantity !== 0) {
-				setCart(newCart);
-				saveLocalData(newCart);
-			} else {
-				setCart([]);
-				saveLocalData([]);
-			}
-		}
+		// take out zeroes items
+		newCart = newCart.filter((i) => i.variantQuantity !== 0);
+		setCart(newCart);
+
+		saveLocalData(newCart);
 	}
 
 	return (
-		<CartContext.Provider value={[cart]}>
+		<CartContext.Provider value={cart}>
 			<AddToCartContext.Provider value={addToCart}>
 				<UpdateCartQuantityContext.Provider value={updateCartItemQuantity}>
 					{children}

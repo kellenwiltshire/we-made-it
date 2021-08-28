@@ -141,7 +141,7 @@ export default function ShopProduct({
 		async function handleAddToCart(e) {
 			e.preventDefault();
 			// update store context
-			if (quantity !== '') {
+			if (quantity > 0) {
 				addToCart({
 					productTitle: itemName,
 					productImage: image,

@@ -15,6 +15,8 @@ function Navigation({ search, setSearch }) {
 	let category = 'Shop All';
 	let cat = category.replace(' ', '');
 	let name = category;
+
+	console.log('Nav Cart:', cart);
 	useEffect(() => {
 		let numItems = 0;
 		cart.forEach((item) => {

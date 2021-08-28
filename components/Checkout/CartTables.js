@@ -10,13 +10,13 @@ function CartTable({ cart }) {
 	const [subtotal, setSubtotal] = useState(0);
 
 	useEffect(() => {
-		setCartItems(cart);
+		setCartItems([...cart]);
 		setSubtotal(getCartSubTotal(cart));
 	}, [cart]);
 
-	function updateItem(id, quantity) {
+	const updateItem = (id, quantity) => {
 		updateCartQuantity(id, quantity);
-	}
+	};
 
 	console.log('Checkout Cart: ', cartItems);
 
