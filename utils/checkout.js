@@ -25,11 +25,18 @@ export function getCartSubTotal(cart) {
 		return 0;
 	} else {
 		let totalPrice = 0;
-		cart.forEach(
-			(item) =>
-				(totalPrice +=
-					parseInt(item.variantQuantity) * parseFloat(item.variantPrice)),
-		);
+		cart.forEach((item) => {
+			if (item.sale) {
+				totalPrice +=
+					parseInt(item.variantQuantity) *
+					parseFloat(
+						item.variantPrice - item.variantPrice * (item.sale / 100),
+					).toFixed(2);
+			} else {
+				totalPrice +=
+					parseInt(item.variantQuantity) * parseFloat(item.variantPrice);
+			}
+		});
 		return Math.round(totalPrice * 100) / 100;
 	}
 }

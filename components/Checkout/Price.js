@@ -1,4 +1,4 @@
-function Price({ currency, num, numSize }) {
+function Price({ num, numSize }) {
 	return (
 		<>
 			$<span className={numSize}>{num}</span>

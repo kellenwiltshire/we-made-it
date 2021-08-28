@@ -16,6 +16,7 @@ function CartTable({ cart, vendorSales }) {
 		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 		setCartItems(cart);
 		setDiscountInformation(checkForDiscounts());
+		setSubtotal(getCartSubTotal(cart));
 	}, [cart]);
 
 	const updateItem = (id, quantity) => {
@@ -41,6 +42,13 @@ function CartTable({ cart, vendorSales }) {
 				<tbody className='divide-y divide-purple-200'>
 					{cartItems.length
 						? cartItems.map((item) => {
+								let price = item.variantPrice;
+								if (item.sale) {
+									price = (
+										item.variantPrice -
+										item.variantPrice * (item.sale / 100)
+									).toFixed(2);
+								}
 								console.log('Mapped Items: ', item);
 								return (
 									<tr
@@ -74,7 +82,15 @@ function CartTable({ cart, vendorSales }) {
 											/>
 										</td>
 										<td className='font-body text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell'>
-											<Price num={item.variantPrice} numSize='text-lg' />
+											{price < item.variantPrice ? (
+												<Price
+													num={price}
+													sale={true}
+													numSize='text-lg text-red-400'
+												/>
+											) : (
+												<Price num={price} numSize='text-lg' />
+											)}
 										</td>
 										<td className='font-body font-medium px-4 sm:px-6 py-4'>
 											<button
