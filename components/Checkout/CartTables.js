@@ -5,18 +5,41 @@ import Price from './Price';
 import { getCartSubTotal } from '../../utils/checkout';
 import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
 
-function CartTable({ cart, vendorSales }) {
+function CartTable({
+	cart,
+	vendorSales,
+	setIsDiscount,
+	setLineItems,
+	setDiscountInformation,
+}) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
-	const [discountInformation, setDiscountInformation] = useState([]);
-	const [isDiscount, setIsDiscount] = useState(false);
+
+	const getLineItems = () => {
+		const line_items = cart.map((item) => {
+			if (item.discountUid) {
+				return {
+					quantity: item.variantQuantity.toString(),
+					catalogObjectId: item.variantId,
+					appliedDiscounts: [{ discountUid: item.discountUid }],
+				};
+			} else {
+				return {
+					quantity: item.variantQuantity.toString(),
+					catalogObjectId: item.variantId,
+				};
+			}
+		});
+		return line_items;
+	};
 
 	useEffect(() => {
 		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 		setCartItems(cart);
 		setDiscountInformation(checkForDiscounts());
 		setSubtotal(getCartSubTotal(cart));
+		setLineItems(getLineItems);
 	}, [cart]);
 
 	const updateItem = (id, quantity) => {
