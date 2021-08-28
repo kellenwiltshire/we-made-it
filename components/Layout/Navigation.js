@@ -18,12 +18,8 @@ function Navigation({ search, setSearch }) {
 
 	console.log('Nav Cart:', cart);
 	useEffect(() => {
-		let numItems = 0;
-		cart.forEach((item) => {
-			numItems += item.variantQuantity;
-		});
-		setCartItems(numItems);
-	}, [cart]);
+		setCartItems(cart.length);
+	}, []);
 	return (
 		<div className='mx-auto flex p-3 flex-row flex-wrap items-center justify-center bg-banner'>
 			<div className='container flex flex-row flex-wrap items-center justify-center'>
@@ -93,33 +89,19 @@ function Navigation({ search, setSearch }) {
 				>
 					<NewSearch search={search} setSearch={setSearch} />
 				</div>
-				{cart.length > 0 ? (
-					<Link href={'/checkout/checkout'}>
-						<a className='m-1 px-1 py-2 flex items-center leading-snug hover:opacity-75 bg-purple-200 rounded-lg p-1 bg-opacity-75'>
-							<span className='ml-1 flex flex-row'>
-								<CartIcon />
-								{cartItems === 0 ? null : (
-									<div className='absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3'>
-										{cartItems}
-									</div>
-								)}
-							</span>
-						</a>
-					</Link>
-				) : (
-					<Link href={'/'}>
-						<a className='m-1 px-1 py-2 flex items-center leading-snug hover:opacity-75 bg-purple-200 rounded-lg p-1 bg-opacity-75'>
-							<span className='ml-1 flex flex-row'>
-								<CartIcon />
-								{cartItems === 0 ? null : (
-									<div className='absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3'>
-										{cartItems}
-									</div>
-								)}
-							</span>
-						</a>
-					</Link>
-				)}
+
+				<Link href={'/checkout/checkout'}>
+					<a className='m-1 px-1 py-2 flex items-center leading-snug hover:opacity-75 bg-purple-200 rounded-lg p-1 bg-opacity-75 relative'>
+						<span className='ml-1 flex flex-row'>
+							<CartIcon />
+
+							<div className='absolute top-0 right-0 text-xs bg-white text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-3 -translate-y-3'>
+								{cartItems}
+							</div>
+						</span>
+					</a>
+				</Link>
+
 				<div
 					className={
 						'lg:hidden flex-grow items-center w-full lg:w-auto ml-auto lg:justify-end bg-purple-200 p-1 bg-opacity-75 rounded-lg my-2 lg:bg-opacity-0' +

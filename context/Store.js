@@ -38,6 +38,8 @@ export function CartProvider({ children }) {
 	}, []);
 
 	function addToCart(newItem) {
+		console.log('ATC - Current Cart: ', cart);
+		console.log('Is Cart Array? : ', Array.isArray(cart));
 		// empty cart
 		if (cart.length === 0) {
 			setCart([...cart, newItem]);

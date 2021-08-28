@@ -8,9 +8,10 @@ function CartTable({ cart }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
+	console.log('This Cart: ', cart);
 
 	useEffect(() => {
-		setCartItems([...cart]);
+		setCartItems(cart);
 		setSubtotal(getCartSubTotal(cart));
 	}, [cart]);
 
