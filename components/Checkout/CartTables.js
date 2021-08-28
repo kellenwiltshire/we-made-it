@@ -51,12 +51,12 @@ function CartTable({
 			<table className='mx-auto'>
 				<thead>
 					<tr className='uppercase text-xs sm:text-sm text-black border-b border-purple-200 font-title'>
-						<th className='font-primary font-normal px-6 py-4'>Product</th>
-						<th className='font-primary font-normal px-6 py-4'>Quantity</th>
-						<th className='font-primary font-normal px-6 py-4 hidden sm:table-cell'>
+						<th className='font-normal px-6 py-4'>Product</th>
+						<th className='font-normal px-6 py-4'>Quantity</th>
+						<th className='font-normal px-6 py-4 hidden sm:table-cell'>
 							Price
 						</th>
-						<th className='font-primary font-normal px-6 py-4'>Remove</th>
+						<th className='font-normal px-6 py-4'>Remove</th>
 					</tr>
 				</thead>
 				<tbody className='divide-y divide-purple-200'>
@@ -98,7 +98,7 @@ function CartTable({
 												onChange={(e) =>
 													updateItem(item.variantId, e.target.value)
 												}
-												className='text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light'
+												className='text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-purple-400 focus:ring-purple-400'
 											/>
 										</td>
 										<td className='font-body text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell'>

@@ -37,6 +37,6 @@ export function getCartSubTotal(cart) {
 					parseInt(item.variantQuantity) * parseFloat(item.variantPrice);
 			}
 		});
-		return Math.round(totalPrice * 100) / 100;
+		return (Math.round(totalPrice * 100) / 100).toFixed(2);
 	}
 }
