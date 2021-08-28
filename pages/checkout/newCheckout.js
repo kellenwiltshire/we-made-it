@@ -1,7 +1,7 @@
 import CartTable from '../../components/Checkout/CartTables';
 import { useCartContext } from '../../context/Store';
 
-function CartPage({ setNavStyle }) {
+function CartPage({ setNavStyle, vendorSales }) {
 	const cart = useCartContext();
 	setNavStyle('products');
 
@@ -9,7 +9,7 @@ function CartPage({ setNavStyle }) {
 		<div className='container mx-auto mb-20 min-h-screen'>
 			{/* <SEO title={pageTitle} />
 			<PageTitle text='Your Cart' /> */}
-			<CartTable cart={cart} />
+			<CartTable cart={cart} vendorSales={vendorSales} />
 			<div className='max-w-sm mx-auto space-y-4 px-2 flex justify-center'>
 				<button
 					// onClick={handleCheckout}

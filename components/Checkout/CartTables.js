@@ -3,20 +3,27 @@ import { useUpdateCartQuantityContext } from '../../context/Store';
 import Link from 'next/link';
 import Price from './Price';
 import { getCartSubTotal } from '../../utils/checkout';
+import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
 
-function CartTable({ cart }) {
+function CartTable({ cart, vendorSales }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
+	const [discountInformation, setDiscountInformation] = useState([]);
+	const [isDiscount, setIsDiscount] = useState(false);
 
 	useEffect(() => {
+		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 		setCartItems(cart);
-		setSubtotal(getCartSubTotal(cart));
+		setDiscountInformation(checkForDiscounts());
 	}, [cart]);
 
 	const updateItem = (id, quantity) => {
 		updateCartQuantity(id, quantity);
 	};
+
+	console.log('Cart Items: ', cartItems);
+	console.log('Cart: ', cart);
 
 	return (
 		<div className='min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full'>

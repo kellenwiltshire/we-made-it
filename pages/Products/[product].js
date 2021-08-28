@@ -103,7 +103,7 @@ export default function ShopProduct({
 
 		useEffect(() => {
 			setPrice(setInitialPrice());
-		});
+		}, []);
 
 		useEffect(() => {
 			checkItemDiscount(data, vendorSales, setIsSale);
@@ -148,25 +148,10 @@ export default function ShopProduct({
 					variantId: itemID,
 					variantPrice: price,
 					variantQuantity: quantity,
+					description: description,
 				});
 			}
 		}
-
-		const handleCart = (e) => {
-			e.preventDefault();
-			setCart([
-				...cart,
-				{
-					item: itemID,
-					quantity: quantity,
-					name: itemName,
-					price: price,
-					description: description,
-					imageID: image,
-				},
-			]);
-			showSubmitSuccess();
-		};
 
 		const showSubmitSuccess = () => {
 			setCartStatus('Added to Cart!');
