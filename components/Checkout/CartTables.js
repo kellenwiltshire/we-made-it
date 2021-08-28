@@ -118,7 +118,7 @@ function CartTable({
 												className=''
 												onClick={() => updateItem(item.variantId, 0)}
 											>
-												D
+												X
 											</button>
 										</td>
 									</tr>
