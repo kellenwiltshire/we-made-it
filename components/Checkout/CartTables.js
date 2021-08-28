@@ -46,9 +46,6 @@ function CartTable({
 		updateCartQuantity(id, quantity);
 	};
 
-	console.log('Cart Items: ', cartItems);
-	console.log('Cart: ', cart);
-
 	return (
 		<div className='min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full'>
 			<table className='mx-auto'>
