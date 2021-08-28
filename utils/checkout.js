@@ -1,5 +1,5 @@
 export function saveLocalData(cart) {
-	console.log('Save Local Data Cart: ', cart);
+	console.log('Save Local Data: ', cart);
 	localStorage.setItem(
 		process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME,
 		JSON.stringify([...cart]),
@@ -14,7 +14,6 @@ function getLocalData() {
 
 export function setLocalData(setCart) {
 	const localData = getLocalData();
-	console.log('Local Data: ', localData);
 
 	if (localData) {
 		setCart([...localData]);
@@ -22,7 +21,6 @@ export function setLocalData(setCart) {
 }
 
 export function getCartSubTotal(cart) {
-	console.log('subtotal cart: ', cart);
 	if (cart.length === 0) {
 		return 0;
 	} else {

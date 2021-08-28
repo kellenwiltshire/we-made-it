@@ -8,7 +8,6 @@ function CartTable({ cart }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
-	console.log('This Cart: ', cart);
 
 	useEffect(() => {
 		setCartItems(cart);
@@ -19,13 +18,11 @@ function CartTable({ cart }) {
 		updateCartQuantity(id, quantity);
 	};
 
-	console.log('Checkout Cart: ', cartItems);
-
 	return (
 		<div className='min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full'>
 			<table className='mx-auto'>
 				<thead>
-					<tr className='uppercase text-xs sm:text-sm text-palette-primary border-b border-palette-light'>
+					<tr className='uppercase text-xs sm:text-sm text-black border-b border-purple-200 font-title'>
 						<th className='font-primary font-normal px-6 py-4'>Product</th>
 						<th className='font-primary font-normal px-6 py-4'>Quantity</th>
 						<th className='font-primary font-normal px-6 py-4 hidden sm:table-cell'>
@@ -34,7 +31,7 @@ function CartTable({ cart }) {
 						<th className='font-primary font-normal px-6 py-4'>Remove</th>
 					</tr>
 				</thead>
-				<tbody className='divide-y divide-palette-lighter'>
+				<tbody className='divide-y divide-purple-200'>
 					{cartItems.length
 						? cartItems.map((item) => {
 								console.log('Mapped Items: ', item);
@@ -43,7 +40,7 @@ function CartTable({ cart }) {
 										key={item.variantId}
 										className='text-sm sm:text-base text-gray-600 text-center'
 									>
-										<td className='font-primary font-medium px-4 sm:px-6 py-4 flex items-center'>
+										<td className='font-body font-medium px-4 sm:px-6 py-4 flex items-center'>
 											<img
 												src={item.productImage}
 												height={64}
@@ -51,12 +48,10 @@ function CartTable({ cart }) {
 												className={`hidden sm:inline-flex`}
 											/>
 											<Link passHref href={`/products/${item.variantId}`}>
-												<a className='pt-1 hover:text-palette-dark'>
-													{item.productTitle}
-												</a>
+												<a className='pt-1 m-1'>{item.productTitle}</a>
 											</Link>
 										</td>
-										<td className='font-primary font-medium px-4 sm:px-6 py-4'>
+										<td className='font-body font-medium px-4 sm:px-6 py-4'>
 											<input
 												type='number'
 												inputMode='numeric'
@@ -71,10 +66,10 @@ function CartTable({ cart }) {
 												className='text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light'
 											/>
 										</td>
-										<td className='font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell'>
+										<td className='font-body text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell'>
 											<Price num={item.variantPrice} numSize='text-lg' />
 										</td>
-										<td className='font-primary font-medium px-4 sm:px-6 py-4'>
+										<td className='font-body font-medium px-4 sm:px-6 py-4'>
 											<button
 												aria-label='delete-item'
 												className=''
@@ -91,10 +86,10 @@ function CartTable({ cart }) {
 						subtotal === 0 ? null : (
 							<tr className='text-center'>
 								<td></td>
-								<td className='font-primary text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
+								<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
 									Subtotal
 								</td>
-								<td className='font-primary text-lg text-palette-primary font-medium px-4 sm:px-6 py-4'>
+								<td className='font-body text-lg font-medium px-4 sm:px-6 py-4'>
 									<Price currency='$' num={subtotal} numSize='text-xl' />
 								</td>
 								<td></td>

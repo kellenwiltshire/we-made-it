@@ -12,9 +12,6 @@ function HomeNav({ search, setSearch }) {
 	const [cartItems, setCartItems] = useState(0);
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	let category = 'Shop All';
-	let cat = category.replace(' ', '');
-	let name = category;
 	useEffect(() => {
 		let numItems = 0;
 		if (cart.length > 0) {

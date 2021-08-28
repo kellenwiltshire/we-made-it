@@ -12,14 +12,10 @@ function Navigation({ search, setSearch }) {
 	const [cartItems, setCartItems] = useState(0);
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	let category = 'Shop All';
-	let cat = category.replace(' ', '');
-	let name = category;
 
-	console.log('Nav Cart:', cart);
 	useEffect(() => {
 		setCartItems(cart.length);
-	}, []);
+	}, [cart]);
 	return (
 		<div className='mx-auto flex p-3 flex-row flex-wrap items-center justify-center bg-banner'>
 			<div className='container flex flex-row flex-wrap items-center justify-center'>
