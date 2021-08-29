@@ -140,22 +140,24 @@ function CartTable({
 							</tr>
 						)
 					) : null}
-					<tr className='text-center'>
-						<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
-							Pickup Location
-						</td>
-						<select
-							type='name'
-							name='sort'
-							id='sort'
-							className='text-sm md:text-base w-auto p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-							onChange={(e) => setLocation(e.target.value)}
-							defaultValue='Sort Items'
-						>
-							<option>Newcastle</option>
-							<option>Cobourg</option>
-						</select>
-					</tr>
+					{cartItems.length ? (
+						<tr className='text-center'>
+							<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
+								Pickup Location
+							</td>
+							<select
+								type='name'
+								name='sort'
+								id='sort'
+								className='text-sm md:text-base w-auto p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
+								onChange={(e) => setLocation(e.target.value)}
+								defaultValue='Sort Items'
+							>
+								<option>Newcastle</option>
+								<option>Cobourg</option>
+							</select>
+						</tr>
+					) : null}
 				</tbody>
 			</table>
 		</div>
