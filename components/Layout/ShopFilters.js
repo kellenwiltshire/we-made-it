@@ -51,8 +51,8 @@ export default function ShopFilters({
 					</select>
 					<select
 						type='name'
-						name='filter'
-						id='filter'
+						name='vendors'
+						id='vendors'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 						onChange={(e) =>
 							updatePage(filterChange(e.target.value, initialItems), 0)
@@ -85,13 +85,13 @@ export default function ShopFilters({
 						id='category'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
 						// onChange={(e) =>
-						// 	updatePage(locationChange(e, items), e.target.value)
+						// 	updatePage(categoryChange(e.target.value, items), e.target.value)
 						// }
 						defaultValue='Category'
 					>
 						<option>Category</option>
 						{categories.map((cat) => {
-							return <option key={cat}>{cat}</option>;
+							return <option key={cat}>{cat.name}</option>;
 						})}
 					</select>
 					<button

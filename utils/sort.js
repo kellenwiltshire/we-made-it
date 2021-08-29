@@ -1,3 +1,5 @@
+import { categories } from './options';
+
 export const filterChange = (param, initialItems) => {
 	let filteredItems = initialItems;
 
@@ -135,4 +137,18 @@ export const vendorLocationChange = (param, vendors) => {
 	}
 
 	return filteredVendors;
+};
+
+export const categoryChange = (param, initialItems) => {
+	let filteredItems = initialItems;
+	const selectedCategory = categories.filter((cat) => {
+		if (cat === param) {
+			return cat;
+		} else {
+			return;
+		}
+	});
+	filteredItems.filter((item) => {
+		//IF ITEM.CATEGORY === selectedCategory THEN RETURN ITEM, ELSE RETURN NOTHING.
+	});
 };
