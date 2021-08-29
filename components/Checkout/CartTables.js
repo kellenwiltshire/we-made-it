@@ -11,6 +11,7 @@ function CartTable({
 	setIsDiscount,
 	setLineItems,
 	setDiscountInformation,
+	setLocation,
 }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
@@ -98,10 +99,10 @@ function CartTable({
 												onChange={(e) =>
 													updateItem(item.variantId, e.target.value)
 												}
-												className='text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-purple-400 focus:ring-purple-400'
+												className='text-gray-900 form-input border border-gray-400 w-16 rounded-lg focus:border-purple-400 focus:ring-purple-400'
 											/>
 										</td>
-										<td className='font-body text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell'>
+										<td className='font-body text-base px-4 sm:px-6 py-4 hidden sm:table-cell'>
 											{price < item.variantPrice ? (
 												<Price
 													num={price}
@@ -139,6 +140,22 @@ function CartTable({
 							</tr>
 						)
 					) : null}
+					<tr className='text-center'>
+						<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
+							Pickup Location
+						</td>
+						<select
+							type='name'
+							name='sort'
+							id='sort'
+							className='text-sm md:text-base w-auto p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
+							onChange={(e) => setLocation(e.target.value)}
+							defaultValue='Sort Items'
+						>
+							<option>Newcastle</option>
+							<option>Cobourg</option>
+						</select>
+					</tr>
 				</tbody>
 			</table>
 		</div>

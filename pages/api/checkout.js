@@ -30,18 +30,16 @@ const checkout = async (req, res) => {
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-
-	const orderID = req.body.orderID;
-	const items = req.body.lineItems;
+	const { orderID, locationId, lineItems } = req.body;
 	const checkoutID = uuidv4();
 
 	try {
-		const response = await client.checkoutApi.createCheckout('L0SCPZY3N0MGA', {
+		const response = await client.checkoutApi.createCheckout(locationId, {
 			idempotencyKey: checkoutID,
 			order: {
 				order: {
-					locationId: 'L0SCPZY3N0MGA',
-					lineItems: items,
+					locationId: locationId,
+					lineItems: lineItems,
 					taxes: [
 						{
 							catalogObjectId: '5Z2DUEICONXUEQYFZG7GFOE5',

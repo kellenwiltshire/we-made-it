@@ -9,11 +9,18 @@ function CartPage({ setNavStyle, vendorSales }) {
 	const [isDiscount, setIsDiscount] = useState(false);
 	const [lineItems, setLineItems] = useState();
 	const [discountInformation, setDiscountInformation] = useState([]);
+	const [location, setLocation] = useState('Newcastle');
 	const router = useRouter();
 	setNavStyle('products');
 
 	const handleCheckout = () => {
 		const orderID = uuidv4();
+		let locationId = 'L0SCPZY3N0MGA';
+		if (location === 'Newcastle') {
+			locationId = 'L0SCPZY3N0MGA';
+		} else if (location === 'Cobourg') {
+			locationId = 'LQQF7JXRMNY9M';
+		}
 		if (isDiscount) {
 			fetch('https://we-made-it.ca/api/discountcheckout', {
 				method: 'post',
@@ -22,6 +29,7 @@ function CartPage({ setNavStyle, vendorSales }) {
 					lineItems: lineItems,
 					discounts: discountInformation,
 					orderID: orderID,
+					locationId: locationId,
 				}),
 			})
 				.then((response) => response.json())
@@ -36,6 +44,7 @@ function CartPage({ setNavStyle, vendorSales }) {
 				body: JSON.stringify({
 					lineItems: lineItems,
 					orderID: orderID,
+					locationId: locationId,
 				}),
 			})
 				.then((response) => response.json())
@@ -56,6 +65,7 @@ function CartPage({ setNavStyle, vendorSales }) {
 				setIsDiscount={setIsDiscount}
 				setLineItems={setLineItems}
 				setDiscountInformation={setDiscountInformation}
+				setLocation={setLocation}
 			/>
 			<div className='max-w-sm mx-auto space-y-4 px-2 flex justify-center'>
 				<button
