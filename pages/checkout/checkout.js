@@ -3,6 +3,7 @@ import CartTable from '../../components/Checkout/CartTables';
 import { useCartContext } from '../../context/Store';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router';
+import { cobourgLocationId, newcastleLocationId } from '../../utils/options';
 
 function CartPage({ setNavStyle, vendorSales }) {
 	const cart = useCartContext();
@@ -17,9 +18,9 @@ function CartPage({ setNavStyle, vendorSales }) {
 		const orderID = uuidv4();
 		let locationId = 'L0SCPZY3N0MGA';
 		if (location === 'Newcastle') {
-			locationId = 'L0SCPZY3N0MGA';
+			locationId = newcastleLocationId;
 		} else if (location === 'Cobourg') {
-			locationId = 'LQQF7JXRMNY9M';
+			locationId = cobourgLocationId;
 		}
 		if (isDiscount) {
 			fetch('https://we-made-it.ca/api/discountcheckout', {
