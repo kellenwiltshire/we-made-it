@@ -148,7 +148,14 @@ export const categoryChange = (param, initialItems) => {
 			return;
 		}
 	});
-	filteredItems.filter((item) => {
+	filteredItems = filteredItems.filter((item) => {
 		//IF ITEM.CATEGORY === selectedCategory THEN RETURN ITEM, ELSE RETURN NOTHING.
+		if (item.itemData.categoryId === selectedCategory) {
+			return item;
+		} else {
+			return;
+		}
 	});
+
+	return filteredItems;
 };
