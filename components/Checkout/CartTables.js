@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Price from './Price';
 import { getCartSubTotal } from '../../utils/checkout';
 import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
+import Delete from '../Icons/Delete';
 
 function CartTable({
 	cart,
@@ -70,7 +71,6 @@ function CartTable({
 										item.variantPrice * (item.sale / 100)
 									).toFixed(2);
 								}
-								console.log('Mapped Items: ', item);
 								return (
 									<tr
 										key={item.variantId}
@@ -83,7 +83,7 @@ function CartTable({
 												width={64}
 												className={`hidden sm:inline-flex`}
 											/>
-											<Link passHref href={`/products/${item.variantId}`}>
+											<Link passHref href={`/Products/${item.urlID}`}>
 												<a className='pt-1 m-1'>{item.productTitle}</a>
 											</Link>
 										</td>
@@ -119,7 +119,7 @@ function CartTable({
 												className=''
 												onClick={() => updateItem(item.variantId, 0)}
 											>
-												X
+												<Delete />
 											</button>
 										</td>
 									</tr>
@@ -153,8 +153,8 @@ function CartTable({
 								onChange={(e) => setLocation(e.target.value)}
 								defaultValue='Sort Items'
 							>
-								<option>Newcastle</option>
-								<option>Cobourg</option>
+								<option className='m-2'>Newcastle</option>
+								<option className='m-2'>Cobourg</option>
 							</select>
 						</tr>
 					) : null}

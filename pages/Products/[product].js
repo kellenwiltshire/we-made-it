@@ -6,16 +6,9 @@ import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkItemDiscount } from '../../utils/sales';
-import { locations } from '../../utils/options';
 import { useAddToCartContext } from '../../context/Store';
 
-export default function ShopProduct({
-	setNavStyle,
-	data,
-	setCart,
-	cart,
-	vendorSales,
-}) {
+export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	setNavStyle('products');
@@ -38,6 +31,7 @@ export default function ShopProduct({
 		console.log(data.itemVarData[0].presentAtLocationIds);
 		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
+		const urlID = data.itemID;
 		const [price, setPrice] = useState();
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
 		const [isVariablePricing, setIsVariablePricing] = useState(false);
@@ -149,8 +143,10 @@ export default function ShopProduct({
 					variantPrice: price,
 					variantQuantity: quantity,
 					description: description,
+					urlID: urlID,
 				});
 			}
+			showSubmitSuccess();
 		}
 
 		const showSubmitSuccess = () => {
