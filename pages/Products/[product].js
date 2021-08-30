@@ -13,6 +13,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	setNavStyle('products');
 	if (data) {
+		console.log(vendorSales);
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
 			fetch('https://we-made-it.ca/api/imageRequest', {
@@ -28,11 +29,10 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 				})
 				.catch((err) => console.log(err));
 		}
-		console.log(data.itemVarData[0].presentAtLocationIds);
 		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
 		const urlID = data.itemID;
-		const [price, setPrice] = useState();
+		const [price, setPrice] = useState(null);
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
 		const [isVariablePricing, setIsVariablePricing] = useState(false);
 		const description = data.itemDescription;
@@ -64,17 +64,35 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 				return newPrice;
 			} else {
 				let newPrice;
-				if (isSale) {
-					let currPrice =
-						data.itemVarData[0].itemVariationData.priceMoney.amount / 100;
-					newPrice = currPrice - currPrice * (data.sale / 100);
-					newPrice = newPrice.toFixed(2);
-					return newPrice;
-				} else {
-					newPrice = (
-						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
-					).toFixed(2);
-					return newPrice;
+				if (description) {
+					let vendor = vendorSales.filter((vendor) => {
+						if (
+							description.toLowerCase().includes(vendor.vendor.toLowerCase())
+						) {
+							return vendor;
+						} else {
+							return;
+						}
+					});
+					console.log('Vendor: ', vendor);
+					if (vendor.length) {
+						console.log('HERE');
+						const currentPrice =
+							data.itemVarData[0].itemVariationData.priceMoney.amount.toFixed(
+								2,
+							);
+						newPrice = (
+							currentPrice -
+							currentPrice * (vendor.sale / 100)
+						).toFixed(2);
+						setIsSale(true);
+						return newPrice;
+					} else {
+						newPrice = (
+							data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+						).toFixed(2);
+						return newPrice;
+					}
 				}
 			}
 		};
@@ -91,17 +109,13 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 			setInventory(await inventoryUpdate());
 		}, [itemID]);
 
-		useEffect(async () => {
-			setInventory(await inventoryUpdate());
-		}, []);
+		// useEffect(() => {
+		// 	checkItemDiscount(data, vendorSales, setIsSale);
+		// }, []);
 
 		useEffect(() => {
 			setPrice(setInitialPrice());
-		}, []);
-
-		useEffect(() => {
-			checkItemDiscount(data, vendorSales, setIsSale);
-		}, []);
+		}, [isSale]);
 
 		const onSelectChange = (e) => {
 			selectedItem = e.target.value;
@@ -152,6 +166,8 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		const showSubmitSuccess = () => {
 			setCartStatus('Added to Cart!');
 		};
+
+		console.log('isSale: ', isSale);
 
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
