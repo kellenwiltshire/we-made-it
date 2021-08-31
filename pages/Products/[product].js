@@ -13,7 +13,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	setNavStyle('products');
 	if (data) {
-		console.log(vendorSales);
+		console.log('Vendor Sales: ', vendorSales);
 		const [image, setImage] = useState('/sparklelogoblack.png');
 		if (data.imageId) {
 			fetch('https://we-made-it.ca/api/imageRequest', {
@@ -32,7 +32,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
 		const urlID = data.itemID;
-		const [price, setPrice] = useState(null);
+
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
 		const [isVariablePricing, setIsVariablePricing] = useState(false);
 		const description = data.itemDescription;
@@ -58,41 +58,46 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 			if (
 				data.itemVarData[0].itemVariationData.pricingType === 'VARIABLE_PRICING'
 			) {
-				let newPrice = 'VARAIBLE PRICING - Contact Store for Details';
+				const newPrice = 'VARAIBLE PRICING - Contact Store for Details';
 				setIsVariablePricing(true);
 				setButtonStatus(false);
 				return newPrice;
 			} else {
-				let newPrice;
-				if (description) {
-					let vendor = vendorSales.filter((vendor) => {
-						if (
-							description.toLowerCase().includes(vendor.vendor.toLowerCase())
-						) {
-							return vendor;
-						} else {
-							return;
-						}
-					});
-					console.log('Vendor: ', vendor);
-					if (vendor.length) {
-						console.log('HERE');
-						const currentPrice =
-							data.itemVarData[0].itemVariationData.priceMoney.amount.toFixed(
-								2,
-							);
-						newPrice = (
-							currentPrice -
-							currentPrice * (vendor.sale / 100)
-						).toFixed(2);
-						setIsSale(true);
-						return newPrice;
+				const newPrice = (
+					data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+				).toFixed(2);
+				return newPrice;
+			}
+		};
+
+		const [price, setPrice] = useState(setInitialPrice());
+
+		const setSalePrice = () => {
+			let newPrice;
+			if (description) {
+				let vendor = vendorSales.filter((vendor) => {
+					if (description.toLowerCase().includes(vendor.vendor.toLowerCase())) {
+						return vendor;
 					} else {
-						newPrice = (
-							data.itemVarData[0].itemVariationData.priceMoney.amount / 100
-						).toFixed(2);
-						return newPrice;
+						return;
 					}
+				});
+				console.log('Vendor: ', vendor);
+				if (vendor.length) {
+					console.log('HERE');
+					const currentPrice =
+						data.itemVarData[0].itemVariationData.priceMoney.amount.toFixed(2);
+					newPrice = (
+						currentPrice -
+						currentPrice * (vendor.sale / 100)
+					).toFixed(2);
+					setIsSale(true);
+					return newPrice;
+				} else {
+					newPrice = (
+						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+					).toFixed(2);
+					return newPrice;
 				}
 			}
 		};
@@ -109,12 +114,8 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 			setInventory(await inventoryUpdate());
 		}, [itemID]);
 
-		// useEffect(() => {
-		// 	checkItemDiscount(data, vendorSales, setIsSale);
-		// }, []);
-
 		useEffect(() => {
-			setPrice(setInitialPrice());
+			setPrice(setSalePrice());
 		}, [isSale]);
 
 		const onSelectChange = (e) => {
