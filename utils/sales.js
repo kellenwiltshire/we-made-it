@@ -38,6 +38,19 @@ export const checkItemDiscount = (data, vendorSales, setIsSale) => {
 	}
 };
 
+export const checkSales = (description, vendorSales) => {
+	console.log('Check Sales', vendorSales);
+	let isSale = false;
+	for (let i = 0; i < vendorSales.length; i++) {
+		const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();
+		const lowerCaseItem = description.toLowerCase();
+		if (lowerCaseItem.includes(lowerCaseVendor)) {
+			isSale = true;
+		}
+	}
+	return isSale;
+};
+
 export const checkForDiscounts = () => {
 	const currentSales = [];
 	vendors.filter((sale) => {

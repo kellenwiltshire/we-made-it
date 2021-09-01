@@ -5,45 +5,32 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
-import { checkItemDiscount } from '../../utils/sales';
+import { checkItemDiscount, checkSales } from '../../utils/sales';
 import { useAddToCartContext } from '../../context/Store';
 
 export default function ShopProduct({ setNavStyle, data, vendorSales }) {
+	console.log('Item Data: ', data);
 	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
+	const router = useRouter();
 	setNavStyle('products');
 	if (data) {
 		console.log('Vendor Sales: ', vendorSales);
-		const [image, setImage] = useState('/sparklelogoblack.png');
-		if (data.imageId) {
-			fetch('https://we-made-it.ca/api/imageRequest', {
-				method: 'post',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					item: data.imageId,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					setImage(data.image);
-				})
-				.catch((err) => console.log(err));
-		}
+		const image = useState(data.image);
 		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
 		const urlID = data.itemID;
+		const description = data.itemDescription;
 
 		const [itemID, setItemID] = useState(data.itemVarData[0].id);
-		const [isVariablePricing, setIsVariablePricing] = useState(false);
-		const description = data.itemDescription;
+		const [inventory, setInventory] = useState(1);
+		const [quantity, setQuantity] = useState(1);
 		const [isSale, setIsSale] = useState(false);
-		const router = useRouter();
+		const [price, setPrice] = useState();
+
 		const [buttonStatus, setButtonStatus] = useState(true);
 
-		const [inventory, setInventory] = useState(1);
-
-		const [quantity, setQuantity] = useState(1);
-		let selectedItem;
+		// let selectedItem;
 
 		let fixedItemLocation = [];
 		itemLocations.map((loc) => {
@@ -55,46 +42,49 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		});
 
 		const setInitialPrice = () => {
-			if (
-				data.itemVarData[0].itemVariationData.pricingType === 'VARIABLE_PRICING'
-			) {
-				const newPrice = 'VARAIBLE PRICING - Contact Store for Details';
-				setIsVariablePricing(true);
-				setButtonStatus(false);
-				return newPrice;
-			} else {
-				const newPrice = (
-					data.itemVarData[0].itemVariationData.priceMoney.amount / 100
-				).toFixed(2);
-				return newPrice;
-			}
-		};
+			const checkSale = checkSales(description, vendorSales);
 
-		const [price, setPrice] = useState(setInitialPrice());
-
-		const setSalePrice = () => {
-			let newPrice;
-			if (description) {
-				let vendor = vendorSales.filter((vendor) => {
-					if (description.toLowerCase().includes(vendor.vendor.toLowerCase())) {
-						return vendor;
-					} else {
-						return;
-					}
-				});
-				console.log('Vendor: ', vendor);
-				if (vendor.length) {
-					console.log('HERE');
-					const currentPrice =
-						data.itemVarData[0].itemVariationData.priceMoney.amount.toFixed(2);
-					newPrice = (
-						currentPrice -
-						currentPrice * (vendor.sale / 100)
-					).toFixed(2);
-					setIsSale(true);
+			if (checkSale) {
+				setIsSale(true);
+				if (
+					data.itemVarData[0].itemVariationData.pricingType ===
+					'VARIABLE_PRICING'
+				) {
+					const newPrice = 'VARAIBLE PRICING - Contact Store for Details';
+					//Set Button to False to stop purchases online
+					setButtonStatus(false);
 					return newPrice;
 				} else {
-					newPrice = (
+					console.log('HERE NOW');
+					let vendor = vendorSales.filter((vendor) => {
+						if (
+							description.toLowerCase().includes(vendor.vendor.toLowerCase())
+						) {
+							return vendor;
+						} else {
+							return;
+						}
+					});
+					const currentPrice = (
+						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
+					).toFixed(2);
+					const newPrice = (
+						currentPrice -
+						currentPrice * (vendor[0].sale / 100)
+					).toFixed(2);
+					return newPrice;
+				}
+			} else {
+				if (
+					data.itemVarData[0].itemVariationData.pricingType ===
+					'VARIABLE_PRICING'
+				) {
+					const newPrice = 'VARAIBLE PRICING - Contact Store for Details';
+					//Set Button to False to stop purchases online
+					setButtonStatus(false);
+					return newPrice;
+				} else {
+					const newPrice = (
 						data.itemVarData[0].itemVariationData.priceMoney.amount / 100
 					).toFixed(2);
 					return newPrice;
@@ -115,11 +105,11 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		}, [itemID]);
 
 		useEffect(() => {
-			setPrice(setSalePrice());
-		}, [isSale]);
+			setPrice(setInitialPrice());
+		}, [vendorSales]);
 
 		const onSelectChange = (e) => {
-			selectedItem = e.target.value;
+			const selectedItem = e.target.value;
 			setPrice(
 				(
 					data.itemVarData[selectedItem].itemVariationData.priceMoney.amount /
@@ -301,8 +291,6 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 	}
 }
 
-//! Set this to SSG all product pages at build time
-
 export async function getServerSideProps({ query }) {
 	const item = query.product;
 
@@ -313,42 +301,45 @@ export async function getServerSideProps({ query }) {
 
 	const catalog = client.catalogApi;
 
-	try {
+	const getProduct = async () => {
 		const response = await catalog.retrieveCatalogObject(item);
-		const itemID = response.result.object.id;
-		const itemName = response.result.object.itemData.name;
-		const itemDescription = response.result.object.itemData.description;
-		const itemVarData = response.result.object.itemData.variations;
-		if (response.result.object.imageId) {
-			return {
-				props: {
-					data: {
-						itemID: JSONBig.parse(JSONBig.stringify(itemID)),
-						itemName: itemName,
-						itemDescription: itemDescription,
-						itemVarData: JSONBig.parse(JSONBig.stringify(itemVarData)),
-						imageId: JSONBig.parse(
-							JSONBig.stringify(response.result.object.imageId),
-						),
-					},
-				},
-			};
-		} else {
-			return {
-				props: {
-					data: {
-						itemID: JSONBig.parse(JSONBig.stringify(itemID)),
-						itemName: itemName,
-						itemDescription: itemDescription,
-						itemVarData: JSONBig.parse(JSONBig.stringify(itemVarData)),
-					},
-				},
-			};
-		}
-	} catch (error) {
-		console.log(error);
+		return response;
+	};
+
+	const product = await getProduct();
+
+	if (product.result.object.imageId) {
+		const picture = await catalog.retrieveCatalogObject(
+			product.result.object.imageId,
+		);
+		const data = {
+			itemID: JSONBig.parse(JSONBig.stringify(product.result.object.id)),
+			itemName: product.result.object.itemData.name,
+			itemDescription: product.result.object.itemData.description,
+			itemVarData: JSONBig.parse(
+				JSONBig.stringify(product.result.object.itemData.variations),
+			),
+			image: picture.result.object.imageData.url,
+		};
 		return {
-			props: {},
+			props: {
+				data: data,
+			},
+		};
+	} else {
+		const data = {
+			itemID: JSONBig.parse(JSONBig.stringify(product.result.object.id)),
+			itemName: product.result.object.itemData.name,
+			itemDescription: product.result.object.itemData.description,
+			itemVarData: JSONBig.parse(
+				JSONBig.stringify(product.result.object.itemData.variations),
+			),
+			image: '/pictureComingSoon.png',
+		};
+		return {
+			props: {
+				data: data,
+			},
 		};
 	}
 }
