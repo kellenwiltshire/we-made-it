@@ -39,7 +39,6 @@ export const checkItemDiscount = (data, vendorSales, setIsSale) => {
 };
 
 export const checkSales = (description, vendorSales) => {
-	console.log('Check Sales', vendorSales);
 	let isSale = false;
 	for (let i = 0; i < vendorSales.length; i++) {
 		const lowerCaseVendor = vendorSales[i].vendor.toLowerCase();

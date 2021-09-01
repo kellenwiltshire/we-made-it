@@ -5,17 +5,15 @@ import { useEffect, useState } from 'react';
 import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
-import { checkItemDiscount, checkSales } from '../../utils/sales';
+import { checkSales } from '../../utils/sales';
 import { useAddToCartContext } from '../../context/Store';
 
 export default function ShopProduct({ setNavStyle, data, vendorSales }) {
-	console.log('Item Data: ', data);
 	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add to Cart');
 	const router = useRouter();
 	setNavStyle('products');
 	if (data) {
-		console.log('Vendor Sales: ', vendorSales);
 		const image = useState(data.image);
 		const itemLocations = data.itemVarData[0].presentAtLocationIds;
 		const itemName = data.itemName;
@@ -29,8 +27,6 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		const [price, setPrice] = useState();
 
 		const [buttonStatus, setButtonStatus] = useState(true);
-
-		// let selectedItem;
 
 		let fixedItemLocation = [];
 		itemLocations.map((loc) => {
@@ -100,10 +96,6 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 			}
 		};
 
-		useEffect(async () => {
-			setInventory(await inventoryUpdate());
-		}, [itemID]);
-
 		useEffect(() => {
 			setPrice(setInitialPrice());
 		}, [vendorSales]);
@@ -120,6 +112,9 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 			setItemID(data.itemVarData[selectedItem].id);
 		};
 
+		useEffect(async () => {
+			setInventory(await inventoryUpdate());
+		}, [itemID]);
 		const inventoryUpdate = async () => {
 			const response = await fetch('https://we-made-it.ca/api/inventory', {
 				method: 'post',
@@ -157,8 +152,6 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 		const showSubmitSuccess = () => {
 			setCartStatus('Added to Cart!');
 		};
-
-		console.log('isSale: ', isSale);
 
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
@@ -202,24 +195,24 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 													<span className='relative'>{inventory}</span>
 												</div>
 											</div>
-											{data.itemVarData.length > 1 ? (
-												<div className='m-2'>
-													<span className='mr-3'>Variations</span>
-													<select
-														onChange={onSelectChange}
-														className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'
-													>
-														{data.itemVarData.map((item, i) => {
-															return (
-																<option key={i} value={i}>
-																	{item.itemVariationData.name}
-																</option>
-															);
-														})}
-													</select>
-												</div>
-											) : null}
 										</div>
+										{data.itemVarData.length > 1 ? (
+											<div className='m-2 w-full'>
+												<span className='mr-3'>Variations</span>
+												<select
+													onChange={onSelectChange}
+													className='rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10'
+												>
+													{data.itemVarData.map((item, i) => {
+														return (
+															<option key={i} value={i}>
+																{item.itemVariationData.name}
+															</option>
+														);
+													})}
+												</select>
+											</div>
+										) : null}
 										<div className='m-2'>
 											<div>
 												<span className='mr-3'>Quantity</span>
@@ -240,7 +233,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 											<div>
 												<span className='mr-3'>Available At: </span>
 												{fixedItemLocation.map((loc) => {
-													return <p>{loc}</p>;
+													return <p key={loc}>{loc}</p>;
 												})}
 											</div>
 										</div>
