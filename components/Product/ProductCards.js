@@ -12,8 +12,8 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
 					query: { product: itemID },
 				}}
 			>
-				<a className='h-auto w-72 rounded shadow-lg mx-auto my-2 border border-purple-200'>
-					<div className=' border-b-2 border-purple-200 relative'>
+				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-72 md:m-5 m-1 border border-purple-400 rounded'>
+					<div className='border-b-2 border-purple-200 relative'>
 						<img src={image} alt={title} layout='fill' />
 					</div>
 					<div className='h-48 relative'>
@@ -27,19 +27,6 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
 						>
 							<div className=''>Sale: ${salePrice}</div>
 						</div>
-						<div>
-							{location
-								? location.map((loc) => {
-										if (loc === newcastleStore) {
-											return <div>Newcastle</div>;
-										} else if (loc === cobourgStore) {
-											return <div>Cobourg</div>;
-										} else {
-											return null;
-										}
-								  })
-								: null}
-						</div>
 					</div>
 				</a>
 			</Link>
@@ -52,9 +39,9 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
 					query: { product: itemID },
 				}}
 			>
-				<a className='h-auto w-72 rounded shadow-lg mx-auto my-2 border border-purple-200'>
-					<div className=' border-b-2 border-purple-200 relative'>
-						<img src={image} alt={title} layout='fill' />
+				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-72 md:m-5 m-1 border border-purple-400 rounded'>
+					<div className='border-b-2 border-purple-200 relative'>
+						<img src={image} alt={title} width='600px' height='auto' />
 					</div>
 					<div className='h-48 relative'>
 						<div className='font-title text-2xl pt-4 px-4 font-semibold'>
@@ -66,19 +53,6 @@ function ProductCards({ itemID, title, price, image, salePrice, location }) {
             rounded-tl-sm triangle'
 						>
 							<div className=''>${price}</div>
-						</div>
-						<div className='font-body text-xs pt-4 px-4'>
-							{location
-								? location.map((loc) => {
-										if ((loc = newcastleStore)) {
-											return <div>Newcastle</div>;
-										} else if ((loc = cobourgStore)) {
-											return <div>Cobourg</div>;
-										} else {
-											return null;
-										}
-								  })
-								: null}
 						</div>
 					</div>
 				</a>
