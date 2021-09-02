@@ -17,7 +17,7 @@ function ProductInfo({ title, description, price, itemLocations, isSale }) {
 					<Price num={price} numSize='text-2xl' />
 				)}
 			</div>
-			<div>
+			<div className='font-body'>
 				<span className='mr-3'>Available At: </span>
 				{itemLocations.map((loc) => {
 					return <p key={loc}>{loc}</p>;

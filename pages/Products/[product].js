@@ -1,17 +1,11 @@
 import React from 'react';
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import Headers from '../../components/Layout/Headers';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkSales } from '../../utils/sales';
-import { useAddToCartContext } from '../../context/Store';
 import ProductSection from '../../components/Product/ProductSection';
 
 export default function ShopProduct({ setNavStyle, data, vendorSales }) {
-	const addToCart = useAddToCartContext();
-	const [cartStatus, setCartStatus] = useState('Add to Cart');
-
 	setNavStyle('products');
 
 	const [isSale, setIsSale] = useState(false);

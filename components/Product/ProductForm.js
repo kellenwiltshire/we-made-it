@@ -47,6 +47,7 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 				variantQuantity: quantity,
 				description: productData.itemDescription,
 				urlID: productData.itemID,
+				maxInventory: inventory,
 			});
 		}
 	}

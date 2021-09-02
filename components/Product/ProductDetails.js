@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import BackToProductButton from '../Buttons/BackToProductButton';
 import ProductInfo from './ProductInfo';
 import ProductForm from './ProductForm';

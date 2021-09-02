@@ -95,6 +95,7 @@ function CartTable({
 												name='variant-quantity'
 												min='1'
 												step='1'
+												max={item.maxInventory}
 												value={item.variantQuantity}
 												onChange={(e) =>
 													updateItem(item.variantId, e.target.value)
