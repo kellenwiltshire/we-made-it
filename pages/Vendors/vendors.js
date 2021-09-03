@@ -19,9 +19,7 @@ export default function Vendors({ setNavStyle }) {
 	console.log(filteredVendors);
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-			<Head>
-				<title>We Made It || Vendors</title>
-			</Head>
+			<SEO title='Vendors || We Made It' />
 			<Headers title='Our Vendors' />
 			<VendorFilters
 				vendors={vendors}

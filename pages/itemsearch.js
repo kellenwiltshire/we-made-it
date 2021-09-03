@@ -4,10 +4,9 @@ import Head from 'next/head';
 import ProductCards from '../components/Product/ProductCards';
 import { checkProductDiscounts } from '../utils/sales';
 import { filterChange } from '../utils/sort';
-import JSONBig from 'json-bigint';
-import { Client, Environment } from 'square';
 import { catalog } from '../utils/recusiveCatalog';
 import { devCatalog } from '../utils/devCatalog';
+import SEO from '../components/SEO/SEO';
 
 export default function SearchItems({
 	setNavStyle,
@@ -22,11 +21,9 @@ export default function SearchItems({
 		checkProductDiscounts(results, vendorSales);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-				<Head>
-					<title>Search || We Made It</title>
-				</Head>
+				<SEO title='Search || We Made It' />
 				<div className='flex flex-row flex-wrap justify-center h-full'>
-					<Headers title='Search Results' />
+					<Headers title={`Search Results for ${search}`} />
 
 					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 						{results.length ? (

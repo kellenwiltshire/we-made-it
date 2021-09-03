@@ -7,16 +7,11 @@ import Messenger from './Messenger';
 import MessengerMessageUs from 'react-messenger-message-us';
 import { CartProvider } from '../../context/Store';
 
-function Layout({ title, children, cart, navStyle, search, setSearch }) {
+function Layout({ children, cart, navStyle, search, setSearch }) {
 	return (
 		<CartProvider>
 			<div>
 				<Head>
-					<link rel='icon' href='/favicon.ico' />
-					<meta description='We-Made-It We Made It Newcastle Ontario Homemade Handmade Decor Boutique Local Clarington Canada Bowmanville Durham Oshawa' />
-					<meta name='We Made It Local Handmade Boutique' />
-					<meta lang='en' />
-
 					<link rel='preconnect' href='https://fonts.gstatic.com' />
 					<link
 						href='https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap'

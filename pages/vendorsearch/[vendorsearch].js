@@ -6,6 +6,7 @@ import { vendors } from '../../VendorList/VendorList';
 import { checkProductDiscounts } from '../../utils/sales';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
+import SEO from '../../components/SEO/SEO';
 
 export default function VendorSearchItems({
 	setNavStyle,
@@ -21,9 +22,7 @@ export default function VendorSearchItems({
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-					<Head>
-						<title>{search} || We Made It</title>
-					</Head>
+					<SEO title={`${search} || We Made It`} />
 					<div className='flex flex-row flex-wrap justify-center h-full'>
 						<Headers title={search} />
 

@@ -4,6 +4,7 @@ import Link from 'next/link';
 export default function Custom404() {
 	return (
 		<div className='h-screen w-screen bg-gray-100 flex items-center justify-center'>
+			<SEO title='404 Error || We Made It' />
 			<div className='container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700'>
 				<div className='max-w-md font-title'>
 					<div className='text-5xl font-dark font-bold'>404</div>

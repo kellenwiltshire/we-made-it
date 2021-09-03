@@ -6,14 +6,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import VendorSale from '../components/About/VendorSale';
+import SEO from '../components/SEO/SEO';
 
 export default function Home({ setNavStyle, vendorSales }) {
 	setNavStyle('home');
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-			<Head>
-				<title>We Made It || Home</title>
-			</Head>
+			<SEO title='We Made It' />
 			<Link
 				href={{
 					pathname: `/Shop/shop`,

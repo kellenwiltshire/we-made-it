@@ -10,6 +10,7 @@ import { checkProductDiscounts } from '../../utils/sales';
 import ShopFilters from '../../components/Layout/ShopFilters';
 import { catalog } from '../../utils/recusiveCatalog';
 import { devCatalog } from '../../utils/devCatalog';
+import SEO from '../../components/SEO/SEO';
 
 export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 	console.log(itemsWithPictures);
@@ -97,9 +98,7 @@ export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-				<Head>
-					<title>Shop || We Made It</title>
-				</Head>
+				<SEO title='Shop || We Made It' />
 				<div className='flex flex-row flex-wrap justify-center h-full'>
 					<Headers title='Shop' />
 					<div className='w-full flex flex-row flex-wrap justify-center'>
@@ -235,10 +234,10 @@ export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 
 export async function getStaticProps() {
 	console.log('Shop Page Revalidate');
-	// const itemsWithPictures = await catalog();
+	const itemsWithPictures = await catalog();
 
 	//!Dev Purposes
-	const itemsWithPictures = await devCatalog();
+	// const itemsWithPictures = await devCatalog();
 
 	return {
 		props: {

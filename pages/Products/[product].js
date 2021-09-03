@@ -4,6 +4,7 @@ import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import { checkSales } from '../../utils/sales';
 import ProductSection from '../../components/Product/ProductSection';
+import SEO from '../../components/SEO/SEO';
 
 export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 	setNavStyle('products');
@@ -81,6 +82,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 
 	return (
 		<div className='min-h-screen py-12 sm:pt-20'>
+		<SEO title={`${data.itemName} || We Made It`}
 			<ProductSection
 				productData={data}
 				price={price}

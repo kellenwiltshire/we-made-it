@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import Location from '../../components/About/Location';
+import SEO from '../../components/SEO/SEO';
 
 export default function ShopCategories({ setNavStyle, cart, setCart }) {
 	setNavStyle('checkout');
@@ -15,9 +16,7 @@ export default function ShopCategories({ setNavStyle, cart, setCart }) {
 
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-			<Head>
-				<title>Checkout Completed || We Made It</title>
-			</Head>
+			<SEO title='Checkout Complete || We Made It' />
 			<div className='w-full h-full'>
 				<Headers title='Checkout Completed!' />
 				<div className='w-full flex flex-col justify-center'>

@@ -4,6 +4,7 @@ import { useCartContext } from '../../context/Store';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router';
 import { cobourgLocationId, newcastleLocationId } from '../../utils/options';
+import SEO from '../../components/SEO/SEO';
 
 function CartPage({ setNavStyle, vendorSales }) {
 	const cart = useCartContext();
@@ -58,8 +59,7 @@ function CartPage({ setNavStyle, vendorSales }) {
 
 	return (
 		<div className='container mx-auto mb-20 min-h-screen'>
-			{/* <SEO title={pageTitle} />
-			<PageTitle text='Your Cart' /> */}
+			<SEO title='You Cart || We Made It' />
 			<CartTable
 				cart={cart}
 				vendorSales={vendorSales}
