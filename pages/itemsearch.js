@@ -14,8 +14,8 @@ export default function SearchItems({
 	vendorSales,
 	itemsWithPictures,
 }) {
-	console.log(search);
 	const fixedSearch = search.replace(/%20/g, ' ');
+	console.log(fixedSearch);
 	setNavStyle('search');
 	if (itemsWithPictures) {
 		const results = filterChange(fixedSearch, itemsWithPictures);
