@@ -4,6 +4,7 @@ import VendorList from '../../components/Vendor/VendorList';
 import React, { useEffect, useState } from 'react';
 import { vendors } from '../../VendorList/VendorList';
 import VendorFilters from '../../components/Layout/VendorFilters';
+import SEO from '../../components/SEO/SEO';
 
 export default function Vendors({ setNavStyle }) {
 	const [filteredVendors, setFilteredVendors] = useState(vendors);

@@ -82,7 +82,7 @@ export default function ShopProduct({ setNavStyle, data, vendorSales }) {
 
 	return (
 		<div className='min-h-screen py-12 sm:pt-20'>
-		<SEO title={`${data.itemName} || We Made It`}
+			<SEO title={`${data.itemName} || We Made It`} />
 			<ProductSection
 				productData={data}
 				price={price}

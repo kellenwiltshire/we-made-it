@@ -1,6 +1,6 @@
 import React from 'react';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
-import Head from 'next/head';
+import SEO from '../../components/SEO/SEO';
 
 function becomevendor({ setNavStyle }) {
 	setNavStyle('vendors');
