@@ -13,19 +13,19 @@ export default function VendorSearchItems({
 	cart,
 	searchresults,
 	vendorSales,
-	search,
+	vendorSearch,
 }) {
 	setNavStyle('vendorsearch');
-	console.log('Vendor Search: ', search);
+	console.log('Vendor Search: ', vendorSearch);
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-					<SEO title={`${search} || We Made It`} />
+					<SEO title={`${vendorSearch} || We Made It`} />
 					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title={search} />
+						<Headers title={vendorSearch} />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{results.map((result, i) => {
@@ -143,8 +143,8 @@ export async function getStaticProps({ params }) {
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-	const search = params.vendorsearch.replace(/%20/g, ' ');
-	console.log('Vendor: ', search);
+	const vendorSearch = params.vendorsearch.replace(/%20/g, ' ');
+	console.log('Vendor: ', vendorSearch);
 
 	let filteredItems = [];
 
@@ -162,7 +162,7 @@ export async function getStaticProps({ params }) {
 	};
 	try {
 		const response = await client.catalogApi.searchCatalogItems({
-			textFilter: search,
+			textFilter: vendorSearch,
 		});
 
 		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
@@ -182,7 +182,7 @@ export async function getStaticProps({ params }) {
 	const searchresults = await newImageRequest(filteredItems);
 
 	return {
-		props: { searchresults, search },
+		props: { searchresults, vendorSearch },
 		revalidate: 3600,
 	};
 }
