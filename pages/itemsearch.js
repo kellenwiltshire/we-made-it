@@ -15,15 +15,16 @@ export default function SearchItems({
 	itemsWithPictures,
 }) {
 	console.log(search);
+	const fixedSearch = search.replace(/%20/g, ' ');
 	setNavStyle('search');
 	if (itemsWithPictures) {
-		const results = filterChange(search, itemsWithPictures);
+		const results = filterChange(fixedSearch, itemsWithPictures);
 		checkProductDiscounts(results, vendorSales);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				<SEO title='Search || We Made It' />
 				<div className='flex flex-row flex-wrap justify-center h-full'>
-					<Headers title={`Search Results for ${search}`} />
+					<Headers title={`Search Results for ${fixedSearch}`} />
 
 					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 						{results.length ? (

@@ -16,6 +16,7 @@ export default function VendorSearchItems({
 	search,
 }) {
 	setNavStyle('vendorsearch');
+	console.log('Vendor Search: ', search);
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
