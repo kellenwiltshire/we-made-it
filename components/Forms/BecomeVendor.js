@@ -600,7 +600,7 @@ function BecomeVendor() {
 												<span className='mt-2 text-base leading-normal'>
 													Select a file
 												</span>
-												<input type='file' class='hidden' />
+												<input type='file' className='hidden' name='upload' />
 											</label>
 										</div>
 										<div className='flex items-center mt-2'>
