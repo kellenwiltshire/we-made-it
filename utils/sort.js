@@ -140,6 +140,7 @@ export const vendorLocationChange = (param, vendors) => {
 };
 
 export const categoryChange = (param, initialItems) => {
+	console.log('Param: ', param);
 	let filteredItems = initialItems;
 	const selectedCategory = categories.filter((cat) => {
 		if (cat.name === param) {
