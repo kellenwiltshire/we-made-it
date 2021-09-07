@@ -9,14 +9,12 @@ import { devCatalog } from '../utils/devCatalog';
 import SEO from '../components/SEO/SEO';
 
 export default function SearchItems({
-	setNavStyle,
 	search,
 	vendorSales,
 	itemsWithPictures,
 }) {
 	const fixedSearch = search.replace(/%20/g, ' ');
 	console.log(fixedSearch);
-	setNavStyle('search');
 	if (itemsWithPictures) {
 		const results = filterChange(fixedSearch, itemsWithPictures);
 		checkProductDiscounts(results, vendorSales);

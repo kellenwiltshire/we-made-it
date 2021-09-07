@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -7,7 +7,20 @@ import Messenger from './Messenger';
 import MessengerMessageUs from 'react-messenger-message-us';
 import { CartProvider } from '../../context/Store';
 
-function Layout({ children, cart, navStyle, search, setSearch }) {
+function Layout({ children, cart, search, setSearch }) {
+	const [nav, setNav] = useState(false);
+	useEffect(() => {
+		const urlString = document.location.href;
+		console.log(urlString);
+		if (
+			urlString === 'http://localhost:3000/' ||
+			urlString === 'https://we-made-it.ca/'
+		) {
+			setNav(false);
+		} else {
+			setNav(true);
+		}
+	});
 	return (
 		<CartProvider>
 			<div>
@@ -18,7 +31,7 @@ function Layout({ children, cart, navStyle, search, setSearch }) {
 						rel='stylesheet'
 					/>
 				</Head>
-				{navStyle === 'home' ? (
+				{nav ? (
 					<HomeNav cart={cart} search={search} setSearch={setSearch} />
 				) : (
 					<Navigation cart={cart} search={search} setSearch={setSearch} />

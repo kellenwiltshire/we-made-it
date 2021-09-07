@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
@@ -9,13 +9,10 @@ import { Client, Environment } from 'square';
 import SEO from '../../components/SEO/SEO';
 
 export default function VendorSearchItems({
-	setNavStyle,
-	cart,
 	searchresults,
 	vendorSales,
 	vendorSearch,
 }) {
-	setNavStyle('vendorsearch');
 	console.log('Vendor Search: ', vendorSearch);
 	if (searchresults) {
 		if (searchresults.length) {

@@ -1,15 +1,13 @@
 import AboutStore from '../components/About/AboutStore';
 import Location from '../components/About/Location';
 import Headers from '../components/Layout/Headers';
-import Head from 'next/head';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import VendorSale from '../components/About/VendorSale';
 import SEO from '../components/SEO/SEO';
 
-export default function Home({ setNavStyle, vendorSales }) {
-	setNavStyle('home');
+export default function Home({ vendorSales }) {
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 			<SEO title='We Made It' />
