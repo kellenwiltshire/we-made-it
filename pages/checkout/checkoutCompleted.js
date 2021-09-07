@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Head from 'next/head';
 import Location from '../../components/About/Location';
 import SEO from '../../components/SEO/SEO';
 

@@ -86,6 +86,10 @@ export function CartProvider({ children }) {
 		saveLocalData(newCart);
 	}
 
+	function resetCart() {
+		//RESET THE CART
+	}
+
 	return (
 		<CartContext.Provider value={cart}>
 			<AddToCartContext.Provider value={addToCart}>

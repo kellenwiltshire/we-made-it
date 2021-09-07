@@ -3,8 +3,6 @@ import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
-import JSONBig from 'json-bigint';
-import { Client, Environment } from 'square';
 import { useRouter } from 'next/router';
 import { checkProductDiscounts } from '../../utils/sales';
 import ShopFilters from '../../components/Layout/ShopFilters';
