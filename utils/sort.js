@@ -143,6 +143,7 @@ export const categoryChange = (param, initialItems) => {
 	console.log('Param: ', param);
 	let filteredItems = initialItems;
 	const selectedCategory = categories.filter((cat) => {
+		console.log(cat.name);
 		if (cat.name === param) {
 			return cat;
 		} else {
