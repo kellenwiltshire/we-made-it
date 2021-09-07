@@ -150,7 +150,7 @@ export const categoryChange = (param, initialItems) => {
 	});
 	filteredItems = filteredItems.filter((item) => {
 		//IF ITEM.CATEGORY === selectedCategory THEN RETURN ITEM, ELSE RETURN NOTHING.
-		if (item.itemData.categoryId === selectedCategory) {
+		if (item.itemData.categoryId === selectedCategory.id) {
 			return item;
 		} else {
 			return;
