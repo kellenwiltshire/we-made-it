@@ -2,7 +2,7 @@ export const vendors = [
 	{
 		vendor: '4 Peas Handmade',
 		image: '/vendorphotos/4peas.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Apt. 6 Skin Co',
@@ -12,12 +12,12 @@ export const vendors = [
 	{
 		vendor: 'Abeego',
 		image: '/vendorphotos/abeego.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Ahimsa Eco Solutions',
 		image: '/vendorphotos/ahimsaecosolutions.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: `Amanda's Market Stand`,
@@ -28,6 +28,11 @@ export const vendors = [
 		vendor: 'Ammicala Creations',
 		image: '/vendorphotos/ammicalacreations.jpg',
 		location: ['Newcastle'],
+	},
+	{
+		vendor: 'Apt. 6 Skincare Co',
+		image: '',
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Ariana Jewelry',
@@ -55,7 +60,7 @@ export const vendors = [
 	{
 		vendor: 'Attitude',
 		image: '/vendorphotos/attitude.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Be You Boutique',
@@ -73,14 +78,9 @@ export const vendors = [
 		location: ['Newcastle'],
 	},
 	{
-		vendor: 'Blissful Bubbles Bath and Body',
-		image: '/vendorphotos/blissfulbubbles.jpg',
-		location: ['Newcastle'],
-	},
-	{
 		vendor: 'Bold Faced',
 		image: '/vendorphotos/boldfaced.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Buck Naked Soap Company',
@@ -90,7 +90,7 @@ export const vendors = [
 	{
 		vendor: 'Bumblebee Custom Creations',
 		image: '/vendorphotos/bumblebee.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Cafe Candle Co.',
@@ -101,6 +101,11 @@ export const vendors = [
 		vendor: 'Captivating Bath + Body',
 		image: '/vendorphotos/captirating.jpg',
 		location: ['Newcastle'],
+	},
+	{
+		vendor: 'Cedar & Wren',
+		image: '/vendorphotos/cedarandwren.jpg',
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Charity Knits',
@@ -132,6 +137,7 @@ export const vendors = [
 		image: '/vendorphotos/creatinginspiration.jpg',
 		location: ['Newcastle'],
 	},
+	{ vendor: 'Earth Appeal', image: '', location: ['Newcastle', 'Cobourg'] },
 	{
 		vendor: 'Eclair Lips',
 		image: '/vendorphotos/exlairlips.jpg',
@@ -148,6 +154,11 @@ export const vendors = [
 		location: ['Newcastle'],
 	},
 	{
+		vendor: 'Fynn and Wylder',
+		image: '/vendorphotos/fynnwylder.jpg',
+		location: ['Cobourg'],
+	},
+	{
 		vendor: 'Gram an Am Beauty',
 		image: '/vendorphotos/gramambeauty.jpg',
 		location: ['Newcastle'],
@@ -155,7 +166,7 @@ export const vendors = [
 	{
 		vendor: 'Great Canadian Meat',
 		image: '/vendorphotos/greatcanadianmeat.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Honest As F*ck Mom',
@@ -170,7 +181,7 @@ export const vendors = [
 	{
 		vendor: 'iWood',
 		image: '/vendorphotos/iwood.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Jam Designs',
@@ -185,17 +196,12 @@ export const vendors = [
 	{
 		vendor: "Jenny Marie's Cracker Company",
 		image: '/vendorphotos/jennymariescrackercompany.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'JK Beads',
 		image: '/vendorphotos/jkbeads.jpg',
-		location: ['Newcastle'],
-	},
-	{
-		vendor: 'Kennedy Floral Farm',
-		image: '/vendorphotos/kennedyfloralfarm.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'KIFF',
@@ -205,7 +211,12 @@ export const vendors = [
 	{
 		vendor: 'La Dee Da Gourmet Sauces',
 		image: '/vendorphotos/ladeedagorumetsauces.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
+	},
+	{
+		vendor: 'La Petite Boutique',
+		image: '/vendorphotos/lapetiteboutique.jpg',
+		location: ['Cobourg'],
 	},
 	{
 		vendor: 'Lakebreeze Pottery',
@@ -241,7 +252,7 @@ export const vendors = [
 	{
 		vendor: 'Midnight Raven Studio',
 		image: '/vendorphotos/midnightravenstudio.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: "Momsie's Malas",
@@ -249,19 +260,14 @@ export const vendors = [
 		location: ['Newcastle'],
 	},
 	{
-		vendor: 'Naturally Posh Baby',
-		image: '/vendorphotos/naturallyposhbaby.jpg',
-		location: ['Newcastle'],
-	},
-	{
 		vendor: 'Naughty Florals',
 		image: '/vendorphotos/naughtyflorals.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'North Hound Life',
 		image: '/vendorphotos/northhoundlife.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Northern Kolbassa',
@@ -284,11 +290,6 @@ export const vendors = [
 		location: ['Newcastle'],
 	},
 	{
-		vendor: 'One Of A Kind Gifts by Joanna',
-		image: '',
-		location: ['Newcastle'],
-	},
-	{
 		vendor: 'Party Mountain Paper Co.',
 		image: '/vendorphotos/partymountainpaperco.jpg',
 		location: ['Newcastle'],
@@ -301,7 +302,7 @@ export const vendors = [
 	{
 		vendor: 'Pink Lemon Decor',
 		image: '/vendorphotos/pinklemondecor.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Pop Culture Candles',
@@ -316,17 +317,22 @@ export const vendors = [
 	{
 		vendor: "Raiz'd Crafting",
 		image: '/vendorphotos/raizdcrafting.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
-		vendor: 'Rootful Pieces',
-		image: '/vendorphotos/rootfulpieces.jpg',
-		location: ['Newcastle'],
+		vendor: 'Rustic and Dreaming',
+		image: '/vendorphotos/rusticdreaming.jpg',
+		location: ['Cobourg'],
+	},
+	{
+		vendor: "Sarah's Soaps and Candles",
+		image: '',
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Sew Sweet Handmade',
 		image: '/vendorphotos/sewsweet.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: "She's Sew Creative",
@@ -336,12 +342,17 @@ export const vendors = [
 	{
 		vendor: 'So',
 		image: '/vendorphotos/So.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Soft Haven Home',
 		image: '/vendorphotos/softhavenhome.jpg',
 		location: ['Newcastle'],
+	},
+	{
+		vendor: 'Staycation Soaps',
+		image: '/vendorphotos/staycationsoaps.jpg',
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Stick Stuff Studio',
@@ -351,7 +362,7 @@ export const vendors = [
 	{
 		vendor: 'Straw Hut Co.',
 		image: '/vendorphotos/strawhutco.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Sugar Crush Co.',
@@ -361,7 +372,7 @@ export const vendors = [
 	{
 		vendor: 'Sweetsmith Candy Co',
 		image: '/vendorphotos/sweetsmithcandoco.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: "Terri's Krafty Korner",
@@ -371,12 +382,17 @@ export const vendors = [
 	{
 		vendor: 'The Brothery',
 		image: '/vendorphotos/thebrothery.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
+	},
+	{
+		vendor: 'The Cozy Shack',
+		image: '/vendorphotos/thecozyshack.jpg',
+		location: ['Cobourg'],
 	},
 	{
 		vendor: 'The Knitting Nurse',
 		image: '/vendorphotos/theknittingnurse.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'The Knotty Island',
@@ -400,7 +416,7 @@ export const vendors = [
 	{
 		vendor: 'Three Wicks',
 		image: '/vendorphotos/threewicks.png',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: "Tim's Stain Glass",
@@ -410,7 +426,7 @@ export const vendors = [
 	{
 		vendor: 'Tiny Teethers',
 		image: '/vendorphotos/tinyteethers.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
 	},
 	{
 		vendor: 'Top Hat and Monocle',
@@ -445,6 +461,11 @@ export const vendors = [
 	{
 		vendor: 'williamraedesigns',
 		image: '/vendorphotos/williamraedesigns.jpg',
-		location: ['Newcastle'],
+		location: ['Newcastle', 'Cobourg'],
+	},
+	{
+		vendor: 'Zero Waste Movement',
+		image: '',
+		location: ['Newcastle', 'Cobourg'],
 	},
 ];
