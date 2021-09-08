@@ -2,16 +2,12 @@ import React, { useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
 import Location from '../../components/About/Location';
 import SEO from '../../components/SEO/SEO';
+import { useResetCartContext } from '../../context/Store';
 
-export default function ShopCategories({ setNavStyle, cart, setCart }) {
-	setNavStyle('checkout');
-	const resetCart = () => {
-		setCart([]);
-	};
+export default function ShopCategories() {
+	const resetCart = useResetCartContext();
 
-	useEffect(() => {
-		resetCart();
-	}, []);
+	resetCart();
 
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
