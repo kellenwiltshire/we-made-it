@@ -141,22 +141,13 @@ export const vendorLocationChange = (param, vendors) => {
 
 export const categoryChange = (param, initialItems) => {
 	console.log('Param: ', param);
-	let filteredItems = initialItems;
+	const items = initialItems;
 	const selectedCategory = categories.filter((cat) => {
 		console.log(cat.name);
-		if (cat.name === param) {
-			return cat;
-		} else {
-			return;
-		}
+		return cat.name.includes(param);
 	});
-	filteredItems = filteredItems.filter((item) => {
-		//IF ITEM.CATEGORY === selectedCategory THEN RETURN ITEM, ELSE RETURN NOTHING.
-		if (item.itemData.categoryId === selectedCategory.id) {
-			return item;
-		} else {
-			return;
-		}
+	const filteredItems = items.filter((item) => {
+		return item.itemData.categoryId.includes(selectedCategory.id);
 	});
 
 	return filteredItems;
