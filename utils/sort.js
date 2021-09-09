@@ -148,7 +148,7 @@ export const categoryChange = (param, initialItems) => {
 	});
 	console.log(selectedCategory);
 	const filteredItems = items.filter((item) => {
-		return item.itemData.categoryId.includes(selectedCategory.id);
+		return item.itemData.categoryId === selectedCategory[0].id;
 	});
 
 	return filteredItems;
