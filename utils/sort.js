@@ -146,6 +146,7 @@ export const categoryChange = (param, initialItems) => {
 		console.log(cat.name);
 		return cat.name.includes(param);
 	});
+	console.log(selectedCategory);
 	const filteredItems = items.filter((item) => {
 		return item.itemData.categoryId.includes(selectedCategory.id);
 	});

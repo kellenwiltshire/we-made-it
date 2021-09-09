@@ -4,11 +4,6 @@ import { setLocalData, saveLocalData } from '../utils/checkout';
 const CartContext = createContext();
 const AddToCartContext = createContext();
 const UpdateCartQuantityContext = createContext();
-const ResetCartContext = createContext();
-
-export function useResetCartContext() {
-	return useContext(ResetCartContext);
-}
 
 export function useCartContext() {
 	return useContext(CartContext);
@@ -91,19 +86,11 @@ export function CartProvider({ children }) {
 		saveLocalData(newCart);
 	}
 
-	function resetCart() {
-		const newCart = [];
-		setCart(newCart);
-		saveLocalData(newCart);
-	}
-
 	return (
 		<CartContext.Provider value={cart}>
 			<AddToCartContext.Provider value={addToCart}>
 				<UpdateCartQuantityContext.Provider value={updateCartItemQuantity}>
-					<ResetCartContext.Provider value={resetCart}>
-						{children}
-					</ResetCartContext.Provider>
+					{children}
 				</UpdateCartQuantityContext.Provider>
 			</AddToCartContext.Provider>
 		</CartContext.Provider>
