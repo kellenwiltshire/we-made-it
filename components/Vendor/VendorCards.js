@@ -33,7 +33,7 @@ function VendorCards({ vendor, image, location }) {
 						<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
 							{vendor}
 						</h2>
-						<div className='flex flex-col justify-center w-full'>
+						<div className='hidden md:flex flex-col justify-center w-full'>
 							{location.map((loc) => {
 								return (
 									<p className='text-xs uppercase text-center w-full font-body'>
