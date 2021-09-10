@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import HomeNav from './HomeNav';
-import Messenger from './Messenger';
 import MessengerMessageUs from 'react-messenger-message-us';
 import { CartProvider } from '../../context/Store';
 
@@ -14,7 +13,8 @@ function Layout({ children, cart, search, setSearch }) {
 		console.log(urlString);
 		if (
 			urlString === 'http://localhost:3000/' ||
-			urlString === 'https://we-made-it.ca/'
+			urlString === 'https://we-made-it.ca/' ||
+			urlString === 'https://test-wmi-q2psn.ondigitalocean.app/'
 		) {
 			setNav(false);
 		} else {
