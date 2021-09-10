@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router';
 import { cobourgLocationId, newcastleLocationId } from '../../utils/options';
 import SEO from '../../components/SEO/SEO';
+import Link from 'next/link';
 
 function CartPage({ setNavStyle, vendorSales }) {
 	const cart = useCartContext();
@@ -68,14 +69,30 @@ function CartPage({ setNavStyle, vendorSales }) {
 				setDiscountInformation={setDiscountInformation}
 				setLocation={setLocation}
 			/>
-			<div className='max-w-sm mx-auto space-y-4 px-2 flex justify-center'>
-				<button
-					onClick={handleCheckout}
-					className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto font-title'
-				>
-					Continue to Checkout
-				</button>
-			</div>
+			{cart.length > 0 ? (
+				<div className='max-w-sm mx-auto space-y-4 px-2 flex justify-center'>
+					<button
+						onClick={handleCheckout}
+						className='mx-1 px-5 py-5 m-5 bg-purple-200 text-gray-700 hover:bg-purple-700 hover:text-gray-200 rounded-lg cursor-pointer h-auto font-title'
+					>
+						Continue to Checkout
+					</button>
+				</div>
+			) : (
+				<div className='max-w-sm mx-auto space-y-4 px-2 flex justify-center'>
+					<Link
+						href={{
+							pathname: `/Shop/shop`,
+						}}
+					>
+						<a>
+							<p className='mx-1 mt-5 px-3 py-2 bg-purple-200 text-gray-700 hover:bg-dark-purple hover:text-gray-200 rounded-lg cursor-pointer font-title'>
+								SHOP NOW
+							</p>
+						</a>
+					</Link>
+				</div>
+			)}
 		</div>
 	);
 }
