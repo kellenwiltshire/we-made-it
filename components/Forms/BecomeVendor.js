@@ -347,7 +347,7 @@ function BecomeVendor() {
 												required
 											/>
 											<label
-												for='agree'
+												htmlFor='agree'
 												className='ml-2 block text-sm text-gray-900'
 											>
 												By electronically submitting this form, I agree to abide

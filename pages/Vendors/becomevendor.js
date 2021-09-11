@@ -2,8 +2,7 @@ import React from 'react';
 import BecomeVendor from '../../components/Forms/BecomeVendor';
 import SEO from '../../components/SEO/SEO';
 
-function becomevendor({ setNavStyle }) {
-	setNavStyle('vendors');
+function becomevendor() {
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 			<SEO title='Become A Vendor || We Made It' />
