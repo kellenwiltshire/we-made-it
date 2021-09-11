@@ -16,7 +16,6 @@
 		"json-bigint": "^1.0.0",
 		"next": "^11.1.0",
 		"next-sitemap": "^1.6.124",
-		"node-fetch": "^3.0.0",
 		"postcss": "^8.3.5",
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
@@ -26,9 +25,7 @@
 		"redux": "^4.1.1",
 		"redux-devtools-extension": "^2.13.9",
 		"square": "^10.0.0",
-		"stream": "0.0.2",
 		"tailwindcss": "^2.2.4",
-		"util": "^0.12.4",
 		"uuid": "^8.3.2"
 	}
 }
