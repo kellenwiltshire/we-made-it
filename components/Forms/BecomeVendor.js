@@ -41,7 +41,7 @@ function BecomeVendor() {
 	};
 
 	const handleDownload = () => {
-		fetch('http://localhost:3000/Vendorapplication.docx', {
+		fetch('https://test-wmi-q2psn.ondigitalocean.app/Vendorapplication.docx', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/pdf',
