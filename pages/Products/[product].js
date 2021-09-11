@@ -6,13 +6,12 @@ import { checkSales } from '../../utils/sales';
 import ProductSection from '../../components/Product/ProductSection';
 import SEO from '../../components/SEO/SEO';
 
-export default function ShopProduct({ setNavStyle, data, vendorSales }) {
-	setNavStyle('products');
-
+export default function ShopProduct({ data, vendorSales }) {
 	const [isSale, setIsSale] = useState(false);
 	const [itemID, setItemID] = useState(data.itemVarData[0].id);
 
 	const itemLocations = data.itemVarData[0].presentAtLocationIds;
+	console.log(data.itemVarData[0].absentAtLocationIds);
 
 	let fixedItemLocation = [];
 	itemLocations.map((loc) => {

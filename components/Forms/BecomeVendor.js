@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import VendorAgreement from './VendorAgreement';
 import FileUpload from '../Icons/FileUpload';
@@ -38,6 +38,29 @@ function BecomeVendor() {
 	const fileUploaded = (e) => {
 		e.preventDefault();
 		setIsAttached(true);
+	};
+
+	const handleDownload = () => {
+		fetch('http://localhost:3000/Vendorapplication.docx', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/pdf',
+			},
+		})
+			.then((response) => response.blob())
+			.then((blob) => {
+				const url = window.URL.createObjectURL(new Blob([blob]));
+
+				const link = document.createElement('a');
+				link.href = url;
+				link.setAttribute('download', 'Vendorapplication.docx');
+
+				document.body.appendChild(link);
+
+				link.click();
+
+				link.parentNode.removeChild(link);
+			});
 	};
 
 	return (
@@ -348,13 +371,12 @@ function BecomeVendor() {
 										</div>
 									</form>
 									<div className='px-6 flex flex-col justify-center font-body'>
-										<a
+										<button
 											className='bg-purple-200 hover:bg-purple-700 text-gray-700 hover:text-gray-200 font-bold py-3 px-6 rounded-lg mt-3 transition ease-in-out duration-300 text-center'
-											href='/Vendor Application.docx'
-											download
+											onClick={handleDownload}
 										>
 											Download Copy of Agreement
-										</a>
+										</button>
 									</div>
 								</div>
 							</div>

@@ -4,7 +4,7 @@ export default function FileUpload() {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			class='icon icon-tabler icon-tabler-file-upload'
+			className='icon icon-tabler icon-tabler-file-upload'
 			width='32'
 			height='32'
 			viewBox='0 0 24 24'
