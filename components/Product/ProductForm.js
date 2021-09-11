@@ -5,6 +5,7 @@ import AddToCartButton from '../Buttons/AddToCartButton';
 function ProductForm({ productData, setPrice, setItemID, itemID }) {
 	const [quantity, setQuantity] = useState(1);
 	const addToCart = useAddToCartContext();
+	const [cartStatus, setCartStatus] = useState('Add To Cart');
 
 	const [buttonStatus, setButtonStatus] = useState(true);
 	const [checkoutPrice, setCheckoutPrice] = useState(
@@ -50,6 +51,7 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 				maxInventory: inventory,
 			});
 		}
+		setCartStatus('Added to Cart!');
 	}
 
 	function updateQuantity(e) {
@@ -92,7 +94,9 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 						onChange={(e) => updateQuantity(e.target.value)}
 						className='text-gray-900 form-input border border-gray-300 w-16 rounded-sm focus:border-purple-400 focus:ring-purple-400'
 					/>
+					Inventory: {inventory}
 				</div>
+
 				{productData.itemVarData.length > 1 ? (
 					<div className='flex flex-col items-start space-y-1 flex-grow'>
 						<label className='text-gray-500 text-base'>Variation</label>
@@ -114,7 +118,10 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 				) : null}
 			</div>
 			{buttonStatus ? (
-				<AddToCartButton handleAddToCart={handleAddToCart} />
+				<AddToCartButton
+					handleAddToCart={handleAddToCart}
+					cartStatus={cartStatus}
+				/>
 			) : (
 				<div
 					className='border border-purple-400 bg-purple-400 text-white text-lg font-title font-semibold pt-2 pb-1 leading-relaxed flex 
