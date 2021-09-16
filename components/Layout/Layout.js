@@ -14,9 +14,9 @@ function Layout({ children, cart, search, setSearch }) {
 			urlString === 'http://localhost:3000/' ||
 			urlString === 'https://we-made-it.ca/'
 		) {
-			setNav(false);
-		} else {
 			setNav(true);
+		} else {
+			setNav(false);
 		}
 	});
 	return (
