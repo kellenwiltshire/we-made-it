@@ -27,7 +27,7 @@ export default function Home({ vendorSales }) {
 			<Headers title='Our Story' />
 			<AboutStore />
 
-			<VendorSale vendorSales={vendorSales} />
+			{/* <VendorSale vendorSales={vendorSales} /> */}
 			<Location />
 		</div>
 	);
