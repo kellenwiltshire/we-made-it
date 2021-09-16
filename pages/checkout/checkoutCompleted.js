@@ -1,28 +1,30 @@
 import React, { useEffect } from 'react';
 import Headers from '../../components/Layout/Headers';
-import Head from 'next/head';
 import Location from '../../components/About/Location';
+import SEO from '../../components/SEO/SEO';
+import { useUpdateCartQuantityContext } from '../../context/Store';
+import { useCartContext } from '../../context/Store';
 
-export default function ShopCategories({ setNavStyle, cart, setCart }) {
-	setNavStyle('checkout');
-	const resetCart = () => {
-		setCart([]);
+export default function checkoutCompleted() {
+	const cart = useCartContext();
+	const updateCartQuantity = useUpdateCartQuantityContext();
+
+	const clearCart = () => {
+		for (let i = 0; i < cart.length; i++) {
+			updateCartQuantity(cart[i].variantId, 0);
+		}
 	};
 
-	useEffect(() => {
-		resetCart();
-	}, []);
+	clearCart();
 
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-			<Head>
-				<title>Checkout Completed || We Made It</title>
-			</Head>
+			<SEO title='Checkout Complete || We Made It' />
 			<div className='w-full h-full'>
 				<Headers title='Checkout Completed!' />
 				<div className='w-full flex flex-col justify-center'>
 					<div className='container px-5 py-24 mx-auto'>
-						<div className='xl:w-1/2 lg:w-3/4 w-full mx-auto text-center'>
+						<div className='w-full mx-auto text-center'>
 							<p className='leading-relaxed text-lg'>
 								Thank you so much for your Order and for supporting Local!
 							</p>

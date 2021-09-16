@@ -28,19 +28,18 @@ const discountcheckout = async (req, res) => {
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-	const orderID = req.body.orderID;
-	const items = req.body.lineItems;
-	const discounts = req.body.discounts;
+
+	const { orderID, lineItems, discounts, locationId } = req.body;
 	console.log(discounts);
 	const checkoutID = uuidv4();
 
 	try {
-		const response = await client.checkoutApi.createCheckout('L0SCPZY3N0MGA', {
+		const response = await client.checkoutApi.createCheckout(locationId, {
 			idempotencyKey: checkoutID,
 			order: {
 				order: {
-					locationId: 'L0SCPZY3N0MGA',
-					lineItems: items,
+					locationId: locationId,
+					lineItems: lineItems,
 					discounts: discounts,
 					taxes: [
 						{

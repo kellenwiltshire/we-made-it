@@ -1,18 +1,30 @@
 import Headers from '../../components/Layout/Headers';
-import Head from 'next/head';
 import VendorList from '../../components/Vendor/VendorList';
-import React from 'react';
+import React, { useState } from 'react';
 import { vendors } from '../../VendorList/VendorList';
+import VendorFilters from '../../components/Layout/VendorFilters';
+import SEO from '../../components/SEO/SEO';
 
-export default function Vendors({ setNavStyle }) {
-	setNavStyle('vendors');
+export default function Vendors() {
+	const [filteredVendors, setFilteredVendors] = useState(vendors);
+	const updatePage = (vendors) => {
+		setFilteredVendors(vendors);
+	};
+	//Handles a filter reset
+	const resetItems = (e) => {
+		e.preventDefault();
+		setFilteredVendors(vendors);
+	};
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-			<Head>
-				<title>We Made It || Vendors</title>
-			</Head>
+			<SEO title='Vendors || We Made It' />
 			<Headers title='Our Vendors' />
-			<VendorList vendors={vendors} />
+			<VendorFilters
+				vendors={vendors}
+				resetItems={resetItems}
+				updatePage={updatePage}
+			/>
+			<VendorList vendors={filteredVendors} />
 		</div>
 	);
 }

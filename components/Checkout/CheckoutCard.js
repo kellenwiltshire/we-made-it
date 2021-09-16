@@ -14,8 +14,6 @@ function CheckoutCard({
 		deleteItem(index);
 	};
 
-	let newPrice;
-
 	return (
 		<div className='m-2 flex flex-row flex-wrap border rounded border-black w-96 h-auto'>
 			<div className='block relative h-48 rounded overflow-hidden'>

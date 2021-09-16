@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-function VendorCards({ vendor, image }) {
+function VendorCards({ vendor, image, location }) {
 	const fixedVendor = vendor.replace(/\s+/g, '%20');
 	return (
 		<Link
@@ -33,6 +33,15 @@ function VendorCards({ vendor, image }) {
 						<h2 className='text-xs sm:text-base md:text-xl uppercase text-center w-full font-title'>
 							{vendor}
 						</h2>
+						<div className='hidden md:flex flex-col justify-center w-full'>
+							{location.map((loc) => {
+								return (
+									<p className='text-xs uppercase text-center w-full font-body'>
+										{loc}
+									</p>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</a>

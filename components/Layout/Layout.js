@@ -1,43 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import HomeNav from './HomeNav';
-import Messenger from './Messenger';
 import MessengerMessageUs from 'react-messenger-message-us';
+import { CartProvider } from '../../context/Store';
 
-function Layout({ title, children, cart, navStyle }) {
+function Layout({ children, cart, search, setSearch }) {
+	const [nav, setNav] = useState(false);
+	useEffect(() => {
+		const urlString = document.location.href;
+		if (
+			urlString === 'http://localhost:3000/' ||
+			urlString === 'https://we-made-it.ca/'
+		) {
+			setNav(false);
+		} else {
+			setNav(true);
+		}
+	});
 	return (
-		<div>
-			<Head>
-				<link rel='icon' href='/favicon.ico' />
-				<meta description='We-Made-It We Made It Newcastle Ontario Homemade Handmade Decor Boutique Local Clarington Canada Bowmanville Durham Oshawa' />
-				<meta name='We Made It Local Handmade Boutique' />
-				<meta lang='en' />
+		<CartProvider>
+			<div>
+				<Head>
+					<link rel='preconnect' href='https://fonts.gstatic.com' />
+					<link
+						href='https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap'
+						rel='stylesheet'
+					/>
+				</Head>
+				{nav ? (
+					<HomeNav cart={cart} search={search} setSearch={setSearch} />
+				) : (
+					<Navigation cart={cart} search={search} setSearch={setSearch} />
+				)}
 
-				<link rel='preconnect' href='https://fonts.gstatic.com' />
-				<link
-					href='https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap'
-					rel='stylesheet'
-				/>
-			</Head>
-			{navStyle === 'home' ? (
-				<HomeNav cart={cart} />
-			) : (
-				<Navigation cart={cart} />
-			)}
-
-			<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-				{children}
-			</main>
-			<div className='sticky bottom-5 flex justify-end w-full pr-2'>
-				<MessengerMessageUs
-					pageId={process.env.MESSENGER_PAGE_ID}
-					appId={process.env.MESSENGER_APP_ID}
-				/>
+				<main className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
+					{children}
+				</main>
+				<div className='sticky bottom-5 flex justify-end w-full pr-2'>
+					<MessengerMessageUs
+						pageId={process.env.MESSENGER_PAGE_ID}
+						appId={process.env.MESSENGER_APP_ID}
+					/>
+				</div>
+				<Footer />
 			</div>
-			<Footer />
-		</div>
+		</CartProvider>
 	);
 }
 

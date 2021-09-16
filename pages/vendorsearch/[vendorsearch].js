@@ -1,33 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
-import CategorySelect from '../../components/Categories/CategorySelect';
 import { vendors } from '../../VendorList/VendorList';
-import { checkProductDiscounts } from '../../components/utils';
-const JSONBig = require('json-bigint');
-const { Client, Environment } = require('square');
+import { checkProductDiscounts } from '../../utils/sales';
+import JSONBig from 'json-bigint';
+import { Client, Environment } from 'square';
+import SEO from '../../components/SEO/SEO';
 
 export default function VendorSearchItems({
-	setNavStyle,
-	cart,
 	searchresults,
 	vendorSales,
-	search,
+	vendorSearch,
 }) {
-	setNavStyle('vendorsearch');
+	console.log('Vendor Search: ', vendorSearch);
 	if (searchresults) {
 		if (searchresults.length) {
 			let results = searchresults;
 			checkProductDiscounts(results, vendorSales);
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
-					<Head>
-						<title>{search} || We Made It</title>
-					</Head>
+					<SEO title={`${vendorSearch} || We Made It`} />
 					<div className='flex flex-row flex-wrap justify-center h-full'>
-						<Headers title={search} />
-						<CategorySelect />
+						<Headers title={vendorSearch} />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 							{results.map((result, i) => {
@@ -145,8 +140,8 @@ export async function getStaticProps({ params }) {
 		environment: Environment.Production,
 		accessToken: process.env.SQUARE_ACCESS_TOKEN,
 	});
-	const search = params.vendorsearch.replace(/%20/g, ' ');
-	console.log('Vendor: ', search);
+	const vendorSearch = params.vendorsearch.replace(/%20/g, ' ');
+	console.log('Vendor: ', vendorSearch);
 
 	let filteredItems = [];
 
@@ -164,7 +159,7 @@ export async function getStaticProps({ params }) {
 	};
 	try {
 		const response = await client.catalogApi.searchCatalogItems({
-			textFilter: search,
+			textFilter: vendorSearch,
 		});
 
 		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
@@ -184,7 +179,7 @@ export async function getStaticProps({ params }) {
 	const searchresults = await newImageRequest(filteredItems);
 
 	return {
-		props: { searchresults, search },
-		revalidate: 60,
+		props: { searchresults, vendorSearch },
+		revalidate: 3600,
 	};
 }
