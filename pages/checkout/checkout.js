@@ -7,14 +7,13 @@ import { cobourgLocationId, newcastleLocationId } from '../../utils/options';
 import SEO from '../../components/SEO/SEO';
 import Link from 'next/link';
 
-function CartPage({ setNavStyle, vendorSales }) {
+function CartPage({ vendorSales }) {
 	const cart = useCartContext();
 	const [isDiscount, setIsDiscount] = useState(false);
 	const [lineItems, setLineItems] = useState();
 	const [discountInformation, setDiscountInformation] = useState([]);
 	const [location, setLocation] = useState('Newcastle');
 	const router = useRouter();
-	setNavStyle('products');
 
 	const handleCheckout = () => {
 		const orderID = uuidv4();

@@ -10,11 +10,9 @@ function Layout({ children, cart, search, setSearch }) {
 	const [nav, setNav] = useState(false);
 	useEffect(() => {
 		const urlString = document.location.href;
-		console.log(urlString);
 		if (
 			urlString === 'http://localhost:3000/' ||
-			urlString === 'https://we-made-it.ca/' ||
-			urlString === 'https://test-wmi-q2psn.ondigitalocean.app/'
+			urlString === 'https://we-made-it.ca/'
 		) {
 			setNav(false);
 		} else {

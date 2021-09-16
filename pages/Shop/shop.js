@@ -10,10 +10,7 @@ import { catalog } from '../../utils/recusiveCatalog';
 import { devCatalog } from '../../utils/devCatalog';
 import SEO from '../../components/SEO/SEO';
 
-export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
-	console.log(itemsWithPictures);
-
-	setNavStyle('shop');
+export default function Shop({ vendorSales, itemsWithPictures }) {
 	if (itemsWithPictures) {
 		const initialItems = itemsWithPictures;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
@@ -62,7 +59,6 @@ export default function Shop({ vendorSales, setNavStyle, itemsWithPictures }) {
 
 		//This effect updates the current items on the page whenever the sort method changes
 		useEffect(() => {
-			console.log('curr items updated');
 			if (items.length > 50) {
 				setCurrItems(items.slice(offset, offset + perPage));
 			} else setCurrItems(items);

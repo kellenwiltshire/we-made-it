@@ -11,7 +11,6 @@ export default function ShopProduct({ data, vendorSales }) {
 	const [itemID, setItemID] = useState(data.itemVarData[0].id);
 
 	const itemLocations = data.itemVarData[0].presentAtLocationIds;
-	console.log(data.itemVarData[0].absentAtLocationIds);
 
 	let fixedItemLocation = [];
 	itemLocations.map((loc) => {

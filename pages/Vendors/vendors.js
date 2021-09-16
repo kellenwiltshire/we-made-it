@@ -15,7 +15,6 @@ export default function Vendors() {
 		e.preventDefault();
 		setFilteredVendors(vendors);
 	};
-	console.log(filteredVendors);
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 			<SEO title='Vendors || We Made It' />
