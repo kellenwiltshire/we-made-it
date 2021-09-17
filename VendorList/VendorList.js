@@ -398,9 +398,9 @@ export const vendors = [
 		vendor: 'The Knotty Island',
 		image: '/vendorphotos/theknottyisland.jpg',
 		location: ['Newcastle'],
-		//uid: 'twentypercent',
-		//sale: 20,
-		//discount: 'ZMRJ5XAIHP6746NODTSHXPLH',
+		uid: 'twentypfortypercentercent',
+		sale: 40,
+		discount: 'FWNUIDTSAVULZOKZTLMB5B65',
 	},
 	{
 		vendor: 'The Quilting Queen',
