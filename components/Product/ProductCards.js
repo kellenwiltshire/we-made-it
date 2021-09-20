@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Price from '../Checkout/Price';
 
-function ProductCards({ itemID, title, item, price, image, salePrice }) {
+function ProductCards({ title, price, image, salePrice, handle }) {
 	if (salePrice) {
 		return (
 			<Link
 				href={{
 					pathname: '/Products/[product]',
-					query: { product: itemID },
+					query: { product: handle },
 				}}
 			>
 				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 cursor-pointer rounded transform hover:shadow-2xl duration-300 ease-in-out md:m-5 border border-purple-400 m-1'>
@@ -33,7 +33,7 @@ function ProductCards({ itemID, title, item, price, image, salePrice }) {
 			<Link
 				href={{
 					pathname: '/Products/[product]',
-					query: { product: itemID },
+					query: { product: handle },
 				}}
 			>
 				<a className='flex justify-center flex-wrap bg-white w-36 sm:w-40 md:w-80 cursor-pointer rounded transform hover:shadow-2xl duration-300 ease-in-out md:m-5 border border-purple-400 m-1'>

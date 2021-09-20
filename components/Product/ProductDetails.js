@@ -1,31 +1,26 @@
 import BackToProductButton from '../Buttons/BackToProductButton';
 import ProductInfo from './ProductInfo';
 import ProductForm from './ProductForm';
+import React, { useState } from 'react';
 
-function ProductDetails({
-	productData,
-	price,
-	isSale,
-	itemLocations,
-	setPrice,
-	setItemID,
-	itemID,
-}) {
+function ProductDetails({ productData }) {
+	const [variantPrice, setVariantPrice] = useState(
+		productData.variants.edges[0].node.price,
+	);
 	return (
 		<div className='flex flex-col justify-between h-full w-full md:w-1/2 max-w-xs mx-auto space-y-4 min-h-128'>
 			<BackToProductButton />
 			<ProductInfo
-				title={productData.itemName}
-				description={productData.itemDescription}
-				price={price}
-				isSale={isSale}
-				itemLocations={itemLocations}
+				title={productData.title}
+				description={productData.description}
+				price={variantPrice}
 			/>
 			<ProductForm
-				productData={productData}
-				setPrice={setPrice}
-				setItemID={setItemID}
-				itemID={itemID}
+				title={productData.title}
+				handle={productData.handle}
+				variants={productData.variants.edges}
+				mainImg={productData.images.edges[0].node}
+				setVariantPrice={setVariantPrice}
 			/>
 		</div>
 	);
