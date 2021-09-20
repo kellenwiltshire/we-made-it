@@ -136,7 +136,7 @@ export default function Shop({ vendorSales, itemsWithPictures, products }) {
 								<ProductCards
 									title={item.node.title}
 									itemID={item.node.id}
-									price={item.node.variants.edges[0].price}
+									price={item.node.variants.edges[0].node.price}
 									image={item.node.images.edges[0].node.originalSrc}
 									key={item.node.id}
 									// location={item.presentAtLocationIds}
