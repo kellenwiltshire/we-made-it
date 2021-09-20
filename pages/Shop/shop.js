@@ -12,7 +12,7 @@ import SEO from '../../components/SEO/SEO';
 import { getAllProducts } from '../../lib/shopify';
 
 export default function Shop({ vendorSales, itemsWithPictures, products }) {
-	console.log(products);
+	// console.log(products);
 	if (products) {
 		const initialItems = products;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
