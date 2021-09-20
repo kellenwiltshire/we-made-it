@@ -9,7 +9,7 @@ function RightButton() {
 			height='32'
 			viewBox='0 0 24 24'
 			strokeWidth='1.5'
-			stroke='#000000'
+			stroke='#ffffff'
 			fill='none'
 			strokeLinecap='round'
 			strokeLinejoin='round'

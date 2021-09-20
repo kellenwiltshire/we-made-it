@@ -13,18 +13,19 @@ function ProductImage({ images }) {
 
 	return (
 		<div className='w-full md:w-1/2 max-w-md border border-palette-lighter bg-white rounded shadow-lg'>
-			<div className='relative h-96'>
-				<Image
+			<div className='flex'>
+				<img
 					src={mainImg.originalSrc}
 					alt={mainImg.altText}
-					layout='fill'
-					className='transform duration-500 ease-in-out hover:scale-105'
+					alt=''
+					width='600px'
+					height='auto'
 				/>
 			</div>
 			<div className='relative flex border-t border-palette-lighter'>
 				<button
 					aria-label='left-scroll'
-					className='h-32 bg-palette-lighter hover:bg-palette-light  absolute left-0 z-10 opacity-75'
+					className='h-32 bg-palette-lighter hover:bg-palette-light  absolute left-0 z-10'
 					onClick={() => scroll(-300)}
 				>
 					<LeftButton />
@@ -51,7 +52,7 @@ function ProductImage({ images }) {
 				</div>
 				<button
 					aria-label='right-scroll'
-					className='h-32 bg-palette-lighter hover:bg-palette-light  absolute right-0 z-10 opacity-75'
+					className='h-32 bg-palette-lighter hover:bg-palette-light  absolute right-0 z-10'
 					onClick={() => scroll(300)}
 				>
 					<RightButton />

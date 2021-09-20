@@ -7,7 +7,7 @@ export default function ShopProduct({ productData }) {
 	console.log(productData);
 
 	return (
-		<div className='min-h-screen py-12 sm:pt-20'>
+		<div className='min-h-screen py-12 sm:pt-20 container'>
 			<SEO title={`${productData.title} || We Made It`} />
 			<ProductSection productData={productData} />
 		</div>
