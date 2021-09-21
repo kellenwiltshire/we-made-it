@@ -9,6 +9,7 @@ import SEO from '../../components/SEO/SEO';
 import { getAllProducts } from '../../lib/shopify';
 
 export default function Shop({ products }) {
+	console.log('Products: ', products);
 	if (products) {
 		const initialItems = products;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future

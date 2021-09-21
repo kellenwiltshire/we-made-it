@@ -1,13 +1,17 @@
 import { categories } from './options';
 
-export const filterChange = (param, initialItems) => {
+export const vendorChange = (param, initialItems) => {
 	let filteredItems = initialItems;
 
+	if (param === 'Vendors') {
+		return initialItems;
+	}
+
 	filteredItems = filteredItems.filter((item) => {
-		if (item.itemData.description) {
-			let fixedDescription = item.itemData.description.toLowerCase();
+		if (item.node.vendor) {
+			let fixedVendor = item.node.vendor.toLowerCase();
 			let fixedFilterName = param.toLowerCase();
-			return fixedDescription.includes(fixedFilterName);
+			return fixedVendor.includes(fixedFilterName);
 		} else {
 			return;
 		}
@@ -19,71 +23,31 @@ export const filterChange = (param, initialItems) => {
 export const sortChange = (param, items, initialItems) => {
 	if (param === 'Name Ascending (A-Z)') {
 		let sortedItems = items.sort((a, b) => {
-			return a.itemData.name.localeCompare(b.itemData.name);
+			return a.node.title.localeCompare(b.node.title);
 		});
 		return sortedItems;
 	} else if (param === 'Name Descending (Z-A)') {
 		let sortedItems = items.sort((a, b) => {
-			return a.itemData.name.localeCompare(b.itemData.name);
+			return a.node.title.localeCompare(b.node.title);
 		});
 		sortedItems.reverse();
 		return sortedItems;
 	} else if (param === 'Price (Low to High)') {
 		let sortedItems = items.sort((a, b) => {
-			if (a.itemData.variations && b.itemData.variations) {
-				if (
-					a.itemData.variations[0].itemVariationData.pricingType ===
-						'VARIABLE_PRICING' ||
-					b.itemData.variations[0].itemVariationData.pricingType ===
-						'VARIABLE_PRICING'
-				) {
-					return 0;
-				} else if (
-					a.itemData.variations[0].itemVariationData.priceMoney.amount >
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-				) {
-					return 1;
-				} else if (
-					a.itemData.variations[0].itemVariationData.priceMoney.amount <
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-				) {
-					return -1;
-				} else {
-					return 0;
-				}
-			} else {
-				return 0;
-			}
+			return (
+				a.node.variants.edges[0].node.price -
+				b.node.variants.edges[0].node.price
+			);
 		});
+
 		return sortedItems;
 	} else if (param === 'Price (High to Low)') {
 		let sortedItems = items.sort((a, b) => {
-			if (a.itemData.variations && b.itemData.variations) {
-				if (
-					a.itemData.variations[0].itemVariationData.pricingType ===
-						'VARIABLE_PRICING' ||
-					b.itemData.variations[0].itemVariationData.pricingType ===
-						'VARIABLE_PRICING'
-				) {
-					return 0;
-				} else if (
-					a.itemData.variations[0].itemVariationData.priceMoney.amount >
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-				) {
-					return 1;
-				} else if (
-					a.itemData.variations[0].itemVariationData.priceMoney.amount <
-					b.itemData.variations[0].itemVariationData.priceMoney.amount
-				) {
-					return -1;
-				} else {
-					return 0;
-				}
-			} else {
-				return 0;
-			}
+			return (
+				b.node.variants.edges[0].node.price -
+				a.node.variants.edges[0].node.price
+			);
 		});
-		sortedItems.reverse();
 		return sortedItems;
 	} else {
 		return initialItems;

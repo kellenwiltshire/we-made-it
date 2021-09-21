@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-	filterChange,
 	sortChange,
 	locationChange,
 	categoryChange,
+	vendorChange,
 } from '../../utils/sort';
 import { categories, locations } from '../../utils/options';
 import { vendors } from '../../VendorList/VendorList';
@@ -40,12 +40,14 @@ export default function ShopFilters({
 						name='sort'
 						id='sort'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-						onChange={(e) =>
-							updatePage(
-								sortChange(e.target.value, items, initialItems),
-								e.target.value,
-							)
-						}
+						onChange={(e) => {
+							e.target.value === 'Sort Items'
+								? updatePage(initialItems, 0)
+								: updatePage(
+										sortChange(e.target.value, items, initialItems),
+										e.target.value,
+								  );
+						}}
 						defaultValue='Sort Items'
 					>
 						<option>Sort Items</option>
@@ -59,9 +61,11 @@ export default function ShopFilters({
 						name='vendors'
 						id='vendors'
 						className='text-sm md:text-base w-auto mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400  text-gray-800 font-semibold focus:border-dark-purple focus:outline-none m-2 font-body'
-						onChange={(e) =>
-							updatePage(filterChange(e.target.value, initialItems), 0)
-						}
+						onChange={(e) => {
+							e.target.value === 'Vendors'
+								? updatePage(initialItems, 0)
+								: updatePage(vendorChange(e.target.value, initialItems), 0);
+						}}
 						defaultValue='Vendors'
 					>
 						<option>Vendors</option>
@@ -69,7 +73,9 @@ export default function ShopFilters({
 							return <option key={i}>{vendor.vendor}</option>;
 						})}
 					</select>
-					<select
+
+					{/* Location Filtering Removed Temporarily */}
+					{/* <select
 						type='name'
 						name='location'
 						id='location'
@@ -83,8 +89,10 @@ export default function ShopFilters({
 						{locations.map((loc) => {
 							return <option key={loc}>{loc}</option>;
 						})}
-					</select>
-					<select
+					</select> */}
+
+					{/* Category Filtering Removed Temorarily */}
+					{/* <select
 						type='name'
 						name='category'
 						id='category'
@@ -101,7 +109,7 @@ export default function ShopFilters({
 						{categories.map((cat) => {
 							return <option key={cat}>{cat.name}</option>;
 						})}
-					</select>
+					</select> */}
 					<button
 						onClick={resetItems}
 						type='submit'
