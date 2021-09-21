@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductSection from '../../components/Product/ProductSection';
 import SEO from '../../components/SEO/SEO';
-import { getProduct, getProductSlugs } from '../../lib/shopify';
+import { getProduct } from '../../lib/shopify';
 
 export default function ShopProduct({ productData }) {
 	console.log(productData);

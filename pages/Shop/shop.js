@@ -175,7 +175,7 @@ export default function Shop({ products }) {
 				<Headers title='OOPS! Something Went Wrong!' />
 				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
-					Square. Please try again later!
+					Shopify. Please try again later!
 				</p>
 			</div>
 		);
