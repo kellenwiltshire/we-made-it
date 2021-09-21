@@ -7,12 +7,15 @@ import { checkProductDiscounts } from '../../utils/sales';
 import JSONBig from 'json-bigint';
 import { Client, Environment } from 'square';
 import SEO from '../../components/SEO/SEO';
+import { searchVendors } from '../../lib/shopify';
 
 export default function VendorSearchItems({
 	searchresults,
 	vendorSales,
 	vendorSearch,
+	products,
 }) {
+	console.log(products);
 	console.log('Vendor Search: ', vendorSearch);
 	if (searchresults) {
 		if (searchresults.length) {
@@ -136,50 +139,16 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	console.log(params);
-	const client = new Client({
-		environment: Environment.Production,
-		accessToken: process.env.SQUARE_ACCESS_TOKEN,
-	});
+
 	const vendorSearch = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', vendorSearch);
 
-	let filteredItems = [];
-
-	const newImageRequest = async (items) => {
-		const catalog = client.catalogApi;
-
-		let newItemsWithPictures = [];
-
-		for (let i = 0; i < items.length; i++) {
-			const response = await catalog.retrieveCatalogObject(items[i].imageId);
-			items[i].imageLink = response.result.object.imageData.url;
-			newItemsWithPictures.push(items[i]);
-		}
-		return newItemsWithPictures;
-	};
-	try {
-		const response = await client.catalogApi.searchCatalogItems({
-			textFilter: vendorSearch,
-		});
-
-		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
-
-		for (let i = 0; i < data.length; i++) {
-			if (data[i].imageId) {
-				filteredItems.push(data[i]);
-			}
-		}
-	} catch (error) {
-		console.log('Search Error: ', error);
-		return {
-			props: {},
-		};
-	}
-
-	const searchresults = await newImageRequest(filteredItems);
+	const products = await searchVendors(vendorSearch);
 
 	return {
-		props: { searchresults, vendorSearch },
+		props: {
+			products,
+		},
 		revalidate: 3600,
 	};
 }
