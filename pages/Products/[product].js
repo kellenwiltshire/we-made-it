@@ -14,23 +14,7 @@ export default function ShopProduct({ productData }) {
 	);
 }
 
-export async function getStaticPaths() {
-	const productSlugs = await getProductSlugs();
-
-	const paths = productSlugs.map((slug) => {
-		const product = String(slug.node.handle);
-		return {
-			params: { product },
-		};
-	});
-
-	return {
-		paths,
-		fallback: false,
-	};
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
 	const productData = await getProduct(params.product);
 
 	return {
