@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductSection from '../../components/Product/ProductSection';
 import SEO from '../../components/SEO/SEO';
-import { getProduct } from '../../lib/shopify';
+import { getProduct, getProductSlugs } from '../../lib/shopify';
 
 export default function ShopProduct({ productData }) {
 	console.log(productData);
@@ -14,8 +14,24 @@ export default function ShopProduct({ productData }) {
 	);
 }
 
-export async function getServerSideProps({ query }) {
-	const productData = await getProduct(query.product);
+export async function getStaticPaths() {
+	const productSlugs = await getProductSlugs();
+
+	const paths = productSlugs.map((slug) => {
+		const product = String(slug.node.handle);
+		return {
+			params: { product },
+		};
+	});
+
+	return {
+		paths,
+		fallback: false,
+	};
+}
+
+export async function getStaticProps({ params }) {
+	const productData = await getProduct(params.product);
 
 	return {
 		props: {
