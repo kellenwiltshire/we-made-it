@@ -190,17 +190,4 @@ export async function getStaticProps() {
 			products,
 		},
 	};
-
-	// console.log('Shop Page Revalidate');
-	// const itemsWithPictures = await catalog();
-
-	// //!Dev Purposes
-	// // const itemsWithPictures = await devCatalog();
-
-	// return {
-	// 	props: {
-	// 		itemsWithPictures: itemsWithPictures,
-	// 	},
-	// 	revalidate: 3600,
-	// };
 }

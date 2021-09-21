@@ -20,6 +20,26 @@ export const vendorChange = (param, initialItems) => {
 	return filteredItems;
 };
 
+export const searchFilter = (param, initialItems) => {
+	let filteredItems = initialItems;
+
+	filteredItems = filteredItems.filter((item) => {
+		if (item.node.description) {
+			let fixedDescription = item.node.description.toLowerCase();
+			let fixedFilterName = param.toLowerCase();
+			const fixedVendor = item.node.vendor.toLowerCase();
+			return (
+				fixedDescription.includes(fixedFilterName) ||
+				fixedVendor.includes(fixedFilterName)
+			);
+		} else {
+			return;
+		}
+	});
+
+	return filteredItems;
+};
+
 export const sortChange = (param, items, initialItems) => {
 	if (param === 'Name Ascending (A-Z)') {
 		let sortedItems = items.sort((a, b) => {
