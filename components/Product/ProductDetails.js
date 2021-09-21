@@ -13,6 +13,7 @@ function ProductDetails({ productData }) {
 			<ProductInfo
 				title={productData.title}
 				description={productData.description}
+				vendor={productData.vendor}
 				price={variantPrice}
 			/>
 			<ProductForm
