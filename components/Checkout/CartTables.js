@@ -6,47 +6,19 @@ import { getCartSubTotal } from '../../utils/checkout';
 import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
 import Delete from '../Icons/Delete';
 
-function CartTable({
-	cart,
-	vendorSales,
-	setIsDiscount,
-	setLineItems,
-	setDiscountInformation,
-	setLocation,
-}) {
+function CartTable({ cart }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
 
-	const getLineItems = () => {
-		const line_items = cart.map((item) => {
-			if (item.discountUid) {
-				return {
-					quantity: item.variantQuantity.toString(),
-					catalogObjectId: item.variantId,
-					appliedDiscounts: [{ discountUid: item.discountUid }],
-				};
-			} else {
-				return {
-					quantity: item.variantQuantity.toString(),
-					catalogObjectId: item.variantId,
-				};
-			}
-		});
-		return line_items;
-	};
-
 	useEffect(() => {
-		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 		setCartItems(cart);
-		setDiscountInformation(checkForDiscounts());
 		setSubtotal(getCartSubTotal(cart));
-		setLineItems(getLineItems);
 	}, [cart]);
 
-	const updateItem = (id, quantity) => {
+	function updateItem(id, quantity) {
 		updateCartQuantity(id, quantity);
-	};
+	}
 
 	return (
 		<div className='min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full'>

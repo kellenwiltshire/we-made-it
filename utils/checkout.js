@@ -1,8 +1,9 @@
-export function saveLocalData(cart) {
-	console.log('Save Local Data: ', cart);
+import { createCheckout, updateCheckout } from '../lib/shopify';
+
+export function saveLocalData(cart, checkoutId, checkoutUrl) {
 	localStorage.setItem(
 		process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME,
-		JSON.stringify([...cart]),
+		JSON.stringify([cart, checkoutId, checkoutUrl]),
 	);
 }
 
@@ -12,12 +13,36 @@ function getLocalData() {
 	);
 }
 
-export function setLocalData(setCart) {
+export function setLocalData(setCart, setCheckoutId, setCheckoutUrl) {
 	const localData = getLocalData();
 
 	if (localData) {
-		setCart([...localData]);
+		if (Array.isArray(localData[0])) {
+			setCart([...localData[0]]);
+		} else {
+			setCart([localData[0]]);
+		}
+		setCheckoutId(localData[1]);
+		setCheckoutUrl(localData[2]);
 	}
+}
+
+export async function createShopifyCheckout(newItem) {
+	const data = await createCheckout(
+		newItem['variantId'],
+		newItem['variantQuantity'],
+	);
+	return data;
+}
+
+export async function updateShopifyCheckout(updatedCart, checkoutId) {
+	const lineItems = updatedCart.map((item) => {
+		return {
+			variantId: item['variantId'],
+			quantity: item['variantQuantity'],
+		};
+	});
+	await updateCheckout(checkoutId, lineItems);
 }
 
 export function getCartSubTotal(cart) {
@@ -25,18 +50,11 @@ export function getCartSubTotal(cart) {
 		return 0;
 	} else {
 		let totalPrice = 0;
-		cart.forEach((item) => {
-			if (item.sale) {
-				totalPrice +=
-					parseInt(item.variantQuantity) *
-					parseFloat(
-						item.variantPrice - item.variantPrice * (item.sale / 100),
-					).toFixed(2);
-			} else {
-				totalPrice +=
-					parseInt(item.variantQuantity) * parseFloat(item.variantPrice);
-			}
-		});
-		return (Math.round(totalPrice * 100) / 100).toFixed(2);
+		cart.forEach(
+			(item) =>
+				(totalPrice +=
+					parseInt(item.variantQuantity) * parseFloat(item.variantPrice)),
+		);
+		return Math.round(totalPrice * 100) / 100;
 	}
 }

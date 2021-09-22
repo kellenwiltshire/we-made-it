@@ -9,8 +9,6 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
 	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add To Cart');
 
-	const [buttonStatus, setButtonStatus] = useState(true);
-
 	const [inventory, setInventory] = useState(
 		variants[0].node.quantityAvailable,
 	);
