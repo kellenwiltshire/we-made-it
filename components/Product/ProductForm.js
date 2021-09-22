@@ -38,6 +38,7 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
 				variantPrice: variant.node.price,
 				variantTitle: variant.node.title,
 				variantQuantity: quantity,
+				maxInventory: inventory,
 			});
 		}
 		setCartStatus('Added to Cart!');

@@ -13,7 +13,7 @@ function CartTable({ cart }) {
 
 	useEffect(() => {
 		setCartItems(cart);
-		setSubtotal(getCartSubTotal(cart));
+		setSubtotal(getCartSubTotal(cart).toFixed(2));
 	}, [cart]);
 
 	function updateItem(id, quantity) {
@@ -36,13 +36,6 @@ function CartTable({ cart }) {
 				<tbody className='divide-y divide-purple-200'>
 					{cartItems.length
 						? cartItems.map((item) => {
-								let price = item.variantPrice;
-								if (item.sale) {
-									price = (
-										item.variantPrice -
-										item.variantPrice * (item.sale / 100)
-									).toFixed(2);
-								}
 								return (
 									<tr
 										key={item.variantId}
@@ -50,12 +43,13 @@ function CartTable({ cart }) {
 									>
 										<td className='font-body font-medium px-4 sm:px-6 py-4 flex items-center'>
 											<img
-												src={item.productImage}
+												src={item.productImage.originalSrc}
+												alt={item.productImage.altText}
 												height={64}
 												width={64}
 												className={`hidden sm:inline-flex`}
 											/>
-											<Link passHref href={`/Products/${item.urlID}`}>
+											<Link passHref href={`/Products/${item.productHandle}`}>
 												<a className='pt-1 m-1'>{item.productTitle}</a>
 											</Link>
 										</td>
@@ -76,15 +70,7 @@ function CartTable({ cart }) {
 											/>
 										</td>
 										<td className='font-body text-base px-4 sm:px-6 py-4 hidden sm:table-cell'>
-											{price < item.variantPrice ? (
-												<Price
-													num={price}
-													sale={true}
-													numSize='text-lg text-red-400'
-												/>
-											) : (
-												<Price num={price} numSize='text-lg' />
-											)}
+											<Price num={item.variantPrice} numSize='text-lg' />
 										</td>
 										<td className='font-body font-medium px-4 sm:px-6 py-4'>
 											<button
@@ -113,7 +99,7 @@ function CartTable({ cart }) {
 							</tr>
 						)
 					) : null}
-					{cartItems.length ? (
+					{/* {cartItems.length ? (
 						<tr className='text-center'>
 							<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
 								Pickup Location
@@ -130,7 +116,7 @@ function CartTable({ cart }) {
 								<option className='m-2'>Cobourg</option>
 							</select>
 						</tr>
-					) : null}
+					) : null} */}
 				</tbody>
 			</table>
 		</div>
