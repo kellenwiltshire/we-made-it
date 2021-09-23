@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Headers from '../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../components/Product/ProductCards';
-import { checkProductDiscounts } from '../utils/sales';
-import { filterChange } from '../utils/sort';
-import { catalog } from '../utils/recusiveCatalog';
-import { devCatalog } from '../utils/devCatalog';
+import { searchFilter } from '../utils/sort';
 import SEO from '../components/SEO/SEO';
+import { getAllProducts } from '../lib/shopify';
 
-export default function SearchItems({
-	search,
-	vendorSales,
-	itemsWithPictures,
-}) {
+export default function SearchItems({ search, products }) {
 	const fixedSearch = search.replace(/%20/g, ' ');
-	console.log(fixedSearch);
-	if (itemsWithPictures) {
-		const results = filterChange(fixedSearch, itemsWithPictures);
-		checkProductDiscounts(results, vendorSales);
+	console.log('Search: ', fixedSearch);
+	if (products) {
+		const results = searchFilter(fixedSearch, products);
 		return (
 			<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 				<SEO title='Search || We Made It' />
@@ -27,58 +20,15 @@ export default function SearchItems({
 					<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
 						{results.length ? (
 							results.map((item) => {
-								let price;
-								if (item.itemData.variations) {
-									if (
-										item.itemData.variations[0].itemVariationData
-											.pricingType === 'VARIABLE_PRICING'
-									) {
-										price = 'Variable Pricing - Contact Store for Details';
-										return (
-											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
-												price={price}
-												image={item.imageLink}
-												key={Math.random()}
-												location={item.presentAtLocationIds}
-											/>
-										);
-									} else if (item.sale) {
-										let currPrice =
-											item.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100;
-										price = currPrice - currPrice * (item.sale / 100);
-										price = price.toFixed(2);
-										return (
-											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
-												salePrice={price}
-												image={item.imageLink}
-												key={Math.random()}
-												location={item.presentAtLocationIds}
-											/>
-										);
-									} else {
-										price = (
-											item.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100
-										).toFixed(2);
-										return (
-											<ProductCards
-												title={item.itemData.name}
-												itemID={item.id}
-												price={price}
-												image={item.imageLink}
-												key={Math.random()}
-												location={item.presentAtLocationIds}
-											/>
-										);
-									}
-								} else {
-									return;
-								}
+								return (
+									<ProductCards
+										title={item.node.title}
+										handle={item.node.handle}
+										price={item.node.variants.edges[0].node.price}
+										image={item.node.images.edges[0].node.originalSrc}
+										key={item.node.id}
+									/>
+								);
 							})
 						) : (
 							<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
@@ -114,16 +64,12 @@ export default function SearchItems({
 }
 
 export async function getStaticProps() {
-	console.log('Search Page Revalidate');
-	const itemsWithPictures = await catalog();
-
-	//!Dev Purposes
-	// const itemsWithPictures = await devCatalog();
+	const products = await getAllProducts();
 
 	return {
 		props: {
-			itemsWithPictures: itemsWithPictures,
+			products,
 		},
-		revalidate: 3600,
+		revalidate: 360,
 	};
 }

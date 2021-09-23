@@ -310,7 +310,7 @@ export const vendors = [
 		location: ['Newcastle'],
 	},
 	{
-		vendor: 'Rags by Raisin and Mags',
+		vendor: 'Rags by Raisin & Mags',
 		image: '/vendorphotos/ragsraisinmags.jpeg',
 		location: ['Newcastle'],
 	},

@@ -4,15 +4,13 @@ import Head from 'next/head';
 import Pagination from '../../components/Layout/Pagination';
 import ProductCards from '../../components/Product/ProductCards';
 import { useRouter } from 'next/router';
-import { checkProductDiscounts } from '../../utils/sales';
 import ShopFilters from '../../components/Layout/ShopFilters';
-import { catalog } from '../../utils/recusiveCatalog';
-import { devCatalog } from '../../utils/devCatalog';
 import SEO from '../../components/SEO/SEO';
+import { getAllProducts } from '../../lib/shopify';
 
-export default function Shop({ vendorSales, itemsWithPictures }) {
-	if (itemsWithPictures) {
-		const initialItems = itemsWithPictures;
+export default function Shop({ products }) {
+	if (products) {
+		const initialItems = products;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
 		const [currPage, setCurrPage] = useState(0);
 		const [offset, setOffset] = useState(currPage * perPage); // Offset for Pagination
@@ -26,7 +24,7 @@ export default function Shop({ vendorSales, itemsWithPictures }) {
 		const [filterOpen, setFilterOpen] = useState(false);
 		const router = useRouter();
 
-		checkProductDiscounts(currItems, vendorSales);
+		// checkProductDiscounts(currItems, vendorSales);
 
 		//This looks at the URL to see if the user's url has already been looking through product pages and updates the current items accordingly
 		useEffect(() => {
@@ -129,58 +127,15 @@ export default function Shop({ vendorSales, itemsWithPictures }) {
 					</div>
 					<div className='container m-1 lg:m-5 flex flex-row flex-wrap justify-center w-full font-body'>
 						{currItems.map((item) => {
-							let price;
-							if (item.itemData.variations) {
-								if (
-									item.itemData.variations[0].itemVariationData.pricingType ===
-									'VARIABLE_PRICING'
-								) {
-									price = 'Variable Pricing - Contact Store for Details';
-									return (
-										<ProductCards
-											title={item.itemData.name}
-											itemID={item.id}
-											price={price}
-											image={item.imageLink}
-											key={Math.random()}
-											location={item.presentAtLocationIds}
-										/>
-									);
-								} else if (item.sale) {
-									let currPrice =
-										item.itemData.variations[0].itemVariationData.priceMoney
-											.amount / 100;
-									price = currPrice - currPrice * (item.sale / 100);
-									price = price.toFixed(2);
-									return (
-										<ProductCards
-											title={item.itemData.name}
-											itemID={item.id}
-											salePrice={price}
-											image={item.imageLink}
-											key={Math.random()}
-											location={item.presentAtLocationIds}
-										/>
-									);
-								} else {
-									price = (
-										item.itemData.variations[0].itemVariationData.priceMoney
-											.amount / 100
-									).toFixed(2);
-									return (
-										<ProductCards
-											title={item.itemData.name}
-											itemID={item.id}
-											price={price}
-											image={item.imageLink}
-											key={Math.random()}
-											location={item.presentAtLocationIds}
-										/>
-									);
-								}
-							} else {
-								return;
-							}
+							return (
+								<ProductCards
+									title={item.node.title}
+									handle={item.node.handle}
+									price={item.node.variants.edges[0].node.price}
+									image={item.node.images.edges[0].node.originalSrc}
+									key={item.node.id}
+								/>
+							);
 						})}
 					</div>
 					<div className='w-full flex flex-row flex-wrap justify-center'>
@@ -219,7 +174,7 @@ export default function Shop({ vendorSales, itemsWithPictures }) {
 				<Headers title='OOPS! Something Went Wrong!' />
 				<p className='font-body'>
 					This is Embarassing! We might be having trouble connecting with
-					Square. Please try again later!
+					Shopify. Please try again later!
 				</p>
 			</div>
 		);
@@ -227,16 +182,13 @@ export default function Shop({ vendorSales, itemsWithPictures }) {
 }
 
 export async function getStaticProps() {
-	console.log('Shop Page Revalidate');
-	const itemsWithPictures = await catalog();
-
-	//!Dev Purposes
-	// const itemsWithPictures = await devCatalog();
+	console.log('Shop Revalidate');
+	const products = await getAllProducts();
 
 	return {
 		props: {
-			itemsWithPictures: itemsWithPictures,
+			products,
 		},
-		revalidate: 3600,
+		revalidate: 360,
 	};
 }

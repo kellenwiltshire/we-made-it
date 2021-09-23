@@ -8,19 +8,20 @@ import SearchIconBig from '../Icons/SearchIconBig';
 import { useCartContext } from '../../context/Store';
 
 function HomeNav({ search, setSearch }) {
-	const cart = useCartContext();
+	const cart = useCartContext()[0];
 	const [cartItems, setCartItems] = useState(0);
 	const [navbarOpen, setNavbarOpen] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
+
+	console.log(cart);
 	useEffect(() => {
 		let numItems = 0;
-		if (cart.length > 0) {
-			cart.forEach((item) => {
-				numItems += item.variantQuantity;
-			});
-		}
+		cart.forEach((item) => {
+			numItems += item.variantQuantity;
+		});
 		setCartItems(numItems);
 	}, [cart]);
+
 	return (
 		<div className='mx-auto flex p-3 flex-row flex-wrap items-center justify-center bg-purple-200'>
 			<div className='container flex flex-row flex-wrap items-center justify-center'>
@@ -91,13 +92,18 @@ function HomeNav({ search, setSearch }) {
 					<NewSearch search={search} setSearch={setSearch} />
 				</div>
 				<Link href={'/checkout/checkout'}>
-					<a className='m-1 px-1 py-2 flex items-center leading-snug hover:opacity-75 bg-purple-200 rounded-lg p-1 bg-opacity-75 relative'>
+					<a
+						aria-label='cart'
+						className='m-1 px-1 py-2 flex items-center leading-snug hover:opacity-75 bg-purple-200 rounded-lg p-1 bg-opacity-75 relative'
+					>
 						<span className='ml-1 flex flex-row'>
 							<CartIcon />
 
-							<div className='absolute top-0 right-0 text-xs bg-white text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-3 -translate-y-3'>
-								{cartItems}
-							</div>
+							{cartItems === 0 ? null : (
+								<div className='absolute top-0 right-0 text-xs bg-white text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-2 -translate-y-2'>
+									{cartItems}
+								</div>
+							)}
 						</span>
 					</a>
 				</Link>

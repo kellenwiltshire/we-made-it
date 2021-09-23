@@ -2,52 +2,42 @@ import { useState, useEffect } from 'react';
 import { useAddToCartContext } from '../../context/Store';
 import AddToCartButton from '../Buttons/AddToCartButton';
 
-function ProductForm({ productData, setPrice, setItemID, itemID }) {
+function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
 	const [quantity, setQuantity] = useState(1);
+	const [variantId, setVariantId] = useState(variants[0].node.id);
+	const [variant, setVariant] = useState(variants[0]);
 	const addToCart = useAddToCartContext();
 	const [cartStatus, setCartStatus] = useState('Add To Cart');
 
-	const [buttonStatus, setButtonStatus] = useState(true);
-	const [checkoutPrice, setCheckoutPrice] = useState(
-		(
-			productData.itemVarData[0].itemVariationData.priceMoney.amount / 100
-		).toFixed(2),
+	const [inventory, setInventory] = useState(
+		variants[0].node.quantityAvailable,
 	);
 
-	const [inventory, setInventory] = useState(1);
+	function handleSizeChange(e) {
+		setVariantId(e);
+		// send back size change
+		const selectedVariant = variants.filter((v) => v.node.id === e).pop();
+		setVariantPrice(selectedVariant.node.price);
 
-	useEffect(async () => {
-		setInventory(await inventoryUpdate());
-	}, [itemID]);
-	const inventoryUpdate = async () => {
-		const response = await fetch('https://we-made-it.ca/api/inventory', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				item: itemID,
-			}),
-		});
-		const data = await response.json();
-		if (data.counts[0].quantity < 1) {
-			setButtonStatus(false);
-		} else {
-			setButtonStatus(true);
-		}
-		return data.counts[0].quantity;
-	};
+		// update variant
+		setVariant(selectedVariant);
 
-	async function handleAddToCart(e) {
-		e.preventDefault();
+		//update the inventory
+		setInventory(variant.node.quantityAvailable);
+	}
+
+	async function handleAddToCart() {
+		const varId = variant.node.id;
 		// update store context
-		if (quantity > 0) {
+		if (quantity !== '') {
 			addToCart({
-				productTitle: productData.itemName,
-				productImage: productData.image,
-				variantId: itemID,
-				variantPrice: checkoutPrice,
+				productTitle: title,
+				productHandle: handle,
+				productImage: mainImg,
+				variantId: varId,
+				variantPrice: variant.node.price,
+				variantTitle: variant.node.title,
 				variantQuantity: quantity,
-				description: productData.itemDescription,
-				urlID: productData.itemID,
 				maxInventory: inventory,
 			});
 		}
@@ -64,18 +54,6 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 			}
 		}
 	}
-
-	const onSelectChange = (e) => {
-		const selectedItem = e.target.value;
-		setCheckoutPrice(
-			(
-				productData.itemVarData[selectedItem].itemVariationData.priceMoney
-					.amount / 100
-			).toFixed(2),
-		);
-
-		setItemID(productData.itemVarData[selectedItem].id);
-	};
 
 	return (
 		<div className='w-full'>
@@ -97,27 +75,24 @@ function ProductForm({ productData, setPrice, setItemID, itemID }) {
 					Inventory: {inventory}
 				</div>
 
-				{productData.itemVarData.length > 1 ? (
-					<div className='flex flex-col items-start space-y-1 flex-grow'>
-						<label className='text-gray-500 text-base'>Variation</label>
-						<select
-							id='variation'
-							name='variation'
-							onChange={onSelectChange}
-							className='form-select border border-gray-300 rounded-sm w-full text-gray-900 focus:border-purple-400 focus:ring-purple-400'
-						>
-							{productData.itemVarData.map((item, i) => {
-								return (
-									<option key={i} value={i}>
-										{item.itemVariationData.name}
-									</option>
-								);
-							})}
-						</select>
-					</div>
-				) : null}
+				<div className='flex flex-col items-start space-y-1 flex-grow'>
+					<label className='text-gray-500 text-base'>Variations</label>
+					<select
+						id='variation-selector'
+						name='variation-selector'
+						onChange={(event) => handleSizeChange(event.target.value)}
+						value={variantId}
+						className='form-select border border-gray-300 rounded-sm w-full text-gray-900 focus:border-palette-light focus:ring-palette-light'
+					>
+						{variants.map((item) => (
+							<option id={item.node.id} key={item.node.id} value={item.node.id}>
+								{item.node.title}
+							</option>
+						))}
+					</select>
+				</div>
 			</div>
-			{buttonStatus ? (
+			{inventory > 0 ? (
 				<AddToCartButton
 					handleAddToCart={handleAddToCart}
 					cartStatus={cartStatus}

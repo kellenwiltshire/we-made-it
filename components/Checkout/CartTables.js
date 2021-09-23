@@ -6,47 +6,19 @@ import { getCartSubTotal } from '../../utils/checkout';
 import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
 import Delete from '../Icons/Delete';
 
-function CartTable({
-	cart,
-	vendorSales,
-	setIsDiscount,
-	setLineItems,
-	setDiscountInformation,
-	setLocation,
-}) {
+function CartTable({ cart }) {
 	const updateCartQuantity = useUpdateCartQuantityContext();
 	const [cartItems, setCartItems] = useState([]);
 	const [subtotal, setSubtotal] = useState(0);
 
-	const getLineItems = () => {
-		const line_items = cart.map((item) => {
-			if (item.discountUid) {
-				return {
-					quantity: item.variantQuantity.toString(),
-					catalogObjectId: item.variantId,
-					appliedDiscounts: [{ discountUid: item.discountUid }],
-				};
-			} else {
-				return {
-					quantity: item.variantQuantity.toString(),
-					catalogObjectId: item.variantId,
-				};
-			}
-		});
-		return line_items;
-	};
-
 	useEffect(() => {
-		checkCartDiscounts(cart, vendorSales, setIsDiscount);
 		setCartItems(cart);
-		setDiscountInformation(checkForDiscounts());
-		setSubtotal(getCartSubTotal(cart));
-		setLineItems(getLineItems);
+		setSubtotal(getCartSubTotal(cart).toFixed(2));
 	}, [cart]);
 
-	const updateItem = (id, quantity) => {
+	function updateItem(id, quantity) {
 		updateCartQuantity(id, quantity);
-	};
+	}
 
 	return (
 		<div className='min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full'>
@@ -64,13 +36,6 @@ function CartTable({
 				<tbody className='divide-y divide-purple-200'>
 					{cartItems.length
 						? cartItems.map((item) => {
-								let price = item.variantPrice;
-								if (item.sale) {
-									price = (
-										item.variantPrice -
-										item.variantPrice * (item.sale / 100)
-									).toFixed(2);
-								}
 								return (
 									<tr
 										key={item.variantId}
@@ -78,12 +43,13 @@ function CartTable({
 									>
 										<td className='font-body font-medium px-4 sm:px-6 py-4 flex items-center'>
 											<img
-												src={item.productImage}
+												src={item.productImage.originalSrc}
+												alt={item.productImage.altText}
 												height={64}
 												width={64}
 												className={`hidden sm:inline-flex`}
 											/>
-											<Link passHref href={`/Products/${item.urlID}`}>
+											<Link passHref href={`/Products/${item.productHandle}`}>
 												<a className='pt-1 m-1'>{item.productTitle}</a>
 											</Link>
 										</td>
@@ -104,15 +70,7 @@ function CartTable({
 											/>
 										</td>
 										<td className='font-body text-base px-4 sm:px-6 py-4 hidden sm:table-cell'>
-											{price < item.variantPrice ? (
-												<Price
-													num={price}
-													sale={true}
-													numSize='text-lg text-red-400'
-												/>
-											) : (
-												<Price num={price} numSize='text-lg' />
-											)}
+											<Price num={item.variantPrice} numSize='text-lg' />
 										</td>
 										<td className='font-body font-medium px-4 sm:px-6 py-4'>
 											<button
@@ -141,7 +99,7 @@ function CartTable({
 							</tr>
 						)
 					) : null}
-					{cartItems.length ? (
+					{/* {cartItems.length ? (
 						<tr className='text-center'>
 							<td className='font-body text-base text-gray-600 font-semibold uppercase px-4 sm:px-6 py-4'>
 								Pickup Location
@@ -158,7 +116,7 @@ function CartTable({
 								<option className='m-2'>Cobourg</option>
 							</select>
 						</tr>
-					) : null}
+					) : null} */}
 				</tbody>
 			</table>
 		</div>

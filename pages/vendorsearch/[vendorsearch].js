@@ -3,21 +3,15 @@ import Headers from '../../components/Layout/Headers';
 import Head from 'next/head';
 import ProductCards from '../../components/Product/ProductCards';
 import { vendors } from '../../VendorList/VendorList';
-import { checkProductDiscounts } from '../../utils/sales';
-import JSONBig from 'json-bigint';
-import { Client, Environment } from 'square';
 import SEO from '../../components/SEO/SEO';
+import { searchVendors } from '../../lib/shopify';
 
-export default function VendorSearchItems({
-	searchresults,
-	vendorSales,
-	vendorSearch,
-}) {
+export default function VendorSearchItems({ vendorSearch, products }) {
+	console.log(products);
 	console.log('Vendor Search: ', vendorSearch);
-	if (searchresults) {
-		if (searchresults.length) {
-			let results = searchresults;
-			checkProductDiscounts(results, vendorSales);
+	if (products) {
+		if (products.length) {
+			let results = products;
 			return (
 				<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 					<SEO title={`${vendorSearch} || We Made It`} />
@@ -25,59 +19,16 @@ export default function VendorSearchItems({
 						<Headers title={vendorSearch} />
 
 						<div className='container m-1 sm:m-5 flex flex-row flex-wrap justify-center w-full'>
-							{results.map((result, i) => {
-								let price;
-								if (result.itemData.variations) {
-									if (
-										result.itemData.variations[0].itemVariationData
-											.pricingType === 'VARIABLE_PRICING'
-									) {
-										price = 'Variable Pricing - Contact Store for Details';
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												price={price}
-												defaultImage='/sparklelogoblack.png'
-												key={Math.random()}
-											/>
-										);
-									} else if (result.sale) {
-										let currPrice =
-											result.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100;
-										price = currPrice - currPrice * (result.sale / 100);
-										price = price.toFixed(2);
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												salePrice={price}
-												image={result.imageLink}
-												key={Math.random()}
-											/>
-										);
-									} else {
-										price = (
-											result.itemData.variations[0].itemVariationData.priceMoney
-												.amount / 100
-										).toFixed(2);
-										return (
-											<ProductCards
-												item={result}
-												title={result.itemData.name}
-												itemID={result.id}
-												price={price}
-												image={result.imageLink}
-												key={Math.random()}
-											/>
-										);
-									}
-								} else {
-									return;
-								}
+							{results.map((item) => {
+								return (
+									<ProductCards
+										title={item.node.title}
+										handle={item.node.handle}
+										price={item.node.variants.edges[0].node.price}
+										image={item.node.images.edges[0].node.originalSrc}
+										key={item.node.id}
+									/>
+								);
 							})}
 						</div>
 					</div>
@@ -136,50 +87,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	console.log(params);
-	const client = new Client({
-		environment: Environment.Production,
-		accessToken: process.env.SQUARE_ACCESS_TOKEN,
-	});
+
 	const vendorSearch = params.vendorsearch.replace(/%20/g, ' ');
 	console.log('Vendor: ', vendorSearch);
 
-	let filteredItems = [];
-
-	const newImageRequest = async (items) => {
-		const catalog = client.catalogApi;
-
-		let newItemsWithPictures = [];
-
-		for (let i = 0; i < items.length; i++) {
-			const response = await catalog.retrieveCatalogObject(items[i].imageId);
-			items[i].imageLink = response.result.object.imageData.url;
-			newItemsWithPictures.push(items[i]);
-		}
-		return newItemsWithPictures;
-	};
-	try {
-		const response = await client.catalogApi.searchCatalogItems({
-			textFilter: vendorSearch,
-		});
-
-		const data = JSONBig.parse(JSONBig.stringify(response.result.items));
-
-		for (let i = 0; i < data.length; i++) {
-			if (data[i].imageId) {
-				filteredItems.push(data[i]);
-			}
-		}
-	} catch (error) {
-		console.log('Search Error: ', error);
-		return {
-			props: {},
-		};
-	}
-
-	const searchresults = await newImageRequest(filteredItems);
+	const products = await searchVendors(vendorSearch);
 
 	return {
-		props: { searchresults, vendorSearch },
-		revalidate: 3600,
+		props: {
+			products,
+			vendorSearch,
+		},
+		revalidate: 360,
 	};
 }
