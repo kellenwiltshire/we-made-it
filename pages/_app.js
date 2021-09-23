@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<Layout search={search} setSearch={setSearch}>
-			<Component {...pageProps} vendorSales={vendorSales} search={search} />
+			<Component {...pageProps} search={search} />
 		</Layout>
 	);
 }
