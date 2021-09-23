@@ -98,6 +98,6 @@ export async function getStaticProps({ params }) {
 			products,
 			vendorSearch,
 		},
-		revalidate: 3600,
+		revalidate: 360,
 	};
 }

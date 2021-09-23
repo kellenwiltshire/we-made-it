@@ -8,7 +8,7 @@ import { getAllProducts } from '../lib/shopify';
 
 export default function SearchItems({ search, products }) {
 	const fixedSearch = search.replace(/%20/g, ' ');
-	console.log(products);
+	console.log('Search: ', fixedSearch);
 	if (products) {
 		const results = searchFilter(fixedSearch, products);
 		return (
@@ -70,5 +70,6 @@ export async function getStaticProps() {
 		props: {
 			products,
 		},
+		revalidate: 360,
 	};
 }

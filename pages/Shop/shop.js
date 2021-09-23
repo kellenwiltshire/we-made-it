@@ -9,7 +9,6 @@ import SEO from '../../components/SEO/SEO';
 import { getAllProducts } from '../../lib/shopify';
 
 export default function Shop({ products }) {
-	console.log('Products: ', products);
 	if (products) {
 		const initialItems = products;
 		const [perPage, setPerPage] = useState(50); //Number of Items per page - May allow changing in the future
@@ -183,11 +182,13 @@ export default function Shop({ products }) {
 }
 
 export async function getStaticProps() {
+	console.log('Shop Revalidate');
 	const products = await getAllProducts();
 
 	return {
 		props: {
 			products,
 		},
+		revalidate: 360,
 	};
 }
