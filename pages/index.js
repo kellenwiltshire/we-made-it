@@ -3,10 +3,9 @@ import Location from '../components/About/Location';
 import Headers from '../components/Layout/Headers';
 import React from 'react';
 import Link from 'next/link';
-import VendorSale from '../components/About/VendorSale';
 import SEO from '../components/SEO/SEO';
 
-export default function Home({ vendorSales }) {
+export default function Home() {
 	return (
 		<div className='mx-auto min-h-screen flex justify-center flex-row flex-wrap'>
 			<SEO title='We Made It' />
@@ -26,8 +25,6 @@ export default function Home({ vendorSales }) {
 			</Link>
 			<Headers title='Our Story' />
 			<AboutStore />
-
-			<VendorSale vendorSales={vendorSales} />
 			<Location />
 		</div>
 	);
