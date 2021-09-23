@@ -76,10 +76,10 @@ function ProductForm({ title, handle, variants, setVariantPrice, mainImg }) {
 				</div>
 
 				<div className='flex flex-col items-start space-y-1 flex-grow'>
-					<label className='text-gray-500 text-base'>Size</label>
+					<label className='text-gray-500 text-base'>Variations</label>
 					<select
-						id='size-selector'
-						name='size-selector'
+						id='variation-selector'
+						name='variation-selector'
 						onChange={(event) => handleSizeChange(event.target.value)}
 						value={variantId}
 						className='form-select border border-gray-300 rounded-sm w-full text-gray-900 focus:border-palette-light focus:ring-palette-light'
