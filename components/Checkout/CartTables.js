@@ -3,7 +3,6 @@ import { useUpdateCartQuantityContext } from '../../context/Store';
 import Link from 'next/link';
 import Price from './Price';
 import { getCartSubTotal } from '../../utils/checkout';
-import { checkForDiscounts, checkCartDiscounts } from '../../utils/sales';
 import Delete from '../Icons/Delete';
 
 function CartTable({ cart }) {
