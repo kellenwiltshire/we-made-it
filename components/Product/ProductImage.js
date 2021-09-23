@@ -43,7 +43,7 @@ function ProductImage({ images }) {
 								className='relative w-40 h-32 flex-shrink-0 rounded-sm '
 								onClick={() => setMainImg(imgItem.node)}
 							>
-								<Image
+								<img
 									src={imgItem.node.originalSrc}
 									alt={imgItem.node.altText}
 									layout='fill'
