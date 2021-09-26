@@ -5,7 +5,6 @@ import { getProduct } from '../../lib/shopify';
 
 export default function ShopProduct({ productData }) {
 	console.log(productData);
-
 	return (
 		<div className='min-h-screen py-12 sm:pt-20 container'>
 			<SEO title={`${productData.title} || We Made It`} />
@@ -16,6 +15,12 @@ export default function ShopProduct({ productData }) {
 
 export async function getServerSideProps({ params }) {
 	const productData = await getProduct(params.product);
+
+	if (!productData.title) {
+		return {
+			notFound: true,
+		};
+	}
 
 	return {
 		props: {
