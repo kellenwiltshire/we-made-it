@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import SEO from '../components/SEO/SEO';
 
 export default function Custom404() {
-	const urlString = document.location.href;
-	console.log('404 Error: ', urlString);
+	useEffect(() => {
+		const urlString = document.location.href;
+		console.log('404 Error: ', urlString);
+	});
 	return (
 		<div className='h-screen w-screen bg-gray-100 flex items-center justify-center'>
 			<SEO title='404 Error || We Made It' />
