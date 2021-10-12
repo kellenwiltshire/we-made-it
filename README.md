@@ -1,3 +1,23 @@
-We Made It
 
-We Made It is a Handmade Boutique retailer with an online presence. The site integrates with the Square API to show products and allow for searching of those products. The site is created with NextJS with a NodeJS backend to mange API requests. The Website allows users to browse the stores selection and make purchases through Square. This site was created to allow the owner to make sure their online store reflected their in-person store. The site utilizes ISR on the shop page so that it is up-to-date (within 1 hour) of any changes made on the Square inventory and to allow for lightning fast product sorting.
+# We Made it
+
+We Made It is a Handmade Boutique retailer with an online presence.
+
+
+
+
+## Authors
+
+- [@kellenwiltshire](https://www.github.com/kellenwiltshire)
+
+  
+## Lessons Learned
+
+This was the first site I made for a Client. The site was originally a store front for a Merchant Servicer called Square. It has since moved from Square to Shopify which allowed me to learn GraphQL.
+
+The project is built with NextJS and utilizies both ISR and SSR to make sure that the site is fast and responsive while maintaining great SEO. This project is ongoing as the needs of the Client change and grow.
+
+  
+## Tech Stack
+
+**Client:** NextJS, TailwindCSS
