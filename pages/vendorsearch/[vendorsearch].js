@@ -7,7 +7,6 @@ import SEO from '../../components/SEO/SEO';
 import { searchVendors } from '../../lib/shopify';
 
 export default function VendorSearchItems({ vendorSearch, products }) {
-	console.log(products);
 	console.log('Vendor Search: ', vendorSearch);
 	if (products) {
 		if (products.length) {
